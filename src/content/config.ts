@@ -1,28 +1,35 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from 'astro:content'
 
-const concepts = defineCollection({
+const subjects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
-    subject: z.enum(['mathematics', 'computer-science']),
-    tags: z.array(z.string()).optional(),
-    order: z.number().optional()
+    order: z.number().default(0),
+    description: z.string().optional()
   })
-});
+})
 
 const courses = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
-    id: z.string(), // e.g., MATH_101
-    subject: z.enum(['mathematics', 'computer-science']).optional(),
-    outline: z.array(z.object({
-      label: z.string(),
-      conceptSlug: z.string().optional() // e.g., "mathematics/limits"
-    })).optional()
+    subject: z.string(),
+    code: z.string(),
+    order: z.number().default(0),
+    description: z.string().optional()
   })
-});
+})
 
-export const collections = { concepts, courses };
+const concepts = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string().optional(),
+    subject: z.string(),
+    course: z.string().optional(),
+    order: z.number().default(0),
+    tags: z.array(z.string()).default([])
+  })
+})
+
+export const collections = { subjects, courses, concepts }

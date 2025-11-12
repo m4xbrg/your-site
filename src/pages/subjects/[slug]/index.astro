@@ -1,0 +1,24 @@
+cat > src/pages/subjects/'[slug]'/index.astro <<'ASTRO'
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+const { slug } = Astro.params
+const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+const subject = (await getCollection('subjects')).find(s=>s.slug===slug)
+if (!subject) throw new Error('Subject not found')
+const courses  = (await getCollection('courses')).filter(c=>c.data.subject===subject.slug).slice().sort(sortByOrder)
+const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===subject.slug).slice().sort(sortByOrder)
+---
+<DocsLayout title={subject.data.title} description={subject.data.description}>
+  <h1 class="text-2xl font-bold mb-2">{subject.data.title}</h1>
+  {subject.data.description && <p class="text-gray-700 mb-6">{subject.data.description}</p>}
+  <h2 class="text-lg font-semibold mt-8 mb-3">Courses</h2>
+  <ul class="list-disc ms-5">
+    {courses.map(c => <li><a class="underline" href={`/courses/${c.slug}/`}>{c.data.code} — {c.data.title}</a></li>)}
+  </ul>
+  <h2 class="text-lg font-semibold mt-8 mb-3">Concepts</h2>
+  <ul class="list-disc ms-5">
+    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
+  </ul>
+</DocsLayout>
+ASTRO

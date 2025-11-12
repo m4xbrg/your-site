@@ -152,68 +152,46 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"concepts": {
-"computer-science/big-o.mdx": {
-	id: "computer-science/big-o.mdx";
-  slug: "computer-science/big-o";
+"computer-science/variables.md": {
+	id: "computer-science/variables.md";
+  slug: "computer-science/variables";
   body: string;
   collection: "concepts";
-  data: any
-} & { render(): Render[".mdx"] };
-"mathematics/eigenvectors.mdx": {
-	id: "mathematics/eigenvectors.mdx";
-  slug: "mathematics/eigenvectors";
-  body: string;
-  collection: "concepts";
-  data: any
-} & { render(): Render[".mdx"] };
-"mathematics/limits.mdx": {
-	id: "mathematics/limits.mdx";
-  slug: "mathematics/limits";
-  body: string;
-  collection: "concepts";
-  data: any
-} & { render(): Render[".mdx"] };
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".md"] };
 };
-"courses": {
-"CS_101.mdx": {
-	id: "CS_101.mdx";
-  slug: "cs_101";
+"courses": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "courses";
-  data: any
-} & { render(): Render[".mdx"] };
-"MATH_101.mdx": {
-	id: "MATH_101.mdx";
-  slug: "math_101";
-  body: string;
-  collection: "courses";
-  data: any
-} & { render(): Render[".mdx"] };
-};
-"lessons": {
-"MATH_101/L01-linear-equations.mdx": {
-	id: "MATH_101/L01-linear-equations.mdx";
-  slug: "math_101/l01-linear-equations";
+  data: InferEntrySchema<"courses">;
+  render(): Render[".md"];
+}>;
+"lessons": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "lessons";
-  data: any
-} & { render(): Render[".mdx"] };
-"MATH_101/L02-inequalities.mdx": {
-	id: "MATH_101/L02-inequalities.mdx";
-  slug: "math_101/l02-inequalities";
-  body: string;
-  collection: "lessons";
-  data: any
-} & { render(): Render[".mdx"] };
-};
-"problem-sets": {
-"MATH_101/PS01.mdx": {
-	id: "MATH_101/PS01.mdx";
-  slug: "math_101/ps01";
+  data: any;
+  render(): Render[".md"];
+}>;
+"problem-sets": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "problem-sets";
-  data: any
-} & { render(): Render[".mdx"] };
+  data: any;
+  render(): Render[".md"];
+}>;
+"subjects": {
+"computer-science.md": {
+	id: "computer-science.md";
+  slug: "computer-science";
+  body: string;
+  collection: "subjects";
+  data: InferEntrySchema<"subjects">
+} & { render(): Render[".md"] };
 };
 
 	};
@@ -231,5 +209,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = never;
+	export type ContentConfig = typeof import("./../../src/content/config.js");
 }

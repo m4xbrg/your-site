@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{ --sidebar-w: 280px; }
+
+.prose h1,h2,h3,h4{ scroll-margin-top: 5rem; }
+
+.sidebar-link{ @apply block px-3 py-2 rounded-lg hover:bg-gray-100 text-sm; }
+.sidebar-link.active{ @apply bg-gray-200 font-semibold; }
