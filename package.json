@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "astro": "^4.16.6",
+    "gray-matter": "^4.0.3",
     "typescript": "^5"
   },
   "devDependencies": {
