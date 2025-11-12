@@ -1,10 +1,24 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
-import { getEntry } from 'astro:content'
-const { slug } = Astro.params
-const entry = await getEntry('concepts', slug)
-if (!entry) throw new Error('Concept not found')
-const { Content, data } = await entry.render()
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const concepts = await getCollection('concepts')
+  return concepts.map((concept) => {
+    const slugParam = concept.slug.includes('/')
+      ? concept.slug.split('/')
+      : concept.slug
+
+    return {
+      params: { slug: slugParam },
+      props: { concept },
+    }
+  })
+}
+
+const { concept } = Astro.props
+if (!concept) throw new Error('Concept not found')
+const { Content, data } = await concept.render()
 ---
 <DocsLayout title={data.title} description={data.description}>
   <article class="prose">

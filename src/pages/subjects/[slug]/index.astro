@@ -1,12 +1,39 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
-const { slug } = Astro.params
+
 const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const subject = (await getCollection('subjects')).find(s=>s.slug===slug)
+
+export async function getStaticPaths() {
+  const [subjects, courses, concepts] = await Promise.all([
+    getCollection('subjects'),
+    getCollection('courses'),
+    getCollection('concepts'),
+  ])
+
+  return subjects.map((subject) => {
+    const relatedCourses = courses
+      .filter((course) => course.data.subject === subject.slug)
+      .slice()
+      .sort(sortByOrder)
+    const relatedConcepts = concepts
+      .filter((concept) => concept.data.subject === subject.slug)
+      .slice()
+      .sort(sortByOrder)
+
+    return {
+      params: { slug: subject.slug },
+      props: {
+        subject,
+        courses: relatedCourses,
+        concepts: relatedConcepts,
+      },
+    }
+  })
+}
+
+const { subject, courses, concepts } = Astro.props
 if (!subject) throw new Error('Subject not found')
-const courses  = (await getCollection('courses')).filter(c=>c.data.subject===subject.slug).slice().sort(sortByOrder)
-const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===subject.slug).slice().sort(sortByOrder)
 ---
 <DocsLayout title={subject.data.title} description={subject.data.description}>
   <h1 class="text-2xl font-bold mb-2">{subject.data.title}</h1>
