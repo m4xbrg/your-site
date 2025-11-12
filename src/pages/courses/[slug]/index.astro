@@ -1,100 +1,19 @@
+cat > src/pages/courses/'[slug]'/index.astro <<'ASTRO'
 ---
-import DocsLayout from '../../../layouts/DocsLayout.astro'
-import { getCollection, getEntry } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
-
-const sortByOrder = (a: CollectionEntry<'concepts'>, b: CollectionEntry<'concepts'>) =>
-  (a.data.order ?? 0) - (b.data.order ?? 0)
-
-export async function getStaticPaths() {
-  const courses = await getCollection('courses')
-  return courses.map((course) => ({
-    params: { slug: course.slug }
-  }))
-}
-
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
 const { slug } = Astro.params
-const entry = await getEntry('courses', slug)
-if (!entry) {
-  throw new Error(`Course not found: ${slug}`)
-}
-
-const { Content, data } = await entry.render()
-const concepts = (await getCollection('concepts'))
-  .filter((concept) => concept.data.course === entry.slug)
-  .slice()
-  .sort(sortByOrder)
-
-const courseLookup = await getCollection('courses')
-const prerequisiteCourses = data.prerequisites
-  .map((courseSlug) => courseLookup.find((course) => course.slug === courseSlug))
-  .filter((course): course is CollectionEntry<'courses'> => Boolean(course))
-const difficultyLabel = data.difficulty.charAt(0).toUpperCase() + data.difficulty.slice(1)
+const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+const course = (await getCollection('courses')).find(c=>c.slug===slug)
+if (!course) throw new Error('Course not found')
+const concepts = (await getCollection('concepts')).filter(k=>k.data.course===course.slug).slice().sort(sortByOrder)
 ---
-<DocsLayout title={data.title} description={data.description}>
-  <article class="prose max-w-none">
-    <header class="not-prose mb-8">
-      <h1 class="text-3xl font-bold mb-2">{data.code} — {data.title}</h1>
-      <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600">
-        <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 uppercase tracking-wide">
-          <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-          {difficultyLabel}
-        </span>
-        {prerequisiteCourses.length > 0 && (
-          <span>
-            Prerequisites:{' '}
-            {prerequisiteCourses.map((course, index) => (
-              <>
-                {index > 0 && ', '}
-                <a class="underline" href={`/courses/${course.slug}/`}>
-                  {course.data.code}
-                </a>
-              </>
-            ))}
-          </span>
-        )}
-      </div>
-      {data.description && <p class="mt-4 text-gray-700">{data.description}</p>}
-    </header>
-
-    {data.outline.length > 0 && (
-      <section class="not-prose mb-10">
-        <h2 class="text-xl font-semibold mb-3">Course outline</h2>
-        <ol class="list-decimal ms-6 space-y-2">
-          {data.outline.map((item) => (
-            <li>
-              {item.slug ? (
-                <a class="font-medium underline" href={`/concepts/${item.slug}/`}>
-                  {item.title}
-                </a>
-              ) : (
-                <span class="font-medium">{item.title}</span>
-              )}
-              {item.description && <p class="text-sm text-gray-600">{item.description}</p>}
-            </li>
-          ))}
-        </ol>
-      </section>
-    )}
-
-    <section class="not-prose mb-10">
-      <h2 class="text-xl font-semibold mb-3">What you'll learn</h2>
-      <Content />
-    </section>
-
-    {concepts.length > 0 && (
-      <section class="not-prose">
-        <h2 class="text-xl font-semibold mb-3">Concepts in this course</h2>
-        <ul class="list-disc ms-6 space-y-1">
-          {concepts.map((concept) => (
-            <li>
-              <a class="underline" href={`/concepts/${concept.slug}/`}>
-                {concept.data.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )}
-  </article>
+<DocsLayout title={course.data.title} description={course.data.description}>
+  <h1 class="text-2xl font-bold mb-2">{course.data.code} — {course.data.title}</h1>
+  {course.data.description && <p class="text-gray-700 mb-6">{course.data.description}</p>}
+  <h2 class="text-lg font-semibold mt-8 mb-3">Concepts in this course</h2>
+  <ul class="list-disc ms-5">
+    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
+  </ul>
 </DocsLayout>
+ASTRO
