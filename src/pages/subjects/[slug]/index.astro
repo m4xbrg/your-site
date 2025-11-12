@@ -1,4 +1,3 @@
-cat > src/pages/subjects/'[slug]'/index.astro <<'ASTRO'
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
@@ -21,4 +20,3 @@ const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===su
     {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
   </ul>
 </DocsLayout>
-ASTRO
