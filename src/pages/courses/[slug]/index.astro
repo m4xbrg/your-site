@@ -1,11 +1,29 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
-const { slug } = Astro.params
+
 const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const course = (await getCollection('courses')).find(c=>c.slug===slug)
+
+export async function getStaticPaths() {
+  const [courses, concepts] = await Promise.all([
+    getCollection('courses'),
+    getCollection('concepts'),
+  ])
+
+  return courses.map((course) => ({
+    params: { slug: course.slug },
+    props: {
+      course,
+      concepts: concepts
+        .filter((concept) => concept.data.course === course.slug)
+        .slice()
+        .sort(sortByOrder),
+    },
+  }))
+}
+
+const { course, concepts } = Astro.props
 if (!course) throw new Error('Course not found')
-const concepts = (await getCollection('concepts')).filter(k=>k.data.course===course.slug).slice().sort(sortByOrder)
 ---
 <DocsLayout title={course.data.title} description={course.data.description}>
   <h1 class="text-2xl font-bold mb-2">{course.data.code} — {course.data.title}</h1>
