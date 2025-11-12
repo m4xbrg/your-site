@@ -13,10 +13,19 @@ const courses = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    id: z.string(),
     subject: z.string(),
     code: z.string(),
     order: z.number().default(0),
-    description: z.string().optional()
+    description: z.string().optional(),
+    outline: z
+      .array(
+        z.object({
+          label: z.string(),
+          conceptSlug: z.string().optional()
+        })
+      )
+      .optional()
   })
 })
 
