@@ -16,7 +16,18 @@ const courses = defineCollection({
     subject: z.string(),
     code: z.string(),
     order: z.number().default(0),
-    description: z.string().optional()
+    description: z.string().optional(),
+    difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
+    prerequisites: z.array(z.string()).default([]),
+    outline: z
+      .array(
+        z.object({
+          title: z.string(),
+          slug: z.string().optional(),
+          description: z.string().optional()
+        })
+      )
+      .default([])
   })
 })
 
