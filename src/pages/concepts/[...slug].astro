@@ -1,0 +1,27 @@
+---
+import { getEntryBySlug } from 'astro:content';
+import Docs from '../../layouts/DocsLayout.astro';
+import { Markdown } from 'astro/components';
+export async function getStaticPaths() {
+  // Use glob to collect all concept slugs under content
+  const modules = import.meta.glob('../../../content/concepts/**/*.{md,mdx}', { eager: true });
+  return Object.keys(modules).map((path) => {
+    // Convert e.g. concepts/mathematics/limits.mdx -> mathematics/limits
+    const m = path.match(/concepts\/(.*)\.(md|mdx)$/);
+    const slug = m ? m[1] : '';
+    return { params: { slug: slug.split('/') } };
+  });
+}
+const { slug } = Astro.params;
+const joined = Array.isArray(slug) ? slug.join('/') : slug;
+const entry = await getEntryBySlug('concepts', joined);
+if (!entry) throw new Error(`Concept not found: ${joined}`);
+const { Content, headings } = await entry.render();
+---
+<Docs title={`${entry.data.title} — YourSite`}>
+  <article class="prose prose-invert max-w-none">
+    <h1 class="text-3xl font-bold mb-2">{entry.data.title}</h1>
+    {entry.data.description && <p class="text-[color:var(--muted)] mb-6">{entry.data.description}</p>}
+    <Content />
+  </article>
+</Docs>

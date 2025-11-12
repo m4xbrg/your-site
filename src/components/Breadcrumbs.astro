@@ -1,0 +1,16 @@
+---
+const parts = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const crumbs = parts.map((p, i) => ({
+  label: decodeURIComponent(p).replace('-', ' '),
+  href: '/' + parts.slice(0, i + 1).join('/')
+}));
+---
+<nav class="text-xs mb-6 text-[color:var(--muted)]">
+  <a href="/" class="hover:text-brand-300">Home</a>
+  {crumbs.map(c => (
+    <>
+      <span class="mx-1">/</span>
+      <a href={c.href} class="hover:text-brand-300 capitalize">{c.label}</a>
+    </>
+  ))}
+</nav>

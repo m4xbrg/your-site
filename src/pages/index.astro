@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+const features = [
+  { title: "Concept Pages", description: "One canonical page per concept, mapped across courses.", href: "/concepts" },
+  { title: "Subject Hubs", description: "Landing pages that organize topics and pathways.", href: "/subjects/mathematics" },
+  { title: "Courses", description: "Curated study plans with prerequisites and outcomes.", href: "/courses/MATH_101" },
+];
+---
+<Base title="YourSite — Learn Anything">
+  <section class="text-center py-14">
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Build your <span class="text-brand-400">personal university</span>.</h1>
+    <p class="mt-4 text-[color:var(--muted)] max-w-2xl mx-auto">
+      Start with a working Astro + Tailwind scaffold. Add concepts, subjects, and courses over time.
+    </p>
+  </section>
+
+  <section class="grid md:grid-cols-3 gap-4">
+    {features.map(f => <Card {...f} />)}
+  </section>
+</Base>

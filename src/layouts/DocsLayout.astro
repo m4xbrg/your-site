@@ -1,0 +1,17 @@
+---
+import Base from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+const { title } = Astro.props;
+---
+<Base title={title}>
+  <div class="grid grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)] gap-6">
+    <aside class="hidden md:block">
+      <Sidebar />
+    </aside>
+    <article class="min-w-0">
+      <Breadcrumbs />
+      <slot />
+    </article>
+  </div>
+</Base>

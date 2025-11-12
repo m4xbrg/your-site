@@ -1,0 +1,18 @@
+---
+import Docs from '../../layouts/DocsLayout.astro';
+import { getCollection } from 'astro:content';
+const subject = 'mathematics';
+const concepts = (await getCollection('concepts', ({ data }) => data.subject === subject))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999) || a.slug.localeCompare(b.slug));
+---
+<Docs title="Mathematics — YourSite">
+  <h1 class="text-3xl font-bold mb-6 capitalize">Mathematics</h1>
+  <ul class="grid md:grid-cols-2 gap-3">
+    {concepts.map(c => (
+      <li class="rounded-2xl p-5 bg-[color:var(--card)] border border-white/10">
+        <a class="text-lg font-semibold hover:text-brand-300" href={`/concepts/${c.slug}`}>{c.data.title}</a>
+        {c.data.description && <p class="text-sm text-[color:var(--muted)] mt-1">{c.data.description}</p>}
+      </li>
+    ))}
+  </ul>
+</Docs>
