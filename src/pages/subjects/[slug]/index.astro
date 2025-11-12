@@ -1,24 +1,56 @@
-cat > src/pages/subjects/'[slug]'/index.astro <<'ASTRO'
 ---
-import DocsLayout from "../../../layouts/DocsLayout.astro"
-import { getCollection } from 'astro:content'
-const { slug } = Astro.params
-const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const subject = (await getCollection('subjects')).find(s=>s.slug===slug)
-if (!subject) throw new Error('Subject not found')
-const courses  = (await getCollection('courses')).filter(c=>c.data.subject===subject.slug).slice().sort(sortByOrder)
-const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===subject.slug).slice().sort(sortByOrder)
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { getCollection } from 'astro:content';
+const { slug } = Astro.params;
+const sortByOrder = (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0);
+const subject = (await getCollection('subjects')).find((entry) => entry.slug === slug);
+if (!subject) {
+  throw new Error(`Subject not found: ${slug}`);
+}
+const courses = (await getCollection('courses'))
+  .filter((course) => course.data.subject === subject.slug)
+  .sort(sortByOrder);
+const concepts = (await getCollection('concepts'))
+  .filter((concept) => concept.data.subject === subject.slug)
+  .sort(sortByOrder);
 ---
 <DocsLayout title={subject.data.title} description={subject.data.description}>
-  <h1 class="text-2xl font-bold mb-2">{subject.data.title}</h1>
-  {subject.data.description && <p class="text-gray-700 mb-6">{subject.data.description}</p>}
-  <h2 class="text-lg font-semibold mt-8 mb-3">Courses</h2>
-  <ul class="list-disc ms-5">
-    {courses.map(c => <li><a class="underline" href={`/courses/${c.slug}/`}>{c.data.code} — {c.data.title}</a></li>)}
-  </ul>
-  <h2 class="text-lg font-semibold mt-8 mb-3">Concepts</h2>
-  <ul class="list-disc ms-5">
-    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
-  </ul>
+  <section>
+    <h1 class="text-3xl font-bold mb-2">{subject.data.title}</h1>
+    {subject.data.description && <p class="text-[color:var(--muted)] mb-6">{subject.data.description}</p>}
+  </section>
+  {courses.length > 0 && (
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold mb-3">Courses</h2>
+      <ul class="list-disc ms-6 space-y-2">
+        {courses.map((course) => (
+          <li>
+            <a class="text-brand-300 hover:underline" href={`/courses/${course.slug}/`}>
+              {course.data.code} — {course.data.title}
+            </a>
+            {course.data.description && (
+              <p class="text-sm text-[color:var(--muted)] mt-1">{course.data.description}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {concepts.length > 0 && (
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold mb-3">Concepts</h2>
+      <ul class="list-disc ms-6 space-y-2">
+        {concepts.map((concept) => (
+          <li>
+            <a class="text-brand-300 hover:underline" href={`/concepts/${concept.slug}/`}>
+              {concept.data.title}
+            </a>
+            {concept.data.summary && (
+              <p class="text-sm text-[color:var(--muted)] mt-1">{concept.data.summary}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 </DocsLayout>
-ASTRO

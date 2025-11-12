@@ -1,19 +1,38 @@
-cat > src/pages/courses/'[slug]'/index.astro <<'ASTRO'
 ---
-import DocsLayout from "../../../layouts/DocsLayout.astro"
-import { getCollection } from 'astro:content'
-const { slug } = Astro.params
-const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const course = (await getCollection('courses')).find(c=>c.slug===slug)
-if (!course) throw new Error('Course not found')
-const concepts = (await getCollection('concepts')).filter(k=>k.data.course===course.slug).slice().sort(sortByOrder)
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { getCollection } from 'astro:content';
+const { slug } = Astro.params;
+const sortByOrder = (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0);
+const course = (await getCollection('courses')).find((entry) => entry.slug === slug);
+if (!course) {
+  throw new Error(`Course not found: ${slug}`);
+}
+const concepts = (await getCollection('concepts'))
+  .filter((concept) => concept.data.course === course.slug)
+  .sort(sortByOrder);
+const { Content, data } = await course.render();
 ---
-<DocsLayout title={course.data.title} description={course.data.description}>
-  <h1 class="text-2xl font-bold mb-2">{course.data.code} — {course.data.title}</h1>
-  {course.data.description && <p class="text-gray-700 mb-6">{course.data.description}</p>}
-  <h2 class="text-lg font-semibold mt-8 mb-3">Concepts in this course</h2>
-  <ul class="list-disc ms-5">
-    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
-  </ul>
+<DocsLayout title={`${data.code} — ${data.title}`} description={data.description}>
+  <article class="prose prose-invert max-w-none">
+    <h1 class="text-3xl font-bold mb-2">{data.code} — {data.title}</h1>
+    {data.description && <p class="text-[color:var(--muted)] mb-6">{data.description}</p>}
+    <Content />
+    {concepts.length > 0 && (
+      <>
+        <h2 class="text-2xl font-semibold mt-10 mb-4">Concepts in this course</h2>
+        <ul class="list-disc ms-6 space-y-2">
+          {concepts.map((concept) => (
+            <li>
+              <a class="text-brand-300 hover:underline" href={`/concepts/${concept.slug}/`}>
+                {concept.data.title}
+              </a>
+              {concept.data.summary && (
+                <p class="text-sm text-[color:var(--muted)] mt-1">{concept.data.summary}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </article>
 </DocsLayout>
-ASTRO
