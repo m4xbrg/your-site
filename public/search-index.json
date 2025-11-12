@@ -1,0 +1,114 @@
+[
+  {
+    "id": "subjects:computer-science",
+    "collection": "subjects",
+    "slug": "computer-science",
+    "title": "Computer Science",
+    "description": "Foundations of programming, data structures, algorithms, and systems.",
+    "url": "/subjects/computer-science/",
+    "data": {
+      "title": "Computer Science",
+      "order": 2,
+      "description": "Foundations of programming, data structures, algorithms, and systems."
+    },
+    "content": ""
+  },
+  {
+    "id": "concepts:computer-science/variables",
+    "collection": "concepts",
+    "slug": "computer-science/variables",
+    "title": "Variables & Types",
+    "description": "Names that store values; primitive types and how to pick them.",
+    "url": "/concepts/computer-science/variables/",
+    "data": {
+      "title": "Variables & Types",
+      "description": "Names that store values; primitive types and how to pick them.",
+      "subject": "computer-science",
+      "course": "cs-101",
+      "order": 1,
+      "tags": [
+        "basics",
+        "types"
+      ]
+    },
+    "content": "Variables let you associate a name with a value. Most languages give you a few primitive types (numbers, strings, booleans) and composite types (arrays/lists, objects/maps)."
+  },
+  {
+    "id": "courses:cs-101",
+    "collection": "courses",
+    "slug": "cs-101",
+    "title": "Programming Basics",
+    "description": "Learn the fundamentals of programming, from variables and control flow to core data structures.",
+    "url": "/courses/cs-101/",
+    "data": {
+      "title": "Programming Basics",
+      "id": "cs-101",
+      "subject": "computer-science",
+      "code": "CS 101",
+      "order": 1,
+      "description": "Learn the fundamentals of programming, from variables and control flow to core data structures.",
+      "outline": [
+        {
+          "label": "Variables & Types",
+          "conceptSlug": "computer-science/variables"
+        },
+        {
+          "label": "Control Flow Essentials"
+        },
+        {
+          "label": "Working with Data Structures"
+        }
+      ]
+    },
+    "content": "Welcome to **Programming Basics**! This course introduces the core ideas behind writing software. You'll start by\nunderstanding how programming languages represent data and how to choose the right types for the job. From there, you\nwill practise guiding your programs with conditional logic and loops before closing with a tour of the most common data\nstructures used in everyday development.\n\nBy the end, you'll be able to read and write simple programs, reason about how data moves through them, and feel ready to\ndive into more advanced topics."
+  },
+  {
+    "id": "courses:math-101",
+    "collection": "courses",
+    "slug": "math-101",
+    "title": "Foundations of Calculus",
+    "description": "Build intuition for limits, derivatives, and integrals through visual reasoning and applied practice.",
+    "url": "/courses/math-101/",
+    "data": {
+      "title": "Foundations of Calculus",
+      "id": "math-101",
+      "subject": "mathematics",
+      "code": "MATH 101",
+      "order": 2,
+      "description": "Build intuition for limits, derivatives, and integrals through visual reasoning and applied practice.",
+      "outline": [
+        {
+          "label": "Limits & Continuity",
+          "conceptSlug": "mathematics/limits"
+        },
+        {
+          "label": "Derivatives and Rates of Change"
+        },
+        {
+          "label": "Integrals and Accumulation"
+        }
+      ]
+    },
+    "content": "Calculus describes change. In **Foundations of Calculus**, you'll explore how limits help us tame functions, how\ninstantaneous rates of change appear through derivatives, and how integrals accumulate quantities over intervals.\n\nEach module mixes geometric insight with problem-solving strategies so you can connect theory to applications in\nscience and engineering. Completing the course equips you with the mental models needed for further study in analysis,\nphysics, and beyond."
+  },
+  {
+    "id": "concepts:mathematics/limits",
+    "collection": "concepts",
+    "slug": "mathematics/limits",
+    "title": "Limits & Continuity",
+    "description": "Understanding the behaviour of functions as inputs approach a value.",
+    "url": "/concepts/mathematics/limits/",
+    "data": {
+      "title": "Limits & Continuity",
+      "description": "Understanding the behaviour of functions as inputs approach a value.",
+      "subject": "mathematics",
+      "course": "math-101",
+      "order": 1,
+      "tags": [
+        "calculus",
+        "limits"
+      ]
+    },
+    "content": "Limits formalize the idea of getting arbitrarily close to a value. By studying limits you learn how functions behave near\npoints where they might otherwise be undefined and lay the groundwork for derivatives and integrals."
+  }
+]
