@@ -13,7 +13,7 @@ const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===su
   {subject.data.description && <p class="text-gray-700 mb-6">{subject.data.description}</p>}
   <h2 class="text-lg font-semibold mt-8 mb-3">Courses</h2>
   <ul class="list-disc ms-5">
-    {courses.map(c => <li><a class="underline" href={`/courses/${c.slug}/`}>{c.data.code} — {c.data.title}</a></li>)}
+    {courses.map(c => <li><a class="underline" href={`/courses/${c.data.id}/`}>{c.data.code} — {c.data.title}</a></li>)}
   </ul>
   <h2 class="text-lg font-semibold mt-8 mb-3">Concepts</h2>
   <ul class="list-disc ms-5 space-y-2">

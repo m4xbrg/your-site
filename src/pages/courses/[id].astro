@@ -1,9 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import Docs from '../../layouts/DocsLayout.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  return courses.map((course) => ({ params: { id: course.data.id } }));
+}
+
 const { id } = Astro.params;
 const all = await getCollection('courses');
-const course = all.find(c => c.data.id === id);
+const course = all.find((c) => c.data.id === id);
 if (!course) throw new Error(`Course not found: ${id}`);
 const { Content } = await course.render();
 ---

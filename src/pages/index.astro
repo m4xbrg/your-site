@@ -18,7 +18,7 @@ const courses  = (await getCollection('courses')).slice().sort(sortByOrder)
     <section class="p-5 border rounded-2xl">
       <h2 class="text-lg font-semibold mb-3">Courses</h2>
       <ul class="list-disc ms-5">
-        {courses.map(c => <li><a class="underline" href={`/courses/${c.slug}/`}>{c.data.code} — {c.data.title}</a></li>)}
+        {courses.map(c => <li><a class="underline" href={`/courses/${c.data.id}/`}>{c.data.code} — {c.data.title}</a></li>)}
       </ul>
     </section>
   </div>
