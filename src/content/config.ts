@@ -24,7 +24,7 @@ const concepts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    summary: z.string().optional(),
+    description: z.string().optional(),
     subject: z.string(),
     course: z.string().optional(),
     order: z.number().default(0),

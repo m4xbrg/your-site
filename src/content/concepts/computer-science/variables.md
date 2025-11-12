@@ -1,6 +1,6 @@
 ---
 title: Variables & Types
-summary: Names that store values; primitive types and how to pick them.
+description: Names that store values; primitive types and how to pick them.
 subject: computer-science
 course: cs-101
 order: 1
