@@ -163,7 +163,7 @@ const concepts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    summary: z.string().optional(),
+    description: z.string().optional(),
     subject: z.string(),
     course: z.string().optional(),
     order: z.number().default(0),
@@ -383,7 +383,7 @@ const entry = await getEntry('concepts', slug)
 if (!entry) throw new Error('Concept not found')
 const { Content, data } = await entry.render()
 ---
-<DocsLayout title={data.title} description={data.summary}>
+<DocsLayout title={data.title} description={data.description}>
   <article class="prose">
     <h1>{data.title}</h1>
     <Content />
@@ -418,7 +418,7 @@ subject: mathematics
 course: math-101
 title: Limits
 order: 1
-summary: Intuition and formal ε–δ definition of limits.
+description: Intuition and formal ε–δ definition of limits.
 tags: [calculus, foundations]
 ---
 A **limit** describes the value a function approaches as the input approaches some point. …

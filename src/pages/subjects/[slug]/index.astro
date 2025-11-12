@@ -16,7 +16,12 @@ const concepts = (await getCollection('concepts')).filter(k=>k.data.subject===su
     {courses.map(c => <li><a class="underline" href={`/courses/${c.slug}/`}>{c.data.code} — {c.data.title}</a></li>)}
   </ul>
   <h2 class="text-lg font-semibold mt-8 mb-3">Concepts</h2>
-  <ul class="list-disc ms-5">
-    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
+  <ul class="list-disc ms-5 space-y-2">
+    {concepts.map(k => (
+      <li>
+        <a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a>
+        {k.data.description && <p class="text-sm text-gray-600">{k.data.description}</p>}
+      </li>
+    ))}
   </ul>
 </DocsLayout>
