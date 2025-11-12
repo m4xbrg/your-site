@@ -1,6 +1,6 @@
 ---
 title: Limits & Continuity
-summary: Understanding the behaviour of functions as inputs approach a value.
+description: Understanding the behaviour of functions as inputs approach a value.
 subject: mathematics
 course: math-101
 order: 1
