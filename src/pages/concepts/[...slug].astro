@@ -2,6 +2,7 @@
 import { getEntryBySlug } from 'astro:content';
 import Docs from '../../layouts/DocsLayout.astro';
 import { Markdown } from 'astro/components';
+import TagChips from '../../components/TagChips.astro';
 export async function getStaticPaths() {
   // Use glob to collect all concept slugs under content
   const modules = import.meta.glob('../../../content/concepts/**/*.{md,mdx}', { eager: true });
@@ -22,6 +23,7 @@ const { Content, headings } = await entry.render();
   <article class="prose prose-invert max-w-none">
     <h1 class="text-3xl font-bold mb-2">{entry.data.title}</h1>
     {entry.data.description && <p class="text-[color:var(--muted)] mb-6">{entry.data.description}</p>}
+    <TagChips tags={entry.data.tags ?? []} variant="dark" class="mb-6" />
     <Content />
   </article>
 </Docs>

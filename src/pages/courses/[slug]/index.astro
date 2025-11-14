@@ -2,6 +2,7 @@
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
 import { collectionNames } from "../../../lib/collections"
+import TagChips from "../../../components/TagChips.astro"
 
 const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
 
@@ -29,6 +30,7 @@ if (!course) throw new Error('Course not found')
 <DocsLayout title={course.data.title} description={course.data.description}>
   <h1 class="text-2xl font-bold mb-2">{course.data.code} — {course.data.title}</h1>
   {course.data.description && <p class="text-gray-700 mb-6">{course.data.description}</p>}
+  <TagChips tags={course.data.tags ?? []} class="mb-6" />
   <h2 class="text-lg font-semibold mt-8 mb-3">Concepts in this course</h2>
   <ul class="list-disc ms-5">
     {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
