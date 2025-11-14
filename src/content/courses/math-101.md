@@ -12,6 +12,15 @@ outline:
 concepts:
   - mathematics/limits
 lessons: []
+concepts:
+  - mathematics/limits
+lessons:
+  - slug: limits-and-continuity
+    title: Limits & Continuity
+  - slug: derivatives-and-rates-of-change
+    title: Derivatives and Rates of Change
+  - slug: integrals-and-accumulation
+    title: Integrals and Accumulation
 prerequisites: []
 ---
 Calculus describes change. In **Foundations of Calculus**, you'll explore how limits help us tame functions, how
