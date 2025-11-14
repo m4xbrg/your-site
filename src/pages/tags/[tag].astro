@@ -1,0 +1,156 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+type TagGroup = {
+  courses: CollectionEntry<'courses'>[]
+  concepts: CollectionEntry<'concepts'>[]
+}
+
+const addEntriesToMap = (
+  entries: Array<CollectionEntry<'courses'> | CollectionEntry<'concepts'>>,
+  map: Map<string, TagGroup>,
+  type: keyof TagGroup,
+) => {
+  entries.forEach((entry) => {
+    const tags = Array.isArray(entry.data.tags) ? entry.data.tags : []
+    tags.forEach((rawTag) => {
+      const tag = rawTag?.trim()
+      if (!tag) return
+      const bucket = map.get(tag) ?? { courses: [], concepts: [] }
+      if (type === 'courses') {
+        bucket.courses.push(entry as CollectionEntry<'courses'>)
+      } else {
+        bucket.concepts.push(entry as CollectionEntry<'concepts'>)
+      }
+      map.set(tag, bucket)
+    })
+  })
+}
+
+export async function getStaticPaths() {
+  const [courses, concepts] = await Promise.all([
+    getCollection(collectionNames.courses),
+    getCollection(collectionNames.concepts),
+  ])
+
+  const tagsMap = new Map<string, TagGroup>()
+  addEntriesToMap(courses, tagsMap, 'courses')
+  addEntriesToMap(concepts, tagsMap, 'concepts')
+
+  return Array.from(tagsMap.entries()).map(([tag, { courses, concepts }]) => ({
+    params: { tag },
+    props: {
+      tag,
+      courses: courses.slice().sort((a, b) => a.data.title.localeCompare(b.data.title)),
+      concepts: concepts.slice().sort((a, b) => a.data.title.localeCompare(b.data.title)),
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import { getAllTags } from '../../../lib/tags'
+
+const sortByOrder = (a, b) => (a?.data?.order ?? 0) - (b?.data?.order ?? 0)
+
+export async function getStaticPaths() {
+  const tags = await getAllTags()
+
+  return tags.map(({ tag, courses, concepts }) => ({
+    params: { tag },
+    props: {
+      tag,
+      courses: courses.slice().sort(sortByOrder),
+      concepts: concepts.slice().sort(sortByOrder),
+    },
+  }))
+}
+
+const { tag, courses = [], concepts = [] } = Astro.props
+const totalMatches = courses.length + concepts.length
+const description = totalMatches
+  ? `Content tagged with "${tag}" on your-site.`
+  : `There are no courses or concepts using the "${tag}" tag yet.`
+---
+<DocsLayout title={tag} description={description}>
+  <h1 class="text-3xl font-bold mb-4">{tag}</h1>
+  <p class="text-gray-600 mb-10">
+    {totalMatches > 0
+      ? <>This tag appears in {courses.length} course{courses.length === 1 ? '' : 's'} and {concepts.length} concept{concepts.length === 1 ? '' : 's'}.</>
+      : <>No courses or concepts use this tag yet.</>}
+  </p>
+
+  <section class="mb-10">
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-xl font-semibold">Courses</h2>
+      {courses.length > 0 && <span class="text-sm text-gray-500">({courses.length})</span>}
+    </div>
+    {courses.length > 0 ? (
+      <ul class="space-y-4">
+        {courses.map((course) => (
+          <li>
+            <a class="text-blue-600 font-medium underline" href={`/courses/${course.slug}/`}>
+              {course.data.title}
+            </a>
+            {course.data.description && (
+              <p class="text-gray-600 text-sm">{course.data.description}</p>
+            )}
+if (!tag) throw new Error('Tag not found')
+---
+<DocsLayout title={`Tag: ${tag}`} description={`Entries tagged with “${tag}”.`}>
+  <h1 class="text-2xl font-bold mb-2">Tag: {tag}</h1>
+  <p class="text-gray-700 mb-6">Browse everything on the site that uses this tag.</p>
+
+  <section class="mt-6">
+    <h2 class="text-lg font-semibold mb-3">Courses</h2>
+    {courses.length ? (
+      <ul class="list-disc ms-5 space-y-2">
+        {courses.map((course) => (
+          <li>
+            <a class="underline" href={`/courses/${course.data.id}/`}>
+              {course.data.code ? `${course.data.code} — ` : ''}{course.data.title}
+            </a>
+            {course.data.description && <p class="text-sm text-gray-600">{course.data.description}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-gray-500">No courses found for this tag.</p>
+    )}
+  </section>
+
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-xl font-semibold">Concepts</h2>
+      {concepts.length > 0 && <span class="text-sm text-gray-500">({concepts.length})</span>}
+    </div>
+    {concepts.length > 0 ? (
+      <ul class="space-y-4">
+        {concepts.map((concept) => (
+          <li>
+            <a class="text-blue-600 font-medium underline" href={`/concepts/${concept.slug}/`}>
+              {concept.data.title}
+            </a>
+            {concept.data.description && (
+              <p class="text-gray-600 text-sm">{concept.data.description}</p>
+            )}
+      <p class="text-sm text-gray-600">No courses use this tag yet.</p>
+    )}
+  </section>
+
+  <section class="mt-8">
+    <h2 class="text-lg font-semibold mb-3">Concepts</h2>
+    {concepts.length ? (
+      <ul class="list-disc ms-5 space-y-2">
+        {concepts.map((concept) => (
+          <li>
+            <a class="underline" href={`/concepts/${concept.slug}/`}>
+              {concept.data.title}
+            </a>
+            {concept.data.description && <p class="text-sm text-gray-600">{concept.data.description}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-gray-500">No concepts found for this tag.</p>
+      <p class="text-sm text-gray-600">No concepts use this tag yet.</p>
+    )}
+  </section>
+</DocsLayout>

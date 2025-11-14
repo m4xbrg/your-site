@@ -1,0 +1,167 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const [subjects, courses, concepts] = await Promise.all([
+  getCollection(collectionNames.subjects),
+  getCollection(collectionNames.courses),
+  getCollection(collectionNames.concepts),
+])
+
+const results = [
+  ...subjects.map((entry) => ({
+    type: 'Subject',
+    title: entry.data.title,
+    description: entry.data.description ?? entry.data.summary ?? '',
+    url: `/subjects/${entry.slug}/`,
+    tags: [],
+  })),
+  ...courses.map((entry) => ({
+    type: 'Course',
+    title: entry.data.title,
+    description: entry.data.description ?? '',
+    url: `/courses/${entry.slug}/`,
+    tags: [],
+  })),
+  ...concepts.map((entry) => ({
+    type: 'Concept',
+    title: entry.data.title,
+    description: entry.data.description ?? '',
+    url: `/concepts/${entry.slug}/`,
+    tags: entry.data.tags ?? [],
+  })),
+]
+  .filter((item) => item.title)
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+<DocsLayout title="Search" description="Browse every subject, course, and concept.">
+  <header class="mb-8">
+    <p class="uppercase text-xs tracking-[0.2em] text-[color:var(--muted)]">Site-wide search</p>
+    <h1 class="text-3xl font-bold mt-1">Explore everything</h1>
+    <p class="text-[color:var(--muted)] mt-3 max-w-2xl">
+      Skim every concept, course, and subject at a glance. Click a tag to focus on that topic across the site.
+    </p>
+  </header>
+
+  <div class="space-y-4" data-search-results>
+    {results.map((item) => (
+      <article
+        class="rounded-2xl border border-white/10 bg-[color:var(--card)] p-5"
+        data-result-card
+        data-tags={JSON.stringify(item.tags)}
+      >
+        <div class="flex items-center gap-3 text-xs uppercase tracking-wide text-[color:var(--muted)]">
+          <span class="font-semibold">{item.type}</span>
+          {item.tags.length > 0 && <span class="h-1 w-1 rounded-full bg-[color:var(--muted)]"></span>}
+          <span>{item.tags.length > 0 ? `${item.tags.length} tag${item.tags.length === 1 ? '' : 's'}` : 'No tags'}</span>
+        </div>
+        <a href={item.url} class="block mt-2 text-xl font-semibold hover:text-brand-300">{item.title}</a>
+        {item.description && <p class="text-sm text-[color:var(--muted)] mt-2">{item.description}</p>}
+        {item.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {item.tags.map((tag) => (
+              <button
+                type="button"
+                class="tag-pill"
+                data-tag-filter
+                data-tag={tag}
+                aria-pressed="false"
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+
+  <div class="mt-6 flex items-center gap-3 text-sm text-[color:var(--muted)]" data-active-tag-indicator hidden>
+    <span>Filtering by</span>
+    <span class="font-semibold text-white" data-active-tag-label></span>
+    <button type="button" class="underline" data-clear-active-tag>Clear</button>
+  </div>
+  <p class="mt-6 text-sm text-[color:var(--muted)]" data-empty-state hidden>No results match that tag yet.</p>
+
+  <script type="module">
+    const resultsContainer = document.querySelector('[data-search-results]');
+    if (resultsContainer) {
+      const cards = Array.from(resultsContainer.querySelectorAll('[data-result-card]'));
+      const tagButtons = Array.from(resultsContainer.querySelectorAll('[data-tag-filter]'));
+      const indicator = document.querySelector('[data-active-tag-indicator]');
+      const indicatorLabel = indicator?.querySelector('[data-active-tag-label]');
+      const clearButton = document.querySelector('[data-clear-active-tag]');
+      const emptyState = document.querySelector('[data-empty-state]');
+      let activeTag = '';
+
+      const applyFilter = (tag) => {
+        activeTag = tag;
+        cards.forEach((card) => {
+          const tags = card.dataset.tags ? JSON.parse(card.dataset.tags) : [];
+          card.hidden = tag ? !tags.includes(tag) : false;
+        });
+
+        tagButtons.forEach((btn) => {
+          const isActive = tag && btn.dataset.tag === tag;
+          btn.dataset.active = isActive ? 'true' : 'false';
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (indicator) {
+          if (tag) {
+            indicator.removeAttribute('hidden');
+            if (indicatorLabel) indicatorLabel.textContent = `#${tag}`;
+          } else {
+            indicator.setAttribute('hidden', '');
+            if (indicatorLabel) indicatorLabel.textContent = '';
+          }
+        }
+
+        if (clearButton) {
+          clearButton.toggleAttribute('hidden', !tag);
+        }
+
+        if (emptyState) {
+          const anyVisible = cards.some((card) => !card.hidden);
+          emptyState.toggleAttribute('hidden', anyVisible);
+        }
+      };
+
+      tagButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tag = btn.dataset.tag || '';
+          applyFilter(activeTag === tag ? '' : tag);
+        });
+      });
+
+      clearButton?.addEventListener('click', () => applyFilter(''));
+    }
+  </script>
+
+  <style>
+    .tag-pill {
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .tag-pill:hover {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .tag-pill[data-active="true"] {
+      background: var(--accent);
+      color: #060b1c;
+      border-color: transparent;
+    }
+  </style>
+</DocsLayout>

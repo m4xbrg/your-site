@@ -1,0 +1,62 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const conceptEntries = await getCollection(collectionNames.concepts)
+const tagCounts = new Map<string, number>()
+
+for (const entry of conceptEntries) {
+  for (const rawTag of entry.data.tags ?? []) {
+    const tag = rawTag.trim()
+    if (!tag) continue
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1)
+  }
+}
+
+const tags = Array.from(tagCounts.entries()).sort(([a], [b]) => a.localeCompare(b))
+---
+<DocsLayout title="Tags">
+  <h1 class="text-3xl font-bold mb-4">Browse by tag</h1>
+  {tags.length === 0 ? (
+    <p class="text-gray-600">No tags available yet.</p>
+  ) : (
+    <ul class="flex flex-wrap gap-3">
+      {tags.map(([tag, count]) => (
+        <li>
+          <a
+            class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-blue-500 hover:text-blue-600"
+            href={`/tags/${encodeURIComponent(tag)}/`}
+          >
+            <span>{tag}</span>
+            <span class="text-xs text-gray-500">({count})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+import { getAllTags } from "../../lib/tags"
+
+const tags = await getAllTags()
+const formatCount = (count: number, label: string) => `${count} ${label}${count === 1 ? '' : 's'}`
+---
+<DocsLayout title="Browse by tag" description="Explore every tag used across courses and concepts.">
+  <h1 class="text-3xl font-bold mb-3">Browse by tag</h1>
+  <p class="text-gray-600 mb-8">
+    Pick a tag to see how often it's referenced across the library. There are {tags.length} unique tags right now.
+  </p>
+  {tags.length === 0 ? (
+    <p class="text-gray-600">No tags have been added yet.</p>
+  ) : (
+    <div class="grid gap-4 sm:grid-cols-2">
+      {tags.map((tag) => (
+        <article class="border rounded-2xl p-4 shadow-sm bg-white" data-tag={tag.name}>
+          <h2 class="text-xl font-semibold">{tag.name}</h2>
+          <p class="text-sm text-gray-500 mt-1">
+            {formatCount(tag.concepts, 'concept')} · {formatCount(tag.courses, 'course')}
+          </p>
+          <p class="text-xs text-gray-400 mt-1">Used {formatCount(tag.total, 'time')} overall</p>
+        </article>
+      ))}
+    </div>
+  )}
+</DocsLayout>

@@ -29,6 +29,9 @@ const courses = defineCollection({
     subject: z.string(),
     code: z.string().optional(),
     difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
+    estimatedTime: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    learningGoals: z.array(z.string()).default([]),
     order: z.number().default(0),
     outline: z
       .array(
@@ -51,6 +54,9 @@ const concepts = defineCollection({
     order: z.number().default(0),
     tags: z.array(z.string()).default([]),
     lessons: z.array(z.string()).default([]),
+    relatedConcepts: z.array(z.string()).default([]),
+    prerequisites: z.array(z.string()).default([])
+    learningGoals: z.array(z.string()).default([]),
     relatedConcepts: z.array(z.string()).default([])
   })
 })

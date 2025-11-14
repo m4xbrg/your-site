@@ -1,0 +1,57 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { collectionNames } from "../../../lib/collections"
+
+export async function getStaticPaths() {
+  const concepts = await getCollection(collectionNames.concepts)
+  const tagToConcepts = new Map<string, typeof concepts>()
+
+  for (const concept of concepts) {
+    for (const rawTag of concept.data.tags ?? []) {
+      const tag = rawTag.trim()
+      if (!tag) continue
+      const list = tagToConcepts.get(tag) ?? []
+      list.push(concept)
+      tagToConcepts.set(tag, list)
+    }
+  }
+
+  return Array.from(tagToConcepts.entries()).map(([tag, concepts]) => ({
+    params: { tag },
+    props: { tag, concepts },
+  }))
+}
+
+const { tag, concepts = [] } = Astro.props as {
+  tag: string
+  concepts: CollectionEntry<'concepts'>[]
+}
+
+const sortedConcepts = concepts
+  .slice()
+  .sort((a, b) => {
+    const orderDiff = (a.data.order ?? 0) - (b.data.order ?? 0)
+    if (orderDiff !== 0) return orderDiff
+    return a.data.title.localeCompare(b.data.title)
+  })
+---
+<DocsLayout title={`Tag: ${tag}`}>
+  <h1 class="text-3xl font-bold mb-6">Tag: {tag}</h1>
+  {sortedConcepts.length === 0 ? (
+    <p class="text-gray-600">No concepts found for this tag.</p>
+  ) : (
+    <ul class="space-y-4">
+      {sortedConcepts.map((concept) => (
+        <li class="border rounded-xl p-4 hover:border-blue-400 transition">
+          <a class="text-lg font-semibold text-blue-600 hover:underline" href={`/concepts/${concept.slug}/`}>
+            {concept.data.title}
+          </a>
+          {concept.data.description && (
+            <p class="mt-1 text-sm text-gray-600">{concept.data.description}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</DocsLayout>
