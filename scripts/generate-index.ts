@@ -12,6 +12,10 @@ type SearchDocument = {
   title: string
   description?: string
   url: string
+  tags: string[]
+  difficulty: string | null
+  subject: string | null
+  course: string | null
   data: Frontmatter
   content: string
 }
@@ -45,6 +49,10 @@ async function main() {
       const description = inferDescription(frontmatter)
       const url = buildUrl(collection, slug, frontmatter)
       const content = sanitizeContent(parsed.content)
+      const tags = extractTags(frontmatter.tags) ?? []
+      const difficulty = extractStringValue(frontmatter.difficulty) ?? null
+      const subject = extractStringValue(frontmatter.subject) ?? null
+      const course = extractStringValue(frontmatter.course) ?? null
 
       documents.push({
         id: `${collection}:${slug}`,
@@ -53,6 +61,10 @@ async function main() {
         title,
         description,
         url,
+        tags,
+        difficulty,
+        subject,
+        course,
         data: frontmatter,
         content
       })
@@ -184,6 +196,37 @@ function buildUrl(collection: string, slug: string, frontmatter: Frontmatter): s
 
 function sanitizeContent(content: string): string {
   return content.replace(/\r\n/g, '\n').trim()
+}
+
+function extractStringValue(value: unknown): string | undefined {
+  if (typeof value === 'string') {
+    const trimmed = value.trim()
+    return trimmed.length > 0 ? trimmed : undefined
+  }
+
+  return undefined
+}
+
+function extractTags(value: unknown): string[] | undefined {
+  if (!value) return undefined
+
+  if (Array.isArray(value)) {
+    const normalized = value
+      .filter((item): item is string => typeof item === 'string')
+      .map((item) => item.trim())
+      .filter(Boolean)
+    return normalized.length > 0 ? normalized : undefined
+  }
+
+  if (typeof value === 'string') {
+    const parts = value
+      .split(',')
+      .map((part) => part.trim())
+      .filter(Boolean)
+    return parts.length > 0 ? parts : undefined
+  }
+
+  return undefined
 }
 
 function isPublished(frontmatter: Frontmatter): boolean {
