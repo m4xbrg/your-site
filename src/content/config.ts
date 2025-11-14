@@ -16,20 +16,28 @@ const courses = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    order: z.number().default(0)
+  })
+})
+
+const courses = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    id: z.string(),
     subject: z.string(),
     code: z.string().optional(),
     difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
     order: z.number().default(0),
-    concepts: z.array(z.string()).default([]),
-    lessons: z
+    outline: z
       .array(
         z.object({
-          slug: z.string(),
-          title: z.string().optional()
+          label: z.string(),
+          conceptSlug: z.string().optional()
         })
       )
-      .default([]),
-    prerequisites: z.array(z.string()).default([])
+      .default([])
   })
 })
 
