@@ -1,9 +1,10 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
+import { collectionNames } from "../../../lib/collections"
 
 export async function getStaticPaths() {
-  const concepts = await getCollection('concepts')
+  const concepts = await getCollection(collectionNames.concepts)
   return concepts.map((concept) => {
     const slugParam = concept.slug.includes('/')
       ? concept.slug.split('/')

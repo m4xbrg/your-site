@@ -1,14 +1,15 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
+import { collectionNames } from "../../../lib/collections"
 
 const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
 
 export async function getStaticPaths() {
   const [subjects, courses, concepts] = await Promise.all([
-    getCollection('subjects'),
-    getCollection('courses'),
-    getCollection('concepts'),
+    getCollection(collectionNames.subjects),
+    getCollection(collectionNames.courses),
+    getCollection(collectionNames.concepts),
   ])
 
   return subjects.map((subject) => {
