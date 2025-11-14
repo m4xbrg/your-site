@@ -2,6 +2,7 @@
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
 import { collectionNames } from "../../../lib/collections"
+import TagChips from "../../../components/TagChips.astro"
 
 export async function getStaticPaths() {
   const concepts = await getCollection(collectionNames.concepts)
@@ -39,6 +40,7 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
 <DocsLayout title={data.title} description={data.description}>
   <article class="prose">
     <h1>{data.title}</h1>
+    <TagChips tags={data.tags ?? []} class="mb-6" />
     {hasMetadata && (
       <div class="mt-2 flex flex-wrap gap-2">
         {difficultyLabel && (

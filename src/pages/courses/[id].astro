@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Docs from '../../layouts/DocsLayout.astro';
 import { collectionNames } from '../../lib/collections';
+import TagChips from '../../components/TagChips.astro';
 
 export async function getStaticPaths() {
   const courses = await getCollection(collectionNames.courses);
@@ -17,6 +18,7 @@ const { Content } = await course.render();
 <Docs title={`${course.data.title} — YourSite`}>
   <h1 class="text-3xl font-bold mb-2">{course.data.title}</h1>
   {course.data.description && <p class="text-[color:var(--muted)] mb-6">{course.data.description}</p>}
+  <TagChips tags={course.data.tags ?? []} class="mb-6" />
   {course.data.outline && (
     <ol class="list-decimal pl-6 space-y-1 mb-6">
       {course.data.outline.map((o) => (
