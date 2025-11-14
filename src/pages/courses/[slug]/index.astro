@@ -66,6 +66,12 @@ if (!course) throw new Error('Course not found')
   )}
   <h2 class="text-lg font-semibold mt-8 mb-3">Concepts in this course</h2>
   <ul class="list-disc ms-5">
-    {concepts.map(k => <li><a class="underline" href={`/concepts/${k.slug}/`}>{k.data.title}</a></li>)}
+    {concepts.map((concept) => (
+      <li>
+        <a class="underline" href={`/concepts/${concept.slug}`}>
+          {concept.data.title}
+        </a>
+      </li>
+    ))}
   </ul>
 </DocsLayout>

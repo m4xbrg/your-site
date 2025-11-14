@@ -18,11 +18,12 @@
     "content": ""
   },
   {
-    "id": "concepts:computer-science/variables",
+    "id": "concepts:variables-and-types",
     "collection": "concepts",
-    "slug": "computer-science/variables",
+    "slug": "variables-and-types",
     "title": "Variables & Types",
     "description": "Names that store values; primitive types and how to pick them.",
+    "url": "/concepts/variables-and-types/",
     "url": "/concepts/computer-science/variables/",
     "tags": [
       "basics",
@@ -34,8 +35,8 @@
     "data": {
       "title": "Variables & Types",
       "description": "Names that store values; primitive types and how to pick them.",
-      "subject": "computer-science",
-      "course": "cs-101",
+        "subject": "computer-science",
+        "course": "cs-101",
       "order": 1,
       "tags": [
         "basics",
@@ -66,7 +67,7 @@
       "outline": [
         {
           "label": "Variables & Types",
-          "conceptSlug": "computer-science/variables"
+          "conceptSlug": "variables-and-types"
         },
         {
           "label": "Control Flow Essentials"
@@ -76,7 +77,7 @@
         }
       ],
       "concepts": [
-        "computer-science/variables"
+        "variables-and-types"
       ],
       "lessons": [
         {
