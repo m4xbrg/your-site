@@ -59,6 +59,17 @@ const resolvedPrerequisites = await Promise.all(
           ))}
         </ul>
       </section>
+    {entry.data.learningGoals && entry.data.learningGoals.length > 0 && (
+      <div class="bg-[color:var(--muted)]/10 border border-[color:var(--muted)]/30 rounded-xl p-4 mb-8">
+        <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[color:var(--muted)] mb-3">
+          Learning Goals
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-base text-[color:var(--muted)]">
+          {entry.data.learningGoals.map((goal) => (
+            <li>{goal}</li>
+          ))}
+        </ul>
+      </div>
     )}
     <Content />
   </article>

@@ -53,6 +53,8 @@ const concepts = defineCollection({
     lessons: z.array(z.string()).default([]),
     relatedConcepts: z.array(z.string()).default([]),
     prerequisites: z.array(z.string()).default([])
+    learningGoals: z.array(z.string()).default([]),
+    relatedConcepts: z.array(z.string()).default([])
   })
 })
 
