@@ -45,6 +45,20 @@ export async function getStaticPaths() {
       tag,
       courses: courses.slice().sort((a, b) => a.data.title.localeCompare(b.data.title)),
       concepts: concepts.slice().sort((a, b) => a.data.title.localeCompare(b.data.title)),
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import { getAllTags } from '../../../lib/tags'
+
+const sortByOrder = (a, b) => (a?.data?.order ?? 0) - (b?.data?.order ?? 0)
+
+export async function getStaticPaths() {
+  const tags = await getAllTags()
+
+  return tags.map(({ tag, courses, concepts }) => ({
+    params: { tag },
+    props: {
+      tag,
+      courses: courses.slice().sort(sortByOrder),
+      concepts: concepts.slice().sort(sortByOrder),
     },
   }))
 }
@@ -78,6 +92,22 @@ const description = totalMatches
             {course.data.description && (
               <p class="text-gray-600 text-sm">{course.data.description}</p>
             )}
+if (!tag) throw new Error('Tag not found')
+---
+<DocsLayout title={`Tag: ${tag}`} description={`Entries tagged with “${tag}”.`}>
+  <h1 class="text-2xl font-bold mb-2">Tag: {tag}</h1>
+  <p class="text-gray-700 mb-6">Browse everything on the site that uses this tag.</p>
+
+  <section class="mt-6">
+    <h2 class="text-lg font-semibold mb-3">Courses</h2>
+    {courses.length ? (
+      <ul class="list-disc ms-5 space-y-2">
+        {courses.map((course) => (
+          <li>
+            <a class="underline" href={`/courses/${course.data.id}/`}>
+              {course.data.code ? `${course.data.code} — ` : ''}{course.data.title}
+            </a>
+            {course.data.description && <p class="text-sm text-gray-600">{course.data.description}</p>}
           </li>
         ))}
       </ul>
@@ -101,11 +131,26 @@ const description = totalMatches
             {concept.data.description && (
               <p class="text-gray-600 text-sm">{concept.data.description}</p>
             )}
+      <p class="text-sm text-gray-600">No courses use this tag yet.</p>
+    )}
+  </section>
+
+  <section class="mt-8">
+    <h2 class="text-lg font-semibold mb-3">Concepts</h2>
+    {concepts.length ? (
+      <ul class="list-disc ms-5 space-y-2">
+        {concepts.map((concept) => (
+          <li>
+            <a class="underline" href={`/concepts/${concept.slug}/`}>
+              {concept.data.title}
+            </a>
+            {concept.data.description && <p class="text-sm text-gray-600">{concept.data.description}</p>}
           </li>
         ))}
       </ul>
     ) : (
       <p class="text-gray-500">No concepts found for this tag.</p>
+      <p class="text-sm text-gray-600">No concepts use this tag yet.</p>
     )}
   </section>
 </DocsLayout>
