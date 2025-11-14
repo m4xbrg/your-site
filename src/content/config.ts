@@ -5,6 +5,17 @@ const subjects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    summary: z.string().optional(),
+    icon: z.string().optional(),
+    order: z.number().default(0)
+  })
+})
+
+const courses = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
     order: z.number().default(0)
   })
 })
@@ -17,6 +28,7 @@ const courses = defineCollection({
     id: z.string(),
     subject: z.string(),
     code: z.string().optional(),
+    difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
     order: z.number().default(0),
     outline: z
       .array(

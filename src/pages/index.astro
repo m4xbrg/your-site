@@ -1,9 +1,10 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
+import { collectionNames } from "../lib/collections"
 const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const subjects = (await getCollection('subjects')).slice().sort(sortByOrder)
-const courses  = (await getCollection('courses')).slice().sort(sortByOrder)
+const subjects = (await getCollection(collectionNames.subjects)).slice().sort(sortByOrder)
+const courses  = (await getCollection(collectionNames.courses)).slice().sort(sortByOrder)
 ---
 <DocsLayout title="Welcome">
   <h1 class="text-3xl font-bold mb-4">Welcome to your-site</h1>
