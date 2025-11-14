@@ -2,6 +2,15 @@
 title: Foundations of Calculus
 subject: mathematics
 code: MATH 101
+difficulty: intermediate
+estimatedTime: "6 weeks"
+tags:
+  - calculus
+  - analysis
+learningGoals:
+  - Build an intuition for limits and continuity.
+  - Differentiate functions to analyze instantaneous change.
+  - Use integrals to model accumulation in real contexts.
 order: 2
 description: Build intuition for limits, derivatives, and integrals through visual reasoning and applied practice.
 outline:
