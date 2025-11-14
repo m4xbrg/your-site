@@ -4,6 +4,14 @@ subject: mathematics
 code: MATH 101
 order: 2
 description: Build intuition for limits, derivatives, and integrals through visual reasoning and applied practice.
+outline:
+  - label: Limits & Continuity
+    conceptSlug: mathematics/limits
+  - label: Derivatives and Rates of Change
+  - label: Integrals and Accumulation
+concepts:
+  - mathematics/limits
+lessons: []
 concepts:
   - mathematics/limits
 lessons:
