@@ -27,10 +27,37 @@ const relatedConcepts = relatedSlugs.length
       .map((slug) => allConcepts.find((entry) => entry.slug === slug))
       .filter(Boolean)
   : []
+const difficultyLabel = data.difficulty
+  ? `Difficulty: ${data.difficulty[0].toUpperCase()}${data.difficulty.slice(1)}`
+  : undefined
+const estimatedTimeLabel = data.estimatedTime
+  ? `Estimated time: ${data.estimatedTime}`
+  : undefined
+const tagLabels = Array.isArray(data.tags) ? data.tags : []
+const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.length)
 ---
 <DocsLayout title={data.title} description={data.description}>
   <article class="prose">
     <h1>{data.title}</h1>
+    {hasMetadata && (
+      <div class="mt-2 flex flex-wrap gap-2">
+        {difficultyLabel && (
+          <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+            {difficultyLabel}
+          </span>
+        )}
+        {estimatedTimeLabel && (
+          <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+            {estimatedTimeLabel}
+          </span>
+        )}
+        {tagLabels.map((tag) => (
+          <span class="rounded-full bg-slate-50 px-3 py-1 text-sm font-medium text-slate-600" key={tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
     <Content />
   </article>
   {relatedConcepts.length > 0 && (
