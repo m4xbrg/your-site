@@ -20,9 +20,6 @@ outline:
   - label: Integrals and Accumulation
 concepts:
   - mathematics/limits
-lessons: []
-concepts:
-  - mathematics/limits
 lessons:
   - slug: limits-and-continuity
     title: Limits & Continuity
