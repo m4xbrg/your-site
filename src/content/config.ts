@@ -1,27 +1,35 @@
 import { defineCollection, z } from 'astro:content'
 
-const course = defineCollection({
+const subjects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    subject: z.string(),
-    code: z.string().optional(),
-    order: z.number().default(0),
-    concepts: z.array(z.string()).default([]),
-    lessons: z
-      .array(
-        z.object({
-          slug: z.string(),
-          title: z.string().optional()
-        })
-      )
-      .default([]),
-    prerequisites: z.array(z.string()).default([])
+    order: z.number().default(0)
   })
 })
 
-const concept = defineCollection({
+const courses = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    id: z.string(),
+    subject: z.string(),
+    code: z.string().optional(),
+    order: z.number().default(0),
+    outline: z
+      .array(
+        z.object({
+          label: z.string(),
+          conceptSlug: z.string().optional()
+        })
+      )
+      .default([])
+  })
+})
+
+const concepts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -35,7 +43,7 @@ const concept = defineCollection({
   })
 })
 
-const lesson = defineCollection({
+const lessons = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -50,7 +58,7 @@ const lesson = defineCollection({
   })
 })
 
-const exercise = defineCollection({
+const exercises = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -65,7 +73,7 @@ const exercise = defineCollection({
   })
 })
 
-const note = defineCollection({
+const notes = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -78,4 +86,4 @@ const note = defineCollection({
   })
 })
 
-export const collections = { course, concept, lesson, exercise, note }
+export const collections = { subjects, courses, concepts, lessons, exercises, notes }
