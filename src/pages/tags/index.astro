@@ -1,0 +1,28 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getAllTags } from "../../lib/tags"
+
+const tags = await getAllTags()
+const formatCount = (count: number, label: string) => `${count} ${label}${count === 1 ? '' : 's'}`
+---
+<DocsLayout title="Browse by tag" description="Explore every tag used across courses and concepts.">
+  <h1 class="text-3xl font-bold mb-3">Browse by tag</h1>
+  <p class="text-gray-600 mb-8">
+    Pick a tag to see how often it's referenced across the library. There are {tags.length} unique tags right now.
+  </p>
+  {tags.length === 0 ? (
+    <p class="text-gray-600">No tags have been added yet.</p>
+  ) : (
+    <div class="grid gap-4 sm:grid-cols-2">
+      {tags.map((tag) => (
+        <article class="border rounded-2xl p-4 shadow-sm bg-white" data-tag={tag.name}>
+          <h2 class="text-xl font-semibold">{tag.name}</h2>
+          <p class="text-sm text-gray-500 mt-1">
+            {formatCount(tag.concepts, 'concept')} · {formatCount(tag.courses, 'course')}
+          </p>
+          <p class="text-xs text-gray-400 mt-1">Used {formatCount(tag.total, 'time')} overall</p>
+        </article>
+      ))}
+    </div>
+  )}
+</DocsLayout>
