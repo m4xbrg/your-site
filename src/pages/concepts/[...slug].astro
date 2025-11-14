@@ -1,7 +1,6 @@
 ---
 import { getEntryBySlug } from 'astro:content';
 import Docs from '../../layouts/DocsLayout.astro';
-import { Markdown } from 'astro/components';
 export async function getStaticPaths() {
   // Use glob to collect all concept slugs under content
   const modules = import.meta.glob('../../../content/concepts/**/*.{md,mdx}', { eager: true });
@@ -17,11 +16,49 @@ const joined = Array.isArray(slug) ? slug.join('/') : slug;
 const entry = await getEntryBySlug('concepts', joined);
 if (!entry) throw new Error(`Concept not found: ${joined}`);
 const { Content, headings } = await entry.render();
+const resolvedPrerequisites = await Promise.all(
+  (entry.data.prerequisites ?? []).map(async (slug) => {
+    const concept = await getEntryBySlug('concepts', slug);
+    if (concept) {
+      return {
+        title: concept.data.title,
+        href: `/concepts/${concept.slug}`
+      };
+    }
+
+    const lesson = await getEntryBySlug('lessons', slug);
+    if (lesson) {
+      return {
+        title: lesson.data.title,
+        href: `/lessons/${lesson.slug}`
+      };
+    }
+
+    return { title: slug };
+  })
+);
 ---
 <Docs title={`${entry.data.title} — YourSite`}>
   <article class="prose prose-invert max-w-none">
     <h1 class="text-3xl font-bold mb-2">{entry.data.title}</h1>
     {entry.data.description && <p class="text-[color:var(--muted)] mb-6">{entry.data.description}</p>}
+    {resolvedPrerequisites.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold mb-3">Prerequisites</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          {resolvedPrerequisites.map((item) => (
+            <li>
+              {item.href ? (
+                <a href={item.href} class="text-sky-300 hover:underline">
+                  {item.title}
+                </a>
+              ) : (
+                <span>{item.title}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
     {entry.data.learningGoals && entry.data.learningGoals.length > 0 && (
       <div class="bg-[color:var(--muted)]/10 border border-[color:var(--muted)]/30 rounded-xl p-4 mb-8">
         <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[color:var(--muted)] mb-3">
