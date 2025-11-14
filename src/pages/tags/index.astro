@@ -1,5 +1,39 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const conceptEntries = await getCollection(collectionNames.concepts)
+const tagCounts = new Map<string, number>()
+
+for (const entry of conceptEntries) {
+  for (const rawTag of entry.data.tags ?? []) {
+    const tag = rawTag.trim()
+    if (!tag) continue
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1)
+  }
+}
+
+const tags = Array.from(tagCounts.entries()).sort(([a], [b]) => a.localeCompare(b))
+---
+<DocsLayout title="Tags">
+  <h1 class="text-3xl font-bold mb-4">Browse by tag</h1>
+  {tags.length === 0 ? (
+    <p class="text-gray-600">No tags available yet.</p>
+  ) : (
+    <ul class="flex flex-wrap gap-3">
+      {tags.map(([tag, count]) => (
+        <li>
+          <a
+            class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-blue-500 hover:text-blue-600"
+            href={`/tags/${encodeURIComponent(tag)}/`}
+          >
+            <span>{tag}</span>
+            <span class="text-xs text-gray-500">({count})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
 import { getAllTags } from "../../lib/tags"
 
 const tags = await getAllTags()
