@@ -1,14 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import Docs from '../../layouts/DocsLayout.astro';
+import { collectionNames } from '../../lib/collections';
 
 export async function getStaticPaths() {
-  const courses = await getCollection('courses');
+  const courses = await getCollection(collectionNames.courses);
   return courses.map((course) => ({ params: { id: course.data.id } }));
 }
 
 const { id } = Astro.params;
-const all = await getCollection('courses');
+const all = await getCollection(collectionNames.courses);
 const course = all.find((c) => c.data.id === id);
 if (!course) throw new Error(`Course not found: ${id}`);
 const { Content } = await course.render();
