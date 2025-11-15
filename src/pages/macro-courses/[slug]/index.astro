@@ -1,0 +1,40 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+
+const { slug } = Astro.params
+
+const macroCourses = await getCollection('macro-courses')
+const macro = macroCourses.find(m => m.slug === slug)
+
+if (!macro) {
+  throw new Error('Macro-course not found')
+}
+
+const allCourses = await getCollection('courses')
+const courses = allCourses
+  .filter(c => c.data.macroId === macro.data.id)
+  .toSorted((a, b) => a.data.order - b.data.order)
+---
+
+<DocsLayout title={macro.data.title} description={macro.data.description}>
+  <h1 class="text-2xl font-bold mb-2">{macro.data.title}</h1>
+  {macro.data.description && (
+    <p class="text-gray-700 mb-6">{macro.data.description}</p>
+  )}
+
+  <h2 class="text-lg font-semibold mt-8 mb-3">Courses in this macro-course</h2>
+  {courses.length === 0 ? (
+    <p class="text-gray-600">No courses are linked to this macro-course yet.</p>
+  ) : (
+    <ul class="list-disc ms-5">
+      {courses.map(c => (
+        <li>
+          <a class="underline" href={`/courses/${c.slug}/`}>
+            {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</DocsLayout>

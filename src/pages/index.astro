@@ -1,25 +1,50 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
-import { collectionNames } from "../lib/collections"
-const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const subjects = (await getCollection(collectionNames.subjects)).slice().sort(sortByOrder)
-const courses  = (await getCollection(collectionNames.courses)).slice().sort(sortByOrder)
+const subjects = (await getCollection('subjects')).toSorted((a,b)=>a.data.order-b.data.order)
+const macroCourses = (await getCollection('macro-courses')).toSorted((a,b)=>a.data.order-b.data.order)
+const courses = (await getCollection('courses')).toSorted((a,b)=>a.data.order-b.data.order)
 ---
 <DocsLayout title="Welcome">
   <h1 class="text-3xl font-bold mb-4">Welcome to your-site</h1>
-  <p class="text-gray-700 mb-8">A learning site scaffold with subjects, courses, and concepts.</p>
-  <div class="grid md:grid-cols-2 gap-6">
+  <p class="text-gray-700 mb-8">
+    A learning site scaffold with subjects, macro-courses, courses, and concepts.
+  </p>
+  <div class="grid md:grid-cols-3 gap-6">
     <section class="p-5 border rounded-2xl">
       <h2 class="text-lg font-semibold mb-3">Subjects</h2>
       <ul class="list-disc ms-5">
-        {subjects.map(s => <li><a class="underline" href={`/subjects/${s.slug}/`}>{s.data.title}</a></li>)}
+        {subjects.map(s => (
+          <li>
+            <a class="underline" href={`/subjects/${s.slug}/`}>
+              {s.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+    <section class="p-5 border rounded-2xl">
+      <h2 class="text-lg font-semibold mb-3">Macro-courses</h2>
+      <ul class="list-disc ms-5">
+        {macroCourses.map(m => (
+          <li>
+            <a class="underline" href={`/macro-courses/${m.slug}/`}>
+              {m.data.title}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
     <section class="p-5 border rounded-2xl">
       <h2 class="text-lg font-semibold mb-3">Courses</h2>
       <ul class="list-disc ms-5">
-        {courses.map(c => <li><a class="underline" href={`/courses/${c.data.id}/`}>{c.data.code} — {c.data.title}</a></li>)}
+        {courses.map(c => (
+          <li>
+            <a class="underline" href={`/courses/${c.slug}/`}>
+              {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
   </div>
