@@ -7,41 +7,41 @@ const subjects = defineCollection({
     description: z.string().optional(),
     summary: z.string().optional(),
     icon: z.string().optional(),
-    order: z.number().default(0)
-  })
+    order: z.number().default(0),
+  }),
 })
 
 const courses = defineCollection({
   type: 'content',
   schema: z.object({
+    // Core identifiers
     title: z.string(),
     description: z.string().optional(),
-    order: z.number().default(0)
-  })
-})
 
-const courses = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    id: z.string(),
-    subject: z.string(),
-    code: z.string().optional(),
+    // Course identity + grouping
+    id: z.string(),          // e.g. "cs-101", "math-101"
+    subject: z.string(),     // slug of the subject, e.g. "computer-science"
+
+    // Display metadata
+    code: z.string().optional(), // e.g. "CS 101"
     difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
     estimatedTime: z.string().optional(),
+
+    // Tagging + pedagogy
     tags: z.array(z.string()).default([]),
     learningGoals: z.array(z.string()).default([]),
+
+    // Ordering + outline
     order: z.number().default(0),
     outline: z
       .array(
         z.object({
           label: z.string(),
-          conceptSlug: z.string().optional()
-        })
+          conceptSlug: z.string().optional(),
+        }),
       )
-      .default([])
-  })
+      .default([]),
+  }),
 })
 
 const concepts = defineCollection({
@@ -51,14 +51,17 @@ const concepts = defineCollection({
     description: z.string().optional(),
     subject: z.string().optional(),
     course: z.string().optional(),
+
     order: z.number().default(0),
+
     tags: z.array(z.string()).default([]),
     lessons: z.array(z.string()).default([]),
-    relatedConcepts: z.array(z.string()).default([]),
-    prerequisites: z.array(z.string()).default([])
+
+    // Graph-ish fields
+    prerequisites: z.array(z.string()).default([]),
     learningGoals: z.array(z.string()).default([]),
-    relatedConcepts: z.array(z.string()).default([])
-  })
+    relatedConcepts: z.array(z.string()).default([]),
+  }),
 })
 
 const lessons = defineCollection({
@@ -72,8 +75,8 @@ const lessons = defineCollection({
     durationMinutes: z.number().int().positive().optional(),
     objectives: z.array(z.string()).default([]),
     exercises: z.array(z.string()).default([]),
-    notes: z.array(z.string()).default([])
-  })
+    notes: z.array(z.string()).default([]),
+  }),
 })
 
 const exercises = defineCollection({
@@ -87,8 +90,8 @@ const exercises = defineCollection({
     difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
     order: z.number().default(0),
     topics: z.array(z.string()).default([]),
-    solution: z.string().optional()
-  })
+    solution: z.string().optional(),
+  }),
 })
 
 const notes = defineCollection({
@@ -100,8 +103,8 @@ const notes = defineCollection({
     concept: z.string().optional(),
     lesson: z.string().optional(),
     order: z.number().default(0),
-    tags: z.array(z.string()).default([])
-  })
+    tags: z.array(z.string()).default([]),
+  }),
 })
 
 export const collections = { subjects, courses, concepts, lessons, exercises, notes }
