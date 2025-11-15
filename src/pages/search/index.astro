@@ -21,7 +21,7 @@ const results = [
     type: 'Course',
     title: entry.data.title,
     description: entry.data.description ?? '',
-    url: `/courses/${entry.slug}/`,
+    url: `/courses/${entry.data.id}/`,
     tags: [],
   })),
   ...concepts.map((entry) => ({
