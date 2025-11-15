@@ -1,0 +1,28 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const sortByOrder = (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+const exercises = (await getCollection(collectionNames.exercises)).slice().sort(sortByOrder)
+---
+<DocsLayout title="Exercises" description="Practice problems and drills across courses and concepts.">
+  <h1 class="text-2xl font-bold mb-2">Exercises</h1>
+  <p class="text-gray-600 mb-6">
+    Browse hands-on prompts tied to individual lessons and concepts.
+  </p>
+  {exercises.length === 0 ? (
+    <p class="text-gray-500">No exercises available yet.</p>
+  ) : (
+    <ul class="space-y-4">
+      {exercises.map((exercise) => (
+        <li class="border border-gray-200 rounded-lg p-4">
+          <a class="text-lg font-semibold text-blue-600 hover:underline" href={`/exercises/${exercise.slug}/`}>
+            {exercise.data.title}
+          </a>
+          {exercise.data.prompt && <p class="text-gray-600 mt-2">{exercise.data.prompt}</p>}
+        </li>
+      ))}
+    </ul>
+  )}
+</DocsLayout>

@@ -1,0 +1,28 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const sortByOrder = (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+const notes = (await getCollection(collectionNames.notes)).slice().sort(sortByOrder)
+---
+<DocsLayout title="Notes" description="Reference notes that capture key takeaways and summaries.">
+  <h1 class="text-2xl font-bold mb-2">Notes</h1>
+  <p class="text-gray-600 mb-6">
+    Quick references and summaries that accompany lessons and courses.
+  </p>
+  {notes.length === 0 ? (
+    <p class="text-gray-500">No notes available yet.</p>
+  ) : (
+    <ul class="space-y-4">
+      {notes.map((note) => (
+        <li class="border border-gray-200 rounded-lg p-4">
+          <a class="text-lg font-semibold text-blue-600 hover:underline" href={`/notes/${note.slug}/`}>
+            {note.data.title}
+          </a>
+          {note.data.summary && <p class="text-gray-600 mt-2">{note.data.summary}</p>}
+        </li>
+      ))}
+    </ul>
+  )}
+</DocsLayout>
