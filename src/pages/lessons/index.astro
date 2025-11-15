@@ -1,0 +1,66 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { getCollection } from 'astro:content'
+import { collectionNames } from "../../lib/collections"
+
+const lessons = (await getCollection(collectionNames.lessons))
+  .slice()
+  .sort((a, b) => {
+    const orderDiff = (a.data.order ?? 0) - (b.data.order ?? 0)
+    if (orderDiff !== 0) return orderDiff
+    return a.data.title.localeCompare(b.data.title)
+  })
+---
+<DocsLayout title="Lessons" description="Browse the growing catalog of lesson content.">
+  <h1 class="text-3xl font-bold mb-4">Lessons</h1>
+  <p class="text-gray-600 mb-8">
+    Every lesson expands on a concept with narrative explanations, guided intuition, and practical exercises.
+  </p>
+  {lessons.length === 0 ? (
+    <p class="text-gray-600">No lessons have been published yet. Check back soon!</p>
+  ) : (
+    <ul class="space-y-4">
+      {lessons.map((lesson) => {
+        const durationLabel = lesson.data.durationMinutes
+          ? `${lesson.data.durationMinutes} min`
+          : undefined
+        return (
+          <li>
+            <a
+              class="block rounded-lg border border-gray-200 p-5 transition hover:border-brand-200 hover:bg-gray-50"
+              href={`/lessons/${lesson.slug}/`}
+            >
+              <div class="flex flex-col gap-2">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h2 class="text-xl font-semibold text-gray-900">{lesson.data.title}</h2>
+                  {durationLabel && (
+                    <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+                      {durationLabel}
+                    </span>
+                  )}
+                </div>
+                {lesson.data.description && (
+                  <p class="text-gray-600">{lesson.data.description}</p>
+                )}
+                <dl class="mt-1 flex flex-wrap gap-4 text-sm text-gray-600">
+                  {lesson.data.course && (
+                    <div>
+                      <dt class="font-medium text-gray-700">Course</dt>
+                      <dd class="text-gray-600">{lesson.data.course}</dd>
+                    </div>
+                  )}
+                  {lesson.data.concept && (
+                    <div>
+                      <dt class="font-medium text-gray-700">Concept</dt>
+                      <dd class="text-gray-600">{lesson.data.concept}</dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  )}
+</DocsLayout>
