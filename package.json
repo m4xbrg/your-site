@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "content:new": "tsx tools/generate-page.ts",
+    "search:index": "tsx scripts/generate-index.ts"
   },
   "dependencies": {
     "astro": "^4.16.6",
@@ -23,6 +25,7 @@
     "postcss": "^8",
     "prettier": "^3",
     "tailwindcss": "^3.4.18",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "tsx": "^4.19.0"
   }
 }
