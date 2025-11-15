@@ -1,5 +1,6 @@
 ---
 title: Foundations of Calculus
+id: math-101            # NEW
 subject: mathematics
 code: MATH 101
 difficulty: intermediate
