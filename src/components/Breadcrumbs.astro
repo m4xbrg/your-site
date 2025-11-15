@@ -3,32 +3,40 @@ import { getCollection } from 'astro:content'
 const parts = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean)
 
 const lookup = async (segment: string) => {
-  // try subjects, courses, concepts in that order
-  const [s,c,k] = await Promise.all([
-    getCollection('subjects').then(list=>list.find(x=>x.slug===segment)),
-    getCollection('courses').then(list=>list.find(x=>x.slug===segment)),
-    getCollection('concepts').then(list=>list.find(x=>x.slug===segment)),
+  // try subjects, macro-courses, courses, concepts in that order
+  const [s, m, c, k] = await Promise.all([
+    getCollection('subjects').then(list => list.find(x => x.slug === segment)),
+    getCollection('macro-courses').then(list => list.find(x => x.slug === segment)),
+    getCollection('courses').then(list => list.find(x => x.slug === segment)),
+    getCollection('concepts').then(list => list.find(x => x.slug === segment)),
   ])
-  return s?.data.title || c?.data.title || k?.data.title || segment
+  return s?.data.title || m?.data.title || c?.data.title || k?.data.title || segment
 }
 
-const items = await Promise.all(parts.map(async (_,i)=>{
-  const href = '/' + parts.slice(0, i+1).join('/') + '/'
-  const label = await lookup(parts[i])
-  return { href, label }
-}))
+const items = await Promise.all(
+  parts.map(async (_, i) => {
+    const href = '/' + parts.slice(0, i + 1).join('/') + '/'
+    const label = await lookup(parts[i])
+    return { href, label }
+  }),
+)
 ---
 {items.length > 0 && (
   <nav aria-label="Breadcrumbs" class="text-sm mb-6 text-gray-600">
     <ol class="flex items-center gap-1 flex-wrap">
       <li><a href="/" class="hover:underline">Home</a></li>
-      {items.map((it,idx)=> (
-        <li class="flex items-center gap-1" aria-current={idx===items.length-1? 'page': undefined}>
+      {items.map((it, idx) => (
+        <li
+          class="flex items-center gap-1"
+          aria-current={idx === items.length - 1 ? 'page' : undefined}
+        >
           <span>›</span>
-          {idx===items.length-1 ? (
+          {idx === items.length - 1 ? (
             <span class="font-medium text-gray-800">{it.label}</span>
           ) : (
-            <a href={it.href} class="hover:underline">{it.label}</a>
+            <a href={it.href} class="hover:underline">
+              {it.label}
+            </a>
           )}
         </li>
       ))}

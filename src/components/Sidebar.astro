@@ -1,32 +1,71 @@
 ---
 import { getCollection } from 'astro:content'
-const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-const subjects = (await getCollection('subjects')).slice().sort(sortByOrder)
-const courses  = (await getCollection('courses')).slice().sort(sortByOrder)
-const concepts = (await getCollection('concepts')).slice().sort(sortByOrder)
+const subjects = (await getCollection('subjects')).toSorted((a,b)=>a.data.order-b.data.order)
+const macroCourses = (await getCollection('macro-courses')).toSorted((a,b)=>a.data.order-b.data.order)
+const courses = (await getCollection('courses')).toSorted((a,b)=>a.data.order-b.data.order)
+const concepts = (await getCollection('concepts')).toSorted((a,b)=>a.data.order-b.data.order)
 ---
 <nav class="space-y-6">
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Subjects</h2>
     <ul class="space-y-1">
       {subjects.map(s => (
-        <li><a class={`sidebar-link ${Astro.url.pathname.startsWith(`/subjects/${s.slug}`)?'active':''}`} href={`/subjects/${s.slug}/`}>{s.data.title}</a></li>
+        <li>
+          <a
+            class={`sidebar-link ${Astro.url.pathname.startsWith(`/subjects/${s.slug}`)?'active':''}`}
+            href={`/subjects/${s.slug}/`}
+          >
+            {s.data.title}
+          </a>
+        </li>
       ))}
     </ul>
   </div>
+
+  <div>
+    <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Macro-courses</h2>
+    <ul class="space-y-1">
+      {macroCourses.map(m => (
+        <li>
+          <a
+            class={`sidebar-link ${Astro.url.pathname.startsWith(`/macro-courses/${m.slug}`)?'active':''}`}
+            href={`/macro-courses/${m.slug}/`}
+          >
+            {m.data.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Courses</h2>
     <ul class="space-y-1">
       {courses.map(c => (
-        <li><a class={`sidebar-link ${Astro.url.pathname.startsWith(`/courses/${c.data.id}`)?'active':''}`} href={`/courses/${c.data.id}/`}>{c.data.code} — {c.data.title}</a></li>
+        <li>
+          <a
+            class={`sidebar-link ${Astro.url.pathname.startsWith(`/courses/${c.slug}`)?'active':''}`}
+            href={`/courses/${c.slug}/`}
+          >
+            {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
+          </a>
+        </li>
       ))}
     </ul>
   </div>
+
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Concepts</h2>
     <ul class="space-y-1">
       {concepts.map(x => (
-        <li><a class={`sidebar-link ${Astro.url.pathname.includes(`/concepts/${x.slug}`)?'active':''}`} href={`/concepts/${x.slug}/`}>{x.data.title}</a></li>
+        <li>
+          <a
+            class={`sidebar-link ${Astro.url.pathname.includes(`/concepts/${x.slug}`)?'active':''}`}
+            href={`/concepts/${x.slug}/`}
+          >
+            {x.data.title}
+          </a>
+        </li>
       ))}
     </ul>
   </div>

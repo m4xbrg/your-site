@@ -4,35 +4,38 @@ const subjects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    order: z.number().default(0),
     description: z.string().optional(),
-    summary: z.string().optional(),
-    icon: z.string().optional(),
+  }),
+})
+
+// NEW: macro-courses collection (territories inside a subject)
+const macroCourses = defineCollection({
+  type: 'content',
+  schema: z.object({
+    id: z.string(),          // e.g. "math-calculus"
+    subject: z.string(),     // e.g. "mathematics"
+    title: z.string(),
+    description: z.string().optional(),
     order: z.number().default(0),
   }),
 })
 
+// UPDATED: courses collection (sub-courses inside a macro)
 const courses = defineCollection({
   type: 'content',
   schema: z.object({
-    // Core identifiers
+    id: z.string(),               // e.g. "math-calculus-limits"
+    subject: z.string(),          // "mathematics", "computer-science", etc.
+    macroId: z.string().optional(), // e.g. "math-calculus"
     title: z.string(),
     description: z.string().optional(),
-
-    // Course identity + grouping
-    id: z.string(),          // e.g. "cs-101", "math-101"
-    subject: z.string(),     // slug of the subject, e.g. "computer-science"
-
-    // Display metadata
-    code: z.string().optional(), // e.g. "CS 101"
-    difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
-    estimatedTime: z.string().optional(),
-
-    // Tagging + pedagogy
-    tags: z.array(z.string()).default([]),
-    learningGoals: z.array(z.string()).default([]),
-
-    // Ordering + outline
     order: z.number().default(0),
+    tags: z.array(z.string()).default([]),
+
+    // Optional extras; can be empty for now
+    code: z.string().optional(),
+    learningGoals: z.array(z.string()).default([]),
     outline: z
       .array(
         z.object({
@@ -48,63 +51,18 @@ const concepts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
-    subject: z.string().optional(),
-    course: z.string().optional(),
-
-    order: z.number().default(0),
-
-    tags: z.array(z.string()).default([]),
-    lessons: z.array(z.string()).default([]),
-
-    // Graph-ish fields
-    prerequisites: z.array(z.string()).default([]),
-    learningGoals: z.array(z.string()).default([]),
-    relatedConcepts: z.array(z.string()).default([]),
-  }),
-})
-
-const lessons = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    course: z.string().optional(),
-    concept: z.string(),
-    order: z.number().default(0),
-    durationMinutes: z.number().int().positive().optional(),
-    objectives: z.array(z.string()).default([]),
-    exercises: z.array(z.string()).default([]),
-    notes: z.array(z.string()).default([]),
-  }),
-})
-
-const exercises = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    prompt: z.string().optional(),
-    lesson: z.string(),
-    concept: z.string().optional(),
-    course: z.string().optional(),
-    difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
-    order: z.number().default(0),
-    topics: z.array(z.string()).default([]),
-    solution: z.string().optional(),
-  }),
-})
-
-const notes = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
     summary: z.string().optional(),
-    course: z.string().optional(),
-    concept: z.string().optional(),
-    lesson: z.string().optional(),
+    subject: z.string(),
+    course: z.string().optional(), // slug or id of the course
     order: z.number().default(0),
     tags: z.array(z.string()).default([]),
   }),
 })
 
-export const collections = { subjects, courses, concepts, lessons, exercises, notes }
+// NOTE: collection key for macro-courses is "macro-courses" (hyphen)
+export const collections = {
+  subjects,
+  'macro-courses': macroCourses,
+  courses,
+  concepts,
+}
