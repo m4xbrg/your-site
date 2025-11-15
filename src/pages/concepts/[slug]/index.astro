@@ -1,6 +1,6 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
-import { getCollection } from 'astro:content'
+import { getCollection, getEntryBySlug } from 'astro:content'
 import { collectionNames } from "../../../lib/collections"
 import TagChips from "../../../components/TagChips.astro"
 
@@ -28,6 +28,27 @@ const relatedConcepts = relatedSlugs.length
       .map((slug) => allConcepts.find((entry) => entry.slug === slug))
       .filter(Boolean)
   : []
+const resolvedPrerequisites = await Promise.all(
+  (data.prerequisites ?? []).map(async (slug) => {
+    const concept = await getEntryBySlug(collectionNames.concepts, slug)
+    if (concept) {
+      return {
+        title: concept.data.title,
+        href: `/concepts/${concept.slug}/`,
+      }
+    }
+
+    const lesson = await getEntryBySlug(collectionNames.lessons, slug)
+    if (lesson) {
+      return {
+        title: lesson.data.title,
+        href: `/lessons/${lesson.slug}/`,
+      }
+    }
+
+    return { title: slug }
+  })
+)
 const difficultyLabel = data.difficulty
   ? `Difficulty: ${data.difficulty[0].toUpperCase()}${data.difficulty.slice(1)}`
   : undefined
@@ -59,6 +80,24 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
           </span>
         ))}
       </div>
+    )}
+    {resolvedPrerequisites.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold mb-3">Prerequisites</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          {resolvedPrerequisites.map((item) => (
+            <li>
+              {item.href ? (
+                <a class="text-brand-600 hover:underline" href={item.href}>
+                  {item.title}
+                </a>
+              ) : (
+                <span>{item.title}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
     )}
     <Content />
   </article>
