@@ -7,10 +7,15 @@ import TagChips from "../../components/TagChips.astro"
 export async function getStaticPaths() {
   const concepts = await getCollection(collectionNames.concepts)
   return concepts.map((concept) => {
-    const slugParam = concept.slug
+    const slugParam = concept.slug.includes('/')
+      ? concept.slug.split('/')
+      : concept.slug
+    const normalizedSlug = Array.isArray(slugParam)
+      ? slugParam.join('/')
+      : slugParam
 
     return {
-      params: { slug: slugParam },
+      params: { slug: normalizedSlug },
       props: { concept },
     }
   })
