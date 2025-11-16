@@ -1,19 +1,24 @@
 ---
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
+import { collectionNames } from "../../../lib/collections"
 
-const { slug } = Astro.params
+export async function getStaticPaths() {
+  const macroCourses = await getCollection(collectionNames['macro-courses'])
+  return macroCourses.map((macro) => ({
+    params: { slug: macro.slug },
+    props: { macro },
+  }))
+}
 
-const macroCourses = await getCollection('macro-courses')
-const macro = macroCourses.find(m => m.slug === slug)
-
+const { macro } = Astro.props
 if (!macro) {
   throw new Error('Macro-course not found')
 }
 
-const allCourses = await getCollection('courses')
+const allCourses = await getCollection(collectionNames.courses)
 const courses = allCourses
-  .filter(c => c.data.macroId === macro.data.id)
+  .filter((c) => c.data.macroId === macro.data.id)
   .toSorted((a, b) => a.data.order - b.data.order)
 ---
 

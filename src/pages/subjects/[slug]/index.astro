@@ -3,8 +3,6 @@ import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
 import { collectionNames } from "../../../lib/collections"
 
-const sortByOrder = (a,b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-
 export async function getStaticPaths() {
   const [subjects, courses, concepts] = await Promise.all([
     getCollection(collectionNames.subjects),
@@ -16,11 +14,11 @@ export async function getStaticPaths() {
     const relatedCourses = courses
       .filter((course) => course.data.subject === subject.slug)
       .slice()
-      .sort(sortByOrder)
+      .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
     const relatedConcepts = concepts
       .filter((concept) => concept.data.subject === subject.slug)
       .slice()
-      .sort(sortByOrder)
+      .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
 
     return {
       params: { slug: subject.slug },

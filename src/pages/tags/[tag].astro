@@ -44,9 +44,9 @@ const description = totalMatches
         {courses.map((course) => (
           <li>
             <a class="underline" href={`/courses/${course.slug}/`}>
-              {course.data.code ? `${course.data.code} — ` : ''}{course.data.title}
+              {course.data?.code ? `${course.data.code} — ` : ''}{course.data?.title ?? course.title}
             </a>
-            {course.data.description && (
+            {course.data?.description && (
               <p class="text-sm text-gray-600">{course.data.description}</p>
             )}
           </li>
@@ -64,9 +64,9 @@ const description = totalMatches
         {concepts.map((concept) => (
           <li>
             <a class="underline" href={`/concepts/${concept.slug}/`}>
-              {concept.data.title}
+              {concept.data?.title ?? concept.title}
             </a>
-            {concept.data.description && (
+            {concept.data?.description && (
               <p class="text-sm text-gray-600">{concept.data.description}</p>
             )}
           </li>
