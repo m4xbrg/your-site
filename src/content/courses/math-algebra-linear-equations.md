@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course builds on linear equations and inequalities in one or more variables by narrating how solution sets emerge from systematic algebraic manipulations that mirror real problem-solving workflows.
+This course expands on Linear equations and inequalities in one or more variables, solution sets, and algebraic manipulation strategies. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

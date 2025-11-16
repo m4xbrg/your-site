@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course deepens the exploration of classical Euclidean geometry by connecting points, lines, angles, triangles, and polygons to congruence and similarity arguments that justify geometric reasoning.
+This course expands on Classical geometry of points, lines, angles, triangles, and polygons, with congruence and similarity as central notions. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

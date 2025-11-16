@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course expands on continuity and the topology of ℝ by showing how open and closed sets and the standard metric frame rigorous discussions of function behavior.
+This course expands on Continuity, open and closed sets in ℝ, and basic topological notions induced by the standard metric. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

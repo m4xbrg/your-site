@@ -8,4 +8,4 @@ order: 5
 tags: []
 ---
 
-This course elaborates on functions of several variables by describing how level sets, partial derivatives, gradients, and directional derivatives extend single-variable intuitions into higher-dimensional analysis.
+This course expands on Functions of several variables, level sets, partial derivatives, gradients, and directional derivatives. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

@@ -8,4 +8,4 @@ order: 4
 tags: []
 ---
 
-This course elaborates on simple and multiple linear regression by emphasizing modeling assumptions, interpretation of fitted models, and the storytelling value of regression diagnostics.
+This course expands on Simple and multiple linear regression, model assumptions, and interpreting fitted models. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

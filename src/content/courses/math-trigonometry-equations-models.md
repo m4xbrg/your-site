@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course amplifies the description of solving trigonometric equations and building models by giving context for how these techniques capture geometric and physical phenomena with phase- and angle-based reasoning.
+This course expands on Solving trigonometric equations and using trigonometric functions to model geometric and physical situations. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

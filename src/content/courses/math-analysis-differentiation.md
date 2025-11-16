@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course elaborates on differentiation in ℝ by grounding derivatives within an ε–δ framework, explaining mean value theorems, and tracing key consequences of differentiability.
+This course expands on Derivatives in a rigorous ε–δ framework, mean value theorems, and consequences of differentiability. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

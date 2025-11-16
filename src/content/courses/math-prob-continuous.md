@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course extends the overview of continuous probability distributions by explaining density functions, cumulative distribution functions, and canonical models that describe real-valued random phenomena.
+This course expands on Continuous probability distributions, density functions, cumulative distribution functions, and common continuous models. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

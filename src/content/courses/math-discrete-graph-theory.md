@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course elaborates on finite graph theory by expanding on graphs, paths, cycles, connectivity, and other elementary notions that model relational structures.
+This course expands on Graphs, paths, cycles, connectivity, and elementary graph-theoretic concepts. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

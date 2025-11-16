@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course expands on analytic geometry by narrating how coordinate descriptions of lines, circles, conic sections, and related distance or midpoint formulas translate geometric loci into solvable algebraic conditions.
+This course expands on Coordinate representations of lines, circles, and conic sections; distance, midpoints, and geometric loci in the plane. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

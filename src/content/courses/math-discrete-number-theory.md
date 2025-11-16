@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course expands on elementary number theory by illustrating how divisibility, primes, congruences, and modular arithmetic weave into foundational number-theoretic structures.
+This course expands on Divisibility, primes, congruences, and basic modular arithmetic and number theoretic structures. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

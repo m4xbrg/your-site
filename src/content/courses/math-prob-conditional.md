@@ -8,4 +8,4 @@ order: 4
 tags: []
 ---
 
-This course amplifies the treatment of conditional probability, Bayes' theorem, independence, and the law of total probability by telling a cohesive story about how new information reshapes uncertainty.
+This course expands on Conditional probability, Bayes' theorem, independence, and basic law-of-total-probability reasoning. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

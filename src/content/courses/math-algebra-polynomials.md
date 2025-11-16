@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course extends the overview of polynomial expressions, factorisation, roots, and rational functions by highlighting how these algebraic tools interact when modeling relationships and simplifying complex expressions.
+This course expands on Polynomial expressions, factorisation, roots, and rational functions as ratios of polynomials. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

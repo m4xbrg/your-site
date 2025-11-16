@@ -8,4 +8,4 @@ order: 5
 tags: []
 ---
 
-This course elaborates on inner products, norms, orthogonality, projections, and orthonormal bases so that students gain intuition for geometric reasoning in abstract vector spaces.
+This course expands on Inner products, norms, orthogonality, projections, and orthonormal bases. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

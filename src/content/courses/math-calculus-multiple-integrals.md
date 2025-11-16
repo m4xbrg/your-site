@@ -8,4 +8,4 @@ order: 6
 tags: []
 ---
 
-This course broadens the treatment of multiple integrals, change of variables, line and surface integrals, and introductory vector field ideas so students can see how calculus captures accumulation across dimensions and along curves.
+This course expands on Multiple integrals, change of variables, line and surface integrals, and basic vector field concepts. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

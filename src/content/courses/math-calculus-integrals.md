@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course provides a fuller narrative around definite and indefinite integrals, antiderivatives, and the fundamental theorem of calculus to illustrate how accumulation and differentiation relate in single-variable problems.
+This course expands on Definite and indefinite integrals, antiderivatives, and the fundamental theorem of calculus for single-variable functions. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

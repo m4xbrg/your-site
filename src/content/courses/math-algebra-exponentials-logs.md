@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course elaborates on exponential growth and decay, logarithms, their inverse relationship, and the algebraic maneuvers that make exponential and logarithmic expressions manageable in diverse contexts.
+This course expands on Exponential growth/decay, logarithms, inverse relationships, and algebraic manipulation of exponential and log expressions. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

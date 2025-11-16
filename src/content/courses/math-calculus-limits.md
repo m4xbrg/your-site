@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course elaborates on intuitive and formal perspectives on limits and continuity, explaining how local behavior near points anchors precise definitions that support later calculus techniques.
+This course expands on Intuitive and formal notions of limits, continuity of functions, and the local behavior of functions near a point. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.
