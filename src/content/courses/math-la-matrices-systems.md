@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course elaborates on matrices as representations of linear systems by showcasing row operations and Gaussian elimination as procedural stories for solving structured equations.
+This course expands on Matrices as representations of linear systems, row operations, and solution methods such as Gaussian elimination. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

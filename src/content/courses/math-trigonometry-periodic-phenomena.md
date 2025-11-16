@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course expands the study of trigonometry in periodic phenomena by illustrating how phase, amplitude, and frequency parameters in trigonometric functions articulate real-world oscillations.
+This course expands on Using trigonometric functions to describe periodic behavior, phase, amplitude, and frequency in real systems. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

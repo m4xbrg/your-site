@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course elaborates on discrete distributions by linking Bernoulli, Binomial, Geometric, Poisson, and other countable models to common experiments and data scenarios.
+This course expands on Probability distributions on countable spaces, such as Bernoulli, Binomial, Geometric, and Poisson models. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

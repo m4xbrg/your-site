@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course expands on vectors in ℝ^n by narrating how linear combinations, spans, and dual geometric and algebraic interpretations of vector quantities provide the building blocks for linear algebra.
+This course expands on Vectors in ℝ^n, linear combinations, span, and geometric and algebraic views of vector quantities. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

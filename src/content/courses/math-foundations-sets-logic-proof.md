@@ -2,10 +2,10 @@
 id: math-foundations-sets-logic-proof
 subject: mathematics
 macroId: math-foundations
-title: Sets, Logic & Proof
-description: Sets, predicates, quantifiers, logical connectives, and core proof techniques (direct, contrapositive, contradiction, induction).
-order: 2
+title: Sets
+description:  Logic & Proof
+order: Sets, predicates, quantifiers, logical connectives, and core proof techniques (direct, contrapositive, contradiction, induction).
 tags: []
 ---
 
-This course elaborates on sets, predicates, quantifiers, logical connectives, and foundational proof strategies so that learners see how direct, contrapositive, contradiction, and inductive arguments provide the language of rigorous mathematics.
+This course expands on  Logic & Proof Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

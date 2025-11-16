@@ -8,4 +8,4 @@ order: 2
 tags: []
 ---
 
-This course elaborates on point estimation, sampling distributions, and confidence intervals by tracing how data variability informs interval estimates for parameters of interest.
+This course expands on Point estimators, sampling distributions, and confidence intervals for key parameters. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

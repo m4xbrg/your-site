@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course expands on the study of natural numbers, integers, rationals, and real numbers by providing narrative context for how their operations, ordering principles, absolute values, and arithmetic laws underpin nearly every quantitative argument students will encounter.
+This course expands on Natural numbers, integers, rationals, reals; operations, order, absolute value, and basic arithmetic laws. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

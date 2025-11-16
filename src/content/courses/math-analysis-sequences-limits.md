@@ -2,10 +2,10 @@
 id: math-analysis-sequences-limits
 subject: mathematics
 macroId: math-analysis-real
-title: Sequences, Limits & Convergence
-description: Sequences of real numbers, limits, convergence tests, and subsequences in a rigorous setting.
-order: 1
+title: Sequences
+description:  Limits & Convergence
+order: Sequences of real numbers, limits, convergence tests, and subsequences in a rigorous setting.
 tags: []
 ---
 
-This course elaborates on sequences of real numbers by detailing rigorous limit definitions, convergence tests, and subsequence arguments that prepare students for advanced analysis.
+This course expands on  Limits & Convergence Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course enriches the treatment of sine, cosine, and related functions by revisiting unit circle definitions and tracing how core trigonometric identities provide flexible tools for manipulating periodic relationships.
+This course expands on Sine, cosine, and related functions; unit circle definitions and core trigonometric identities. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

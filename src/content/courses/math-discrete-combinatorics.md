@@ -8,4 +8,4 @@ order: 1
 tags: []
 ---
 
-This course extends the description of combinatorics by narrating how counting principles, permutations, combinations, and enumerative strategies unlock complex discrete problems.
+This course expands on Counting principles, permutations, combinations, and basic enumerative techniques. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

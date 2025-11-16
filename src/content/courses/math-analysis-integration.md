@@ -8,4 +8,4 @@ order: 4
 tags: []
 ---
 
-This course broadens the overview of Riemann integration by describing integrability criteria and showing how integration and differentiation interact within rigorous analysis.
+This course expands on Riemann integrals, integrability criteria, and the fundamental relationships between integration and differentiation. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

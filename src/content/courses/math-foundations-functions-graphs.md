@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course broadens the description of functions as mappings by walking through domains, codomains, compositions, inverses, and graphical viewpoints that make abstract relationships between inputs and outputs more tangible.
+This course expands on Functions as mappings, domain and codomain, composition, inverses, and basic graph-based views of functions. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

@@ -8,4 +8,4 @@ order: 3
 tags: []
 ---
 
-This course elaborates on isometries, reflections, rotations, translations, and introductory symmetry groups to show how geometric transformations encode structure and movement.
+This course expands on Isometries, reflections, rotations, translations, and symmetry groups at an introductory structural level. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

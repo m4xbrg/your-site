@@ -8,4 +8,4 @@ order: 4
 tags: []
 ---
 
-This course expands on eigenvalues and eigenvectors by demonstrating how diagonalisation reveals the action of linear transformations and simplifies computations in practical problems.
+This course expands on Eigenvalues, eigenvectors, diagonalisation, and their role in linear transformations. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.

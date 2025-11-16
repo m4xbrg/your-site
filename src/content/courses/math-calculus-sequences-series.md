@@ -8,4 +8,4 @@ order: 4
 tags: []
 ---
 
-This course expands the discussion of sequences and series by detailing convergence tests, power series viewpoints, and comparison techniques that help learners reason about infinite summations.
+This course expands on Convergence of sequences and series, power series, and basic comparison tools for infinite sums. Learners build intuition through examples, practice, and conceptual discussions that set the stage for deeper study.
