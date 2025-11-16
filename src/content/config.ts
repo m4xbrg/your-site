@@ -51,11 +51,56 @@ const concepts = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
     summary: z.string().optional(),
     subject: z.string(),
     course: z.string().optional(), // slug or id of the course
     order: z.number().default(0),
     tags: z.array(z.string()).default([]),
+    learningGoals: z.array(z.string()).default([]),
+    lessons: z.array(z.string()).default([]),
+    relatedConcepts: z.array(z.string()).default([]),
+    prerequisites: z.array(z.string()).default([]),
+    estimatedTime: z.string().optional(),
+    difficulty: z.string().optional(),
+  }),
+})
+
+const lessons = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    course: z.string(),
+    concept: z.string().optional(),
+    order: z.number().default(0),
+    durationMinutes: z.number().default(0),
+    objectives: z.array(z.string()).default([]),
+    exercises: z.array(z.string()).default([]),
+    notes: z.array(z.string()).default([]),
+  }),
+})
+
+const exercises = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    prompt: z.string().optional(),
+    lesson: z.string().optional(),
+    concept: z.string().optional(),
+    course: z.string().optional(),
+    difficulty: z.string().optional(),
+    order: z.number().default(0),
+    topics: z.array(z.string()).default([]),
+    solution: z.string().optional(),
+  }),
+})
+
+const notes = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string().optional(),
   }),
 })
 
@@ -65,4 +110,7 @@ export const collections = {
   'macro-courses': macroCourses,
   courses,
   concepts,
+  lessons,
+  exercises,
+  notes,
 }

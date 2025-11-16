@@ -11,6 +11,7 @@ export type TaggedEntrySummary = {
   slug: string;
   title: string;
   collection: TaggableCollectionName;
+  data: TaggableEntry['data'];
 };
 
 export type TagGroup = {
@@ -40,6 +41,7 @@ const appendEntriesForCollection = (
         slug: entry.slug,
         title: entry.data.title,
         collection: collectionName,
+        data: entry.data,
       });
     }
   }

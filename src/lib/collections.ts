@@ -1,5 +1,6 @@
 export const collectionNames = {
   subjects: 'subjects',
+  'macro-courses': 'macro-courses',
   courses: 'courses',
   concepts: 'concepts',
   lessons: 'lessons',
