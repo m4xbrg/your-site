@@ -2,11 +2,6 @@
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import { getCollection } from 'astro:content'
 
-export async function getStaticPaths() {
-  const macros = await getCollection('macro-courses')
-  return macros.map((m) => ({ params: { slug: m.slug } }))
-}
-
 const { slug } = Astro.params
 
 const macroCourses = await getCollection('macro-courses')
@@ -35,7 +30,7 @@ const courses = allCourses
     <ul class="list-disc ms-5">
       {courses.map(c => (
         <li>
-          <a class="underline" href={`/courses/${c.data.id}/`}>
+          <a class="underline" href={`/courses/${c.slug}/`}>
             {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
           </a>
         </li>
