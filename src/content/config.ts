@@ -50,17 +50,35 @@ const courses = defineCollection({
 const concepts = defineCollection({
   type: 'content',
   schema: z.object({
+    // Identity & placement
+    id: z.string(),                  // global concept id, e.g. "math-limits-intuitive"
+    subject: z.string(),             // "mathematics", "physics", "computer-science", ...
+
+    macroId: z.string().optional(),  // e.g. "math-calculus"
+    courseId: z.string().optional(), // e.g. "math-calculus-limits"
+
+    // Legacy / compatibility field (current code still uses this)
+    course: z.string().optional(),   // existing slug/id like "math-101", "cs-101"
+
+    // Descriptive content
     title: z.string(),
     description: z.string().optional(),
     summary: z.string().optional(),
-    subject: z.string(),
-    course: z.string().optional(), // slug or id of the course
+
     order: z.number().default(0),
     tags: z.array(z.string()).default([]),
     learningGoals: z.array(z.string()).default([]),
-    lessons: z.array(z.string()).default([]),
-    relatedConcepts: z.array(z.string()).default([]),
+
+    // Graph structure
     prerequisites: z.array(z.string()).default([]),
+    relatedConcepts: z.array(z.string()).default([]),
+
+    // Meta / lifecycle
+    role: z.enum(['core', 'supporting', 'extension']).default('core'),
+    status: z.enum(['draft', 'stable', 'refine']).default('draft'),
+
+    // Extra metadata we already had
+    lessons: z.array(z.string()).default([]),
     estimatedTime: z.string().optional(),
     difficulty: z.string().optional(),
   }),
