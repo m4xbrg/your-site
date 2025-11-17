@@ -39,195 +39,87 @@ learningGoals:
 ## Snapshot
 
 The epsilon–delta definition replaces the informal idea of “getting close” with
-a precise condition involving two small positive numbers:
-
-- $\epsilon$ (epsilon) controls how close the outputs must be to the limit.
-- $\delta$ (delta) controls how close the inputs must be to the point.
-
-The definition is fully quantifier-based and is the foundation for rigorous
-analysis.
+a precise condition involving two small positive numbers: $\varepsilon$ (output
+tolerance) and $\delta$ (input radius).
 
 ## Formal Definition
 
 Let $f$ be a real-valued function, $a$ a real number, and $L$ a real number.
 
 We say that
-
-$$
+```tex
 \lim_{x \to a} f(x) = L
-$$
+```
+iff
+```tex
+\forall \varepsilon > 0,\ \exists \delta > 0 \text{ such that } 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon.
+```
 
-if and only if the following condition holds:
+Interpretation:
 
-$$
-\forall \varepsilon > 0,\ \exists \delta > 0 \text{ such that }
-0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon.
-$$
-
-Interpretation of the quantifiers:
-
-- “For every $\varepsilon > 0$” means: no matter how strict your tolerance on
-  the output, the condition must work.
-- “There exists $\delta > 0$” means: for each chosen $\varepsilon$, there is
-  some radius around $a$ that makes the implication true.
-- The implication connects **input closeness** ($|x - a| < \delta$) with
-  **output closeness** ($|f(x) - L| < \varepsilon$).
+- “For every $\varepsilon > 0$”: no matter how strict the output tolerance.  
+- “There exists $\delta > 0$”: for each $\varepsilon$, some radius around $a$ works.  
+- The implication ties **input closeness** to **output closeness**.  
+- $f(a)$ does not appear; limits are about nearby values, not necessarily at $a$.
 
 ## Intuition & Interpretation
 
-The condition
-
-$$
+Read the condition
+```tex
 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon
-$$
-
-should be read as:
-
-> Whenever $x$ is sufficiently close to $a$ (but not equal to $a$), then the
-> corresponding value $f(x)$ is close to $L$ within the required tolerance.
-
-Important points:
-
-- The value $f(a)$ does **not** appear in the core inequality. The limit only
-  depends on values of $f(x)$ near $a$, not necessarily at $a$.
-- The choice of $\delta$ may depend on $\varepsilon$ and on the function $f$,
-  but it cannot depend on $x$. Once an $\varepsilon$ is fixed, a single
-  $\delta$ must work for all $x$ in the punctured interval $0 < |x - a| < \delta$.
+```
+as: whenever $x$ is sufficiently close (but not equal) to $a$, then $f(x)$ is
+within $\varepsilon$ of $L$. The chosen $\delta$ may depend on $\varepsilon$
+(and on $f$), but once fixed it must work for **all** $x$ with $0<|x-a|<\delta$.
 
 ## Examples (Conceptual)
 
-1. **Constant function**
+1. **Constant function**  
+For $f(x)=c$,
+```tex
+\lim_{x\to a} f(x) = c
+```
+is immediate since $|f(x)-c|=0$.
 
-   For $f(x) = c$, the statement
+2. **Linear function**  
+For $f(x)=mx+b$,
+```tex
+\lim_{x\to a} f(x)=ma+b,\quad |f(x)-(ma+b)|=|m||x-a|,
+\quad \delta=\varepsilon/|m|\ (m\ne 0).
+```
 
-   $$
-   \lim_{x \to a} f(x) = c
-   $$
-
-   is true. Given any $\varepsilon > 0$, one can choose any $\delta > 0$, since
-   $|f(x) - c| = 0$ is always less than $\varepsilon$.
-
-2. **Linear function**
-
-   For $f(x) = mx + b$, we expect
-
-   $$
-   \lim_{x \to a} f(x) = ma + b.
-   $$
-
-   The epsilon–delta proof uses the fact that
-
-   $$
-   |f(x) - (ma + b)| = |m||x - a|.
-   $$
-
-   Then, given $\varepsilon > 0$, we can choose
-
-   $$
-   \delta = \frac{\varepsilon}{|m|}
-   $$
-
-   (assuming $m \neq 0$) to make the inequality hold.
-
-3. **Limit without function value**
-
-   It is possible for the limit to exist even if $f(a)$ is undefined or
-   different from $L$. The epsilon–delta condition only involves values of
-   $f(x)$ with $x \neq a$.
+3. **Limit without function value**  
+The limit can exist even if $f(a)$ is undefined or $\ne L$.
 
 ## Quantifier Structure
-
-The logical pattern is
-
-$$
+```tex
 \forall \varepsilon > 0,\ \exists \delta > 0,\ \forall x,\ 
 \big( 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon \big).
-$$
-
-Things to note:
-
-- The universal quantifier on $\varepsilon$ comes **first**: the definition must
-  work for *every* tolerance.
-- For each $\varepsilon$, there may be a different $\delta$. There is no
-  requirement that a single $\delta$ works for all epsilons.
-- The inner universal quantifier over $x$ expresses that once $\delta$ is fixed,
-  the implication must hold for *all* $x$ in that punctured neighborhood.
-
-Changing the order of quantifiers would change the meaning dramatically and
-usually break the definition.
+```
+Order matters: the universal $\varepsilon$ is **outside** the existential $\delta$.
 
 ## Relationship to Informal Limits
 
-The informal phrase
-
-> “$f(x)$ approaches $L$ as $x$ approaches $a$”
-
-is made precise by the epsilon–delta condition. Roughly:
-
-- $\varepsilon$ measures how close “approaches” must be in the output.
-- $\delta$ describes how close to $a$ we need to get in the input to enforce
-  that output closeness.
-
-The epsilon–delta definition ensures that this behavior is stable under small
-perturbations of $x$ near $a$.
+“$f(x)$ approaches $L$ as $x$ approaches $a$” is made precise by the
+epsilon–delta condition: $\varepsilon$ measures output closeness; $\delta$
+describes input closeness that guarantees it.
 
 ## Common Pitfalls
 
-1. **Wrong quantifier order**
-
-   Writing
-
-   $$
-   \exists \delta > 0,\ \forall \varepsilon > 0, \dots
-   $$
-
-   reverses the intended logical structure and does **not** define a limit.
-
-2. **Delta depending on $x$**
-
-   $\delta$ may depend on $\varepsilon$, but once chosen, it must work for
-   **all** $x$ satisfying $0 < |x - a| < \delta$. A “delta that depends on $x$”
-   would not satisfy the definition.
-
-3. **Including $x = a$ in the condition**
-
-   The inequality uses $0 < |x - a|$ rather than $|x - a| \le \delta$ to make
-   the definition independent of $f(a)$.
-
-4. **Confusing the role of $L$**
-
-   The number $L$ is part of the statement. The definition does not “find” $L$;
-   it specifies what must be true for a *given* candidate $L$ to be the limit.
+1. **Wrong quantifier order** (`\exists\delta \forall\varepsilon`)—not equivalent.  
+2. **$\delta$ depending on $x$** — Once chosen, it must work for all $x$ in $0<|x-a|<\delta$.  
+3. **Including $x=a$** — The punctured condition is essential.  
+4. **Misunderstanding $L$** — The statement asserts properties of a candidate $L$.
 
 ## Exercises
 
-1. **Translating the definition**
-
-   Rewrite the epsilon–delta definition in plain language, explaining the
-   meaning of each quantifier and implication.
-
-2. **Constant function**
-
-   For $f(x) = 5$, verify directly from the epsilon–delta definition that
-
-   $$
-   \lim_{x \to 2} f(x) = 5.
-   $$
-
-   Describe how you would choose $\delta$ in terms of $\varepsilon$.
-
-3. **Linear example**
-
-   For $f(x) = 3x - 1$, sketch how you would prove using the definition that
-
-   $$
-   \lim_{x \to 2} f(x) = 5.
-   $$
-
-   (You do not need to give a full formal proof, but indicate the key steps.)
-
-4. **Existence vs. non-existence**
-
-   Give an example of a function and a point $a$ where the epsilon–delta
-   condition fails for any candidate $L$. Explain which part of the definition
-   breaks.
+1. Translate the definition to plain language.  
+2. For $f(x)=5$, verify directly that
+```tex
+\lim_{x \to 2} f(x) = 5.
+```
+3. For $f(x)=3x-1$, outline an $\varepsilon$–$\delta$ proof that
+```tex
+\lim_{x \to 2} f(x) = 5.
+```
+4. Give an example where the definition fails for any $L$ and explain which part breaks.

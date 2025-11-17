@@ -15,7 +15,6 @@ concepts:
   - math-calculus-limits-removable-discontinuities
 ---
 
-
 # 1. Overview
 
 This lesson formalizes **continuity** using limits and develops a precise
@@ -33,7 +32,7 @@ Objectives:
 
 # 2. Concept Map for This Lesson
 
-one-sided → discontinuities-classification → removable-discontinuities
+one-sided → discontinuities-classification → removable-discontinuities  
 notation → continuity-point → continuity-interval
 
 - Continuity relies on limit existence and agreement with value.  
@@ -49,9 +48,7 @@ notation → continuity-point → continuity-interval
 A function $ f $ is **continuous at $ a $** if:
 
 1. $ f(a) $ is defined,  
-```tex
-2. $ \lim_{x\to a} f(x) $ exists,
-```
+2. $ \lim_{x\to a} f(x) $ exists,  
 3. and they agree:
 ```tex
 \lim_{x\to a} f(x) = f(a).
@@ -95,70 +92,50 @@ Includes:
 ## 3.4 Removable discontinuities: structure
 
 A removable discontinuity arises when:
-
 ```tex
 \lim_{x\to a} f(x) = L, \quad f(a) \ne L \text{ or } f(a) \text{ undefined.}
 ```
-
 Fix by defining:
-
-$$
-f(a) := L.
-$$
+```tex
+f(a) := L
+```
 
 ---
 
 # 4. Worked Examples
 
 ### Example 1 — Confirming continuity
-
-$$
-f(x)=3x^2-1.
-$$
+```tex
+f(x)=3x^2-1
+```
 Polynomials are continuous everywhere.  
 Direct substitution gives the limit at any point.
 
----
-
 ### Example 2 — Removable discontinuity
-
 ```tex
-f(x)=\frac{x^2-9}{x-3}.
+f(x)=\frac{x^2-9}{x-3}
 ```
-
 Factor:
 ```tex
-f(x)=x+3,\quad x\ne3.
+f(x)=x+3,\quad x\ne3
 ```
-
 Limit at 3 is 6, but function is undefined at 3 → removable.
 
----
-
 ### Example 3 — Jump discontinuity
-
-$$
+```tex
 f(x)=
-```tex
 \begin{cases}
-```
-1,&x<0,\\
-```tex
-5,&x\ge0.
+1,& x<0,\\
+5,& x\ge 0.
 \end{cases}
 ```
-$$
-
 Left limit = 1, right limit = 5 → jump.
 
----
-
 ### Example 4 — Essential (infinite)
-
 ```tex
-f(x)=\frac{1}{x-2}.
-Left side → $ -\infty $, right side → $ +\infty $.
+f(x)=\frac{1}{x-2}
 ```
+(Left side → $ -\infty $, right side → $ +\infty $.)  
 No finite limit → essential discontinuity.
 
 ---
@@ -174,7 +151,7 @@ No finite limit → essential discontinuity.
 - Continuous functions on closed intervals satisfy properties such as IVT and
   always attain maxima/minima (later).
 
-### Invariants:
+**Invariants:**
 
 - Continuity at a point ⇔ limit exists and equals the function value.  
 - Removable ⇔ finite limit exists but point value is wrong.  
@@ -195,10 +172,8 @@ f(x)=\frac{x^2-4}{x-2}
 
 2. Determine:
 ```tex
-\lim_{x\to1} \frac{|x-1|}{x-1}.
+\lim_{x\to1} \frac{|x-1|}{x-1}
 ```
-
----
 
 ### Tier B — mixed
 
@@ -206,18 +181,14 @@ f(x)=\frac{x^2-4}{x-2}
 ```tex
 f(x)=\begin{cases}
 x+1,&x\neq2,\\
-```
-   0,&x=2.
-```tex
+0,&x=2.
 \end{cases}
 ```
 
 4. Determine all discontinuities of  
 ```tex
-f(x)=\frac{x}{x^2-1}.
+f(x)=\frac{x}{x^2-1}
 ```
-
----
 
 ### Tier C — challenge
 

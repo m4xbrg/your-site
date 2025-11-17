@@ -14,7 +14,6 @@ concepts:
   - math-calculus-limits-at-infinity
 ---
 
-
 # 1. Overview
 
 This lesson introduces three central forms of **asymptotic behavior** in calculus:
@@ -27,9 +26,7 @@ This lesson introduces three central forms of **asymptotic behavior** in calculu
 Objectives:
 
 - Distinguish left, right, and two-sided limits.  
-
 - Interpret divergence to $ \pm\infty $.  
-
 - Compute horizontal asymptotes via limits at infinity.  
 - Connect asymptotic behavior to function graphs and continuity structure.
 
@@ -37,7 +34,7 @@ Objectives:
 
 # 2. Concept Map for This Lesson
 
-notation → one-sided → infinite-limits
+notation → one-sided → infinite-limits  
 limit-laws → limits-at-infinity
 
 - One-sided limits refine limit direction.  
@@ -54,92 +51,69 @@ Definitions:
 
 - Left-hand limit:
 ```tex
-\lim_{x\to a^-} f(x) = L.
+\lim_{x\to a^-} f(x) = L
 ```
 
 - Right-hand limit:
 ```tex
-\lim_{x\to a^+} f(x) = L.
+\lim_{x\to a^+} f(x) = L
 ```
 
 The two-sided limit exists exactly when both one-sided limits exist and are equal.
 
 ## 3.2 Infinite limits (vertical asymptotes)
 
-If:
+If
 ```tex
 \lim_{x\to a} f(x) = +\infty
-\quad\text{or}\quad
 ```
+or
 ```tex
 \lim_{x\to a} f(x) = -\infty,
 ```
-then $ f(x) $ grows without bound as $ x $ approaches $ a $.
-
+then $ f(x) $ grows without bound as $ x $ approaches $ a $.  
 This signals a **vertical asymptote** at $ x=a $.
 
 ## 3.3 Limits at infinity (horizontal asymptotes)
 
-A finite limit:
+A finite limit
 ```tex
-\lim_{x\to \pm\infty} f(x) = L,
+\lim_{x\to \pm\infty} f(x) = L
 ```
 means the graph approaches a horizontal line $ y=L $ as $ x $ grows unbounded.
 
 Dominant-term reasoning for rational functions:
 - If numerator degree < denominator degree → limit = 0  
 - If degrees equal → ratio of leading coefficients  
-
 - If numerator degree > denominator degree → limit diverges ($ \pm \infty $)
-
 
 ---
 
 # 4. Worked Examples
 
 ### Example 1 — One-sided mismatch
-
 ```tex
 \lim_{x\to0^-} \frac{|x|}{x} = -1,\qquad
-\lim_{x\to0^+} \frac{|x|}{x} = +1.
+\lim_{x\to0^+} \frac{|x|}{x} = +1
 ```
-
 Thus the two-sided limit does **not** exist.
 
----
-
 ### Example 2 — Infinite limit
-
 ```tex
-\lim_{x\to 3} \frac{1}{x-3} = \pm\infty.
-Left side → $ -\infty $
+\lim_{x\to 3} \frac{1}{x-3} = \pm\infty
 ```
-```tex
-Right side → $ +\infty $
-```
-
+(Left side → $ -\infty $; right side → $ +\infty $.)  
 Vertical asymptote at $ x=3 $.
 
----
-
-```tex
 ### Example 3 — Limit at $ \infty $
-```
-
-
-\lim_{x\to\infty} \frac{3x^2 - x}{2x^2 + 10}
-
 ```tex
-= \frac{3}{2}.
+\lim_{x\to\infty} \frac{3x^2 - x}{2x^2 + 10} = \frac{3}{2}
 ```
-
----
 
 ### Example 4 — Horizontal asymptote
-
-
-\lim_{x\to -\infty} \frac{5x - 1}{x + 7} = 5.
-
+```tex
+\lim_{x\to -\infty} \frac{5x - 1}{x + 7} = 5
+```
 
 ---
 
@@ -151,56 +125,44 @@ Vertical asymptote at $ x=3 $.
 - Vertical asymptotes reflect denominator zeros where the numerator doesn’t vanish simultaneously.  
 - Horizontal asymptotes reflect stabilization of the ratio of dominant terms.
 
-Invariants:
+**Invariants:**
 
 - A two-sided limit is determined entirely by its one-sided limits.  
 - Infinite limits are always “essential” discontinuities.  
-
 - Degree comparisons for rational functions are universally reliable for $ x\to\infty $.
-
 
 ---
 
 # 6. Practice Set (Tiered)
 
 ### Tier A — foundational
-
 1. Compute:
 ```tex
-\lim_{x\to0^+} \frac{1}{x}.
+\lim_{x\to0^+} \frac{1}{x}
 ```
-
 2. Compute:
 ```tex
-\lim_{x\to -\infty} \frac{2x^2 + 1}{x^2 + 10}.
+\lim_{x\to -\infty} \frac{2x^2 + 1}{x^2 + 10}
 ```
-
----
 
 ### Tier B — mixed
-
 3. Determine whether the limit exists:
 ```tex
-\lim_{x\to4} \frac{|x-4|}{x-4}.
+\lim_{x\to4} \frac{|x-4|}{x-4}
 ```
-
 4. Identify any asymptotes of:
-   
-f(x)=\frac{x}{x^2 - 9}.
-
-
----
+```tex
+f(x)=\frac{x}{x^2 - 9}
+```
 
 ### Tier C — challenge
-
 5. Evaluate:
 ```tex
-\lim_{x\to\infty} \left( x\sin\frac{1}{x} \right).
+\lim_{x\to\infty} \left( x\sin\frac{1}{x} \right)
 ```
-
 6. Determine:
 ```tex
-\lim_{x\to 2^-} \frac{1}{(x-2)^3}.
+\lim_{x\to 2^-} \frac{1}{(x-2)^3}
 ```
 
 ---
@@ -222,4 +184,4 @@ This lesson prepares for:
 
 - Lesson 4: continuity and discontinuity classification  
 - Lesson 5: rigorous epsilon–delta definition  
-- Lesson 6: epsilon–delta proofs, Squeeze, and IVT  
+- Lesson 6: epsilon–delta proofs, Squeeze, and IVT

@@ -18,15 +18,16 @@ tags:
   - "ivt"
 ---
 
-
 ## Tier A – Foundational
 
 1. Prove using ε–δ that:
+
 ```tex
 \lim_{x\to 1} (2x+3) = 5.
 ```
 
 2. Use the Squeeze Theorem to show:
+
 ```tex
 \lim_{x\to 0} x\sin(1/x) = 0.
 ```
@@ -35,48 +36,37 @@ tags:
 
 ## Tier B – Mixed
 
-3. For:
-   $$
-f(x)=x^3,
-$$
-   outline an ε–δ proof that:
+3. For $ f(x)=x^3 $, outline an ε–δ proof that:
+
 ```tex
 \lim_{x\to 2} x^3 = 8.
 ```
+
    a. Factor $ x^3 - 8 $.  
    b. Show how to bound the factor that does not contain $ |x-2| $.  
-   c. Choose an appropriate δ(ε).
+   c. Choose an appropriate $\delta(\varepsilon)$.
 
-4. Use IVT to show that:
-   $$
+4. Use IVT to show that
+```tex
 x^3 - x - 1 = 0
-$$
+```
    has a solution in $ (1,2) $.
 
-5. Let:
-```tex
-g(x)=x^2\sin(1/x)
-for $ x\ne 0 $, and $ g(0)=0 $.
-```
-```tex
-a. Use Squeeze to show $ \lim_{x\to 0} g(x)=0 $.
-```
+5. Let $ g(x)=x^2\sin(1/x) $ for $ x\ne 0 $, and $ g(0)=0 $.
+
+   a. Use Squeeze to show $ \lim_{x\to 0} g(x)=0 $.  
    b. Conclude that $ g $ is continuous at 0.
 
 ---
 
 ## Tier C – Challenge
 
-6. Let $ f $ be continuous on $ [0,1] $ and suppose $ f(0)=-2 $, $ f(1)=5 $.  
+6. Let $ f $ be continuous on $ [0,1] $ and suppose $ f(0)=-2 $, $ f(1)=5 $.
 
-```tex
-a. Use IVT to prove there is a point $ c\in(0,1) $ where $ f(c)=0 $.
-b. Use IVT again to show there is a point $ d\in(0,1) $ where $ f(d)=1 $.
-```
+   a. Use IVT to prove there is a point $ c\in(0,1) $ where $ f(c)=0 $.  
+   b. Use IVT again to show there is a point $ d\in(0,1) $ where $ f(d)=1 $.
 
-7. Suppose:
-```tex
-|f(x)| \le x^2 \quad \text{for all } x \text{ near } 0.
-a. Show using Squeeze that $ \lim_{x\to 0} f(x)=0 $.
-```
+7. Suppose $ |f(x)| \le x^2 $ for all $ x $ near $ 0 $.
+
+   a. Use Squeeze to show $ \lim_{x\to 0} f(x)=0 $.  
    b. Explain how this type of estimate is useful in derivative proofs later.

@@ -38,124 +38,98 @@ learningGoals:
   - Analyze whether a function is continuous using limit-based reasoning.
 ---
 
-
 ## Snapshot
 
 A function is continuous at a point if the function value matches the limit at
-that point. Continuity captures the idea of “no breaks” or “no interruptions” in
-the function’s behavior at a specific location.
+that point. Continuity captures the idea of “no breaks” in behavior at a specific
+location.
 
 ## Formal Statement
 
-A function $ f $ is **continuous at $ a $** if:
+A function $f$ is **continuous at $a$** if:
 
-1. $ f(a) $ is defined,  
+1) $f(a)$ is defined,  
+2) the limit exists,
 ```tex
-2. $ \lim_{x\to a} f(x) $ exists, and
+\lim_{x\to a} f(x) \ \text{ exists},
 ```
-3. these quantities are equal:
-
+3) and they agree:
 ```tex
 \lim_{x\to a} f(x) = f(a).
 ```
 
-Equivalently, using one-sided limits:
-
+Equivalently, using one‑sided limits:
 ```tex
 \lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
 ```
 
-Continuity at the point requires both agreement of directional behavior and
-agreement with the value at the point.
-
 ## Intuition & Interpretation
 
-Continuity indicates that evaluating the function at the point produces the
-same result as approaching the point through arbitrarily small neighborhoods.
-
-The limit must describe stable behavior near the point. The function must also
-produce that same value when evaluated directly.
-
-This distinguishes:
+Continuity means evaluating the function at the point gives the same result as
+approaching the point through arbitrarily small neighborhoods. Distinguish:
 
 - **limit behavior** (approach),  
-- **point behavior** (value),  
+- **point value** (evaluation),  
 - **agreement** (continuity).
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1. **Polynomial continuity**  
-   $ f(x)=x^2+1 $ is continuous everywhere, and  
+1. **Polynomial**
 ```tex
-\lim_{x\to3} f(x)=f(3)=10.
+\lim_{x\to3} (x^2+1) = (3)^2+1 = 10 = f(3).
 ```
 
 2. **Removable discontinuity corrected**  
-```tex
-g(x)=\frac{x^2-1}{x-1}
-```
-   has a hole at $ x=1 $.  
-   Redefining $ g(1)=2 $ creates continuity.
+Let $g(x)=\dfrac{x^2-1}{x-1}$. Redefining $g(1)=2$ yields continuity at $1$.
 
-3. **Absolute value continuity**  
-   $ f(x)=|x| $ is continuous at 0: both one-sided limits equal 0.
+3. **Absolute value**  
+$|x|$ is continuous at $0$ since left and right limits are $0$.
 
 ### Non-Examples
 
-1. **Jump discontinuity**  
-   Left and right limits differ → not continuous.
-
-2. **Infinite discontinuity**  
+1. **Jump** — Left and right limits differ.  
+2. **Infinite** — If
 ```tex
-\lim_{x\to1} \frac{1}{x-1}=\pm\infty
+\lim_{x\to1} \frac{1}{x-1} = \pm\infty,
 ```
-   → limit does not exist as a real number → not continuous.
-
-3. **Function undefined at the point**  
-   If $ f(a) $ does not exist, continuity is impossible.
+there is no finite limit → not continuous.  
+3. **Undefined at the point** — If $f(a)$ does not exist, continuity is impossible.
 
 ## Properties & Relationships
 
-- Continuity requires but is not guaranteed by:  
-  - existence of the limit,  
-  - existence of the function value.
-- All polynomials, exponentials, and rational functions (on their domains) are continuous.
-- Continuity is **local**: only behavior near the point matters.
-- Continuity at a point is the building block for continuity on intervals.
+- Continuity requires, but is not guaranteed by, existence of the limit.  
+- Polynomials, exponentials, and rational functions (on their domains) are continuous.  
+- Continuity is **local**; only behavior near the point matters.  
+- Builds to continuity on intervals.
 
 ## Common Pitfalls
 
-1. Assuming existence of a limit implies continuity.  
-2. Forgetting that function must be defined at the point.  
-3. Overlooking mismatches between function value and limit value.  
-4. Confusing removable and non-removable discontinuities.
+1. Assuming limit existence implies continuity.  
+2. Forgetting $f(a)$ must exist.  
+3. Overlooking $f(a)\ne \lim f$ mismatches.  
+4. Confusing removable with essential discontinuities.
 
 ## Exercises
 
 1. **Compute + evaluate**  
-   For  
+For
 ```tex
-f(x)=\begin{cases}
-\frac{x^2-4}{x-2}, & x\neq2,\\
-```
-   5, & x=2,
-```tex
+f(x)=
+\begin{cases}
+\dfrac{x^2-4}{x-2}, & x\neq 2,\\
+5, & x=2,
 \end{cases}
 ```
-   determine whether $ f $ is continuous at $ x=2 $.
+is $f$ continuous at $x=2$?
 
-2. **One-sided check**  
-   Determine whether  
-   $$
-h(x)=|x-3|
-$$
-   is continuous at $ x=3 $.
+2. **One-sided check**
+```tex
+\lim_{x\to 3^-} |x-3| \quad\text{and}\quad \lim_{x\to 3^+} |x-3|.
+```
+Is $|x-3|$ continuous at $3$?
 
-3. **Conceptual**  
-   Can a function be discontinuous at a point even if the limit exists there?
+3. **Conceptual** — Can a function be discontinuous at $a$ even if the two‑sided limit exists?
 
-4. **Mini-proof (Sketch)**  
-   Show that if both one-sided limits equal $ L $ and $ f(a)=L $, then  
-   $ \lim_{x\to a} f(x)=f(a) $, proving continuity at $ a $.
+4. **Mini-proof (Sketch)** — If both one‑sided limits equal $L$ and $f(a)=L$, then $\lim_{x\to a} f(x)=f(a)$.
