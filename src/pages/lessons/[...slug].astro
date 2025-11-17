@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+
+// Generate all lesson pages (nested slug, but slug is a STRING)
+export async function getStaticPaths() {
+  const allLessons = await getCollection('lessons');
+
+  console.log(
+    '[lessons getStaticPaths]',
+    allLessons.map((entry) => ({
+      id: entry.id,
+      slug: entry.slug,
+      collection: entry.collection,
+    })),
+  );
+
+  return allLessons.map((entry) => ({
+    params: {
+      // entry.slug is e.g. "mathematics/calculus/limits/lesson-01-introduction"
+      // For [...slug].astro, Astro still wants a STRING here.
+      slug: entry.slug,
+    },
+    props: {
+      lesson: entry,
+    },
+  }));
+}
+
+const { lesson } = Astro.props;
+const { title, description, durationMinutes, objectives } = lesson.data;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <h1>{title}</h1>
+
+      {description && (
+        <section>
+          <h2>Overview</h2>
+          <p>{description}</p>
+        </section>
+      )}
+
+      {durationMinutes !== undefined && durationMinutes > 0 && (
+        <section>
+          <h2>Duration</h2>
+          <p>{durationMinutes} minutes</p>
+        </section>
+      )}
+
+      {objectives && objectives.length > 0 && (
+        <section>
+          <h2>Objectives</h2>
+          <ul>
+            {objectives.map((obj) => (
+              <li>{obj}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section>
+        <h2>Content</h2>
+        {lesson.body}
+      </section>
+    </main>
+  </body>
+</html>

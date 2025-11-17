@@ -37,6 +37,7 @@ learningGoals:
   - Understand how discontinuities relate to the limit definition.
 ---
 
+
 ## Snapshot
 
 Discontinuities arise when a function fails to be continuous at a point. Limits
@@ -52,22 +53,26 @@ values.
 
 ## Formal Statement
 
-Let \( f \) be a function and \( a \) a point in its domain or boundary.
+Let $ f $ be a function and $ a $ a point in its domain or boundary.
 
 ### 1. Removable Discontinuity  
 Occurs when:
 
-- \( \lim_{x\to a} f(x) = L \) exists (finite),  
-- but \( f(a) \) is either undefined or not equal to \( L \).
+```tex
+- $ \lim_{x\to a} f(x) = L $ exists (finite),  
+```
+- but $ f(a) $ is either undefined or not equal to $ L $.
 
 ### 2. Jump Discontinuity  
 Occurs when:
 
 - both one-sided limits exist as finite real numbers,
 - but they are unequal:
-  \[
-  \lim_{x\to a^-} f(x) \neq \lim_{x\to a^+} f(x).
-  \]
+  $$
+```tex
+\lim_{x\to a^-} f(x) \neq \lim_{x\to a^+} f(x).
+```
+$$
 
 ### 3. Essential Discontinuity  
 Occurs when the limit fails for a non-removable reason, including:
@@ -92,31 +97,47 @@ This taxonomy cleanly separates structural issues in the function.
 ### Examples
 
 1. **Removable (hole)**  
-   \[
-   f(x)=\frac{x^2-1}{x-1}
-   \]
-   has a hole at \( x=1 \), since \( \lim_{x\to1}f(x)=2 \) but \( f(1) \) is
+   $$
+```tex
+f(x)=\frac{x^2-1}{x-1}
+```
+$$
+```tex
+   has a hole at $ x=1 $, since $ \lim_{x\to1}f(x)=2 $ but $ f(1) $ is
+```
    undefined.
 
 2. **Jump**  
-   \[
-   f(x)=\begin{cases}
+   $$
+```tex
+f(x)=\begin{cases}
+```
+```tex
    2,& x<0,\\
+```
+```tex
    5,& x\ge0.
+```
+```tex
    \end{cases}
-   \]
+```
+$$
    One-sided limits are 2 and 5 → jump.
 
 3. **Essential (infinite)**  
-   \[
-   \lim_{x\to3}\frac{1}{x-3}=\pm\infty.
-   \]
+   $$
+```tex
+\lim_{x\to3}\frac{1}{x-3}=\pm\infty.
+```
+$$
 
 4. **Essential (oscillation)**  
-   \[
-   f(x)=\sin(1/x)
-   \]
-   at \( x=0 \).
+   $$
+```tex
+f(x)=\sin(1/x)
+```
+$$
+   at $ x=0 $.
 
 ### Non-Examples
 
@@ -124,16 +145,16 @@ This taxonomy cleanly separates structural issues in the function.
    Polynomials have no discontinuities.
 
 2. **Domain boundary without discontinuity**  
-   \( \sqrt{x} \) at \( x=0 \): no discontinuity because right-hand limit equals
+   $ \sqrt{x} $ at $ x=0 $: no discontinuity because right-hand limit equals
    value.
 
 3. **Undefined point outside the domain**  
-   If \( a \) is not in the closure of the domain, discontinuity classification
+   If $ a $ is not in the closure of the domain, discontinuity classification
    does not apply.
 
 ## Properties & Relationships
 
-- Removable discontinuities can be repaired by redefining \( f(a) \) appropriately.
+- Removable discontinuities can be repaired by redefining $ f(a) $ appropriately.
 - Jump discontinuities cannot be repaired; they reflect directional mismatch.
 - Essential discontinuities indicate instability (asymptotic or oscillatory).
 - Classification depends entirely on **one-sided limits**, not on algebraic
@@ -151,26 +172,36 @@ This taxonomy cleanly separates structural issues in the function.
 
 1. **Classify**  
    For  
-   \[
-   f(x)=\begin{cases}
+   $$
+```tex
+f(x)=\begin{cases}
+```
+```tex
    1,& x<1,\\
+```
    3,& x>1,
+```tex
    \end{cases}
-   \]
-   identify the discontinuity type at \( x=1 \).
+```
+$$
+   identify the discontinuity type at $ x=1 $.
 
 2. **Removable or not?**  
    Classify the discontinuity of  
-   \[
-   g(x)=\frac{x^2-9}{x-3}.
-   \]
+   $$
+```tex
+g(x)=\frac{x^2-9}{x-3}.
+```
+$$
 
 3. **Infinite behavior**  
-   Determine whether the discontinuity at \( x=0 \) of  
-   \[
-   f(x)=\frac{1}{x^2}
-   \]
+   Determine whether the discontinuity at $ x=0 $ of  
+   $$
+```tex
+f(x)=\frac{1}{x^2}
+```
+$$
    is removable, jump, or essential.
 
 4. **Mini-proof (Sketch)**  
-   Explain why jump discontinuities cannot be removed by redefining \( f(a) \).
+   Explain why jump discontinuities cannot be removed by redefining $ f(a) $.

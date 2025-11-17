@@ -35,6 +35,7 @@ learningGoals:
   - Recognize that limits describe behavior near a point, not at the point.
 ---
 
+
 ## Snapshot
 
 A limit describes how a function behaves as the input gets arbitrarily close to a
@@ -46,31 +47,33 @@ the limit there.
 
 Informally, saying
 
-\[
+$$
+```tex
 \lim_{x\to a} f(x) = L
-\]
+```
+$$
 
 means:
 
-- When \( x \) is sufficiently close to \( a \) (but not equal to \( a \)),
-  the values of \( f(x) \) get arbitrarily close to \( L \).
-- The function’s behavior at \( x = a \) does not determine the value of the limit.
-- Only the approach toward \( a \) matters, not the value at \( a \).
+- When $ x $ is sufficiently close to $ a $ (but not equal to $ a $),
+  the values of $ f(x) $ get arbitrarily close to $ L $.
+- The function’s behavior at $ x = a $ does not determine the value of the limit.
+- Only the approach toward $ a $ matters, not the value at $ a $.
 
 This statement does *not* use the full epsilon–delta definition; instead, it
 captures the behavioral idea that motivates the formal definition.
 
 ## Intuition & Interpretation
 
-The limit focuses solely on the behavior of \( f(x) \) *near* the point \( a \).
-Even if the function is undefined at \( a \), or takes an unrelated value there,
+The limit focuses solely on the behavior of $ f(x) $ *near* the point $ a $.
+Even if the function is undefined at $ a $, or takes an unrelated value there,
 the limit can still exist.
 
 Conceptually:
 
-- The limit analyzes a **neighborhood** around \( a \), excluding the point itself.  
-- What happens exactly at \( a \) is irrelevant.  
-- The behavior of \( f(x) \) becomes “stable” as \( x \) approaches \( a \).
+- The limit analyzes a **neighborhood** around $ a $, excluding the point itself.  
+- What happens exactly at $ a $ is irrelevant.  
+- The behavior of $ f(x) $ becomes “stable” as $ x $ approaches $ a $.
 
 This view separates the notion of “approaching a value” from “equal to a value.”
 
@@ -79,37 +82,47 @@ This view separates the notion of “approaching a value” from “equal to a v
 ### Examples
 
 1.  
-   \[
-   f(x) = \frac{x^2-1}{x-1}
-   \]
-   simplifies to \( x+1 \) for \( x \neq 1 \). As \( x\to1 \),  
-   \( f(x) \to 2 \) even though \( f(1) \) is undefined.
+   $$
+```tex
+f(x) = \frac{x^2-1}{x-1}
+```
+$$
+```tex
+   simplifies to $ x+1 $ for $ x \neq 1 $. As $ x\to1 $,  
+```
+   $ f(x) \to 2 $ even though $ f(1) $ is undefined.
 
 2.  
-   \( f(x) = |x|/x \) for \( x \neq 0 \).  
-   As \( x\to 0^+ \), \( f(x)=1 \).  
-   As \( x\to 0^- \), \( f(x)=-1 \).  
+   $ f(x) = |x|/x $ for $ x \neq 0 $.  
+```tex
+   As $ x\to 0^+ $, $ f(x)=1 $.  
+```
+```tex
+   As $ x\to 0^- $, $ f(x)=-1 $.  
+```
    One-sided limits exist (different values), highlighting how limits describe
    behavior near the point.
 
 3.  
-   \[
-   \lim_{x\to 3} (x^2 + 1) = 10
-   \]
+   $$
+```tex
+\lim_{x\to 3} (x^2 + 1) = 10
+```
+$$
    is determined entirely by the values of the expression near 3; the actual
    evaluation at 3 plays no conceptual role for the limit.
 
 ### Non-Examples
 
 1. **Jump discontinuity**  
-   A function that abruptly changes values near \( a \) does not approach a single
+   A function that abruptly changes values near $ a $ does not approach a single
    number, so the limit does not exist.
 
 2. **Infinite oscillation**  
-   \( f(x) = \sin(1/x) \) near \( 0 \) never stabilizes, so no limit exists.
+   $ f(x) = \sin(1/x) $ near $ 0 $ never stabilizes, so no limit exists.
 
 3. **Infinite behavior**  
-   \( f(x) = 1/x \) near \( 0 \) does not approach any finite real number.
+   $ f(x) = 1/x $ near $ 0 $ does not approach any finite real number.
 
 These illustrate that limits require stable behavior near the point.
 
@@ -134,15 +147,19 @@ These illustrate that limits require stable behavior near the point.
 ## Exercises
 
 1. **Conceptual**  
-   Can a function have a limit at \( a \) if it is undefined at \( a \)?
+   Can a function have a limit at $ a $ if it is undefined at $ a $?
    Explain with a clear example.
 
 2. **Conceptual**  
-   Give an example of a function where \( \lim_{x\to a} f(x) = L \) but  
-   \( f(a) \neq L \). Explain the difference.
+```tex
+   Give an example of a function where $ \lim_{x\to a} f(x) = L $ but  
+```
+   $ f(a) \neq L $. Explain the difference.
 
 3. **Non-example analysis**  
-   Explain why \( \lim_{x\to 0} \sin(1/x) \) does not exist.
+```tex
+   Explain why $ \lim_{x\to 0} \sin(1/x) $ does not exist.
+```
 
 4. **Mini-proof (Sketch)**  
    Explain why modifying the value of a function at a single point does not

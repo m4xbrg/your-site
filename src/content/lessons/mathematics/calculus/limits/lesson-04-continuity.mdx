@@ -15,6 +15,7 @@ concepts:
   - math-calculus-limits-removable-discontinuities
 ---
 
+
 # 1. Overview
 
 This lesson formalizes **continuity** using limits and develops a precise
@@ -45,14 +46,18 @@ notation → continuity-point → continuity-interval
 
 ## 3.1 Continuity at a point
 
-A function \( f \) is **continuous at \( a \)** if:
+A function $ f $ is **continuous at $ a $** if:
 
-1. \( f(a) \) is defined,  
-2. \( \lim_{x\to a} f(x) \) exists,  
+1. $ f(a) $ is defined,  
+```tex
+2. $ \lim_{x\to a} f(x) $ exists,  
+```
 3. and they agree:
-   \[
-   \lim_{x\to a} f(x) = f(a).
-   \]
+   $$
+```tex
+\lim_{x\to a} f(x) = f(a).
+```
+$$
 
 Continuity is a local condition tied directly to limit behavior.
 
@@ -93,15 +98,17 @@ Includes:
 
 A removable discontinuity arises when:
 
-\[
+$$
+```tex
 \lim_{x\to a} f(x) = L, \quad f(a) \ne L \text{ or } f(a) \text{ undefined.}
-\]
+```
+$$
 
 Fix by defining:
 
-\[
+$$
 f(a) := L.
-\]
+$$
 
 ---
 
@@ -109,9 +116,9 @@ f(a) := L.
 
 ### Example 1 — Confirming continuity
 
-\[
+$$
 f(x)=3x^2-1.
-\]
+$$
 Polynomials are continuous everywhere.  
 Direct substitution gives the limit at any point.
 
@@ -119,14 +126,18 @@ Direct substitution gives the limit at any point.
 
 ### Example 2 — Removable discontinuity
 
-\[
+$$
+```tex
 f(x)=\frac{x^2-9}{x-3}.
-\]
+```
+$$
 
 Factor:
-\[
+$$
+```tex
 f(x)=x+3,\quad x\ne3.
-\]
+```
+$$
 
 Limit at 3 is 6, but function is undefined at 3 → removable.
 
@@ -134,13 +145,21 @@ Limit at 3 is 6, but function is undefined at 3 → removable.
 
 ### Example 3 — Jump discontinuity
 
-\[
+$$
 f(x)=
+```tex
 \begin{cases}
+```
+```tex
 1,&x<0,\\
+```
+```tex
 5,&x\ge0.
+```
+```tex
 \end{cases}
-\]
+```
+$$
 
 Left limit = 1, right limit = 5 → jump.
 
@@ -148,11 +167,15 @@ Left limit = 1, right limit = 5 → jump.
 
 ### Example 4 — Essential (infinite)
 
-\[
+$$
+```tex
 f(x)=\frac{1}{x-2}.
-\]
+```
+$$
 
-Left side → \( -\infty \), right side → \( +\infty \).  
+```tex
+Left side → $ -\infty $, right side → $ +\infty $.  
+```
 No finite limit → essential discontinuity.
 
 ---
@@ -182,44 +205,58 @@ No finite limit → essential discontinuity.
 ### Tier A — foundational
 
 1. Determine whether  
-   \[
-   f(x)=\frac{x^2-4}{x-2}
-   \]
-   is continuous at \( x=2 \).
+   $$
+```tex
+f(x)=\frac{x^2-4}{x-2}
+```
+$$
+   is continuous at $ x=2 $.
 
 2. Determine:
-   \[
-   \lim_{x\to1} \frac{|x-1|}{x-1}.
-   \]
+   $$
+```tex
+\lim_{x\to1} \frac{|x-1|}{x-1}.
+```
+$$
 
 ---
 
 ### Tier B — mixed
 
 3. Classify the discontinuity of  
-   \[
-   f(x)=\begin{cases}
+   $$
+```tex
+f(x)=\begin{cases}
+```
+```tex
    x+1,&x\neq2,\\
+```
    0,&x=2.
+```tex
    \end{cases}
-   \]
+```
+$$
 
 4. Determine all discontinuities of  
-   \[
-   f(x)=\frac{x}{x^2-1}.
-   \]
+   $$
+```tex
+f(x)=\frac{x}{x^2-1}.
+```
+$$
 
 ---
 
 ### Tier C — challenge
 
-5. A function oscillates increasingly near \( x=0 \), staying between −5 and 5.
+5. A function oscillates increasingly near $ x=0 $, staying between −5 and 5.
    Does it have a removable, jump, or essential discontinuity?
 
 6. A piecewise function satisfies
-   \[
-   \lim_{x\to4^-}f(x)=2,\quad \lim_{x\to4^+}f(x)=2,\quad f(4)=100.
-   \]
+   $$
+```tex
+\lim_{x\to4^-}f(x)=2,\quad \lim_{x\to4^+}f(x)=2,\quad f(4)=100.
+```
+$$
    Identify the discontinuity and suggest a repair.
 
 ---

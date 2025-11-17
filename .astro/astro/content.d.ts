@@ -152,36 +152,120 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"concepts": {
-"mathematics/limits.md": {
-	id: "mathematics/limits.md";
-  slug: "mathematics/limits";
+"mathematics/calculus/limits/computation-strategies.mdx": {
+	id: "mathematics/calculus/limits/computation-strategies.mdx";
+  slug: "mathematics/calculus/limits/computation-strategies";
   body: string;
   collection: "concepts";
   data: InferEntrySchema<"concepts">
-} & { render(): Render[".md"] };
-"variables-and-types.md": {
-	id: "variables-and-types.md";
-  slug: "variables-and-types";
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/continuity-interval.mdx": {
+	id: "mathematics/calculus/limits/continuity-interval.mdx";
+  slug: "mathematics/calculus/limits/continuity-interval";
   body: string;
   collection: "concepts";
   data: InferEntrySchema<"concepts">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/continuity-point.mdx": {
+	id: "mathematics/calculus/limits/continuity-point.mdx";
+  slug: "mathematics/calculus/limits/continuity-point";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/discontinuities-classification.mdx": {
+	id: "mathematics/calculus/limits/discontinuities-classification.mdx";
+  slug: "mathematics/calculus/limits/discontinuities-classification";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/epsilon-delta-definition.mdx": {
+	id: "mathematics/calculus/limits/epsilon-delta-definition.mdx";
+  slug: "mathematics/calculus/limits/epsilon-delta-definition";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/epsilon-delta-proofs.mdx": {
+	id: "mathematics/calculus/limits/epsilon-delta-proofs.mdx";
+  slug: "mathematics/calculus/limits/epsilon-delta-proofs";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/graphical-numerical.mdx": {
+	id: "mathematics/calculus/limits/graphical-numerical.mdx";
+  slug: "mathematics/calculus/limits/graphical-numerical";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/infinite-limits.mdx": {
+	id: "mathematics/calculus/limits/infinite-limits.mdx";
+  slug: "mathematics/calculus/limits/infinite-limits";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/informal-idea.mdx": {
+	id: "mathematics/calculus/limits/informal-idea.mdx";
+  slug: "mathematics/calculus/limits/informal-idea";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/ivt.mdx": {
+	id: "mathematics/calculus/limits/ivt.mdx";
+  slug: "mathematics/calculus/limits/ivt";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/limit-laws.mdx": {
+	id: "mathematics/calculus/limits/limit-laws.mdx";
+  slug: "mathematics/calculus/limits/limit-laws";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/limits-at-infinity.mdx": {
+	id: "mathematics/calculus/limits/limits-at-infinity.mdx";
+  slug: "mathematics/calculus/limits/limits-at-infinity";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/notation.mdx": {
+	id: "mathematics/calculus/limits/notation.mdx";
+  slug: "mathematics/calculus/limits/notation";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/one-sided.mdx": {
+	id: "mathematics/calculus/limits/one-sided.mdx";
+  slug: "mathematics/calculus/limits/one-sided";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/removable-discontinuities.mdx": {
+	id: "mathematics/calculus/limits/removable-discontinuities.mdx";
+  slug: "mathematics/calculus/limits/removable-discontinuities";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/squeeze-theorem.mdx": {
+	id: "mathematics/calculus/limits/squeeze-theorem.mdx";
+  slug: "mathematics/calculus/limits/squeeze-theorem";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
 };
 "courses": {
-"cs-101.md": {
-	id: "cs-101.md";
-  slug: "cs-101";
-  body: string;
-  collection: "courses";
-  data: InferEntrySchema<"courses">
-} & { render(): Render[".md"] };
-"math-101.md": {
-	id: "math-101.md";
-  slug: "math-101";
-  body: string;
-  collection: "courses";
-  data: InferEntrySchema<"courses">
-} & { render(): Render[".md"] };
 "math-algebra-exponentials-logs.md": {
 	id: "math-algebra-exponentials-logs.md";
   slug: "math-algebra-exponentials-logs";
@@ -448,20 +532,342 @@ declare module 'astro:content' {
   collection: "courses";
   data: InferEntrySchema<"courses">
 } & { render(): Render[".md"] };
+"physics-em-electric-potential.md": {
+	id: "physics-em-electric-potential.md";
+  slug: "physics-em-electric-potential";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-em-electrostatics.md": {
+	id: "physics-em-electrostatics.md";
+  slug: "physics-em-electrostatics";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-em-magnetism.md": {
+	id: "physics-em-magnetism.md";
+  slug: "physics-em-magnetism";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-em-maxwell.md": {
+	id: "physics-em-maxwell.md";
+  slug: "physics-em-maxwell";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-foundations-modelling.md": {
+	id: "physics-foundations-modelling.md";
+  slug: "physics-foundations-modelling";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-foundations-quantities-units.md": {
+	id: "physics-foundations-quantities-units.md";
+  slug: "physics-foundations-quantities-units";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-foundations-symmetries.md": {
+	id: "physics-foundations-symmetries.md";
+  slug: "physics-foundations-symmetries";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-foundations-vectors-geometry.md": {
+	id: "physics-foundations-vectors-geometry.md";
+  slug: "physics-foundations-vectors-geometry";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-energy-momentum.md": {
+	id: "physics-mechanics-energy-momentum.md";
+  slug: "physics-mechanics-energy-momentum";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-kinematics.md": {
+	id: "physics-mechanics-kinematics.md";
+  slug: "physics-mechanics-kinematics";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-lagrangian.md": {
+	id: "physics-mechanics-lagrangian.md";
+  slug: "physics-mechanics-lagrangian";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-newtonian.md": {
+	id: "physics-mechanics-newtonian.md";
+  slug: "physics-mechanics-newtonian";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-oscillations.md": {
+	id: "physics-mechanics-oscillations.md";
+  slug: "physics-mechanics-oscillations";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-mechanics-rotation.md": {
+	id: "physics-mechanics-rotation.md";
+  slug: "physics-mechanics-rotation";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-modern-atomic.md": {
+	id: "physics-modern-atomic.md";
+  slug: "physics-modern-atomic";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-modern-quantum-origins.md": {
+	id: "physics-modern-quantum-origins.md";
+  slug: "physics-modern-quantum-origins";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-modern-relativity.md": {
+	id: "physics-modern-relativity.md";
+  slug: "physics-modern-relativity";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-optics-geometric.md": {
+	id: "physics-optics-geometric.md";
+  slug: "physics-optics-geometric";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-optics-polarization.md": {
+	id: "physics-optics-polarization.md";
+  slug: "physics-optics-polarization";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-optics-wave.md": {
+	id: "physics-optics-wave.md";
+  slug: "physics-optics-wave";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-quantum-angular-momentum.md": {
+	id: "physics-quantum-angular-momentum.md";
+  slug: "physics-quantum-angular-momentum";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-quantum-measurement.md": {
+	id: "physics-quantum-measurement.md";
+  slug: "physics-quantum-measurement";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-quantum-operators.md": {
+	id: "physics-quantum-operators.md";
+  slug: "physics-quantum-operators";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-quantum-schrodinger.md": {
+	id: "physics-quantum-schrodinger.md";
+  slug: "physics-quantum-schrodinger";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-quantum-states.md": {
+	id: "physics-quantum-states.md";
+  slug: "physics-quantum-states";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-relativity-gravity.md": {
+	id: "physics-relativity-gravity.md";
+  slug: "physics-relativity-gravity";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-relativity-special.md": {
+	id: "physics-relativity-special.md";
+  slug: "physics-relativity-special";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-relativity-tensors.md": {
+	id: "physics-relativity-tensors.md";
+  slug: "physics-relativity-tensors";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-thermo-entropy.md": {
+	id: "physics-thermo-entropy.md";
+  slug: "physics-thermo-entropy";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-thermo-laws.md": {
+	id: "physics-thermo-laws.md";
+  slug: "physics-thermo-laws";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-thermo-statistical.md": {
+	id: "physics-thermo-statistical.md";
+  slug: "physics-thermo-statistical";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-thermo-variables.md": {
+	id: "physics-thermo-variables.md";
+  slug: "physics-thermo-variables";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-waves-fourier.md": {
+	id: "physics-waves-fourier.md";
+  slug: "physics-waves-fourier";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-waves-interference.md": {
+	id: "physics-waves-interference.md";
+  slug: "physics-waves-interference";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-waves-shm.md": {
+	id: "physics-waves-shm.md";
+  slug: "physics-waves-shm";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
+"physics-waves-wave-equation.md": {
+	id: "physics-waves-wave-equation.md";
+  slug: "physics-waves-wave-equation";
+  body: string;
+  collection: "courses";
+  data: InferEntrySchema<"courses">
+} & { render(): Render[".md"] };
 };
 "exercises": {
-"example-exercise.md": {
-	id: "example-exercise.md";
-  slug: "example-exercise";
+"mathematics/calculus/limits/lesson-01-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-01-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-01-exercises";
   body: string;
   collection: "exercises";
   data: InferEntrySchema<"exercises">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-02-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-02-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-02-exercises";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-03-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-03-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-03-exercises";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-04-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-04-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-04-exercises";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-05-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-05-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-05-exercises";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-06-exercises.mdx": {
+	id: "mathematics/calculus/limits/lesson-06-exercises.mdx";
+  slug: "mathematics/calculus/limits/lesson-06-exercises";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
 };
 "lessons": {
-"variables-and-types.mdx": {
-	id: "variables-and-types.mdx";
-  slug: "variables-and-types";
+"mathematics/calculus/limits/lesson-01-introduction.mdx": {
+	id: "mathematics/calculus/limits/lesson-01-introduction.mdx";
+  slug: "mathematics/calculus/limits/lesson-01-introduction";
+  body: string;
+  collection: "lessons";
+  data: InferEntrySchema<"lessons">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-02-limit-laws.mdx": {
+	id: "mathematics/calculus/limits/lesson-02-limit-laws.mdx";
+  slug: "mathematics/calculus/limits/lesson-02-limit-laws";
+  body: string;
+  collection: "lessons";
+  data: InferEntrySchema<"lessons">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-03-asymptotic-behavior.mdx": {
+	id: "mathematics/calculus/limits/lesson-03-asymptotic-behavior.mdx";
+  slug: "mathematics/calculus/limits/lesson-03-asymptotic-behavior";
+  body: string;
+  collection: "lessons";
+  data: InferEntrySchema<"lessons">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-04-continuity.mdx": {
+	id: "mathematics/calculus/limits/lesson-04-continuity.mdx";
+  slug: "mathematics/calculus/limits/lesson-04-continuity";
+  body: string;
+  collection: "lessons";
+  data: InferEntrySchema<"lessons">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-05-epsilon-delta.mdx": {
+	id: "mathematics/calculus/limits/lesson-05-epsilon-delta.mdx";
+  slug: "mathematics/calculus/limits/lesson-05-epsilon-delta";
+  body: string;
+  collection: "lessons";
+  data: InferEntrySchema<"lessons">
+} & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/lesson-06-proof-theorems.mdx": {
+	id: "mathematics/calculus/limits/lesson-06-proof-theorems.mdx";
+  slug: "mathematics/calculus/limits/lesson-06-proof-theorems";
   body: string;
   collection: "lessons";
   data: InferEntrySchema<"lessons">
@@ -538,20 +944,89 @@ declare module 'astro:content' {
   collection: "macro-courses";
   data: InferEntrySchema<"macro-courses">
 } & { render(): Render[".md"] };
-};
-"notes": {
-"example-note.md": {
-	id: "example-note.md";
-  slug: "example-note";
+"physics-electricity-magnetism.md": {
+	id: "physics-electricity-magnetism.md";
+  slug: "physics-electricity-magnetism";
   body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-foundations.md": {
+	id: "physics-foundations.md";
+  slug: "physics-foundations";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-mechanics.md": {
+	id: "physics-mechanics.md";
+  slug: "physics-mechanics";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-modern.md": {
+	id: "physics-modern.md";
+  slug: "physics-modern";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-optics.md": {
+	id: "physics-optics.md";
+  slug: "physics-optics";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-quantum.md": {
+	id: "physics-quantum.md";
+  slug: "physics-quantum";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-relativity.md": {
+	id: "physics-relativity.md";
+  slug: "physics-relativity";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-thermodynamics.md": {
+	id: "physics-thermodynamics.md";
+  slug: "physics-thermodynamics";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
+} & { render(): Render[".md"] };
+"physics-waves.md": {
+	id: "physics-waves.md";
+  slug: "physics-waves";
+  body: string;
+  collection: "macro-courses";
+  data: InferEntrySchema<"macro-courses">
 } & { render(): Render[".md"] };
 };
+"notes": Record<string, {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">;
+  render(): Render[".md"];
+}>;
 "subjects": {
-"computer-science.md": {
-	id: "computer-science.md";
-  slug: "computer-science";
+"mathematics.md": {
+	id: "mathematics.md";
+  slug: "mathematics";
+  body: string;
+  collection: "subjects";
+  data: InferEntrySchema<"subjects">
+} & { render(): Render[".md"] };
+"physics.md": {
+	id: "physics.md";
+  slug: "physics";
   body: string;
   collection: "subjects";
   data: InferEntrySchema<"subjects">
@@ -596,5 +1071,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = typeof import("./../../src/content/config.js");
 }

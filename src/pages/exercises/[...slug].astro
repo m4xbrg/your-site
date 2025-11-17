@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+
+// Generate all exercise pages (nested slug, but as a STRING)
+export async function getStaticPaths() {
+  const allExercises = await getCollection('exercises');
+
+  console.log(
+    '[exercises getStaticPaths]',
+    allExercises.map((entry) => ({
+      id: entry.id,
+      slug: entry.slug,
+      collection: entry.collection,
+    })),
+  );
+
+  return allExercises.map((entry) => ({
+    params: {
+      // For [...slug].astro, Astro still expects a STRING here.
+      // The string can contain slashes, e.g.
+      //   "mathematics/calculus/limits/lesson-01-exercises"
+      // and Astro will route it as:
+      //   /exercises/mathematics/calculus/limits/lesson-01-exercises
+      slug: entry.slug,
+    },
+    props: {
+      exercise: entry,
+    },
+  }));
+}
+
+const { exercise } = Astro.props;
+const { title, prompt, difficulty, topics, solution } = exercise.data;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <h1>{title}</h1>
+
+      {prompt && (
+        <section>
+          <h2>Prompt</h2>
+          <p>{prompt}</p>
+        </section>
+      )}
+
+      {(difficulty || (topics && topics.length > 0)) && (
+        <section>
+          <h2>Meta</h2>
+          {difficulty && <p><strong>Difficulty:</strong> {difficulty}</p>}
+          {topics && topics.length > 0 && (
+            <p>
+              <strong>Topics:</strong> {topics.join(', ')}
+            </p>
+          )}
+        </section>
+      )}
+
+      {solution && (
+        <section>
+          <h2>Solution (Draft)</h2>
+          <p>{solution}</p>
+        </section>
+      )}
+    </main>
+  </body>
+</html>

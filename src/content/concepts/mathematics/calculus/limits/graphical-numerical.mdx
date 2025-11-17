@@ -37,6 +37,7 @@ learningGoals:
   - Recognize one-sided, infinite, and discontinuous behavior graphically.
 ---
 
+
 ## Snapshot
 
 Graphs and tables provide concrete evidence of how a function behaves near a
@@ -47,10 +48,10 @@ whether no stable limit exists.
 ## Formal Statement
 
 When analyzing a limit numerically or graphically, we examine the values of
-\( f(x) \) for inputs \( x \) that are sufficiently close to \( a \), but not
-equal to \( a \). A limit \( L \) is suggested if:
+$ f(x) $ for inputs $ x $ that are sufficiently close to $ a $, but not
+equal to $ a $. A limit $ L $ is suggested if:
 
-- values of \( f(x) \) approach and stabilize near \( L \),
+- values of $ f(x) $ approach and stabilize near $ L $,
 - both left-hand and right-hand behavior appears consistent,
 - graphical behavior near the point aligns with numerical evidence.
 
@@ -60,7 +61,7 @@ must be verified algebraically or using formal definitions when required.
 ## Intuition & Interpretation
 
 A graph shows the local behavior of a function near a point. If the function's
-values converge toward a horizontal height \( L \) as \( x \) approaches \( a \),
+values converge toward a horizontal height $ L $ as $ x $ approaches $ a $,
 the graph visually confirms the existence of a limit.
 
 Tables approximate the same idea: they show how values behave as inputs move
@@ -73,7 +74,7 @@ existence of a limit.
 
 1. **Stable table values**
 
-| \(x\) | \(f(x)\) |
+| $ x $ | $ f(x) $ |
 |------|----------|
 | 0.9  | 1.89     |
 | 0.99 | 1.9899   |
@@ -81,12 +82,14 @@ existence of a limit.
 | 1.1  | 2.11     |
 
 Values approach 2 from both sides → graphical and numerical evidence suggest  
-\[
+$$
+```tex
 \lim_{x\to1} f(x) = 2.
-\]
+```
+$$
 
 2. **Graph approaching a point despite a hole**  
-A removable discontinuity at \( x = 3 \) still shows the graph approaching a
+A removable discontinuity at $ x = 3 $ still shows the graph approaching a
 single height, indicating the limit exists.
 
 3. **One-sided differences**  
@@ -96,7 +99,9 @@ shows no two-sided limit but *does* show one-sided limits.
 ### Non-Examples
 
 1. **Oscillation**  
-Graph of \( \sin(1/x) \) near 0 shows dense oscillations with no stability →  
+```tex
+Graph of $ \sin(1/x) $ near 0 shows dense oscillations with no stability →  
+```
 limit does not exist.
 
 2. **Jump discontinuity**  
@@ -104,7 +109,9 @@ A sudden vertical jump between two heights on a graph indicates distinct one-sid
 limits, so two-sided limit fails.
 
 3. **Vertical asymptote behavior**  
-Values diverging to \( +\infty \) or \( -\infty \) indicate an infinite limit, not
+```tex
+Values diverging to $ +\infty $ or $ -\infty $ indicate an infinite limit, not
+```
 a finite limit.
 
 ## Properties & Relationships
@@ -130,11 +137,11 @@ specific numerical values.
 ## Exercises
 
 1. **Numerical**  
-   A table shows values of a function near \( x = 2 \) approaching  
+   A table shows values of a function near $ x = 2 $ approaching  
    3.0001, 3.00001, 2.99999, 3.00002. What limit does this suggest?
 
 2. **Graphical**  
-   A graph shows a hole at \( x = 4 \) but smooth behavior around it.  
+   A graph shows a hole at $ x = 4 $ but smooth behavior around it.  
    Describe whether the limit at 4 likely exists and explain why.
 
 3. **One-sided analysis**  

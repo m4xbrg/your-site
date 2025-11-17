@@ -37,6 +37,7 @@ learningGoals:
   - Understand how redefining a function value repairs continuity.
 ---
 
+
 ## Snapshot
 
 A removable discontinuity occurs when the limit exists at a point but the
@@ -46,21 +47,27 @@ the missing or mismatched point.
 
 ## Formal Statement
 
-A function \( f \) has a **removable discontinuity at \( a \)** if:
+A function $ f $ has a **removable discontinuity at $ a $** if:
 
 1. The limit exists:
-   \[
-   \lim_{x\to a} f(x) = L,
-   \]
+   $$
+```tex
+\lim_{x\to a} f(x) = L,
+```
+$$
 2. but either:
-   - \( f(a) \) is undefined, or  
-   - \( f(a) \neq L \).
+   - $ f(a) $ is undefined, or  
+```tex
+   - $ f(a) \neq L $.
+```
 
 In both cases, redefining the function at the point:
 
-\[
+$$
+```tex
 f(a) \coloneqq L
-\]
+```
+$$
 
 restores continuity.
 
@@ -78,20 +85,28 @@ behavior.
 ### Examples
 
 1. **Algebraic cancellation**
-   \[
-   f(x)=\frac{x^2-1}{x-1} = x+1 \quad (x\ne1).
-   \]
+   $$
+```tex
+f(x)=\frac{x^2-1}{x-1} = x+1 \quad (x\ne1).
+```
+$$
    The limit at 1 is 2, but the function is undefined at 1 → removable.
 
 2. **Defined incorrectly at the point**
-   \[
-   g(x)=
+   $$
+g(x)=
+```tex
    \begin{cases}
+```
+```tex
    x^2,& x\ne 2,\\
+```
    100,& x=2.
+```tex
    \end{cases}
-   \]
-   The limit at 2 is 4, but \( g(2)=100 \).
+```
+$$
+   The limit at 2 is 4, but $ g(2)=100 $.
 
 3. **Piecewise hole**
    A graph with a single open circle but otherwise smooth around the point.
@@ -125,23 +140,33 @@ behavior.
 
 1. **Classification**
    Classify the discontinuity of:
-   \[
-   f(x)=\frac{x^2-9}{x-3}.
-   \]
+   $$
+```tex
+f(x)=\frac{x^2-9}{x-3}.
+```
+$$
 
 2. **Repairing continuity**
    For the function:
-   \[
-   h(x)=\begin{cases}
+   $$
+```tex
+h(x)=\begin{cases}
+```
+```tex
    x+3,& x\ne -3,\\
+```
    0,& x=-3,
+```tex
    \end{cases}
-   \]
-   determine what value should replace \( h(-3) \) to make the function continuous.
+```
+$$
+   determine what value should replace $ h(-3) $ to make the function continuous.
 
 3. **Conceptual**
    Explain why an infinite limit cannot produce a removable discontinuity.
 
 4. **Mini-proof (Sketch)**
-   Prove that if \( \lim_{x\to a} f(x) = L \) and \( f(a) = L \), then the
-   discontinuity at \( a \) is removed.
+```tex
+   Prove that if $ \lim_{x\to a} f(x) = L $ and $ f(a) = L $, then the
+```
+   discontinuity at $ a $ is removed.

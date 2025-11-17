@@ -37,6 +37,7 @@ learningGoals:
   - Understand how bounding functions determine limit behavior.
 ---
 
+
 ## Snapshot
 
 The Squeeze Theorem allows the evaluation of limits when a function is trapped
@@ -46,33 +47,41 @@ nevertheless constrained.
 
 ## Formal Statement
 
-Let \( g, f, h \) be functions defined near \( a \) (except possibly at \( a \)).
+Let $ g, f, h $ be functions defined near $ a $ (except possibly at $ a $).
 Suppose:
 
-1. For all \( x \) sufficiently close to \( a \),
-   \[
-   g(x) \le f(x) \le h(x),
-   \]
+1. For all $ x $ sufficiently close to $ a $,
+   $$
+```tex
+g(x) \le f(x) \le h(x),
+```
+$$
 2. and  
-   \[
-   \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
-   \]
+   $$
+```tex
+\lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
+```
+$$
 
-Then the limit of the middle function exists and equals \( L \):
+Then the limit of the middle function exists and equals $ L $:
 
-\[
+$$
+```tex
 \lim_{x\to a} f(x) = L.
-\]
+```
+$$
 
-The theorem also holds for limits at \( +\infty \) or \( -\infty \) with the same
+```tex
+The theorem also holds for limits at $ +\infty $ or $ -\infty $ with the same
+```
 conditions.
 
 ## Intuition & Interpretation
 
-If a function \( f(x) \) is always sandwiched between two functions that both
-approach the same limit \( L \), then \( f(x) \) cannot escape approaching \( L \)
+If a function $ f(x) $ is always sandwiched between two functions that both
+approach the same limit $ L $, then $ f(x) $ cannot escape approaching $ L $
 itself. The bounding functions constrain its behavior, so the only possible
-limit is \( L \).
+limit is $ L $.
 
 The theorem applies when the function is difficult to analyze directly but is
 dominated by upper and lower bounds with clear limit behavior.
@@ -82,37 +91,55 @@ dominated by upper and lower bounds with clear limit behavior.
 ### Examples
 
 1. **Classic trigonometric limit**
-   \[
-   -1 \le \frac{\sin x}{x} \le 1 \quad\text{for } x\ne0.
-   \]
-   Multiply by \( x \) (positive or negative handled carefully):
-   \[
-   \cos x \le \frac{\sin x}{x} \le 1,
-   \]
-   and both side limits approach 1 as \( x\to0 \).  
+   $$
+```tex
+-1 \le \frac{\sin x}{x} \le 1 \quad\text{for } x\ne0.
+```
+$$
+   Multiply by $ x $ (positive or negative handled carefully):
+   $$
+```tex
+\cos x \le \frac{\sin x}{x} \le 1,
+```
+$$
+```tex
+   and both side limits approach 1 as $ x\to0 $.  
+```
    Therefore:
-   \[
-   \lim_{x\to0} \frac{\sin x}{x} = 1.
-   \]
+   $$
+```tex
+\lim_{x\to0} \frac{\sin x}{x} = 1.
+```
+$$
 
 2. **Bounding a small oscillating term**
-   \[
-   -x^2 \le x^2\sin(1/x) \le x^2.
-   \]
-   Since both bounds approach 0 at \( x\to0 \),  
-   \[
-   \lim_{x\to0} x^2\sin(1/x) = 0.
-   \]
+   $$
+```tex
+-x^2 \le x^2\sin(1/x) \le x^2.
+```
+$$
+```tex
+   Since both bounds approach 0 at $ x\to0 $,  
+```
+   $$
+```tex
+\lim_{x\to0} x^2\sin(1/x) = 0.
+```
+$$
 
 3. **Rational bounding**
    If
-   \[
-   \frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
-   \]
-   and both bounding functions approach 1 for large \( x \), then  
-   \[
-   \lim_{x\to\infty} f(x) = 1.
-   \]
+   $$
+```tex
+\frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
+```
+$$
+   and both bounding functions approach 1 for large $ x $, then  
+   $$
+```tex
+\lim_{x\to\infty} f(x) = 1.
+```
+$$
 
 ### Non-Examples
 
@@ -128,13 +155,17 @@ dominated by upper and lower bounds with clear limit behavior.
 ## Properties & Relationships
 
 - The theorem is fundamentally an inequality argument.  
-- Often used when direct substitution yields \( 0 \cdot (\text{oscillatory}) \)
+```tex
+- Often used when direct substitution yields $ 0 \cdot (\text{oscillatory}) $
+```
   or similar forms.  
 - Connects to limits of sequences and bounding arguments in real analysis.  
 - Squeeze is often paired with absolute-value bounds:
-  \[
-  |f(x)| \le g(x),\ \lim g(x)=0 \Rightarrow \lim f(x)=0.
-  \]
+  $$
+```tex
+|f(x)| \le g(x),\ \lim g(x)=0 \Rightarrow \lim f(x)=0.
+```
+$$
 
 ## Common Pitfalls
 
@@ -147,21 +178,29 @@ dominated by upper and lower bounds with clear limit behavior.
 
 1. **Compute using Squeeze**
    Prove that:
-   \[
-   \lim_{x\to0} x\sin(1/x) = 0.
-   \]
+   $$
+```tex
+\lim_{x\to0} x\sin(1/x) = 0.
+```
+$$
 
 2. **Oscillation control**
-   Show that if \( |f(x)|\le x^4 \), then  
-   \[
-   \lim_{x\to0} f(x) = 0.
-   \]
+```tex
+   Show that if $ |f(x)|\le x^4 $, then  
+```
+   $$
+```tex
+\lim_{x\to0} f(x) = 0.
+```
+$$
 
 3. **Large-x behavior**
    Use Squeeze to evaluate:
-   \[
-   \lim_{x\to\infty} x\sin(1/x).
-   \]
+   $$
+```tex
+\lim_{x\to\infty} x\sin(1/x).
+```
+$$
 
 4. **Mini-proof (Sketch)**
    Explain why the two bounding functions must converge to the *same* value for

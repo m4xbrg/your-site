@@ -15,43 +15,54 @@ tags:
   - "analysis"
 ---
 
+
 ## Tier A – Foundational
 
 1. Write out the ε–δ definition of:
-   \[
-   \lim_{x\to 2} (3x+1) = 7.
-   \]
+   $$
+```tex
+\lim_{x\to 2} (3x+1) = 7.
+```
+$$
 
 2. Explain in your own words the meaning of:
-   \[
-   \forall \varepsilon > 0,\ \exists \delta > 0:\ 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.
-   \]
+   $$
+```tex
+\forall \varepsilon > 0,\ \exists \delta > 0:\ 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.
+```
+$$
 
 ---
 
 ## Tier B – Mixed
 
-3. For \( f(x) = 4x-5 \) and \( a = 1 \), compute \( L \) and propose a δ as a function of ε such that:
-   \[
-   0<|x-1|<\delta \Rightarrow |f(x)-L|<\varepsilon.
-   \]
+3. For $ f(x) = 4x-5 $ and $ a = 1 $, compute $ L $ and propose a δ as a function of ε such that:
+   $$
+```tex
+0<|x-1|<\delta \Rightarrow |f(x)-L|<\varepsilon.
+```
+$$
 
-4. Show that the constant function \( f(x)=2 \) satisfies the ε–δ definition for any point \( a \).  
+4. Show that the constant function $ f(x)=2 $ satisfies the ε–δ definition for any point $ a $.  
    a. What choice of δ works for a given ε?  
-   b. Why does this argument not depend on \( a \)?
+   b. Why does this argument not depend on $ a $?
 
 ---
 
 ## Tier C – Challenge
 
 5. Consider:
-   \[
-   f(x) = x^2,\quad a=2.
-   \]
-   a. Start from \( |x^2-4| \) and factor it into \( |x-2||x+2| \).  
-   b. Show how to bound \( |x+2| \) by assuming a restriction on \( |x-2| \).  
+   $$
+```tex
+f(x) = x^2,\quad a=2.
+```
+$$
+   a. Start from $ |x^2-4| $ and factor it into $ |x-2||x+2| $.  
+   b. Show how to bound $ |x+2| $ by assuming a restriction on $ |x-2| $.  
    c. Derive an explicit δ(ε) that works.
 
-6. Suppose \( \lim_{x\to a} f(x)=L_1 \) and \( \lim_{x\to a} f(x)=L_2 \) both hold (in the ε–δ sense).  
-   Use the definition to prove that \( L_1 = L_2 \).  
-   Hint: Fix ε and use both limits to constrain \( |L_1 - L_2| \).
+```tex
+6. Suppose $ \lim_{x\to a} f(x)=L_1 $ and $ \lim_{x\to a} f(x)=L_2 $ both hold (in the ε–δ sense).  
+```
+   Use the definition to prove that $ L_1 = L_2 $.  
+   Hint: Fix ε and use both limits to constrain $ |L_1 - L_2| $.

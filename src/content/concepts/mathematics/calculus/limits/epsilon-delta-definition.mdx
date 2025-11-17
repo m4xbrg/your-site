@@ -6,21 +6,20 @@ courseId: math-calculus-limits
 
 title: Epsilon–Delta Definition of Limit
 summary: >
-  The formal quantifier-based definition of a limit. Describes precisely what it
-  means for f(x) to approach L as x approaches a, using epsilon–delta conditions.
+  The formal definition of the limit of a function at a point using
+  quantifiers and epsilon–delta conditions.
 
-order: 13
+order: 11
 tags:
   - limits
   - epsilon-delta
   - analysis
-  - rigor
 
 role: core
 status: draft
 
 kind: definition
-difficulty: moderate
+difficulty: intro
 proofLevel: formal
 
 prerequisites:
@@ -32,151 +31,203 @@ relatedConcepts:
   - math-calculus-limits-limit-laws
 
 learningGoals:
-  - State the epsilon–delta definition of a limit.
-  - Translate informal limit statements into the epsilon–delta structure.
-  - Identify the roles of epsilon, delta, and logical quantifiers.
+  - State the epsilon–delta definition of limit.
+  - Translate informal limit statements into epsilon–delta form.
+  - Understand the role of quantifiers in the definition.
 ---
 
 ## Snapshot
 
-The epsilon–delta definition gives a precise mathematical meaning to the idea
-that \( f(x) \) gets arbitrarily close to \( L \) as \( x \) gets sufficiently
-close to \( a \). It expresses the limit entirely via quantifiers, inequalities,
-and neighborhoods.
+The epsilon–delta definition replaces the informal idea of “getting close” with
+a precise condition involving two small positive numbers:
 
-## Formal Statement
+- $\epsilon$ (epsilon) controls how close the outputs must be to the limit.
+- $\delta$ (delta) controls how close the inputs must be to the point.
 
-We say:
+The definition is fully quantifier-based and is the foundation for rigorous
+analysis.
 
-\[
-\lim_{x\to a} f(x) = L
-\]
+## Formal Definition
 
-**if and only if**:
+Let $f$ be a real-valued function, $a$ a real number, and $L$ a real number.
 
-\[
-\forall \varepsilon > 0,\ \exists \delta > 0\ \text{such that}\ 
-0 < |x - a| < \delta \ \Longrightarrow\ |f(x) - L| < \varepsilon.
-\]
+We say that
 
-Key structural components:
+$$
+\lim_{x \to a} f(x) = L
+$$
 
-- \( \varepsilon \) represents an arbitrary tolerance on the **output**.  
-- \( \delta \) represents a corresponding restriction on the **input**.  
-- The implication is conditional: we only consider points near \( a \) but not
-  equal to \( a \).  
-- The quantifier order (∀ then ∃) is essential.  
-- The definition makes no reference to the value of \( f(a) \).
+if and only if the following condition holds:
+
+$$
+\forall \varepsilon > 0,\ \exists \delta > 0 \text{ such that }
+0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon.
+$$
+
+Interpretation of the quantifiers:
+
+- “For every $\varepsilon > 0$” means: no matter how strict your tolerance on
+  the output, the condition must work.
+- “There exists $\delta > 0$” means: for each chosen $\varepsilon$, there is
+  some radius around $a$ that makes the implication true.
+- The implication connects **input closeness** ($|x - a| < \delta$) with
+  **output closeness** ($|f(x) - L| < \varepsilon$).
 
 ## Intuition & Interpretation
 
-This definition formalizes “\( f(x) \) approaches \( L \) as \( x \) approaches
-\( a \)” via:
+The condition
 
-- **Output closeness:** \( f(x) \) stays within any arbitrary band of radius
-  \( \varepsilon \) around \( L \).  
-- **Input control:** By restricting \( x \) to be sufficiently close to \( a \),
-  the function becomes confined to that band.
+$$
+0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon
+$$
 
-The heart of the definition is **stability**: no matter how tight a tolerance we
-choose around \( L \), we can always find a neighborhood around \( a \) that
-forces \( f(x) \) to stay inside the band.
+should be read as:
 
-## Examples & Non-Examples
+> Whenever $x$ is sufficiently close to $a$ (but not equal to $a$), then the
+> corresponding value $f(x)$ is close to $L$ within the required tolerance.
 
-### Examples
+Important points:
+
+- The value $f(a)$ does **not** appear in the core inequality. The limit only
+  depends on values of $f(x)$ near $a$, not necessarily at $a$.
+- The choice of $\delta$ may depend on $\varepsilon$ and on the function $f$,
+  but it cannot depend on $x$. Once an $\varepsilon$ is fixed, a single
+  $\delta$ must work for all $x$ in the punctured interval $0 < |x - a| < \delta$.
+
+## Examples (Conceptual)
 
 1. **Constant function**
-   \[
-   f(x)=5.
-   \]
-   For any \( \varepsilon>0 \), choosing any \( \delta>0 \) works, since  
-   \( |f(x)-5|=0<\varepsilon \).
+
+   For $f(x) = c$, the statement
+
+   $$
+   \lim_{x \to a} f(x) = c
+   $$
+
+   is true. Given any $\varepsilon > 0$, one can choose any $\delta > 0$, since
+   $|f(x) - c| = 0$ is always less than $\varepsilon$.
 
 2. **Linear function**
-   To show:
-   \[
-   \lim_{x\to 2} (3x+1) = 7,
-   \]
-   note:
-   \[
-   |(3x+1) - 7| = 3|x-2|.
-   \]
-   Setting \( \delta = \varepsilon/3 \) satisfies the definition.
 
-3. **Quadratic function**  
-   For  
-   \[
-   \lim_{x\to 1} (x^2) = 1,
-   \]
-   rewrite:
-   \[
-   |x^2 - 1| = |x-1||x+1|.
-   \]
+   For $f(x) = mx + b$, we expect
 
-### Non-Examples
+   $$
+   \lim_{x \to a} f(x) = ma + b.
+   $$
 
-1. **Jump discontinuity**  
-   One-sided limits disagree → impossible to satisfy epsilon–delta conditions
-   with a single \( L \).
+   The epsilon–delta proof uses the fact that
 
-2. **Infinite behavior**  
-   If  
-   \[
-   \lim_{x\to a} f(x) = +\infty,
-   \]
-   no finite \( L \) satisfies the epsilon–delta definition.
+   $$
+   |f(x) - (ma + b)| = |m||x - a|.
+   $$
 
-3. **Oscillation**
-   For  
-   \[
-   f(x)=\sin(1/x)
-   \]
-   near 0, no neighborhood forces the function into an arbitrarily small band.
+   Then, given $\varepsilon > 0$, we can choose
 
-## Properties & Relationships
+   $$
+   \delta = \frac{\varepsilon}{|m|}
+   $$
 
-- The epsilon–delta definition is logically equivalent to all standard informal
-  and graphical notions, but adds precision.
-- It supports formal proofs of:
-  - limit laws,  
-  - continuity,  
-  - derivative definition.
-- The definition excludes the point \( x=a \) with \( 0<|x-a|<\delta \).
-- One-sided limits have modified definitions:
-  - \( x>a \) or \( x<a \) constraints replace the symmetric band.
+   (assuming $m \neq 0$) to make the inequality hold.
+
+3. **Limit without function value**
+
+   It is possible for the limit to exist even if $f(a)$ is undefined or
+   different from $L$. The epsilon–delta condition only involves values of
+   $f(x)$ with $x \neq a$.
+
+## Quantifier Structure
+
+The logical pattern is
+
+$$
+\forall \varepsilon > 0,\ \exists \delta > 0,\ \forall x,\ 
+\big( 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon \big).
+$$
+
+Things to note:
+
+- The universal quantifier on $\varepsilon$ comes **first**: the definition must
+  work for *every* tolerance.
+- For each $\varepsilon$, there may be a different $\delta$. There is no
+  requirement that a single $\delta$ works for all epsilons.
+- The inner universal quantifier over $x$ expresses that once $\delta$ is fixed,
+  the implication must hold for *all* $x$ in that punctured neighborhood.
+
+Changing the order of quantifiers would change the meaning dramatically and
+usually break the definition.
+
+## Relationship to Informal Limits
+
+The informal phrase
+
+> “$f(x)$ approaches $L$ as $x$ approaches $a$”
+
+is made precise by the epsilon–delta condition. Roughly:
+
+- $\varepsilon$ measures how close “approaches” must be in the output.
+- $\delta$ describes how close to $a$ we need to get in the input to enforce
+  that output closeness.
+
+The epsilon–delta definition ensures that this behavior is stable under small
+perturbations of $x$ near $a$.
 
 ## Common Pitfalls
 
-1. Reversing quantifiers (∃ before ∀).  
-2. Forgetting the condition \( 0 < |x-a| \).  
-3. Believing epsilon–delta defines the limit value (it only *verifies* it).  
-4. Treating \( \delta \) as independent of \( \varepsilon \).  
-5. Assuming the value of the function at the limit point is relevant.
+1. **Wrong quantifier order**
+
+   Writing
+
+   $$
+   \exists \delta > 0,\ \forall \varepsilon > 0, \dots
+   $$
+
+   reverses the intended logical structure and does **not** define a limit.
+
+2. **Delta depending on $x$**
+
+   $\delta$ may depend on $\varepsilon$, but once chosen, it must work for
+   **all** $x$ satisfying $0 < |x - a| < \delta$. A “delta that depends on $x$”
+   would not satisfy the definition.
+
+3. **Including $x = a$ in the condition**
+
+   The inequality uses $0 < |x - a|$ rather than $|x - a| \le \delta$ to make
+   the definition independent of $f(a)$.
+
+4. **Confusing the role of $L$**
+
+   The number $L$ is part of the statement. The definition does not “find” $L$;
+   it specifies what must be true for a *given* candidate $L$ to be the limit.
 
 ## Exercises
 
-1. **Warm-up translation**  
-   Rewrite the statement  
-   \[
-   \lim_{x\to 3} (4x - 1) = 11
-   \]
-   fully in epsilon–delta form.
+1. **Translating the definition**
 
-2. **Linear delta choice**  
-   Show that for  
-   \[
-   f(x)=2x+5,
-   \]
-   choosing \( \delta = \varepsilon/2 \) satisfies the definition at any point.
+   Rewrite the epsilon–delta definition in plain language, explaining the
+   meaning of each quantifier and implication.
 
-3. **Bounded factor technique**  
-   Show that  
-   \[
-   \lim_{x\to1} x^2 = 1
-   \]
-   by bounding \( |x+1| \) when \( |x-1|<1 \).
+2. **Constant function**
 
-4. **Mini-proof (Sketch)**  
-   Explain why the definition implies uniqueness: if two numbers satisfy the
-   epsilon–delta condition, they must be equal.
+   For $f(x) = 5$, verify directly from the epsilon–delta definition that
+
+   $$
+   \lim_{x \to 2} f(x) = 5.
+   $$
+
+   Describe how you would choose $\delta$ in terms of $\varepsilon$.
+
+3. **Linear example**
+
+   For $f(x) = 3x - 1$, sketch how you would prove using the definition that
+
+   $$
+   \lim_{x \to 2} f(x) = 5.
+   $$
+
+   (You do not need to give a full formal proof, but indicate the key steps.)
+
+4. **Existence vs. non-existence**
+
+   Give an example of a function and a point $a$ where the epsilon–delta
+   condition fails for any candidate $L$. Explain which part of the definition
+   breaks.

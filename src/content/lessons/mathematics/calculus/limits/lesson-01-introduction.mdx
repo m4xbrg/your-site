@@ -12,6 +12,7 @@ concepts:
   - "math-calculus-limits-notation"
 ---
 
+
 # 1. Overview
 
 This lesson establishes intuition and foundational language for limits:
@@ -52,27 +53,33 @@ A stable target behavior suggests a single “approach value.”
 
 ## 3.2 Numerical evidence
 
-If evaluating a function near \(a\) yields values concentrating near \(L\), we assert:
+If evaluating a function near $ a $ yields values concentrating near $ L $, we assert:
 
-\[
+$$
+```tex
 \lim_{x\to a} f(x) = L.
-\]
+```
+$$
 
-The pattern matters, not the exact function value at \(a\).
+The pattern matters, not the exact function value at $ a $.
 
 ## 3.3 Graphical evidence
 
 Graphs support the same idea:
-- analyze the curve as it nears \(x=a\) from both sides,  
-- observe whether the \(y\)-values converge to a single height.
+- analyze the curve as it nears $ x=a $ from both sides,  
+- observe whether the $ y $-values converge to a single height.
 
 ## 3.4 Standard limit notation
 
 Forms:
 
-- \( \displaystyle\lim_{x\to a} f(x) = L \)  
-- \( x \to a^- \) and \( x \to a^+ \) for one-sided limits  
-- “\( f(x) \) tends to \( L \)” is verbal shorthand
+```tex
+- $ \displaystyle\lim_{x\to a} f(x) = L $  
+```
+```tex
+- $ x \to a^- $ and $ x \to a^+ $ for one-sided limits  
+```
+- “$ f(x) $ tends to $ L $” is verbal shorthand
 
 Interpretation requires connecting notation back to behavior.
 
@@ -81,8 +88,10 @@ Interpretation requires connecting notation back to behavior.
 # 4. Worked Examples
 
 ### Example 1 — Numerical concentration
-Consider \( f(x) = \frac{x^2 - 1}{x - 1} \).  
-Table near \( x=1 \):
+```tex
+Consider $ f(x) = \frac{x^2 - 1}{x - 1} $.  
+```
+Table near $ x=1 $:
 
 | x | f(x) |
 |---|------|
@@ -91,22 +100,26 @@ Table near \( x=1 \):
 |1.01|2.01|
 |1.1|2.1|
 
-Values cluster near 2 → \( \lim_{x\to1} f(x)=2 \).
+```tex
+Values cluster near 2 → $ \lim_{x\to1} f(x)=2 $.
+```
 
 ### Example 2 — Graph-based inference
-Given a plotted curve with a hole at \((3, 5)\), but approaching height 5 from both sides:  
-\[
+Given a plotted curve with a hole at $ (3, 5) $, but approaching height 5 from both sides:  
+$$
+```tex
 \lim_{x\to3} f(x)=5.
-\]
+```
+$$
 
 ### Example 3 — Irrelevant function value at point
-Even if \( f(1) = 1000 \), as long as values near 1 approach 2, the limit is still 2.
+Even if $ f(1) = 1000 $, as long as values near 1 approach 2, the limit is still 2.
 
 ---
 
 # 5. Deepening / Structural Analysis
 
-- Limit behavior is strictly **local**; global properties of \(f\) do not matter.  
+- Limit behavior is strictly **local**; global properties of $ f $ do not matter.  
 - The value at the limit point is functionally irrelevant to the limit.  
 - Numerical tables must use values close enough to reveal a trend; coarse sampling can mislead.  
 - Graphs can hide subtle oscillation—limits require stability, not appearance.  
@@ -119,18 +132,24 @@ Limits describe approach behavior, not pointwise equality.
 # 6. Practice Set (Tiered)
 
 ### Tier A — foundational
-1. Use a small numerical table to estimate \( \lim_{x\to2} (x^2 - 3x + 5) \).  
-2. Based on a graph with a hole at \( x=4 \), estimate the limit from visual height.
+```tex
+1. Use a small numerical table to estimate $ \lim_{x\to2} (x^2 - 3x + 5) $.  
+```
+2. Based on a graph with a hole at $ x=4 $, estimate the limit from visual height.
 
 ### Tier B — mixed
-3. Determine whether the limit exists as \( x\to0 \) for  
-   \[
-   f(x)=\frac{|x|}{x}.
-   \]
-4. Given values of \(f(x)\) near \(3\), argue whether they suggest a limit of 7.
+```tex
+3. Determine whether the limit exists as $ x\to0 $ for  
+```
+   $$
+```tex
+f(x)=\frac{|x|}{x}.
+```
+$$
+4. Given values of $ f(x) $ near $ 3 $, argue whether they suggest a limit of 7.
 
 ### Tier C — challenge
-5. Consider a function that oscillates between 1 and −1 with increasing frequency near \( x=0 \).  
+5. Consider a function that oscillates between 1 and −1 with increasing frequency near $ x=0 $.  
    Discuss whether numerical/graphical evidence can reliably detect if a limit exists.
 
 ---
