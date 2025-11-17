@@ -27,6 +27,14 @@ const hasMeta =
   (Array.isArray(data.concepts) && data.concepts.length > 0) ||
   data.status ||
   (Array.isArray(data.tags) && data.tags.length > 0)
+
+// Resolve the lesson this exercise set belongs to, based on lessonId
+let lessonForExercise = null
+if (data.lessonId) {
+  const allLessons = await getCollection(collectionNames.lessons)
+  lessonForExercise =
+    allLessons.find((l) => l.data.id === data.lessonId) ?? null
+}
 ---
 
 <DocsLayout title={data.title} description={data.description}>
@@ -36,6 +44,19 @@ const hasMeta =
       {data.description && (
         <p class="text-gray-600">{data.description}</p>
       )}
+
+      {lessonForExercise && (
+        <p class="text-sm text-gray-600 mt-1">
+          Related to lesson:{" "}
+          <a
+            href={`/lessons/${lessonForExercise.slug}`}
+            class="text-blue-700 hover:underline"
+          >
+            {lessonForExercise.data.title}
+          </a>
+        </p>
+      )}
+
       {Array.isArray(data.tags) && data.tags.length > 0 && (
         <TagChips tags={data.tags} class="mt-3" />
       )}

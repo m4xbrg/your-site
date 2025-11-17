@@ -25,12 +25,40 @@ const exercisesForLesson = allExercises.filter(
   (ex) => ex.data.lessonId === data.id,
 )
 
+// prev / next within the same course (if you have courseId / course + order)
+const allLessons = await getCollection(collectionNames.lessons)
+const courseKey = data.courseId ?? data.course
+let prevLesson = null
+let nextLesson = null
+
+if (courseKey) {
+  const lessonsInCourse = allLessons
+    .filter((l) => {
+      const lKey = l.data.courseId ?? l.data.course
+      return lKey === courseKey
+    })
+    .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+
+  const idx = lessonsInCourse.findIndex((l) => l.slug === lesson.slug)
+  if (idx !== -1) {
+    prevLesson = lessonsInCourse[idx - 1] ?? null
+    nextLesson = lessonsInCourse[idx + 1] ?? null
+  }
+}
+
 const durationLabel =
   typeof data.durationMinutes === "number" && data.durationMinutes > 0
     ? `${data.durationMinutes} min`
     : undefined
----
 
+const hasMetadata =
+  !!durationLabel ||
+  !!data.course ||
+  !!data.courseId ||
+  !!data.concept ||
+  (Array.isArray(data.concepts) && data.concepts.length > 0) ||
+  (Array.isArray(data.objectives) && data.objectives.length > 0)
+---
 
 <DocsLayout title={data.title} description={data.description}>
   <article class="prose">
@@ -59,11 +87,11 @@ const durationLabel =
             {data.courseId ?? data.course}
           </p>
         )}
-        {(data.concept || (Array.isArray(data.concepts) && data.concepts.length)) && (
+        {(data.concept ||
+          (Array.isArray(data.concepts) && data.concepts.length)) && (
           <p>
             <strong>Concepts:</strong>{" "}
-            {data.concept ??
-              (data.concepts ?? []).join(", ")}
+            {data.concept ?? (data.concepts ?? []).join(", ")}
           </p>
         )}
         {Array.isArray(data.objectives) && data.objectives.length > 0 && (
@@ -79,7 +107,9 @@ const durationLabel =
 
     <section class="mt-6">
       <Content />
-          {exercisesForLesson.length > 0 && (
+    </section>
+
+    {exercisesForLesson.length > 0 && (
       <section class="mt-10 border-t pt-6">
         <h2 class="text-lg font-semibold mb-3">Practice for this lesson</h2>
         <ul class="space-y-2">
@@ -103,6 +133,25 @@ const durationLabel =
       </section>
     )}
 
-    </section>
+    {(prevLesson || nextLesson) && (
+      <nav class="mt-8 border-t pt-4 flex flex-wrap gap-3 text-sm text-gray-700">
+        {prevLesson && (
+          <a
+            href={`/lessons/${prevLesson.slug}`}
+            class="inline-flex items-center gap-1 hover:underline"
+          >
+            ← {prevLesson.data.title}
+          </a>
+        )}
+        {nextLesson && (
+          <a
+            href={`/lessons/${nextLesson.slug}`}
+            class="inline-flex items-center gap-1 ml-auto hover:underline"
+          >
+            {nextLesson.data.title} →
+          </a>
+        )}
+      </nav>
+    )}
   </article>
 </DocsLayout>

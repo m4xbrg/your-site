@@ -9,8 +9,9 @@ export default defineConfig({
   integrations: [
     mdx({
       remarkPlugins: [
-        remarkMath,
+        // order is fine like this
         remarkTexFencesToMath,
+        remarkMath,
       ],
       rehypePlugins: [
         [rehypeKatex, { strict: 'ignore' }],
