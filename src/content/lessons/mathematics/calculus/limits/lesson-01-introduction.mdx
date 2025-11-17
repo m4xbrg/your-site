@@ -1,0 +1,156 @@
+---
+id: math-calculus-limits-lesson-01
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Introduction to Limits: Informal Idea, Numerical Behavior, and Notation
+order: 1
+status: draft
+
+concepts:
+  - math-calculus-limits-informal-idea
+  - math-calculus-limits-graphical-numerical
+  - math-calculus-limits-notation
+---
+
+# 1. Overview
+
+This lesson establishes intuition and foundational language for limits:
+
+- What it means for a function to **approach** a value.  
+- How numerical and graphical evidence support limit reasoning.  
+- How to read and interpret standard limit notation.  
+
+It prepares the formalism needed for algebraic limit rules and continuity.
+
+---
+
+# 2. Concept Map for This Lesson
+
+**Concept relationships:**
+
+- `informal-idea` → defines approaching behavior.  
+- `graphical-numerical` → operationalizes the informal idea using tables/plots.  
+- `notation` → encodes the concept precisely.
+
+**Dependency chain:**
+
+functions-basic → informal-idea
+informal-idea → graphical-numerical
+informal-idea → notation
+
+---
+
+# 3. Core Exposition
+
+## 3.1 Informal meaning of a limit
+
+A limit describes **behavior near** a point:
+- We do not care about the value *at* the point (it may not even be defined).  
+- We track what values the function produces when inputs are **close enough** to a target value.  
+
+A stable target behavior suggests a single “approach value.”
+
+## 3.2 Numerical evidence
+
+If evaluating a function near \(a\) yields values concentrating near \(L\), we assert:
+
+\[
+\lim_{x\to a} f(x) = L.
+\]
+
+The pattern matters, not the exact function value at \(a\).
+
+## 3.3 Graphical evidence
+
+Graphs support the same idea:
+- analyze the curve as it nears \(x=a\) from both sides,  
+- observe whether the \(y\)-values converge to a single height.
+
+## 3.4 Standard limit notation
+
+Forms:
+
+- \( \displaystyle\lim_{x\to a} f(x) = L \)  
+- \( x \to a^- \) and \( x \to a^+ \) for one-sided limits  
+- “\( f(x) \) tends to \( L \)” is verbal shorthand
+
+Interpretation requires connecting notation back to behavior.
+
+---
+
+# 4. Worked Examples
+
+### Example 1 — Numerical concentration
+Consider \( f(x) = \frac{x^2 - 1}{x - 1} \).  
+Table near \( x=1 \):
+
+| x | f(x) |
+|---|------|
+|0.9|1.9|
+|0.99|1.99|
+|1.01|2.01|
+|1.1|2.1|
+
+Values cluster near 2 → \( \lim_{x\to1} f(x)=2 \).
+
+### Example 2 — Graph-based inference
+Given a plotted curve with a hole at \((3, 5)\), but approaching height 5 from both sides:  
+\[
+\lim_{x\to3} f(x)=5.
+\]
+
+### Example 3 — Irrelevant function value at point
+Even if \( f(1) = 1000 \), as long as values near 1 approach 2, the limit is still 2.
+
+---
+
+# 5. Deepening / Structural Analysis
+
+- Limit behavior is strictly **local**; global properties of \(f\) do not matter.  
+- The value at the limit point is functionally irrelevant to the limit.  
+- Numerical tables must use values close enough to reveal a trend; coarse sampling can mislead.  
+- Graphs can hide subtle oscillation—limits require stability, not appearance.  
+
+**Key invariant:**  
+Limits describe approach behavior, not pointwise equality.
+
+---
+
+# 6. Practice Set (Tiered)
+
+### Tier A — foundational
+1. Use a small numerical table to estimate \( \lim_{x\to2} (x^2 - 3x + 5) \).  
+2. Based on a graph with a hole at \( x=4 \), estimate the limit from visual height.
+
+### Tier B — mixed
+3. Determine whether the limit exists as \( x\to0 \) for  
+   \[
+   f(x)=\frac{|x|}{x}.
+   \]
+4. Given values of \(f(x)\) near \(3\), argue whether they suggest a limit of 7.
+
+### Tier C — challenge
+5. Consider a function that oscillates between 1 and −1 with increasing frequency near \( x=0 \).  
+   Discuss whether numerical/graphical evidence can reliably detect if a limit exists.
+
+---
+
+# 7. Summary
+
+- Limits generalize “approach” behavior to arbitrary functions.  
+- Numerical and graphical tools provide non-rigorous but useful evidence.  
+- Standard notation expresses approach behavior symbolically.  
+- This lesson provides the base layer for algebraic rules, continuity, and epsilon–delta formalism.
+
+---
+
+# 8. Forward Links
+
+This lesson supports:
+
+- Lesson 2: applying algebraic limit laws  
+- Lesson 3: directional behavior + asymptotics  
+- Lesson 4: foundations of continuity  
+- Lesson 5: transition to formal epsilon–delta definition  
