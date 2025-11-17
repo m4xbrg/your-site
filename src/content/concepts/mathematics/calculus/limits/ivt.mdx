@@ -1,0 +1,172 @@
+---
+id: math-calculus-limits-ivt
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Intermediate Value Theorem
+summary: >
+  A continuous function on a closed interval takes every value between its
+  endpoint values. The theorem guarantees existence of solutions to equations
+  of the form f(x) = c.
+
+order: 16
+tags:
+  - limits
+  - continuity
+  - theorems
+  - intermediate-value-theorem
+
+role: core
+status: draft
+
+kind: theorem
+difficulty: moderate
+proofLevel: formal
+
+prerequisites:
+  - math-calculus-limits-continuity-interval
+
+relatedConcepts:
+  - math-calculus-limits-continuity-point
+
+learningGoals:
+  - State the Intermediate Value Theorem precisely.
+  - Identify when IVT applies and what it guarantees.
+  - Use IVT to justify the existence of solutions without solving explicitly.
+---
+
+## Snapshot
+
+The Intermediate Value Theorem (IVT) states that continuous functions on closed
+intervals cannot “skip” values. If a continuous function moves from one value to
+another, it must pass through every intermediate value along the way.
+
+## Formal Statement
+
+Let \( f \) be continuous on the closed interval \( [a, b] \).  
+Let \( N \) be any real number strictly between \( f(a) \) and \( f(b) \); that is:
+
+\[
+f(a) < N < f(b)
+\quad\text{or}\quad
+f(b) < N < f(a).
+\]
+
+Then there exists some \( c \in (a, b) \) such that:
+
+\[
+f(c) = N.
+\]
+
+This is an **existence theorem**: it guarantees a point \( c \) but does not
+provide a formula or construction for it.
+
+## Intuition & Interpretation
+
+Continuity means no jumps or gaps.  
+If the function moves from \( f(a) \) to \( f(b) \), it must pass through every
+number between them.
+
+The IVT is a structural guarantee:
+
+- continuity prohibits “skipping over” values,
+- the closed interval \( [a,b] \) ensures the function is defined everywhere
+  between endpoints,
+- the conclusion asserts existence but not uniqueness.
+
+The theorem is often used to prove an equation has a solution even without
+finding it.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Root existence**  
+   Consider:
+   \[
+   f(x) = x^3 - x - 1.
+   \]
+   Since:
+   \[
+   f(1) = -1,\qquad f(2) = 5,
+   \]
+   and 0 lies between −1 and 5, IVT guarantees a \( c\in(1,2) \) with \( f(c)=0 \).
+
+2. **Crossing a horizontal line**  
+   If  
+   \[
+   f(0)=2,\quad f(4)=10,
+   \]
+   then for any \( N\in(2,10) \), IVT guarantees a solution to \( f(x)=N \).
+
+3. **Trigonometric continuity**  
+   Since \( \sin x \) is continuous,
+   every number between −1 and 1 is achieved on any interval of length \( \pi \).
+
+### Non-Examples
+
+1. **Discontinuous function**
+   \[
+   f(x)=
+   \begin{cases}
+   -1,& x<0,\\
+   1,& x\ge0.
+   \end{cases}
+   \]
+   Values between −1 and 1 are skipped → IVT does not apply.
+
+2. **Interval is not closed**
+   On \( (0,1) \), continuity holds, but endpoint values may not be defined and
+   IVT’s hypothesis is not satisfied.
+
+3. **Target value not between endpoint values**
+   IVT cannot assert existence for numbers outside the range between \( f(a) \)
+   and \( f(b) \).
+
+## Properties & Relationships
+
+- IVT is a consequence of continuity on a closed interval.
+- It is one of the standard characterizations of the behavior of continuous
+  functions.
+- The theorem supports proofs of:
+  - existence of roots,
+  - sign-change arguments,
+  - fixed-point claims via \( f(x)=x \).
+
+- The conclusion may produce multiple solutions or a single one depending on the
+  function’s structure.
+
+## Common Pitfalls
+
+1. Applying IVT without confirming continuity.  
+2. Using endpoints incorrectly when the function is not defined there.  
+3. Assuming IVT gives the *location* of the solution or its uniqueness → it does not.  
+4. Forgetting that the target value must lie **between** \( f(a) \) and \( f(b) \).
+
+## Exercises
+
+1. **Sign change**
+   Show that the equation  
+   \[
+   x^5 - 6x + 1 = 0
+   \]
+   has at least one real root using IVT.
+
+2. **Endpoint behavior**
+   Suppose:
+   \[
+   f(0) = -4,\quad f(3) = -2.
+   \]
+   Does IVT guarantee a solution to \( f(x)=0 \)? Explain.
+
+3. **Existence only**
+   Consider:
+   \[
+   f(x)=\cos x - x.
+   \]
+   Use IVT to show there exists a root in \( (0,1) \).
+
+4. **Mini-proof (Sketch)**
+   Explain why continuity on the open interval \( (a,b) \) is not enough for the
+   full IVT statement.
