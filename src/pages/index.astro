@@ -1,51 +1,151 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
-import { getCollection } from 'astro:content'
-const subjects = (await getCollection('subjects')).toSorted((a,b)=>a.data.order-b.data.order)
-const macroCourses = (await getCollection('macro-courses')).toSorted((a,b)=>a.data.order-b.data.order)
-const courses = (await getCollection('courses')).toSorted((a,b)=>a.data.order-b.data.order)
+import { getCollection } from "astro:content"
+
+const subjects = (await getCollection("subjects")).toSorted(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+)
+const macroCourses = (await getCollection("macro-courses")).toSorted(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+)
+const courses = (await getCollection("courses")).toSorted(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+)
+
+// Try to pick calculus/limits as the featured track if it exists
+const featuredMacro =
+  macroCourses.find((m) => m.data.id === "math-calculus") ?? macroCourses[0]
+
+const featuredCourse =
+  courses.find((c) => c.data.id === "math-calculus-limits") ?? courses[0]
 ---
-<DocsLayout title="Welcome">
-  <h1 class="text-3xl font-bold mb-4">Welcome to your-site</h1>
-  <p class="text-gray-700 mb-8">
-    A learning site scaffold with subjects, macro-courses, courses, and concepts.
-  </p>
-  <div class="grid md:grid-cols-3 gap-6">
-    <section class="p-5 border rounded-2xl">
-      <h2 class="text-lg font-semibold mb-3">Subjects</h2>
-      <ul class="list-disc ms-5">
-        {subjects.map(s => (
-          <li>
-            <a class="underline" href={`/subjects/${s.slug}/`}>
-              {s.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
+
+<DocsLayout title="Home">
+  <section class="mb-10">
+    <h1 class="text-3xl font-bold mb-3">Build your own learning map</h1>
+    <p class="text-gray-700 mb-5 max-w-2xl">
+      This site organizes subjects into macro-courses, courses, concepts, lessons,
+      and exercises so you can move between the big picture and concrete problems.
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+      <a
+        href="/lessons/"
+        class="inline-flex items-center rounded-full bg-black text-white px-4 py-2 text-sm font-medium hover:bg-gray-900"
+      >
+        Browse lessons
+      </a>
+      <a
+        href="/exercises/"
+        class="inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+      >
+        Practice exercises
+      </a>
+      {featuredCourse && (
+        <a
+          href={`/courses/${featuredCourse.data.id}/`}
+          class="inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+        >
+          Start with {featuredCourse.data.title}
+        </a>
+      )}
+    </div>
+  </section>
+
+  <div class="grid gap-8 md:grid-cols-[2fr,1.5fr]">
+    <!-- Left: featured macro-course + featured course -->
+    <section class="space-y-6">
+      {featuredMacro && (
+        <div class="border rounded-2xl p-5">
+          <h2 class="text-lg font-semibold mb-1">
+            {featuredMacro.data.title}
+          </h2>
+          {featuredMacro.data.description && (
+            <p class="text-gray-600 mb-3">
+              {featuredMacro.data.description}
+            </p>
+          )}
+          <a
+            href={`/macro-courses/${featuredMacro.slug}/`}
+            class="text-sm font-medium text-blue-600 hover:underline"
+          >
+            View macro-course →
+          </a>
+        </div>
+      )}
+
+      {featuredCourse && (
+        <div class="border rounded-2xl p-5">
+          <h2 class="text-lg font-semibold mb-1">
+            {featuredCourse.data.title}
+          </h2>
+          {featuredCourse.data.description && (
+            <p class="text-gray-600 mb-3">
+              {featuredCourse.data.description}
+            </p>
+          )}
+          <a
+            href={`/courses/${featuredCourse.data.id}/`}
+            class="text-sm font-medium text-blue-600 hover:underline"
+          >
+            View course hub →
+          </a>
+        </div>
+      )}
     </section>
-    <section class="p-5 border rounded-2xl">
-      <h2 class="text-lg font-semibold mb-3">Macro-courses</h2>
-      <ul class="list-disc ms-5">
-        {macroCourses.map(m => (
-          <li>
-            <a class="underline" href={`/macro-courses/${m.slug}/`}>
-              {m.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-    <section class="p-5 border rounded-2xl">
-      <h2 class="text-lg font-semibold mb-3">Courses</h2>
-      <ul class="list-disc ms-5">
-        {courses.map(c => (
-          <li>
-            <a class="underline" href={`/courses/${c.slug}/`}>
-              {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
+
+    <!-- Right: compact lists -->
+    <section class="space-y-6">
+      <div>
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">
+          Subjects
+        </h2>
+        <ul class="space-y-1 text-sm">
+          {subjects.map((s) => (
+            <li>
+              <a
+                class="text-blue-700 hover:underline"
+                href={`/subjects/${s.slug}/`}
+              >
+                {s.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">
+          Macro-courses
+        </h2>
+        <ul class="space-y-1 text-sm max-h-40 overflow-auto">
+          {macroCourses.map((m) => (
+            <li>
+              <a
+                class="text-blue-700 hover:underline"
+                href={`/macro-courses/${m.slug}/`}
+              >
+                {m.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">
+          Courses
+        </h2>
+        <ul class="space-y-1 text-sm max-h-40 overflow-auto">
+          {courses.map(c => (
+            <li>
+              <a class="underline" href={`/courses/${c.data.id}/`}>
+                {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   </div>
 </DocsLayout>

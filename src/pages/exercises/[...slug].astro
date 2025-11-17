@@ -35,6 +35,38 @@ if (data.lessonId) {
   lessonForExercise =
     allLessons.find((l) => l.data.id === data.lessonId) ?? null
 }
+// Resolve course and macro-course
+let courseForExercise = null
+let macroForExercise = null
+
+if (lessonForExercise) {
+  const lessonCourseId = lessonForExercise.data.courseId ?? lessonForExercise.data.course
+  if (lessonCourseId) {
+    const allCourses = await getCollection(collectionNames.courses)
+    courseForExercise = allCourses.find((c) => c.data.id === lessonCourseId)
+
+    if (courseForExercise?.data?.macroId) {
+      const allMacros = await getCollection(collectionNames["macro-courses"])
+      macroForExercise = allMacros.find((m) => m.data.id === courseForExercise.data.macroId)
+    }
+  }
+}
+
+// Resolve concepts for this exercise
+const allConcepts = await getCollection(collectionNames.concepts)
+
+let conceptsForExercise = []
+
+if (Array.isArray(data.concepts)) {
+  conceptsForExercise = data.concepts
+    .map((idOrSlug) =>
+      allConcepts.find(
+        (c) => c.data.id === idOrSlug || c.slug === idOrSlug
+      ),
+    )
+    .filter(Boolean)
+}
+
 ---
 
 <DocsLayout title={data.title} description={data.description}>
@@ -47,7 +79,7 @@ if (data.lessonId) {
 
       {lessonForExercise && (
         <p class="text-sm text-gray-600 mt-1">
-          Related to lesson:{" "}
+          Related lesson:{" "}
           <a
             href={`/lessons/${lessonForExercise.slug}`}
             class="text-blue-700 hover:underline"
@@ -57,8 +89,45 @@ if (data.lessonId) {
         </p>
       )}
 
+      {courseForExercise && (
+        <p class="text-sm text-gray-600">
+          Course:{" "}
+          <a
+            href={`/courses/${courseForExercise.data.id}/`}
+            class="text-blue-700 hover:underline"
+          >
+            {courseForExercise.data.title}
+          </a>
+        </p>
+      )}
+
+      {macroForExercise && (
+        <p class="text-sm text-gray-600">
+          Macro-course:{" "}
+          <a
+            href={`/macro-courses/${macroForExercise.slug}/`}
+            class="text-blue-700 hover:underline"
+          >
+            {macroForExercise.data.title}
+          </a>
+        </p>
+      )}
+
       {Array.isArray(data.tags) && data.tags.length > 0 && (
         <TagChips tags={data.tags} class="mt-3" />
+      )}
+
+      {conceptsForExercise.length > 0 && (
+        <div class="mt-3 flex flex-wrap gap-2">
+          {conceptsForExercise.map((concept) => (
+            <a
+              href={`/concepts/${concept.slug}/`}
+              class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200"
+            >
+              {concept.data.title}
+            </a>
+          ))}
+        </div>
       )}
     </header>
 
@@ -102,5 +171,17 @@ if (data.lessonId) {
     <section class="mt-6">
       <Content />
     </section>
+
+    {lessonForExercise && (
+      <div class="mt-10 pt-6 border-t">
+        <a
+          href={`/lessons/${lessonForExercise.slug}`}
+          class="text-sm text-blue-700 hover:underline"
+        >
+          ← Back to lesson
+        </a>
+      </div>
+    )}
   </article>
 </DocsLayout>
+

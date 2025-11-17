@@ -13,7 +13,6 @@ concepts:
   - math-calculus-limits-computation-strategies
 ---
 
-
 # 1. Overview
 
 This lesson introduces the **algebraic rules** governing limits and the
@@ -37,7 +36,7 @@ Objectives:
 
 ### Structural DAG:
 
-informal-idea → notation → limit-laws
+informal-idea → notation → limit-laws  
 limit-laws → computation-strategies
 
 Algebraic laws require notation; strategies depend on applying the laws.
@@ -50,51 +49,35 @@ Algebraic laws require notation; strategies depend on applying the laws.
 
 For limits that exist, the following hold:
 
-- **Sum:**  
-  $$
+- **Sum:**
 ```tex
 \lim_{x\to a} (f+g)(x) = L_f + L_g.
 ```
-$$
 
-- **Difference:**  
-  $$
+- **Difference:**
 ```tex
 \lim_{x\to a} (f-g)(x) = L_f - L_g.
 ```
-$$
 
-- **Product:**  
-  $$
+- **Product:**
 ```tex
 \lim_{x\to a} f(x)g(x) = L_f L_g.
 ```
-$$
 
-- **Quotient:**  
-  $$
+- **Quotient:**
 ```tex
-\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L_f}{L_g},
+\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L_f}{L_g},\quad L_g\ne 0.
 ```
-```tex
-  \quad L_g\ne 0.
-```
-$$
 
-- **Power / polynomial laws**  
-  $$
+- **Power / polynomial laws**
 ```tex
 \lim_{x\to a} p(x) = p(a)
 ```
-$$
-  for any polynomial.
 
-- **Composition law (continuous outer function):**  
-  $$
+- **Composition law (continuous outer function):**
 ```tex
 \lim_{x\to a} g(f(x)) = g(L_f).
 ```
-$$
 
 These laws allow replacing limits of expressions with expressions of limits.
 
@@ -105,105 +88,78 @@ Works when the function is continuous at the point.
 
 ### Strategy 2 — Factoring  
 Used to remove removable discontinuities:
-$$
 ```tex
 \frac{x^2-1}{x-1} = x+1.
 ```
-$$
 
 ### Strategy 3 — Rationalization  
 Used for radicals:
-$$
 ```tex
 \frac{\sqrt{x+1}-1}{x} \cdot \frac{\sqrt{x+1}+1}{\sqrt{x+1}+1}.
 ```
-$$
 
 ### Strategy 4 — Common denominators / simplification  
 Reduces complex rational functions into simpler ones.
 
 ### Strategy 5 — Dominant terms and comparisons  
-```tex
 Used when forms like $ \frac{1}{x} $ or polynomials appear near finite or infinite points.
-```
 
 ---
 
 # 4. Worked Examples
 
 ### Example 1 — Direct substitution
-
-$$
 ```tex
 \lim_{x\to 3} (2x^2 - 5x + 1)
 ```
-= 2(9) - 15 + 1 = 4.
-$$
+```tex
+= 2(9) - 15 + 1 = 4
+```
 
 ### Example 2 — Factoring to remove a hole
-
-$$
 ```tex
 \lim_{x\to 1} \frac{x^2-1}{x-1}
 ```
-=
 ```tex
-\lim_{x\to1} (x+1)
+= \lim_{x\to1} (x+1)
 ```
-= 2.
-$$
+```tex
+= 2
+```
 
 ### Example 3 — Rationalization
 
 Evaluate:
-$$
 ```tex
-\lim_{x\to 0} \frac{\sqrt{x+1}-1}{x}.
+\lim_{x\to 0} \frac{\sqrt{x+1}-1}{x}
 ```
-$$
 
 Multiply by the conjugate:
-$$
 ```tex
-\frac{\sqrt{x+1}-1}{x}
+\frac{\sqrt{x+1}-1}{x}\cdot\frac{\sqrt{x+1}+1}{\sqrt{x+1}+1}
 ```
 ```tex
-\cdot
+= \frac{x}{x(\sqrt{x+1}+1)}
 ```
 ```tex
-\frac{\sqrt{x+1}+1}{\sqrt{x+1}+1}
+= \frac{1}{\sqrt{x+1}+1}
 ```
-=
-```tex
-\frac{x}{x(\sqrt{x+1}+1)}
-```
-=
-```tex
-\frac{1}{\sqrt{x+1}+1}.
-```
-$$
 
 Thus the limit is:
-$$
 ```tex
-\frac{1}{2}.
+\frac{1}{2}
 ```
-$$
 
 ### Example 4 — Quotient with discontinuity
-
-$$
 ```tex
 \lim_{x\to 2} \frac{x^2 - 4}{x-2}
 ```
-$$
+
 Factor:
-$$
 ```tex
-\frac{(x-2)(x+2)}{x-2} = x+2,
+\frac{(x-2)(x+2)}{x-2} = x+2
 ```
-$$
-limit = 4.
+Limit = 4.
 
 ---
 
@@ -225,46 +181,33 @@ Fundamental invariant:
 
 ### Tier A — foundational
 1. Compute:  
-   $$
 ```tex
-\lim_{x\to5} (3x-7).
+\lim_{x\to5} (3x-7)
 ```
-$$
 2. Compute:  
-   $$
 ```tex
-\lim_{x\to2} (x^3 + 4x).
+\lim_{x\to2} (x^3 + 4x)
 ```
-$$
 
 ### Tier B — mixed
 3. Evaluate:  
-   $$
 ```tex
-\lim_{x\to 0} \frac{x^2-9x}{x}.
+\lim_{x\to 0} \frac{x^2-9x}{x}
 ```
-$$
 4. Evaluate:  
-   $$
 ```tex
-\lim_{x\to1} \frac{x^3-1}{x-1}.
+\lim_{x\to1} \frac{x^3-1}{x-1}
 ```
-$$
 
 ### Tier C — challenge
 5. Evaluate using rationalization:  
-   $$
 ```tex
-\lim_{x\to4} \frac{\sqrt{x}-2}{x-4}.
+\lim_{x\to4} \frac{\sqrt{x}-2}{x-4}
 ```
-$$
-
 6. Evaluate using polynomial dominance:  
-   $$
 ```tex
-\lim_{x\to\infty} \frac{3x^3 - x}{x^3 + 10}.
+\lim_{x\to\infty} \frac{3x^3 - x}{x^3 + 10}
 ```
-$$
 
 ---
 
@@ -283,4 +226,4 @@ This lesson enables:
 
 - Lesson 3: one-sided limits, vertical asymptotes, horizontal asymptotes  
 - Lesson 4: continuity and classification of discontinuities  
-- Lesson 5: transition to epsilon–delta definition  
+- Lesson 5: transition to epsilon–delta definition

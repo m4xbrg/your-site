@@ -36,202 +36,95 @@ learningGoals:
   - Understand how delta choices depend on epsilon.
 ---
 
-
 ## Snapshot
 
-Basic epsilon–delta proofs demonstrate how to use the formal definition of a
-limit to verify statements for simple functions. The core technique is to derive
-a bound of the form:
+Basic epsilon–delta proofs verify a target limit by deriving a bound that ties
+output error to input proximity.
 
-$$
+Target shape:
 ```tex
-|f(x) - L| \le C |x - a|,
+|f(x) - L| \le C\,|x - a|\quad \Rightarrow\quad \delta = \varepsilon/C.
 ```
-$$
-
-```tex
-and then choose $ \delta = \varepsilon / C $ (or any suitable expression).
-```
-This establishes the ε–δ relationship required by the definition.
 
 ## Formal Statement
 
-To prove a limit using the epsilon–delta definition, we must show:
-
-$$
+To prove
 ```tex
-\forall \varepsilon > 0,\ \exists \delta > 0
+\lim_{x\to a} f(x) = L,
 ```
+show that
 ```tex
-\ \text{such that}\ 
+\forall \varepsilon>0,\ \exists \delta>0:\ 0<|x-a|<\delta \ \Rightarrow\ |f(x)-L|<\varepsilon.
 ```
+
+For linear $f(x)=mx+b$:
 ```tex
-0 < |x-a| < \delta \ \Longrightarrow\ |f(x) - L| < \varepsilon.
+|f(x) - (ma+b)| = |m|\,|x-a| \quad \Rightarrow\quad \delta = \varepsilon/|m| \ (m\neq 0).
 ```
-$$
-
-For linear functions $ f(x)=mx+b $, the proof reduces to:
-
-$$
-|f(x) - L| = |m||x-a|.
-$$
-
-Thus choosing:
-
-$$
-```tex
-\delta = \varepsilon / |m|
-```
-$$
-
-satisfies the definition.
-
-```tex
-For constant functions, any $ \delta>0 $ works.
-```
+For constant functions, any $\delta>0$ works.
 
 ## Intuition & Interpretation
 
-Epsilon–delta proofs follow a consistent structure:
+Template:
 
-1. **Start with the target inequality:**  
-```tex
-   Make $ |f(x)-L| < \varepsilon $ resemble something involving $ |x-a| $.
-```
-
-2. **Factor or simplify the expression:**  
-   Translate $ |f(x)-L| $ into a multiple of $ |x-a| $.
-
-3. **Select a delta bound:**  
-```tex
-   Solve the inequality $ C|x-a| < \varepsilon $ for $ |x-a| $.
-```
-
-4. **Verify the implication:**  
-```tex
-   Confirm that $ |x-a|<\delta $ gives the desired bound.
-```
-
-This provides a template usable for many elementary limits.
+1. **Rewrite $|f(x)-L|$** to expose a factor of $|x-a|$.  
+2. **Bound auxiliary factors** (e.g., $|x+1|$ near $x=1$).  
+3. **Solve for $\delta$** in $C|x-a|<\varepsilon$.  
+4. **Verify** that $0<|x-a|<\delta$ implies $|f(x)-L|<\varepsilon$.
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1. **Linear function**
-   Prove:
-   $$
+1. **Linear**
 ```tex
-\lim_{x\to2} (3x+1) = 7.
-```
-$$
-
-   Compute:
-   $$
-|(3x+1)-7| = |3||x-2|.
-$$
-   Choose:
-   $$
-```tex
-\delta = \varepsilon / 3.
-```
-$$
-
-2. **Constant function**
-   For $ f(x)=5 $:
-   $$
-```tex
-|f(x)-5|=0<\varepsilon.
-```
-$$
-```tex
-   Any $ \delta>0 $ works.
+\lim_{x\to2} (3x+1) = 7,\quad |(3x+1)-7|=3|x-2|,\quad \delta=\varepsilon/3.
 ```
 
-3. **Quadratic using bounding**
-   To show:
-   $$
+2. **Constant**
 ```tex
-\lim_{x\to1} x^2 = 1,
+|5-5|=0<\varepsilon \quad\Rightarrow\quad \delta\ \text{arbitrary}.
 ```
-$$
-   rewrite:
-   $$
+
+3. **Quadratic via bounding**
+```tex
 |x^2-1| = |x-1||x+1|.
-$$
-```tex
-   If we restrict $ |x-1|<1 $, then $ x\in(0,2) $, so $ |x+1|<3 $.  
 ```
-   Thus:
-   $$
-|x^2-1| < 3|x-1|.
-$$
+If $|x-1|<1$, then $x\in(0,2)$ so $|x+1|<3$; hence
 ```tex
-   Choose $ \delta = \min\{1, \varepsilon/3\} $.
+|x^2-1| < 3|x-1|,\quad \delta=\min\{1,\varepsilon/3\}.
 ```
 
 ### Non-Examples
 
-1. **Limits not finite**  
-   The epsilon–delta definition applies only to finite limits.
-
-2. **Oscillatory functions at certain points**  
-```tex
-   Functions like $ \sin(1/x) $ near 0 cannot be handled with a single delta.
-```
-
-3. **Using circular reasoning**  
-```tex
-   Starting from the inequality $ |x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon $
-```
-   without deriving delta is invalid.
+1. Non‑finite limits (definition proves only finite limits).  
+2. Oscillatory examples like $\sin(1/x)$ near $0$ (no single $\delta$ works).  
+3. Circular reasoning (asserting the implication before deriving $\delta$).
 
 ## Properties & Relationships
 
-- Linear proofs require direct factoring.  
-- Quadratic and polynomial proofs require bounding auxiliary terms (e.g., $ |x+1| $).  
-- Epsilon–delta proofs establish limit laws rigorously.  
-- Proof structure generalizes to continuity proofs.
+- Linear: direct factoring.  
+- Polynomial: bound auxiliary factors.  
+- Builds rigorous foundations for limit laws and continuity.
 
 ## Common Pitfalls
 
-```tex
-1. Choosing $ \delta $ before deriving the relationship.  
-```
-2. Using inequalities that include the value $ x=a $ incorrectly.  
-```tex
-3. Forgetting to include the condition $ 0<|x-a|<\delta $.  
-```
-4. Failing to bound auxiliary expressions before delta selection.
+1. Choosing $\delta$ before deriving the relationship.  
+2. Including $x=a$ in the inequality.  
+3. Failing to bound auxiliary expressions.
 
 ## Exercises
 
-1. **Linear proof**
-   Prove:
-   $$
+1. **Linear proof** — Prove
 ```tex
 \lim_{x\to -1} (4x-2) = -6.
 ```
-$$
 
-2. **Quadratic with bounding**
-   Prove:
-   $$
+2. **Quadratic with bounding** — Prove
 ```tex
-\lim_{x\to 2} (x^2) = 4.
-```
-$$
-
-3. **Delta derivation**
-   Suppose:
-   $$
-```tex
-|f(x)-L| \le 7|x-a|.
-```
-$$
-```tex
-   What $ \delta $ works for a given $ \varepsilon $?
+\lim_{x\to 2} x^2 = 4.
 ```
 
-4. **Mini-proof (Sketch)**
-   Explain why any constant function satisfies the epsilon–delta definition at every point.
+3. **Delta derivation** — If $|f(x)-L|\le 7|x-a|$, what $\delta$ works for a given $\varepsilon$?
+
+4. **Mini-proof (Sketch)** — Explain why any constant function satisfies the definition at every point.

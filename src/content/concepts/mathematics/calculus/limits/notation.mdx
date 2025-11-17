@@ -6,7 +6,7 @@ courseId: math-calculus-limits
 
 title: Limit Notation & Basic Vocabulary
 summary: >
-  Standard limit notation lim_{x→a} f(x) = L and the associated vocabulary used
+  Standard limit notation \lim_{x→a} f(x) = L and the associated vocabulary used
   to describe approach behavior and neighborhood-based reasoning.
 
 order: 3
@@ -35,165 +35,106 @@ learningGoals:
   - Use standard language such as approach, neighborhood, and tends to.
 ---
 
-
 ## Snapshot
 
-Limit notation expresses the idea that the values of a function become close to a
-specific number as the input becomes close to a particular point. The notation
-$ \lim_{x\to a} f(x) = L $ concisely encodes the entire concept of approaching,
-stability of behavior, and independence from the function’s value at the point.
-
-## Formal Statement
-
-The expression
-
-$$
+Limit notation expresses the idea that values of a function stabilize near a
+number as inputs approach a point. The expression
 ```tex
 \lim_{x\to a} f(x) = L
 ```
-$$
+encodes approach, stability, and independence from $f(a)$.
 
-is read as:
+## Formal Statement
 
-> “The limit of $ f(x) $ as $ x $ approaches $ a $ is $ L $.”
+Read
+```tex
+\lim_{x\to a} f(x) = L
+```
+as: “The limit of $f(x)$ as $x$ approaches $a$ is $L$.”
 
-The components are:
+Components:
 
-- **Variable:** $ x $, the input approaching a point.
-- **Approach point:** $ a $, the value toward which $ x $ moves.
-- **Function:** $ f(x) $, the expression being evaluated.
-- **Limit value:** $ L $, the value approached by $ f(x) $.
+- **Variable** $x$ (input) approaching  
+- **Point** $a$  
+- **Function** $f(x)$  
+- **Limit value** $L$
 
-Standard vocabulary:
+Vocabulary:
 
-- “$ x $ approaches $ a $” means $ x $ is taken arbitrarily close to $ a $,
-  but not equal to it.
-- A **neighborhood** of $ a $ refers to a range of values near $ a $.
-- Saying “$ f(x) $ tends to $ L $” indicates $ f(x) $ becomes arbitrarily
-  close to $ L $ within small enough neighborhoods of $ a $.
+- “$x$ approaches $a$” → $x$ can be made arbitrarily close to $a$ (not equal).  
+- A **neighborhood** of $a$ → values near $a$.  
+- “$f(x)$ tends to $L$” → $f(x)$ becomes arbitrarily close to $L$.
 
-This notation does not claim anything about $ f(a) $. The function may equal
-$ L $, differ from $ L $, or be undefined at $ a $.
+No claim is made about $f(a)$.
 
 ## Intuition & Interpretation
 
-Limit notation captures a stable pattern in the values of a function. The
-emphasis is on:
+Emphasis:
 
-- **behavior near the point**, not at the point;
-- **closeness of values**, not equality;
-- **consistent approach**, not arbitrary fluctuation.
-
-The notation cleanly separates the *target value* $ L $ from the *approach
-point* $ a $, making limits the foundation for continuity and derivatives.
+- **near** the point (not at the point),  
+- **closeness** (not equality),  
+- **consistent approach** (not fluctuation).
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1.  
-   $$
+1.
 ```tex
-\lim_{x\to 2} (x^2 + 1) = 5
+\lim_{x\to 2} (x^2 + 1) = 5.
 ```
-$$
-   since substituting values of $ x $ near 2 produces values near 5.
 
-2.  
-   For  
-   $$
+2. Even if
 ```tex
 f(x)=\frac{x^2-1}{x-1}
 ```
-$$
-   even though $ f(1) $ is undefined,  
-   $$
+is undefined at $x=1$,
 ```tex
 \lim_{x\to 1} f(x) = 2.
 ```
-$$
 
-3.  
-   If left-hand and right-hand behavior both approach 7,  
-   $$
+3. If both sides approach 7, then
 ```tex
 \lim_{x\to a} f(x) = 7.
 ```
-$$
 
 ### Non-Examples
 
-1.  
-   Writing  
-   $$
-f(a) = L
-$$
-   is not equivalent to  
-   $$
+1. $f(a)=L$ is **not** the same as
 ```tex
 \lim_{x\to a} f(x) = L.
 ```
-$$
 
-2.  
-   If left-hand and right-hand behaviors disagree,  
-   $$
-```tex
-\lim_{x\to a} f(x)
-```
-$$
-   does not exist, even though notation may be misapplied.
+2. If one‑sided behaviors disagree, the two‑sided limit does not exist.
 
-3.  
-   Expressions such as  
-   $$
-```tex
-f(x) \to L \quad (x \approx a)
-```
-$$
-   are informal but not standard notation.
+3. Informal arrows like $f(x)\to L$ for $x\approx a$ are not standard.
 
 ## Properties & Relationships
 
-- Limit notation is used in the definition of continuity.
-- It enables the statement of algebraic limit laws concisely.
-- One-sided limits use modified notation:
+- Used in continuity, laws, and definitions.  
+- **One‑sided notation:**
 ```tex
-  - $ \lim_{x\to a^-} f(x) $
+\lim_{x\to a^-} f(x), \qquad \lim_{x\to a^+} f(x).
 ```
-```tex
-  - $ \lim_{x\to a^+} f(x) $
-```
-```tex
-- Infinite limits replace the limit value with $ +\infty $ or $ -\infty $.
-```
-- The derivative is defined using a limit expression.
+- Infinite limits replace $L$ with $\pm\infty$.  
+- Derivatives use a limit.
 
 ## Common Pitfalls
 
-1. Treating the limit equal to the function value by default.  
-2. Assuming the notation applies without checking two-sided agreement.  
-3. Misreading subscripts or superscripts in one-sided notation.  
-4. Thinking “approaches” means “equals.”
+1. Treating $\lim f = f(a)$ by default.  
+2. Ignoring two‑sided agreement.  
+3. Misreading one‑sided subscripts.  
+4. Equating “approaches” with “equals.”
 
 ## Exercises
 
-1. **Interpretation**  
-   Explain the meaning of  
-   $$
+1. Interpret
 ```tex
 \lim_{x\to 3} f(x) = 10.
 ```
-$$
 
-2. **Symbolic ↔ verbal**  
-   Convert the verbal statement  
-   “As $ x $ approaches 0, $ f(x) $ approaches 4”  
-   into correct limit notation.
+2. Convert “As $x$ approaches 0, $f(x)$ approaches 4” into notation.
 
-3. **One-sided notation**  
-   Express “the right-hand limit of $ f(x) $ at 5 equals 2” using standard
-   notation.
+3. Express “the right‑hand limit at 5 equals 2.”
 
-4. **Mini-proof (Sketch)**  
-   Explain why the value of $ f(a) $ is irrelevant when interpreting limit notation.
+4. Mini‑proof — Why is $f(a)$ irrelevant to interpreting $\lim_{x\to a} f(x)=L$?

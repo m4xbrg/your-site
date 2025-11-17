@@ -36,166 +36,76 @@ learningGoals:
   - Use IVT to justify the existence of solutions without solving explicitly.
 ---
 
-
 ## Snapshot
 
-The Intermediate Value Theorem (IVT) states that continuous functions on closed
-intervals cannot “skip” values. If a continuous function moves from one value to
-another, it must pass through every intermediate value along the way.
+The Intermediate Value Theorem (IVT) says continuous functions on closed
+intervals cannot “skip” values: if $f$ moves from one value to another, it
+passes through every intermediate value.
 
 ## Formal Statement
 
-Let $ f $ be continuous on the closed interval $ [a, b] $.  
-Let $ N $ be any real number strictly between $ f(a) $ and $ f(b) $; that is:
-
-$$
-f(a) < N < f(b)
+Let $f$ be continuous on $[a,b]$. Let $N$ be **between** $f(a)$ and $f(b)$:
 ```tex
-\quad\text{or}\quad
+f(a) < N < f(b) \quad\text{or}\quad f(b) < N < f(a).
 ```
-f(b) < N < f(a).
-$$
-
+Then there exists $c\in(a,b)$ with
 ```tex
-Then there exists some $ c \in (a, b) $ such that:
-```
-
-$$
 f(c) = N.
-$$
-
-This is an **existence theorem**: it guarantees a point $ c $ but does not
-provide a formula or construction for it.
+```
+This is an **existence** result (no formula for $c$ is guaranteed).
 
 ## Intuition & Interpretation
 
-Continuity means no jumps or gaps.  
-If the function moves from $ f(a) $ to $ f(b) $, it must pass through every
-number between them.
-
-The IVT is a structural guarantee:
-
-- continuity prohibits “skipping over” values,
-- the closed interval $ [a,b] $ ensures the function is defined everywhere
-  between endpoints,
-- the conclusion asserts existence but not uniqueness.
-
-The theorem is often used to prove an equation has a solution even without
-finding it.
+Continuity forbids jumps or gaps on $[a,b]$, so traversing from $f(a)$ to $f(b)$
+must cross every intermediate level. Closedness ensures the function is defined
+at both endpoints.
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1. **Root existence**  
-   Consider:
-   $$
-f(x) = x^3 - x - 1.
-$$
-   Since:
-   $$
+1. **Root existence**
 ```tex
-f(1) = -1,\qquad f(2) = 5,
-```
-$$
-```tex
-   and 0 lies between −1 and 5, IVT guarantees a $ c\in(1,2) $ with $ f(c)=0 $.
+f(x)=x^3-x-1,\quad f(1)=-1,\ f(2)=5 \ \Rightarrow\ \exists\,c\in(1,2)\ \text{s.t.}\ f(c)=0.
 ```
 
-2. **Crossing a horizontal line**  
-   If  
-   $$
-```tex
-f(0)=2,\quad f(4)=10,
-```
-$$
-```tex
-   then for any $ N\in(2,10) $, IVT guarantees a solution to $ f(x)=N $.
-```
+2. **Cross a horizontal level**  
+If $f(0)=2,\ f(4)=10$, then for any $N\in(2,10)$ there exists $c\in(0,4)$ with $f(c)=N$.
 
-3. **Trigonometric continuity**  
-```tex
-   Since $ \sin x $ is continuous,
-```
-```tex
-   every number between −1 and 1 is achieved on any interval of length $ \pi $.
-```
+3. **Trigonometric continuity** — Since $\sin x$ is continuous, every value in $[-1,1]$ is achieved on intervals of length $\pi$.
 
 ### Non-Examples
 
 1. **Discontinuous function**
-   $$
+```tex
 f(x)=
-```tex
-   \begin{cases}
+\begin{cases}
+-1,& x<0,\\
+1,& x\ge0,
+\end{cases}
 ```
-```tex
-   -1,& x<0,\\
-```
-```tex
-   1,& x\ge0.
-```
-```tex
-   \end{cases}
-```
-$$
-   Values between −1 and 1 are skipped → IVT does not apply.
+skips values; IVT does not apply.
 
-2. **Interval is not closed**
-   On $ (0,1) $, continuity holds, but endpoint values may not be defined and
-   IVT’s hypothesis is not satisfied.
+2. **Open interval only** — On $(0,1)$ the endpoint may be undefined; IVT’s hypothesis fails.
 
-3. **Target value not between endpoint values**
-   IVT cannot assert existence for numbers outside the range between $ f(a) $
-   and $ f(b) $.
+3. **Target value not between $f(a)$ and $f(b)$** — IVT gives no guarantee.
 
 ## Properties & Relationships
 
-- IVT is a consequence of continuity on a closed interval.
-- It is one of the standard characterizations of the behavior of continuous
-  functions.
-- The theorem supports proofs of:
-  - existence of roots,
-  - sign-change arguments,
-  - fixed-point claims via $ f(x)=x $.
-
-- The conclusion may produce multiple solutions or a single one depending on the
-  function’s structure.
+- Consequence of continuity on a closed interval.  
+- Supports proofs of root existence, sign-change arguments, and fixed points ($f(x)=x$).  
+- Solutions may be multiple or unique depending on function shape.
 
 ## Common Pitfalls
 
 1. Applying IVT without confirming continuity.  
-2. Using endpoints incorrectly when the function is not defined there.  
-3. Assuming IVT gives the *location* of the solution or its uniqueness → it does not.  
-4. Forgetting that the target value must lie **between** $ f(a) $ and $ f(b) $.
+2. Using endpoints incorrectly when not defined.  
+3. Assuming IVT gives location/uniqueness (it doesn’t).  
+4. Forgetting “between” really means *between*.
 
 ## Exercises
 
-1. **Sign change**
-   Show that the equation  
-   $$
-x^5 - 6x + 1 = 0
-$$
-   has at least one real root using IVT.
-
-2. **Endpoint behavior**
-   Suppose:
-   $$
-```tex
-f(0) = -4,\quad f(3) = -2.
-```
-$$
-   Does IVT guarantee a solution to $ f(x)=0 $? Explain.
-
-3. **Existence only**
-   Consider:
-   $$
-```tex
-f(x)=\cos x - x.
-```
-$$
-   Use IVT to show there exists a root in $ (0,1) $.
-
-4. **Mini-proof (Sketch)**
-   Explain why continuity on the open interval $ (a,b) $ is not enough for the
-   full IVT statement.
+1. **Sign change** — Show $x^5 - 6x + 1 = 0$ has a real root.  
+2. **Endpoint behavior** — If $f(0)=-4,\ f(3)=-2$, does IVT guarantee $f(x)=0$?  
+3. **Existence only** — For $f(x)=\cos x - x$, show a root lies in $(0,1)$.  
+4. **Mini‑proof** — Why is continuity only on $(a,b)$ not enough for the full IVT statement?

@@ -36,7 +36,6 @@ learningGoals:
   - Understand how algebraic manipulation affects limit existence and value.
 ---
 
-
 ## Snapshot
 
 Limit computation often reduces to transforming an expression into one where the
@@ -51,14 +50,14 @@ There is no single theorem; instead, this concept groups a set of algebraic
 procedures that are valid when:
 
 1. The rewritten expression is **algebraically equivalent** to the original for
-   all $ x $ in a punctured neighborhood of the limit point.
+   all $x$ in a punctured neighborhood of the limit point.
 2. The rewritten form yields a limit that exists and is finite (or infinite,
    when analyzing asymptotic behavior).
 
 The main strategies are:
 
 1. **Direct substitution** when the expression is well-defined.  
-2. **Factoring and canceling common factors** to resolve $ 0/0 $ forms.  
+2. **Factoring and canceling common factors** to resolve $0/0$ forms.  
 3. **Rationalizing numerator or denominator** using conjugates.  
 4. **Common denominators** for sums of rational expressions.  
 5. **Dominant-term comparison** for polynomial and rational functions.  
@@ -78,132 +77,90 @@ simpler *in a neighborhood of the point*, not necessarily at the point itself.
 
 ### Examples
 
-1. **Factoring to resolve 0/0**  
-   $$
+1. **Factoring to resolve $0/0$**
 ```tex
 \lim_{x\to 2} \frac{x^2-4}{x-2}
+= \lim_{x\to 2} \frac{(x-2)(x+2)}{x-2}
+= \lim_{x\to 2} (x+2)
+= 4.
 ```
-```tex
-   = \lim_{x\to 2} \frac{(x-2)(x+1)}{x-2}
-```
-```tex
-   = \lim_{x\to 2} (x+1) = 3.
-```
-$$
 
-2. **Rationalizing a numerator**  
-   $$
+2. **Rationalizing a numerator** (multiply by the conjugate)
 ```tex
 \lim_{x\to 0} \frac{\sqrt{x+1} - 1}{x}
+= \lim_{x\to 0} \frac{(\sqrt{x+1}-1)(\sqrt{x+1}+1)}{x(\sqrt{x+1}+1)}
+= \lim_{x\to 0} \frac{x}{x(\sqrt{x+1}+1)}
+= \lim_{x\to 0} \frac{1}{\sqrt{x+1}+1}
+= \frac{1}{2}.
 ```
-```tex
-   = \lim_{x\to 0} \frac{x}{x(\sqrt{x+1}+1)}
-```
-```tex
-   = \frac{1}{2}.
-```
-$$
 
-3. **Dominant-term for rational functions**  
-   $$
+3. **Dominant-term for rational functions**
 ```tex
 \lim_{x\to \infty} \frac{3x^2 - 4x + 1}{6x^2 + 5}
+= \frac{3}{6} = \frac{1}{2}.
 ```
-```tex
-   = \frac{3}{6} = \frac12.
-```
-$$
 
-4. **Direct substitution** (no simplification needed)  
-   $$
+4. **Direct substitution** (no simplification needed)
 ```tex
 \lim_{x\to 1} (3x^2 + 2) = 5.
 ```
-$$
 
 ### Non-Examples (Incorrect Uses)
 
 1. **Canceling when factorization is not valid**  
-   $$
 ```tex
-\frac{x^2 - 1}{x - 1} = x + 1
+\frac{x^2 - 1}{x - 1} = x + 1 \quad \text{only for } x\neq 1.
 ```
-$$
-```tex
-   is valid only for $ x \neq 1 $. Direct substitution on the original form
-```
-   fails.
+Direct substitution on the **unsimplified** form still fails at $x=1$.
 
 2. **Using dominant-term rules when degrees mismatch subtly**  
-   E.g.,  
-   $$
+For
 ```tex
-\lim_{x\to\infty} \frac{x^2 + x}{x^2 - x^3}
+\lim_{x\to\infty} \frac{x^2 + x}{x^2 - x^3},
 ```
-$$
-   cannot use equal-degree comparison; denominator grows faster and changes sign.
+the denominator grows faster with sign changes; equal-degree comparison does not apply.
 
 3. **Rationalizing incorrectly**  
-   Multiplying numerator and denominator by different conjugates introduces
-   non-equivalent expressions.
+Multiplying numerator and denominator by *different* conjugates introduces a non‑equivalent expression.
 
-4. **Assuming simplification changes function value at the limit point**  
-   Equivalent expressions need not match at the point — only in a neighborhood.
+4. **Assuming simplification must match value at the point**  
+Equivalence is required on a **punctured neighborhood**; the value at the point may differ.
 
 ## Properties & Relationships
 
-- Many simplifications convert an indeterminate form into one where limit laws
-  apply directly.
-- Techniques often reveal **removable discontinuities**, establishing
-  connections with the concept of continuity.
-- Dominant-term methods are structurally related to **limits at infinity**.
-- Algebraic simplification is often a prerequisite for using the **squeeze
-  theorem**.
+- Simplification often converts an indeterminate form to one where limit laws apply.
+- Reveals **removable discontinuities**, connecting to continuity.
+- Dominant-term methods relate to **limits at infinity**.
+- Algebraic simplification is often a precursor to using the **squeeze theorem**.
 
 ## Common Pitfalls
 
-1. Treating algebraic equivalence at a point as necessary; equivalence is needed
-   only in a punctured neighborhood.  
-2. Forgetting that simplification may hide domain restrictions that affect limit
-   interpretation.  
-3. Misidentifying $ 0/0 $ forms and applying techniques where limits actually
-   diverge.  
-4. Using dominant-term comparison in expressions where signs or lower-degree
-   terms control behavior near the point.
+1. Demanding equivalence at the point (unnecessary).  
+2. Hiding domain restrictions after canceling.  
+3. Misidentifying $0/0$ vs divergence.  
+4. Applying dominant-term rules when lower-degree terms control behavior locally.
 
 ## Exercises
 
-1. **Compute**  
-   $$
+1. **Compute**
 ```tex
 \lim_{x\to 3} \frac{x^2 - 9}{x-3}.
 ```
-$$
 
-2. **Rationalization**  
-   Evaluate  
-   $$
+2. **Rationalization** — Evaluate
 ```tex
 \lim_{x\to 4} \frac{\sqrt{x} - 2}{x-4}.
 ```
-$$
 
-3. **Dominant terms**  
-   Compute  
-   $$
+3. **Dominant terms** — Compute
 ```tex
 \lim_{x\to\infty} \frac{5x^3 - x}{10x^3 + 7}.
 ```
-$$
 
-4. **Conceptual**  
-   Explain why factorization cannot help evaluate  
-   $$
+4. **Conceptual** — Why can’t factorization help with
 ```tex
-\lim_{x\to 0} \frac{1}{x}.
+\lim_{x\to 0} \frac{1}{x}\,?
 ```
-$$
 
-5. **Mini-proof (Sketch)**  
-   Explain why replacing a function with an algebraically equivalent expression
-   in a punctured neighborhood preserves its limit.
+5. **Mini-proof (Sketch)** — Explain why algebraic equivalence on a punctured
+neighborhood preserves the limit.

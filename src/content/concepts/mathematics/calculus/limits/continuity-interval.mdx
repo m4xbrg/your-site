@@ -36,149 +36,91 @@ learningGoals:
   - Understand the role of one-sided limits at interval endpoints.
 ---
 
-
 ## Snapshot
 
 Continuity on an interval requires continuity at every point within the interval.
 For open intervals, only two-sided limits matter. For closed intervals, continuity
 at endpoints requires checking one-sided limits. This concept provides the
-foundation for major theorems such as the Intermediate Value Theorem.
+foundation for the Intermediate Value Theorem.
 
 ## Formal Statement
 
-A function $ f $ is **continuous on an open interval** $ (a,b) $ if:
+- **Open interval $(a,b)$:** $f$ is continuous on $(a,b)$ if it is continuous at every $c\in(a,b)$.
 
-$$
-```tex
-f \text{ is continuous at every point } c \in (a,b).
-```
-$$
+- **Closed interval $[a,b]$:** $f$ is continuous on $[a,b]$ if  
+  1) $f$ is continuous at every interior point $c\in(a,b)$, and  
+  2) the right-hand endpoint condition holds:
+  ```tex
+  \lim_{x\to a^+} f(x) = f(a),
+  ```
+  3) the left-hand endpoint condition holds:
+  ```tex
+  \lim_{x\to b^-} f(x) = f(b).
+  ```
 
-A function is **continuous on a closed interval** $ [a,b] $ if:
-
-```tex
-1. $ f $ is continuous at every interior point $ c \in (a,b) $,
-```
-2. the right-hand limit at the left endpoint exists and equals the function value:
-   $$
-```tex
-\lim_{x\to a^+} f(x) = f(a),
-```
-$$
-3. the left-hand limit at the right endpoint exists and equals the function value:
-   $$
-```tex
-\lim_{x\to b^-} f(x) = f(b).
-```
-$$
-
-Half-open intervals require checking the appropriate endpoint condition.
+- **Half-open intervals** require checking the appropriate one-sided endpoint.
 
 ## Intuition & Interpretation
 
 Continuity on an interval means the function has no breaks, holes, jumps, or
-asymptotes throughout that region. The function’s behavior aligns with its local
-limit behavior everywhere within the interval.
-
-For closed intervals, endpoints are treated with one-sided reasoning because
-the function’s domain restricts possible approaches.
+asymptotes throughout that region. Endpoints on closed/half‑open intervals are
+handled with one‑sided limits due to domain restrictions.
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1. **Polynomial continuity**
-   Every polynomial is continuous on any interval (open or closed).
+1. **Polynomial continuity** — Polynomials are continuous on any interval.
 
-2. **Piecewise continuous**
-   A function defined piecewise but continuous at joining points is continuous on
-   the full interval.
+2. **Piecewise, but continuous at joins** — If pieces match at boundaries, the whole interval is continuous.
 
-3. **Closed interval endpoint check**
-   For  
-   $$
-```tex
-f(x)=\sqrt{x}
-```
-$$
-   on $ [0,4] $, the left endpoint condition is:
-   $$
+3. **Closed interval endpoint check**  
+For $f(x)=\sqrt{x}$ on $[0,4]$:
 ```tex
 \lim_{x\to0^+} \sqrt{x} = 0 = f(0).
 ```
-$$
 
 ### Non-Examples
 
-1. **Jump inside interval**
-```tex
-   A function with a jump at $ c\in(a,b) $ is not continuous on that interval.
-```
+1. **Jump inside interval** — A jump at some $c\in(a,b)$ breaks continuity.
 
-2. **Infinite discontinuity at interior point**
-   Vertical asymptotes break continuity on any interval containing the point.
+2. **Infinite discontinuity at an interior point** — Vertical asymptotes break continuity.
 
-3. **Endpoint mismatch**
-   If  
-   $$
+3. **Endpoint mismatch** — If
 ```tex
-\lim_{x\to a^+} f(x) \neq f(a),
+\lim_{x\to a^+} f(x) \ne f(a),
 ```
-$$
-   then the function is not continuous on $ [a,b] $.
+then $f$ is not continuous on $[a,b]$.
 
 ## Properties & Relationships
 
-- Continuity on an interval is stronger than continuity at individual points.
-- The Intermediate Value Theorem requires continuity on a closed interval.
-- Algebraic combinations of continuous functions (sum, product, composition)
-  remain continuous on any shared interval of definition.
-- Piecewise functions are continuous on intervals if each piece is continuous and
-  the joining points satisfy continuity conditions.
+- Continuity on an interval is stronger than continuity at a single point.
+- The Intermediate Value Theorem requires continuity on a **closed** interval.
+- Algebraic combinations and compositions of continuous functions remain continuous on shared intervals.
+- For piecewise definitions, check both the pieces and the join points.
 
 ## Common Pitfalls
 
-1. Forgetting to check one-sided limits at endpoints of closed intervals.  
-2. Confusing continuity on an interval with differentiability (stronger).  
-3. Assuming continuity of a piecewise function without checking transition points.  
-4. Ignoring domain restrictions when analyzing endpoint behavior.
+1. Forgetting one‑sided checks at endpoints of closed intervals.  
+2. Confusing continuity with differentiability (stronger).  
+3. Assuming piecewise functions are continuous without checking joins.  
+4. Ignoring domains at endpoints.
 
 ## Exercises
 
-1. **Endpoint check**
-   Let  
-   $$
-```tex
-f(x)=\frac{1}{1+x^2}
-```
-$$
-   on $ [-2,2] $. Verify continuity at both endpoints.
+1. **Endpoint check**  
+Let $f(x)=\dfrac{1}{1+x^2}$ on $[-2,2]$. Verify continuity at both endpoints.
 
-2. **Piecewise analysis**
-   Determine whether the function  
-   $$
+2. **Piecewise analysis** — Determine whether
 ```tex
-f(x)=\begin{cases}
+f(x)=
+\begin{cases}
+x+1,& x<1,\\
+x^2,& x\ge 1
+\end{cases}
 ```
-```tex
-   x+1,& x<1,\\
-```
-```tex
-   x^2,& x\ge1
-```
-```tex
-   \end{cases}
-```
-$$
-   is continuous on $ [0,3] $.
+is continuous on $[0,3]$.
 
-3. **Conceptual**
-   Explain why one-sided limits are necessary for discussing continuity on closed
-   intervals but not on open intervals.
+3. **Conceptual** — Explain why one-sided limits are necessary at closed-interval endpoints.
 
-4. **Mini-proof (Sketch)**
-   Prove that if $ f $ is continuous on $ [a,b] $ and $ g $ is continuous at 
-```tex
-   every value $ f(x) $ takes on $ [a,b] $, then the composition $ g\circ f $ 
-```
-   is continuous on $ [a,b] $.
+4. **Mini-proof (Sketch)** — If $f$ is continuous on $[a,b]$ and $g$ is continuous on the range of $f$ over $[a,b]$, show $g\circ f$ is continuous on $[a,b]$.

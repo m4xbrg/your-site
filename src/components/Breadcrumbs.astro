@@ -1,37 +1,257 @@
 ---
 import { getCollection } from 'astro:content'
-const parts = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean)
 
-const lookup = async (segment: string) => {
-  // try subjects, macro-courses, courses, concepts in that order
-  const [s, m, c, k] = await Promise.all([
-    getCollection('subjects').then(list => list.find(x => x.slug === segment)),
-    getCollection('macro-courses').then(list => list.find(x => x.slug === segment)),
-    getCollection('courses').then(list => list.find(x => x.slug === segment)),
-    getCollection('concepts').then(list => list.find(x => x.slug === segment)),
+const pathname = Astro.url.pathname.replace(/\/$/, '')
+
+// top-level breadcrumbs variable accessible to the template
+let breadcrumbs = []
+
+if (pathname === '/') {
+  // No breadcrumbs on home
+  const items = []
+  breadcrumbs = items
+} else {
+  const [subjects, macros, courses, lessons, exercises, concepts] = await Promise.all([
+    getCollection('subjects'),
+    getCollection('macro-courses'),
+    getCollection('courses'),
+    getCollection('lessons'),
+    getCollection('exercises'),
+    getCollection('concepts'),
   ])
-  return s?.data.title || m?.data.title || c?.data.title || k?.data.title || segment
-}
 
-const items = await Promise.all(
-  parts.map(async (_, i) => {
-    const href = '/' + parts.slice(0, i + 1).join('/') + '/'
-    const label = await lookup(parts[i])
-    return { href, label }
-  }),
-)
+  const findSubjectByIdOrSlug = (idOrSlug) => {
+    if (!idOrSlug) return null
+    return (
+      subjects.find((s) => s.slug === idOrSlug) ||
+      subjects.find((s) => s.data.id === idOrSlug)
+    )
+  }
+
+  const findMacroByIdOrSlug = (idOrSlug) => {
+    if (!idOrSlug) return null
+    return (
+      macros.find((m) => m.slug === idOrSlug) ||
+      macros.find((m) => m.data.id === idOrSlug)
+    )
+  }
+
+  const findCourseByIdOrSlug = (idOrSlug) => {
+    if (!idOrSlug) return null
+    return (
+      courses.find((c) => c.data.id === idOrSlug) ||
+      courses.find((c) => c.slug === idOrSlug)
+    )
+  }
+
+  const items = []
+
+  // LESSON PAGE
+  if (pathname.startsWith('/lessons/')) {
+    const slug = pathname.replace('/lessons/', '')
+    const lesson = lessons.find((l) => l.slug === slug)
+
+    if (lesson) {
+      const data = lesson.data
+
+      const subject = findSubjectByIdOrSlug(data.subject)
+      const macro = findMacroByIdOrSlug(data.macroId)
+      const course = findCourseByIdOrSlug(data.courseId ?? data.course)
+
+      if (subject) {
+        items.push({
+          href: `/subjects/${subject.slug}/`,
+          label: subject.data.title,
+        })
+      }
+      if (macro) {
+        items.push({
+          href: `/macro-courses/${macro.slug}/`,
+          label: macro.data.title,
+        })
+      }
+      if (course) {
+        items.push({
+          href: `/courses/${course.data.id}/`,
+          label: course.data.title,
+        })
+      }
+
+      items.push({
+        href: pathname + '/',
+        label: data.title,
+      })
+    }
+  }
+
+  // EXERCISE PAGE
+  else if (pathname.startsWith('/exercises/')) {
+    const slug = pathname.replace('/exercises/', '')
+    const exercise = exercises.find((ex) => ex.slug === slug)
+
+    if (exercise) {
+      const data = exercise.data
+
+      const subject = findSubjectByIdOrSlug(data.subject)
+      const macro = findMacroByIdOrSlug(data.macroId)
+      const course = findCourseByIdOrSlug(data.courseId)
+
+      if (subject) {
+        items.push({
+          href: `/subjects/${subject.slug}/`,
+          label: subject.data.title,
+        })
+      }
+      if (macro) {
+        items.push({
+          href: `/macro-courses/${macro.slug}/`,
+          label: macro.data.title,
+        })
+      }
+      if (course) {
+        items.push({
+          href: `/courses/${course.data.id}/`,
+          label: course.data.title,
+        })
+      }
+
+      items.push({
+        href: pathname + '/',
+        label: data.title,
+      })
+    }
+  }
+
+  // CONCEPT PAGE
+  else if (pathname.startsWith('/concepts/')) {
+    const slug = pathname.replace('/concepts/', '')
+    const concept = concepts.find((c) => c.slug === slug)
+
+    if (concept) {
+      const data = concept.data
+
+      const subject = findSubjectByIdOrSlug(data.subject)
+      const macro = findMacroByIdOrSlug(data.macroId)
+      const course = findCourseByIdOrSlug(data.courseId ?? data.course)
+
+      if (subject) {
+        items.push({
+          href: `/subjects/${subject.slug}/`,
+          label: subject.data.title,
+        })
+      }
+      if (macro) {
+        items.push({
+          href: `/macro-courses/${macro.slug}/`,
+          label: macro.data.title,
+        })
+      }
+      if (course) {
+        items.push({
+          href: `/courses/${course.data.id}/`,
+          label: course.data.title,
+        })
+      }
+
+      items.push({
+        href: pathname + '/',
+        label: data.title,
+      })
+    }
+  }
+
+  // COURSE PAGE (/courses/<id>)
+  else if (pathname.startsWith('/courses/')) {
+    const id = pathname.replace('/courses/', '')
+    const course = findCourseByIdOrSlug(id)
+
+    if (course) {
+      const data = course.data
+      const subject = findSubjectByIdOrSlug(data.subject)
+      const macro = findMacroByIdOrSlug(data.macroId)
+
+      if (subject) {
+        items.push({
+          href: `/subjects/${subject.slug}/`,
+          label: subject.data.title,
+        })
+      }
+      if (macro) {
+        items.push({
+          href: `/macro-courses/${macro.slug}/`,
+          label: macro.data.title,
+        })
+      }
+
+      items.push({
+        href: pathname + '/',
+        label: data.title,
+      })
+    }
+  }
+
+  // MACRO-COURSE PAGE
+  else if (pathname.startsWith('/macro-courses/')) {
+    const slug = pathname.replace('/macro-courses/', '')
+    const macro = macros.find((m) => m.slug === slug)
+
+    if (macro) {
+      const data = macro.data
+      const subject = findSubjectByIdOrSlug(data.subject)
+
+      if (subject) {
+        items.push({
+          href: `/subjects/${subject.slug}/`,
+          label: subject.data.title,
+        })
+      }
+
+      items.push({
+        href: pathname + '/',
+        label: data.title,
+      })
+    }
+  }
+
+  // SUBJECT PAGE
+  else if (pathname.startsWith('/subjects/')) {
+    const slug = pathname.replace('/subjects/', '')
+    const subject = subjects.find((s) => s.slug === slug)
+    if (subject) {
+      items.push({
+        href: pathname + '/',
+        label: subject.data.title,
+      })
+    }
+  }
+
+  // FALLBACK: generic path split with labels
+  if (items.length === 0 && pathname !== '/') {
+    const parts = pathname.split('/').filter(Boolean)
+    for (let i = 0; i < parts.length; i++) {
+      const href = '/' + parts.slice(0, i + 1).join('/') + '/'
+      const label = parts[i]
+      items.push({ href, label })
+    }
+  }
+
+  breadcrumbs = items
+}
 ---
-{items.length > 0 && (
+
+{breadcrumbs.length > 0 && (
   <nav aria-label="Breadcrumbs" class="text-sm mb-6 text-gray-600">
     <ol class="flex items-center gap-1 flex-wrap">
-      <li><a href="/" class="hover:underline">Home</a></li>
-      {items.map((it, idx) => (
+      <li>
+        <a href="/" class="hover:underline">Home</a>
+      </li>
+      {breadcrumbs.map((it, idx) => (
         <li
           class="flex items-center gap-1"
-          aria-current={idx === items.length - 1 ? 'page' : undefined}
+          aria-current={idx === breadcrumbs.length - 1 ? 'page' : undefined}
         >
           <span>›</span>
-          {idx === items.length - 1 ? (
+          {idx === breadcrumbs.length - 1 ? (
             <span class="font-medium text-gray-800">{it.label}</span>
           ) : (
             <a href={it.href} class="hover:underline">

@@ -23,15 +23,20 @@ export async function getStaticPaths() {
 
 const { concept } = Astro.props
 if (!concept) throw new Error('Concept not found')
+
 const { Content } = await concept.render()
 const data = concept.data
+
 const relatedSlugs = data.relatedConcepts ?? []
-const allConcepts = relatedSlugs.length ? await getCollection(collectionNames.concepts) : []
+const allConcepts = relatedSlugs.length
+  ? await getCollection(collectionNames.concepts)
+  : []
 const relatedConcepts = relatedSlugs.length
   ? relatedSlugs
       .map((slug) => allConcepts.find((entry) => entry.slug === slug))
       .filter(Boolean)
   : []
+
 const resolvedPrerequisites = await Promise.all(
   (data.prerequisites ?? []).map(async (slug) => {
     const concept = await getEntryBySlug(collectionNames.concepts, slug)
@@ -51,8 +56,9 @@ const resolvedPrerequisites = await Promise.all(
     }
 
     return { title: slug }
-  })
+  }),
 )
+
 const difficultyLabel = data.difficulty
   ? `Difficulty: ${data.difficulty[0].toUpperCase()}${data.difficulty.slice(1)}`
   : undefined
@@ -61,11 +67,30 @@ const estimatedTimeLabel = data.estimatedTime
   : undefined
 const tagLabels = Array.isArray(data.tags) ? data.tags : []
 const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.length)
+
+// NEW: wire concept → lessons/exercises
+const allLessons = await getCollection(collectionNames.lessons)
+const allExercises = await getCollection(collectionNames.exercises)
+
+// we use the explicit concept id if present; otherwise fall back to slug
+const conceptKey = data.id ?? concept.slug
+
+const lessonsForConcept = allLessons.filter((lesson) => {
+  const list = lesson.data.concepts ?? []
+  return Array.isArray(list) && list.includes(conceptKey)
+})
+
+const exercisesForConcept = allExercises.filter((exercise) => {
+  const list = exercise.data.concepts ?? []
+  return Array.isArray(list) && list.includes(conceptKey)
+})
 ---
+
 <DocsLayout title={data.title} description={data.description}>
   <article class="prose">
     <h1>{data.title}</h1>
     <TagChips tags={data.tags ?? []} class="mb-6" />
+
     {hasMetadata && (
       <div class="mt-2 flex flex-wrap gap-2">
         {difficultyLabel && (
@@ -79,12 +104,16 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
           </span>
         )}
         {tagLabels.map((tag) => (
-          <span class="rounded-full bg-slate-50 px-3 py-1 text-sm font-medium text-slate-600" key={tag}>
+          <span
+            class="rounded-full bg-slate-50 px-3 py-1 text-sm font-medium text-slate-600"
+            key={tag}
+          >
             {tag}
           </span>
         ))}
       </div>
     )}
+
     {resolvedPrerequisites.length > 0 && (
       <section class="mb-8">
         <h2 class="text-lg font-semibold mb-3">Prerequisites</h2>
@@ -103,18 +132,75 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
         </ul>
       </section>
     )}
+
     <Content />
+
+    {lessonsForConcept.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-lg font-semibold mb-3">Lessons using this concept</h2>
+        <ul class="space-y-2 text-sm">
+          {lessonsForConcept.map((lesson) => (
+            <li>
+              <a
+                href={`/lessons/${lesson.slug}/`}
+                class="flex flex-col rounded-lg border border-gray-200 px-3 py-2 hover:bg-gray-50 transition"
+              >
+                <span class="font-medium text-gray-900">
+                  {lesson.data.title}
+                </span>
+                {lesson.data.description && (
+                  <span class="text-gray-600">
+                    {lesson.data.description}
+                  </span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {exercisesForConcept.length > 0 && (
+      <section class="mt-8">
+        <h2 class="text-lg font-semibold mb-3">Practice for this concept</h2>
+        <ul class="space-y-2 text-sm">
+          {exercisesForConcept.map((ex) => (
+            <li>
+              <a
+                href={`/exercises/${ex.slug}/`}
+                class="flex flex-col rounded-lg border border-gray-200 px-3 py-2 hover:bg-gray-50 transition"
+              >
+                <span class="font-medium text-gray-900">
+                  {ex.data.title}
+                </span>
+                {ex.data.status && (
+                  <span class="text-xs text-gray-500">
+                    {ex.data.status === "draft" ? "Draft" : "Exercises"}
+                  </span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </article>
+
   {relatedConcepts.length > 0 && (
     <section class="mt-12">
       <h2 class="text-xl font-semibold mb-4">Related Concepts</h2>
       <ul class="grid gap-4 sm:grid-cols-2">
         {relatedConcepts.map((relatedConcept) => (
           <li>
-            <a class="block rounded border border-gray-200 p-4 transition hover:border-brand-300 hover:bg-gray-50" href={`/concepts/${relatedConcept.slug}/`}>
+            <a
+              class="block rounded border border-gray-200 p-4 transition hover:border-brand-300 hover:bg-gray-50"
+              href={`/concepts/${relatedConcept.slug}/`}
+            >
               <p class="font-medium">{relatedConcept.data.title}</p>
               {relatedConcept.data.description && (
-                <p class="text-sm text-gray-600 mt-1">{relatedConcept.data.description}</p>
+                <p class="text-sm text-gray-600 mt-1">
+                  {relatedConcept.data.description}
+                </p>
               )}
             </a>
           </li>

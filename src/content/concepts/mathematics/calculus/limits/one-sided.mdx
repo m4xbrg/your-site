@@ -37,211 +37,106 @@ learningGoals:
   - Understand how one-sided limits determine continuity and discontinuity types.
 ---
 
-
 ## Snapshot
 
-One-sided limits capture the behavior of a function as $ x $ approaches a point
-from only one direction. A two-sided limit exists exactly when both one-sided
-limits exist and are equal. This makes one-sided limits fundamental for
-classifying discontinuities and analyzing asymptotic behavior.
+One‑sided limits analyze approach from a **single direction**. A two‑sided limit
+exists iff both one‑sided limits exist and are equal.
 
 ## Formal Statement
 
-The **right-hand limit** of $ f(x) $ at $ a $ is written:
-
-$$
+Right‑hand:
 ```tex
 \lim_{x\to a^+} f(x) = L
 ```
-$$
-
-meaning that $ f(x) $ becomes arbitrarily close to $ L $ as $ x $ approaches
-$ a $ *using only values greater than $ a $*.
-
-The **left-hand limit** of $ f(x) $ at $ a $ is written:
-
-$$
+Left‑hand:
 ```tex
 \lim_{x\to a^-} f(x) = L
 ```
-$$
-
-meaning that $ f(x) $ becomes arbitrarily close to $ L $ as $ x $ approaches
-$ a $ *using only values less than $ a $*.
-
-The two-sided limit exists iff both one-sided limits exist and are equal:
-
-$$
+Two‑sided:
 ```tex
-\lim_{x\to a} f(x) = L
+\lim_{x\to a} f(x) = L \iff \big(\lim_{x\to a^-} f(x) = L \ \text{and}\ \lim_{x\to a^+} f(x) = L\big).
 ```
-```tex
-\quad\Longleftrightarrow\quad
-```
-```tex
-\lim_{x\to a^-} f(x) = L
-```
-```tex
-\text{ and }
-```
-```tex
-\lim_{x\to a^+} f(x) = L.
-```
-$$
 
 ## Intuition & Interpretation
 
-Points of discontinuity often reveal different behavior from the left and right.
-One-sided limits isolate that behavior. They allow:
-
-- precise statements about jumps or asymptotes,  
-```tex
-- analysis on domains that are naturally one-sided (e.g., $ \sqrt{x} $ near 0),  
-```
-- valid application of limit laws on restricted neighborhoods.
-
-The idea is simply: **approach the point using inputs from only one direction.**
+One‑sided limits isolate directional behavior. They handle jumps, asymptotes,
+and domains that only exist on one side (e.g., $\sqrt{x}$ near $0$).
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1. **Piecewise jump**
-
-$$
+1. **Jump**
+```tex
 f(x)=
-```tex
 \begin{cases}
-```
-```tex
 1,& x<0,\\
-```
-3,& x>0.
-```tex
+3,& x>0,
 \end{cases}
+\quad
+\lim_{x\to0^-} f(x)=1,\ \lim_{x\to0^+} f(x)=3.
 ```
-$$
 
-Then  
-$$
-```tex
-\lim_{x\to0^-} f(x)=1,\quad
-```
-```tex
-\lim_{x\to0^+} f(x)=3.
-```
-$$
-No two-sided limit.
-
-2. **Continuous case**
-
-For $ f(x)=x^2 $,  
-$$
+2. **Continuous**
 ```tex
 \lim_{x\to2^-} x^2 = \lim_{x\to2^+} x^2 = 4.
 ```
-$$
 
 3. **Domain restriction**
-
-$$
-```tex
-f(x) = \sqrt{x}
-```
-$$
-```tex
-is defined only for $ x \ge 0 $.  
-```
-Thus one-sided limit:
-
-$$
 ```tex
 \lim_{x\to0^+} \sqrt{x} = 0,
 ```
-$$
-while the left-hand limit does not exist (domain is empty on the left).
+left‑hand limit does not exist (domain empty on the left).
 
-4. **Infinite one-sided limit**
-
-$$
+4. **Infinite one‑sided limit**
 ```tex
-\lim_{x\to 1^-} \frac{1}{x-1} = -\infty,\quad
-```
-```tex
+\lim_{x\to 1^-} \frac{1}{x-1} = -\infty,\qquad
 \lim_{x\to 1^+} \frac{1}{x-1} = +\infty.
 ```
-$$
 
 ### Non-Examples
 
-1. Claiming a two-sided limit exists when one-sided limits disagree.  
-2. Using values at $ x=a $ to determine one-sided limits.  
-3. Assuming a function must be defined on both sides for a two-sided limit.
+1. Claiming a two‑sided limit when one‑sided limits disagree.  
+2. Using $f(a)$ to determine one‑sided limits.  
+3. Assuming both sides exist when the domain is one‑sided.
 
 ## Properties & Relationships
 
-- One-sided limits determine the existence of a full limit.
-- Jump discontinuities are characterized by unequal one-sided limits.
-- Vertical asymptotes often require analyzing each side separately.
-- Continuity at a point $ a $ requires:
-  $$
+- Two‑sided limit exists iff both one‑sided limits exist & are equal.  
+- Jump discontinuities are unequal one‑sided limits.  
+- Continuity requires matching one‑sided limits and value:
 ```tex
 \lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
 ```
-$$
-- Many real-world domains (time, distance, probability) enforce one-sided analysis.
 
 ## Common Pitfalls
 
-1. Forgetting that one-sided limits ignore the function value at the point.  
-```tex
-2. Confusing “does not exist” with “equals $ \pm\infty $”—these are different.  
-```
-3. Assuming the left-hand limit exists even when the domain does not extend left.  
-4. Misreading notation: “$ a^- $” refers to a directional approach, not a value.
+1. Treating $f(a)$ as relevant to one‑sided limits.  
+2. Confusing “DNE” with “$\pm\infty$”.  
+3. Assuming left‑hand limit exists when domain does not extend left.  
+4. Misreading notation ($a^-$/$a^+$).
 
 ## Exercises
 
-1. **Compute one-sided limits**
-   For  
-   $$
+1. Compute one‑sided limits for
+```tex
 f(x)=
-```tex
-   \begin{cases}
-```
-```tex
-   x+2,& x<1,\\
-```
-   4,& x>1,
-```tex
-   \end{cases}
-```
-$$
-```tex
-   compute $ \lim_{x\to1^-} f(x) $ and $ \lim_{x\to1^+} f(x) $.
+\begin{cases}
+x+2,& x<1,\\
+4,& x>1.
+\end{cases}
 ```
 
-2. **Domain analysis**  
-```tex
-   Explain why $ \lim_{x\to0^-} \sqrt{x} $ does not exist.
-```
+2. Domain analysis — Explain why $\lim_{x\to0^-}\sqrt{x}$ does not exist.
 
-3. **Jump discontinuity detection**  
-   Describe the one-sided limits for  
-   $$
+3. Jump detection — For
 ```tex
-f(x) = \begin{cases}
+f(x) =
+\begin{cases}
+5, & x<2,\\
+-1,& x\ge 2,
+\end{cases}
 ```
-```tex
-   5, & x<2,\\
-```
-```tex
-   -1,& x\ge 2.
-```
-```tex
-   \end{cases}
-```
-$$
+describe the one‑sided limits at $x=2$.
 
-4. **Mini-proof (Sketch)**  
-   Explain why a two-sided limit cannot exist unless both one-sided limits exist and are equal.
+4. **Mini‑proof** — Why can’t a two‑sided limit exist unless both one‑sided limits exist and are equal?

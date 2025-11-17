@@ -14,7 +14,6 @@ concepts:
   - math-calculus-limits-ivt
 ---
 
-
 # 1. Overview
 
 This final lesson unifies rigorous limit techniques with two fundamental
@@ -34,8 +33,8 @@ Objectives:
 
 # 2. Concept Map for This Lesson
 
-epsilon-delta-definition → epsilon-delta-proofs
-limit-laws → squeeze-theorem
+epsilon-delta-definition → epsilon-delta-proofs  
+limit-laws → squeeze-theorem  
 continuity-interval → ivt
 
 - Epsilon–delta proofs apply the formal definition.  
@@ -48,30 +47,20 @@ continuity-interval → ivt
 
 ## 3.1 Epsilon–delta proof structure
 
-To prove  
-$$
+To prove
 ```tex
 \lim_{x\to a} f(x) = L,
 ```
-$$
 we must produce a δ for an arbitrary ε:
 
-1. Start with  
-   $$
-```tex
-|f(x)-L| < \varepsilon.
-```
-$$
-
+1. Start with $ |f(x)-L| < \varepsilon $.  
 2. Express the left side in terms of $ |x-a| $.  
 3. Bound auxiliary expressions (e.g., $ |x+1| $).  
 4. Solve for δ in terms of ε.  
-5. Verify:  
-   $$
+5. Verify:
 ```tex
-0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.
+0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon
 ```
-$$
 
 This “backwards planning” is universal.
 
@@ -79,45 +68,35 @@ This “backwards planning” is universal.
 
 ## 3.2 Squeeze Theorem
 
-If  
-$$
+If
 ```tex
 g(x) \le f(x) \le h(x)
 ```
-$$
-near $ a $, and  
-$$
+near $ a $, and
 ```tex
 \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L,
 ```
-$$
-then  
-$$
+then
 ```tex
-\lim_{x\to a} f(x) = L.
+\lim_{x\to a} f(x) = L
 ```
-$$
-
 Used when direct computation is impossible but bounding behavior is known.
 
 ---
 
 ## 3.3 Intermediate Value Theorem (IVT)
 
-If $ f $ is continuous on $ [a,b] $ and $ N $ lies between $ f(a) $ and $ f(b) $, then  
+If $ f $ is continuous on $ [a,b] $ and $ N $ lies between $ f(a) $ and $ f(b) $, then there exists $ c \in (a,b) $ with
 ```tex
-there exists $ c \in (a,b) $ with  
+f(c)=N
 ```
-$$
-f(c)=N.
-$$
 
 This is an **existence theorem**, not a computational tool.
 
 Applications:
 - roots of equations  
 - sign changes  
-- argument principles about crossings  
+- argument principles about crossings
 
 ---
 
@@ -126,91 +105,64 @@ Applications:
 ### Example 1 — ε–δ proof (linear function)
 
 Prove:
-$$
 ```tex
-\lim_{x\to 1} (5x-3)=2.
+\lim_{x\to 1} (5x-3)=2
 ```
-$$
-
 Compute:
-$$
-|(5x-3) - 2| = 5|x-1|.
-$$
-
 ```tex
-Choose $ \delta = \varepsilon/5 $.  
+|(5x-3) - 2| = 5|x-1|
 ```
-Verification is immediate.
+Choose $ \delta = \varepsilon/5 $. Verification is immediate.
 
 ---
 
 ### Example 2 — ε–δ proof (quadratic with bounding)
 
 Goal:
-$$
 ```tex
-\lim_{x\to2} x^2 = 4.
+\lim_{x\to2} x^2 = 4
 ```
-$$
-
 Rewrite:
-$$
-|x^2-4| = |x-2||x+2|.
-$$
-
 ```tex
-If $ |x-2|<1 $, then $ x \in (1,3) $ so $ |x+2|<5 $.  
+|x^2-4| = |x-2||x+2|
 ```
-Thus:
-$$
-|x^2-4| < 5|x-2|.
-$$
-
+If $ |x-2|<1 $, then $ x \in (1,3) $ so $ |x+2|<5 $. Thus:
+```tex
+|x^2-4| < 5|x-2|
+```
 Pick:
-$$
 ```tex
-\delta = \min\{1, \varepsilon/5\}.
+\delta = \min\{1, \varepsilon/5\}
 ```
-$$
 
 ---
 
 ### Example 3 — Squeeze Theorem
 
 Evaluate:
-$$
 ```tex
-\lim_{x\to0} x \sin(1/x).
+\lim_{x\to0} x \sin(1/x)
 ```
-$$
-
 Bound:
-$$
 ```tex
--|x| \le x\sin(1/x) \le |x|.
+-|x| \le x\sin(1/x) \le |x|
 ```
-$$
-
-Both bounds → 0.  
-Thus limit = 0.
+Both bounds → 0. Therefore the limit is 0.
 
 ---
 
 ### Example 4 — IVT: root existence
 
-Show that  
-$$
+Show that
+```tex
 x^3 - x - 1 = 0
-$$
+```
 has a solution in (1,2).
 
 Compute:
-$$
 ```tex
-f(1)=-1,\quad f(2)=5.
+f(1)=-1,\quad f(2)=5
 ```
-$$
-
 0 lies between −1 and 5 → IVT guarantees a root.
 
 ---
@@ -222,9 +174,9 @@ $$
 - Squeeze captures asymptotic confinement: if upper and lower bounds stabilize,
   the middle function must stabilize.  
 - IVT is topological: continuity prevents skipping values and enforces existence
-  of crossing points.  
+  of crossing points.
 
-### Invariants
+**Invariants**
 
 - Limits proven via ε–δ are exact and do not rely on graphs or numeric
   evidence.  
@@ -238,59 +190,44 @@ $$
 
 ### Tier A — foundational
 
-1. Complete the ε–δ proof for  
-   $$
+1. Complete the ε–δ proof for
 ```tex
-\lim_{x\to3} (2x+1)=7.
+\lim_{x\to3} (2x+1)=7
 ```
-$$
-
-2. Use Squeeze to show  
-   $$
+2. Use Squeeze to show
 ```tex
-\lim_{x\to0} |x|\cos(1/x)=0.
+\lim_{x\to0} |x|\cos(1/x)=0
 ```
-$$
-
----
 
 ### Tier B — mixed
 
-3. Prove  
-   $$
+3. Prove
 ```tex
 \lim_{x\to1} x^3 = 1
 ```
-$$
-   by bounding $ |x^2 + x + 1| $.
+by bounding $ |x^2 + x + 1| $.
 
-4. Use IVT to explain why the equation  
-   $$
+4. Use IVT to explain why the equation
+```tex
 e^x = 4
-$$
-   has a solution.
-
----
+```
+has a solution.
 
 ### Tier C — challenge
 
-5. For  
-   $$
+5. For
 ```tex
 f(x)=x^2\sin(1/x),
 ```
-$$
-```tex
-   show the limit at 0 is 0 by bounding $ |\sin(1/x)| \le 1 $ and using
-```
-   polynomial dominance.
+show the limit at 0 is 0 by bounding $ |\sin(1/x)| \le 1 $ and using
+polynomial dominance.
 
-6. Let  
-   $$
-f(x)=x^5-7x+1.
-$$
-   Show that it has at least one root and at most three real roots (use IVT +
-   monotonicity reasoning).
+6. Let
+```tex
+f(x)=x^5-7x+1
+```
+Show that it has at least one root and at most three real roots (use IVT +
+monotonicity reasoning).
 
 ---
 
@@ -310,4 +247,4 @@ This lesson completes the *limits* course and leads directly into:
 
 - **`math-calculus-derivatives`** (next course)  
 - rigorous derivative definition via the limit  
-- continuity and differentiability relationships  
+- continuity and differentiability relationships

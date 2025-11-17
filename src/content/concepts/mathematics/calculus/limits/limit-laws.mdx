@@ -37,212 +37,123 @@ learningGoals:
   - Use limit laws to reduce complex expressions to simpler parts.
 ---
 
-
 ## Snapshot
 
-The algebraic limit laws describe how limits behave under basic operations such as
-addition, subtraction, multiplication, division, and exponentiation.  
-They allow the evaluation of many limits by breaking down a complicated expression
-into simpler components whose limits are easier to compute.
+The algebraic limit laws describe how limits behave under standard operations,
+allowing evaluation by decomposing expressions into simpler components.
 
 ## Formal Statement
 
+Assume
 ```tex
-Let $ \lim_{x \to a} f(x) = L $ and $ \lim_{x \to a} g(x) = M $, and assume all
+\lim_{x\to a} f(x)=L,\qquad \lim_{x\to a} g(x)=M,
 ```
-limits below exist (and, when required, are finite). Then:
+and required hypotheses hold (finiteness, nonzero denominators, etc.). Then:
 
-1. **Sum Law**  
-   $$
+1. **Sum**
 ```tex
-\lim_{x\to a} \big(f(x) + g(x)\big) = L + M.
+\lim_{x\to a} (f+g) = L+M.
 ```
-$$
 
-2. **Difference Law**  
-   $$
+2. **Difference**
 ```tex
-\lim_{x\to a} \big(f(x) - g(x)\big) = L - M.
+\lim_{x\to a} (f-g) = L-M.
 ```
-$$
 
-3. **Constant Multiple Law**  
-   For any constant $ c $,  
-   $$
+3. **Constant multiple** (for constant $c$)
 ```tex
-\lim_{x\to a} (c\,f(x)) = cL.
+\lim_{x\to a} c\,f = cL.
 ```
-$$
 
-4. **Product Law**  
-   $$
+4. **Product**
 ```tex
-\lim_{x\to a} \big(f(x)g(x)\big) = LM.
+\lim_{x\to a} (fg) = LM.
 ```
-$$
 
-5. **Quotient Law**  
+5. **Quotient** (if $M\ne 0$)
 ```tex
-   If $ M \neq 0 $,  
+\lim_{x\to a} \frac{f}{g} = \frac{L}{M}.
 ```
-   $$
-```tex
-\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L}{M}.
-```
-$$
 
-6. **Power Law**  
-   For any positive integer $ n $,  
-   $$
+6. **Power** (integer $n\ge 1$)
 ```tex
 \lim_{x\to a} \big(f(x)\big)^n = L^n.
 ```
-$$
 
-7. **Root Law**  
+7. **Root** (even $n$ requires $f\ge 0$ near $a$)
 ```tex
-   If $ n $ is even, assume $ f(x) \ge 0 $ near $ a $; then  
+\lim_{x\to a} \sqrt[n]{\,f(x)\,} = \sqrt[n]{\,L\,}.
 ```
-   $$
-```tex
-\lim_{x\to a} \sqrt[n]{f(x)} = \sqrt[n]{L}.
-```
-$$
-
-These rules may require additional conditions when $ f(x) $ or $ g(x) $
-approach infinite or undefined values. The statements above concern the finite,
-well-defined case.
 
 ## Intuition & Interpretation
 
-The limit operation is compatible with standard algebraic operations.  
-If two functions approach specific values near a point, then combining those
-functions algebraically produces a new function whose limit is the corresponding
-algebraic combination of the original limits.
-
-The laws formalize the idea that “limit-taking commutes with algebra” when the
-individual limits behave well and no undefined expressions arise (such as
-division by zero).
+When $f$ and $g$ stabilize near $a$, their algebraic combinations stabilize in
+the corresponding algebraic ways, provided no undefined expressions arise.
 
 ## Examples & Non-Examples
 
 ### Examples
 
-1.  
-   $ \lim_{x\to 2} (3x + 5) = 3\lim_{x\to 2} x + 5 = 3(2) + 5 = 11. $
-
-2.  
-   $ \lim_{x\to -1} (x^2 - 4x) = \lim x^2 - 4\lim x = (-1)^2 - 4(-1) = 5. $
-
-3.  
+1.
 ```tex
-   If $ \lim_{x\to 0} f(x) = 2 $ and $ \lim_{x\to 0} g(x) = -3 $, then  
-```
-   $$
-```tex
-\lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}.
-```
-$$
-
-4.  
-   $ \lim_{x\to 1} (x+1)^3 = (\lim_{x\to 1}(x+1))^3 = 2^3 = 8. $
-
-### Non-Examples (Important Misuses)
-
-1. **Division Law misuse:**  
-```tex
-   If $ \lim_{x\to a} g(x) = 0 $, the quotient law *does not apply*.  
-```
-```tex
-   Example: $ \lim_{x\to 0} \frac{1}{x} $ is not finite.
+\lim_{x\to 2} (3x + 5) = 11.
 ```
 
-2. **Undefined expressions:**  
-   $ \lim_{x\to 2} \frac{x^2 - 4}{x - 2} $  
-   Both numerator and denominator approach 0 → quotient law cannot be used until
-   expression is simplified.
+2.
+```tex
+\lim_{x\to -1} (x^2 - 4x) = 5.
+```
 
-3. **Product of divergent limits:**  
-   If either $ f(x) $ or $ g(x) $ diverges, the product law does not apply.
+3.
+```tex
+\lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}
+\quad\text{if}\quad \lim f=2,\ \lim g=-3.
+```
 
-4. **Root Law misuse:**  
-   Even roots require non-negativity near the limit point; otherwise limit does not
-   follow by the root law.
+4.
+```tex
+\lim_{x\to 1} (x+1)^3 = 8.
+```
+
+### Non-Examples (Misuses)
+
+1. **Quotient when $\lim g=0$** — Not applicable (e.g., $\lim_{x\to 0}1/x$).  
+2. **$0/0$ forms** — Must simplify first (e.g., $\frac{x^2-4}{x-2}$).  
+3. **Product with divergence** — If either factor has no limit, product law fails.  
+4. **Root without sign check** — Even roots require nonnegativity near $a$.
 
 ## Properties & Relationships
 
-- The algebraic limit laws follow from the epsilon–delta definition of limit.  
-- They are the foundation for more advanced limit techniques (e.g. L’Hôpital, series).  
-- Together they imply limit behavior is fully determined for all polynomial and rational functions except where denominators vanish.  
-- The laws permit reduction of complex limits to simpler pieces whose limits are
-  known.  
-- They interact with:
-  - **Continuity:** continuous functions satisfy all limit laws inherently.  
-  - **Squeeze theorem:** a complementary tool when limit laws alone are insufficient.
+- Consequences of the $\varepsilon$–$\delta$ definition.  
+- Foundation for many techniques (e.g., L’Hôpital, series).  
+- Determine behavior for polynomials/rationals except at denominator zeros.  
+- Interacts with continuity and the squeeze theorem.
 
 ## Common Pitfalls
 
-1. Applying the quotient law when the denominator limit is zero.  
-2. Forgetting to check domain constraints for root laws.  
-3. Assuming laws apply when one or more component limits diverge.  
-4. Using algebraic laws before simplifying indeterminate forms like $ 0/0 $.  
-5. Treating the limit of a product as the product of limits when one function has no limit.
+1. Applying quotient law with $M=0$.  
+2. Ignoring domain/branch constraints for roots.  
+3. Treating product of limits as a limit of products when one factor diverges.  
+4. Using laws before addressing $0/0$ indeterminacy.  
+5. Assuming a law applies without verifying hypotheses.
 
 ## Exercises
 
-1. **Compute**  
+1. Evaluate
 ```tex
-   Evaluate $ \lim_{x\to 3} (5x^2 - 4x + 1) $.
+\lim_{x\to 3} (5x^2 - 4x + 1).
 ```
 
-2. **Compute**  
+2. Given $\lim_{x\to a} f(x)=7$ and $\lim_{x\to a} g(x)=-2$, compute
 ```tex
-   Given $ \lim_{x\to a} f(x) = 7 $ and $ \lim_{x\to a} g(x) = -2 $, compute  
+\lim_{x\to a} \big(3f(x) - 5g(x)\big).
 ```
-   $$
-```tex
-\lim_{x\to a} (3f(x) - 5g(x)).
-```
-$$
 
-3. **Investigate a failure mode**  
-   Explain why the quotient law cannot be applied directly to  
-   $$
+3. Explain why the quotient law cannot be applied directly to
 ```tex
 \lim_{x\to 2} \frac{x^2 - 4}{x - 2}.
 ```
-$$
 
-4. **Conceptual**  
-   Describe a situation in which the product law does *not* apply even though
-   $ f(x) $ and $ g(x) $ are individually well-defined near the point.
+4. Describe a situation where the product law does **not** apply even though both functions are defined near $a$.
 
-5. **Mini-proof (Sketch)**  
-   Prove the sum law using the epsilon–delta definition.
-
-## Proof Sketch / Proof
-
-A proof for each algebraic law follows from the epsilon–delta definition.
-```tex
-As a sketch, for the **sum law**, assume $ \lim f = L $ and $ \lim g = M $.  
-```
-```tex
-Given $ \varepsilon > 0 $, choose
-```
-$$
-```tex
-\delta = \min(\delta_f, \delta_g),
-```
-$$
-```tex
-where $ \delta_f $ and $ \delta_g $ bound the deviations
-```
-$ |f(x)-L| < \varepsilon/2 $ and $ |g(x)-M| < \varepsilon/2 $.  
-Then
-$$
-|(f(x)+g(x)) - (L+M)|  
-```tex
-\le |f(x)-L| + |g(x)-M| < \varepsilon.
-```
-$$
-Thus the sum law holds; analogous arguments handle the remaining laws.
+5. **Sketch** — Prove the sum law with $\varepsilon$–$\delta$ bounds.

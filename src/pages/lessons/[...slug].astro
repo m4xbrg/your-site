@@ -46,6 +46,26 @@ if (courseKey) {
   }
 }
 
+// Resolve concept entries for this lesson (new style: data.concepts[], legacy: data.concept)
+const allConcepts = await getCollection(collectionNames.concepts)
+
+let conceptEntriesForLesson: typeof allConcepts = []
+
+if (Array.isArray(data.concepts) && data.concepts.length > 0) {
+  conceptEntriesForLesson = data.concepts
+    .map((idOrSlug) =>
+      allConcepts.find(
+        (c) => c.data.id === idOrSlug || c.slug === idOrSlug,
+      ),
+    )
+    .filter(Boolean)
+} else if (data.concept) {
+  const single = allConcepts.find(
+    (c) => c.data.id === data.concept || c.slug === data.concept,
+  )
+  conceptEntriesForLesson = single ? [single] : []
+}
+
 const durationLabel =
   typeof data.durationMinutes === "number" && data.durationMinutes > 0
     ? `${data.durationMinutes} min`
@@ -80,30 +100,51 @@ const hasMetadata =
     </header>
 
     {hasMetadata && (
-      <section class="mb-6 text-sm text-gray-700 space-y-2">
-        {(data.course || data.courseId) && (
-          <p>
-            <strong>Course:</strong>{" "}
-            {data.courseId ?? data.course}
-          </p>
-        )}
-        {(data.concept ||
-          (Array.isArray(data.concepts) && data.concepts.length)) && (
-          <p>
-            <strong>Concepts:</strong>{" "}
-            {data.concept ?? (data.concepts ?? []).join(", ")}
-          </p>
-        )}
-        {Array.isArray(data.objectives) && data.objectives.length > 0 && (
-          <div>
-            <strong>Objectives</strong>
-            <ul class="list-disc pl-5 mt-1">
-              {data.objectives.map((obj) => <li>{obj}</li>)}
-            </ul>
-          </div>
-        )}
-      </section>
+  <section class="mb-6 text-sm text-gray-700 space-y-2">
+    {(data.course || data.courseId) && (
+      <p>
+        <strong>Course:</strong>{" "}
+        {data.courseId ?? data.course}
+      </p>
     )}
+
+    {conceptEntriesForLesson.length > 0 && (
+      <p>
+        <strong>Concepts:</strong>{" "}
+        <span class="inline-flex flex-wrap gap-1 align-middle">
+          {conceptEntriesForLesson.map((concept) => (
+            <a
+              href={`/concepts/${concept.slug}/`}
+              class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700 hover:bg-slate-200"
+            >
+              {concept.data.title}
+            </a>
+          ))}
+        </span>
+      </p>
+    )}
+
+    {/* Fallback for any old lessons that have string concept fields but no resolved entries */}
+    {conceptEntriesForLesson.length === 0 &&
+      (data.concept ||
+        (Array.isArray(data.concepts) && data.concepts.length)) && (
+        <p>
+          <strong>Concepts:</strong>{" "}
+          {data.concept ?? (data.concepts ?? []).join(", ")}
+        </p>
+      )}
+
+    {Array.isArray(data.objectives) && data.objectives.length > 0 && (
+      <div>
+        <strong>Objectives</strong>
+        <ul class="list-disc pl-5 mt-1">
+          {data.objectives.map((obj) => <li>{obj}</li>)}
+        </ul>
+      </div>
+    )}
+  </section>
+)}
+
 
     <section class="mt-6">
       <Content />
