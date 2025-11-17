@@ -3,70 +3,135 @@ import { getCollection } from 'astro:content'
 const subjects = (await getCollection('subjects')).toSorted((a,b)=>a.data.order-b.data.order)
 const macroCourses = (await getCollection('macro-courses')).toSorted((a,b)=>a.data.order-b.data.order)
 const courses = (await getCollection('courses')).toSorted((a,b)=>a.data.order-b.data.order)
-const concepts = (await getCollection('concepts')).toSorted((a,b)=>a.data.order-b.data.order)
+const lessons = await getCollection('lessons')
+const exercises = await getCollection('exercises')
+const concepts = await getCollection('concepts')
+
+const pathname = Astro.url.pathname.replace(/\/$/, '')
+
+let currentCourseId: string | null = null
+let currentMacroId: string | null = null
+let currentSubjectId: string | null = null
+
+const currentCourse = courses.find((c) => `/courses/${c.data.id}` === pathname)
+if (currentCourse) {
+  currentCourseId = currentCourse.data.id
+  currentMacroId = currentCourse.data.macroId ?? null
+  currentSubjectId = currentCourse.data.subject ?? null
+}
+
+if (pathname.startsWith('/lessons/')) {
+  const slug = pathname.replace('/lessons/', '')
+  const lesson = lessons.find((l) => l.slug === slug)
+  if (lesson) {
+    currentCourseId = lesson.data.courseId ?? currentCourseId
+    currentMacroId = lesson.data.macroId ?? currentMacroId
+    currentSubjectId = lesson.data.subject ?? currentSubjectId
+  }
+}
+
+if (pathname.startsWith('/exercises/')) {
+  const slug = pathname.replace('/exercises/', '')
+  const exercise = exercises.find((ex) => ex.slug === slug)
+  if (exercise) {
+    currentCourseId = exercise.data.courseId ?? currentCourseId
+    currentMacroId = exercise.data.macroId ?? currentMacroId
+    currentSubjectId = exercise.data.subject ?? currentSubjectId
+  }
+}
+
+if (pathname.startsWith('/concepts/')) {
+  const slug = pathname.replace('/concepts/', '')
+  const concept = concepts.find((c) => c.slug === slug)
+  if (concept) {
+    currentCourseId = concept.data.courseId ?? currentCourseId
+    currentMacroId = concept.data.macroId ?? currentMacroId
+    currentSubjectId = concept.data.subject ?? currentSubjectId
+  }
+}
+
+if (pathname.startsWith('/macro-courses/')) {
+  const slug = pathname.replace('/macro-courses/', '')
+  const macro = macroCourses.find((m) => m.slug === slug)
+  if (macro) {
+    currentMacroId = macro.data.id
+    currentSubjectId = macro.data.subject ?? currentSubjectId
+  }
+}
+
+if (pathname.startsWith('/subjects/')) {
+  const slug = pathname.replace('/subjects/', '')
+  const subject = subjects.find((s) => s.slug === slug)
+  if (subject) {
+    currentSubjectId = subject.data.id
+  }
+}
+
+if (!currentMacroId && currentCourseId) {
+  const fromCourse = courses.find((c) => c.data.id === currentCourseId)
+  currentMacroId = fromCourse?.data.macroId ?? null
+  currentSubjectId = currentSubjectId ?? fromCourse?.data.subject ?? null
+}
+
+const coursesForMacro = currentMacroId
+  ? courses.filter((c) => c.data.macroId === currentMacroId)
+  : courses
 ---
-<nav class="space-y-6">
+<nav class="space-y-5 text-sm">
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Subjects</h2>
     <ul class="space-y-1">
-      {subjects.map(s => (
-        <li>
-          <a
-            class={`sidebar-link ${Astro.url.pathname.startsWith(`/subjects/${s.slug}`)?'active':''}`}
-            href={`/subjects/${s.slug}/`}
-          >
-            {s.data.title}
-          </a>
-        </li>
-      ))}
+      {subjects.map((s) => {
+        const active = currentSubjectId === s.data.id
+        return (
+          <li>
+            <a
+              class={`sidebar-link ${active ? 'active' : ''}`}
+              href={`/subjects/${s.slug}/`}
+            >
+              {s.data.title}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   </div>
 
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Macro-courses</h2>
     <ul class="space-y-1">
-      {macroCourses.map(m => (
-        <li>
-          <a
-            class={`sidebar-link ${Astro.url.pathname.startsWith(`/macro-courses/${m.slug}`)?'active':''}`}
-            href={`/macro-courses/${m.slug}/`}
-          >
-            {m.data.title}
-          </a>
-        </li>
-      ))}
+      {macroCourses.map((m) => {
+        const active = currentMacroId === m.data.id
+        return (
+          <li>
+            <a
+              class={`sidebar-link ${active ? 'active' : 'text-gray-600'}`}
+              href={`/macro-courses/${m.slug}/`}
+            >
+              {m.data.title}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   </div>
 
   <div>
     <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Courses</h2>
     <ul class="space-y-1">
-      {courses.map(c => (
-        <li>
-          <a
-            class={`sidebar-link ${Astro.url.pathname.startsWith(`/courses/${c.slug}`)?'active':''}`}
-            href={`/courses/${c.slug}/`}
-          >
-            {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-
-  <div>
-    <h2 class="text-xs uppercase tracking-wide text-gray-500 mb-2">Concepts</h2>
-    <ul class="space-y-1">
-      {concepts.map(x => (
-        <li>
-          <a
-            class={`sidebar-link ${Astro.url.pathname.includes(`/concepts/${x.slug}`)?'active':''}`}
-            href={`/concepts/${x.slug}/`}
-          >
-            {x.data.title}
-          </a>
-        </li>
-      ))}
+      {coursesForMacro.map((c) => {
+        const active = currentCourseId === c.data.id
+        return (
+          <li>
+            <a
+              class={`sidebar-link ${active ? 'active' : 'text-gray-600'}`}
+              href={`/courses/${c.slug}/`}
+            >
+              {c.data.code ? `${c.data.code} — ${c.data.title}` : c.data.title}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   </div>
 </nav>

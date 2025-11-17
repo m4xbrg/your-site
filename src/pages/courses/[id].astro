@@ -11,24 +11,70 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 const all = await getCollection(collectionNames.courses);
+const lessons = await getCollection(collectionNames.lessons);
+const concepts = await getCollection(collectionNames.concepts);
+
 const course = all.find((c) => c.data.id === id);
 if (!course) throw new Error(`Course not found: ${id}`);
 const { Content } = await course.render();
+
+const lessonsForCourse = lessons
+  .filter((lesson) => lesson.data.courseId === course.data.id)
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const conceptsForCourse = concepts
+  .filter((concept) => concept.data.courseId === course.data.id)
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
 <Docs title={`${course.data.title} — YourSite`}>
-  <h1 class="text-3xl font-bold mb-2">{course.data.title}</h1>
-  {course.data.description && <p class="text-[color:var(--muted)] mb-6">{course.data.description}</p>}
-  <TagChips tags={course.data.tags ?? []} class="mb-6" />
-  {course.data.outline && (
-    <ol class="list-decimal pl-6 space-y-1 mb-6">
-      {course.data.outline.map((o) => (
-        <li>
-          {o.conceptSlug ? <a class="text-brand-300" href={`/concepts/${o.conceptSlug}`}>{o.label}</a> : o.label}
-        </li>
-      ))}
-    </ol>
-  )}
-  <article class="prose prose-invert max-w-none">
-    <Content />
-  </article>
+  <div class="space-y-8 max-w-3xl">
+    <header class="space-y-3">
+      <h1 class="text-3xl font-bold">{course.data.title}</h1>
+      {course.data.description && (
+        <p class="text-gray-700 leading-relaxed">{course.data.description}</p>
+      )}
+      <TagChips tags={course.data.tags ?? []} />
+    </header>
+
+    {lessonsForCourse.length > 0 && (
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold">Lessons in this course</h2>
+        <ul class="divide-y divide-gray-200 border rounded-lg">
+          {lessonsForCourse.map((lesson) => (
+            <li class="p-3 hover:bg-gray-50 transition">
+              <a href={`/lessons/${lesson.slug}`} class="flex flex-col gap-1">
+                <span class="font-medium text-gray-900">{lesson.data.title}</span>
+                {lesson.data.description && (
+                  <span class="text-sm text-gray-600">{lesson.data.description}</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {conceptsForCourse.length > 0 && (
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold">Concepts in this course</h2>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {conceptsForCourse.map((concept) => (
+            <a
+              href={`/concepts/${concept.slug}`}
+              class="block rounded-lg border p-3 hover:border-gray-400 hover:bg-gray-50"
+            >
+              <div class="font-medium text-gray-900">{concept.data.title}</div>
+              {concept.data.summary && (
+                <p class="text-sm text-gray-600 mt-1">{concept.data.summary}</p>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <article class="prose max-w-none">
+      <Content />
+    </article>
+  </div>
 </Docs>

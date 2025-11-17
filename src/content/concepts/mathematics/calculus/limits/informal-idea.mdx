@@ -47,11 +47,9 @@ the limit there.
 
 Informally, saying
 
-$$
 ```tex
 \lim_{x\to a} f(x) = L
 ```
-$$
 
 means:
 
@@ -81,36 +79,25 @@ This view separates the notion of “approaching a value” from “equal to a v
 
 ### Examples
 
-1.  
-   $$
+1.
 ```tex
 f(x) = \frac{x^2-1}{x-1}
 ```
-$$
-```tex
-   simplifies to $ x+1 $ for $ x \neq 1 $. As $ x\to1 $,  
-```
-   $ f(x) \to 2 $ even though $ f(1) $ is undefined.
+   simplifies to $ x+1 $ for $ x \neq 1 $. As $ x\to1 $, $ f(x) \to 2 $ even
+   though $ f(1) $ is undefined.
 
-2.  
-   $ f(x) = |x|/x $ for $ x \neq 0 $.  
-```tex
-   As $ x\to 0^+ $, $ f(x)=1 $.  
-```
-```tex
-   As $ x\to 0^- $, $ f(x)=-1 $.  
-```
+2.
+   $ f(x) = |x|/x $ for $ x \neq 0 $.
+   As $ x\to 0^+ $, $ f(x)=1 $. As $ x\to 0^- $, $ f(x)=-1 $.
    One-sided limits exist (different values), highlighting how limits describe
    behavior near the point.
 
-3.  
-   $$
+3.
 ```tex
 \lim_{x\to 3} (x^2 + 1) = 10
 ```
-$$
-   is determined entirely by the values of the expression near 3; the actual
-   evaluation at 3 plays no conceptual role for the limit.
+    is determined entirely by the values of the expression near 3; the actual
+    evaluation at 3 plays no conceptual role for the limit.
 
 ### Non-Examples
 
@@ -150,20 +137,24 @@ These illustrate that limits require stable behavior near the point.
    Can a function have a limit at $ a $ if it is undefined at $ a $?
    Explain with a clear example.
 
-2. **Conceptual**  
-```tex
-   Give an example of a function where $ \lim_{x\to a} f(x) = L $ but  
-```
+2. **Conceptual**
+   Give an example of a function where $ \lim_{x\to a} f(x) = L $ but
    $ f(a) \neq L $. Explain the difference.
 
-3. **Non-example analysis**  
-```tex
+3. **Non-example analysis**
    Explain why $ \lim_{x\to 0} \sin(1/x) $ does not exist.
-```
 
-4. **Mini-proof (Sketch)**  
+4. **Mini-proof (Sketch)**
    Explain why modifying the value of a function at a single point does not
    change any limit.
+
+## Math test
+
+Inline: $x^2 + 1$.
+
+```tex
+\lim_{x\to 0} \frac{\sin x}{x} = 1
+```
 
 
 
