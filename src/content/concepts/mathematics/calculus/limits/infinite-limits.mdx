@@ -1,0 +1,187 @@
+---
+id: math-calculus-limits-infinite-limits
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Infinite Limits & Vertical Asymptotes
+summary: >
+  Describes limit behavior in which f(x) grows without bound as x approaches a
+  finite point, leading to the concepts of vertical asymptotes and infinite 
+  one-sided limits.
+
+order: 7
+tags:
+  - limits
+  - infinite-limits
+  - asymptotes
+
+role: core
+status: draft
+
+kind: definition
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-calculus-limits-one-sided
+  - math-calculus-limits-limit-laws
+
+relatedConcepts:
+  - math-calculus-limits-limits-at-infinity
+  - math-calculus-limits-discontinuities-classification
+
+learningGoals:
+  - Interpret infinite limits using one-sided limit notation.
+  - Recognize vertical asymptotes as infinite-limit behavior.
+  - Distinguish infinite limits from “does not exist” cases with oscillation.
+---
+
+## Snapshot
+
+When a function grows without bound as \( x \) approaches a finite point, the
+limit is infinite. This captures vertical asymptotic behavior and is formally
+expressed using one-sided limit notation. Infinite limits signal a specific type
+of discontinuity that cannot be removed by redefining the function at the point.
+
+## Formal Statement
+
+We write
+
+\[
+\lim_{x\to a} f(x) = +\infty
+\]
+
+to mean that for all sufficiently close values of \( x \neq a \), the values
+\( f(x) \) become arbitrarily large and positive. Similarly,
+
+\[
+\lim_{x\to a} f(x) = -\infty
+\]
+
+means \( f(x) \) becomes arbitrarily large in magnitude but negative.
+
+Most infinite limits are intrinsically **one-sided**, written as:
+
+\[
+\lim_{x\to a^-} f(x) = +\infty,
+\qquad
+\lim_{x\to a^+} f(x) = -\infty.
+\]
+
+These expressions describe divergent behavior near a finite input value.
+
+A point \( x = a \) is a **vertical asymptote** of \( f(x) \) if at least one of:
+
+\[
+\lim_{x\to a^-} f(x) = \pm\infty
+\qquad\text{or}\qquad
+\lim_{x\to a^+} f(x) = \pm\infty
+\]
+
+holds.
+
+## Intuition & Interpretation
+
+Infinite limits describe how a function behaves near points where the output is
+forced to grow without bound. They indicate:
+
+- the function cannot be stabilized near the point,  
+- the function’s magnitude dominates any local variation,  
+- the vertical line \( x = a \) acts as a boundary the function cannot cross
+  smoothly.
+
+These limits characterize **essential** rather than removable discontinuities.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Simple rational blow-up**
+\[
+\lim_{x\to1} \frac{1}{x-1} = 
+\begin{cases}
+-\infty,& x\to1^-,\\[4pt]
++\infty,& x\to1^+.
+\end{cases}
+\]
+
+2. **Squared denominator**
+\[
+\lim_{x\to0} \frac{1}{x^2} = +\infty.
+\]
+
+3. **Polynomial reciprocal**
+\[
+\lim_{x\to2^-} \frac{1}{(x-2)^3} = -\infty,
+\qquad
+\lim_{x\to2^+} \frac{1}{(x-2)^3} = +\infty.
+\]
+
+4. **Vertical asymptote from a logarithm**
+\[
+\lim_{x\to0^+} \ln(x) = -\infty.
+\]
+
+### Non-Examples
+
+1. **Oscillation near the point**
+\[
+\lim_{x\to0} \sin(1/x)
+\]
+does not have an infinite limit; the function never stabilizes.
+
+2. **Removable discontinuity**
+\[
+\frac{x^2-4}{x-2}
+\]
+has a hole at \( x=2 \), but the limit is finite (3), so not an infinite limit.
+
+3. **Undefined value with no blow-up**  
+A function can be undefined at a point but still have a finite limit.
+
+## Properties & Relationships
+
+- Infinite limits indicate **essential discontinuities** (not removable).  
+- They always correspond to vertical asymptotes.  
+- One-sided limits must be checked individually.  
+- Algebraic sign analysis near the point often determines whether the limit is
+  \(+\infty\) or \(-\infty\).  
+- Infinite limits differ from “limit does not exist” due to oscillation; infinite
+  limits express divergence in a controlled monotonic manner.
+
+## Common Pitfalls
+
+1. Assuming both one-sided infinite limits must match.  
+2. Confusing undefined values with infinite behavior.  
+3. Mixing up sign conventions when analyzing denominators.  
+4. Forgetting that infinite limits formally count as “does not exist”—but in a
+   structured way that still conveys precise behavior.
+
+## Exercises
+
+1. **Compute**
+   \[
+   \lim_{x\to3^+} \frac{1}{x-3}.
+   \]
+
+2. **Left vs right**
+   Determine the left-hand and right-hand limits for  
+   \[
+   f(x)=\frac{2}{(x+1)^2}.
+   \]
+
+3. **Sign analysis**
+   Evaluate  
+   \[
+   \lim_{x\to -2^-} \frac{1}{(x+2)}.
+   \]
+
+4. **Conceptual**
+   Explain why every infinite limit corresponds to a vertical asymptote, but not
+   every undefined point corresponds to one.
+
+5. **Mini-proof (Sketch)**  
+   Show that if \( f(x) > 0 \) near \( a \) and  
+   \( \lim_{x\to a} f(x) = +\infty \), then  
+   \( \frac{1}{f(x)} \to 0 \) as \( x \to a \).
