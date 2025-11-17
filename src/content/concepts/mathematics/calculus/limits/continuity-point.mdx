@@ -1,0 +1,156 @@
+---
+id: math-calculus-limits-continuity-point
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Continuity at a Point
+summary: >
+  A function is continuous at a point when the limit equals the function value
+  there, capturing the idea that no jump, hole, or asymptotic behavior occurs at
+  that location.
+
+order: 9
+tags:
+  - limits
+  - continuity
+  - pointwise
+
+role: core
+status: draft
+
+kind: definition
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-calculus-limits-notation
+  - math-calculus-limits-limit-laws
+
+relatedConcepts:
+  - math-calculus-limits-continuity-interval
+  - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-informal-idea
+
+learningGoals:
+  - State the definition of continuity at a point.
+  - Distinguish continuity from the existence of a finite limit.
+  - Analyze whether a function is continuous using limit-based reasoning.
+---
+
+## Snapshot
+
+A function is continuous at a point if the function value matches the limit at
+that point. Continuity captures the idea of “no breaks” or “no interruptions” in
+the function’s behavior at a specific location.
+
+## Formal Statement
+
+A function \( f \) is **continuous at \( a \)** if:
+
+1. \( f(a) \) is defined,  
+2. \( \lim_{x\to a} f(x) \) exists, and  
+3. these quantities are equal:
+
+\[
+\lim_{x\to a} f(x) = f(a).
+\]
+
+Equivalently, using one-sided limits:
+
+\[
+\lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
+\]
+
+Continuity at the point requires both agreement of directional behavior and
+agreement with the value at the point.
+
+## Intuition & Interpretation
+
+Continuity indicates that evaluating the function at the point produces the
+same result as approaching the point through arbitrarily small neighborhoods.
+
+The limit must describe stable behavior near the point. The function must also
+produce that same value when evaluated directly.
+
+This distinguishes:
+
+- **limit behavior** (approach),  
+- **point behavior** (value),  
+- **agreement** (continuity).
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Polynomial continuity**  
+   \( f(x)=x^2+1 \) is continuous everywhere, and  
+   \[
+   \lim_{x\to3} f(x)=f(3)=10.
+   \]
+
+2. **Removable discontinuity corrected**  
+   \[
+   g(x)=\frac{x^2-1}{x-1}
+   \]
+   has a hole at \( x=1 \).  
+   Redefining \( g(1)=2 \) creates continuity.
+
+3. **Absolute value continuity**  
+   \( f(x)=|x| \) is continuous at 0: both one-sided limits equal 0.
+
+### Non-Examples
+
+1. **Jump discontinuity**  
+   Left and right limits differ → not continuous.
+
+2. **Infinite discontinuity**  
+   \[
+   \lim_{x\to1} \frac{1}{x-1}=\pm\infty
+   \]
+   → limit does not exist as a real number → not continuous.
+
+3. **Function undefined at the point**  
+   If \( f(a) \) does not exist, continuity is impossible.
+
+## Properties & Relationships
+
+- Continuity requires but is not guaranteed by:  
+  - existence of the limit,  
+  - existence of the function value.
+- All polynomials, exponentials, and rational functions (on their domains) are continuous.
+- Continuity is **local**: only behavior near the point matters.
+- Continuity at a point is the building block for continuity on intervals.
+
+## Common Pitfalls
+
+1. Assuming existence of a limit implies continuity.  
+2. Forgetting that function must be defined at the point.  
+3. Overlooking mismatches between function value and limit value.  
+4. Confusing removable and non-removable discontinuities.
+
+## Exercises
+
+1. **Compute + evaluate**  
+   For  
+   \[
+   f(x)=\begin{cases}
+   \frac{x^2-4}{x-2}, & x\neq2,\\
+   5, & x=2,
+   \end{cases}
+   \]
+   determine whether \( f \) is continuous at \( x=2 \).
+
+2. **One-sided check**  
+   Determine whether  
+   \[
+   h(x)=|x-3|
+   \]
+   is continuous at \( x=3 \).
+
+3. **Conceptual**  
+   Can a function be discontinuous at a point even if the limit exists there?
+
+4. **Mini-proof (Sketch)**  
+   Show that if both one-sided limits equal \( L \) and \( f(a)=L \), then  
+   \( \lim_{x\to a} f(x)=f(a) \), proving continuity at \( a \).
