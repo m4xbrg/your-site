@@ -1,0 +1,155 @@
+---
+id: math-calculus-limits-continuity-interval
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Continuity on an Interval
+summary: >
+  A function is continuous on an interval when it is continuous at every point
+  within that interval, including boundary behavior when the interval is closed.
+
+order: 10
+tags:
+  - limits
+  - continuity
+  - intervals
+
+role: core
+status: draft
+
+kind: definition
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-calculus-limits-continuity-point
+  - math-calculus-limits-limit-laws
+
+relatedConcepts:
+  - math-calculus-limits-ivt
+  - math-calculus-limits-discontinuities-classification
+
+learningGoals:
+  - State the definition of continuity on various types of intervals.
+  - Analyze continuity over open, closed, and half-open intervals.
+  - Understand the role of one-sided limits at interval endpoints.
+---
+
+## Snapshot
+
+Continuity on an interval requires continuity at every point within the interval.
+For open intervals, only two-sided limits matter. For closed intervals, continuity
+at endpoints requires checking one-sided limits. This concept provides the
+foundation for major theorems such as the Intermediate Value Theorem.
+
+## Formal Statement
+
+A function \( f \) is **continuous on an open interval** \( (a,b) \) if:
+
+\[
+f \text{ is continuous at every point } c \in (a,b).
+\]
+
+A function is **continuous on a closed interval** \([a,b]\) if:
+
+1. \( f \) is continuous at every interior point \( c \in (a,b) \),
+2. the right-hand limit at the left endpoint exists and equals the function value:
+   \[
+   \lim_{x\to a^+} f(x) = f(a),
+   \]
+3. the left-hand limit at the right endpoint exists and equals the function value:
+   \[
+   \lim_{x\to b^-} f(x) = f(b).
+   \]
+
+Half-open intervals require checking the appropriate endpoint condition.
+
+## Intuition & Interpretation
+
+Continuity on an interval means the function has no breaks, holes, jumps, or
+asymptotes throughout that region. The function’s behavior aligns with its local
+limit behavior everywhere within the interval.
+
+For closed intervals, endpoints are treated with one-sided reasoning because
+the function’s domain restricts possible approaches.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Polynomial continuity**
+   Every polynomial is continuous on any interval (open or closed).
+
+2. **Piecewise continuous**
+   A function defined piecewise but continuous at joining points is continuous on
+   the full interval.
+
+3. **Closed interval endpoint check**
+   For  
+   \[
+   f(x)=\sqrt{x}
+   \]
+   on \([0,4]\), the left endpoint condition is:
+   \[
+   \lim_{x\to0^+} \sqrt{x} = 0 = f(0).
+   \]
+
+### Non-Examples
+
+1. **Jump inside interval**
+   A function with a jump at \( c\in(a,b) \) is not continuous on that interval.
+
+2. **Infinite discontinuity at interior point**
+   Vertical asymptotes break continuity on any interval containing the point.
+
+3. **Endpoint mismatch**
+   If  
+   \[
+   \lim_{x\to a^+} f(x) \neq f(a),
+   \]
+   then the function is not continuous on \([a,b]\).
+
+## Properties & Relationships
+
+- Continuity on an interval is stronger than continuity at individual points.
+- The Intermediate Value Theorem requires continuity on a closed interval.
+- Algebraic combinations of continuous functions (sum, product, composition)
+  remain continuous on any shared interval of definition.
+- Piecewise functions are continuous on intervals if each piece is continuous and
+  the joining points satisfy continuity conditions.
+
+## Common Pitfalls
+
+1. Forgetting to check one-sided limits at endpoints of closed intervals.  
+2. Confusing continuity on an interval with differentiability (stronger).  
+3. Assuming continuity of a piecewise function without checking transition points.  
+4. Ignoring domain restrictions when analyzing endpoint behavior.
+
+## Exercises
+
+1. **Endpoint check**
+   Let  
+   \[
+   f(x)=\frac{1}{1+x^2}
+   \]
+   on \([-2,2]\). Verify continuity at both endpoints.
+
+2. **Piecewise analysis**
+   Determine whether the function  
+   \[
+   f(x)=\begin{cases}
+   x+1,& x<1,\\
+   x^2,& x\ge1
+   \end{cases}
+   \]
+   is continuous on \([0,3]\).
+
+3. **Conceptual**
+   Explain why one-sided limits are necessary for discussing continuity on closed
+   intervals but not on open intervals.
+
+4. **Mini-proof (Sketch)**
+   Prove that if \( f \) is continuous on \([a,b]\) and \( g \) is continuous at 
+   every value \( f(x) \) takes on \([a,b]\), then the composition \( g\circ f \) 
+   is continuous on \([a,b]\).
