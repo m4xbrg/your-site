@@ -1,0 +1,182 @@
+---
+id: math-calculus-limits-epsilon-delta-definition
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Epsilon–Delta Definition of Limit
+summary: >
+  The formal quantifier-based definition of a limit. Describes precisely what it
+  means for f(x) to approach L as x approaches a, using epsilon–delta conditions.
+
+order: 13
+tags:
+  - limits
+  - epsilon-delta
+  - analysis
+  - rigor
+
+role: core
+status: draft
+
+kind: definition
+difficulty: moderate
+proofLevel: formal
+
+prerequisites:
+  - math-foundations-logic-quantifiers
+  - math-calculus-limits-informal-idea
+
+relatedConcepts:
+  - math-calculus-limits-epsilon-delta-proofs
+  - math-calculus-limits-limit-laws
+
+learningGoals:
+  - State the epsilon–delta definition of a limit.
+  - Translate informal limit statements into the epsilon–delta structure.
+  - Identify the roles of epsilon, delta, and logical quantifiers.
+---
+
+## Snapshot
+
+The epsilon–delta definition gives a precise mathematical meaning to the idea
+that \( f(x) \) gets arbitrarily close to \( L \) as \( x \) gets sufficiently
+close to \( a \). It expresses the limit entirely via quantifiers, inequalities,
+and neighborhoods.
+
+## Formal Statement
+
+We say:
+
+\[
+\lim_{x\to a} f(x) = L
+\]
+
+**if and only if**:
+
+\[
+\forall \varepsilon > 0,\ \exists \delta > 0\ \text{such that}\ 
+0 < |x - a| < \delta \ \Longrightarrow\ |f(x) - L| < \varepsilon.
+\]
+
+Key structural components:
+
+- \( \varepsilon \) represents an arbitrary tolerance on the **output**.  
+- \( \delta \) represents a corresponding restriction on the **input**.  
+- The implication is conditional: we only consider points near \( a \) but not
+  equal to \( a \).  
+- The quantifier order (∀ then ∃) is essential.  
+- The definition makes no reference to the value of \( f(a) \).
+
+## Intuition & Interpretation
+
+This definition formalizes “\( f(x) \) approaches \( L \) as \( x \) approaches
+\( a \)” via:
+
+- **Output closeness:** \( f(x) \) stays within any arbitrary band of radius
+  \( \varepsilon \) around \( L \).  
+- **Input control:** By restricting \( x \) to be sufficiently close to \( a \),
+  the function becomes confined to that band.
+
+The heart of the definition is **stability**: no matter how tight a tolerance we
+choose around \( L \), we can always find a neighborhood around \( a \) that
+forces \( f(x) \) to stay inside the band.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Constant function**
+   \[
+   f(x)=5.
+   \]
+   For any \( \varepsilon>0 \), choosing any \( \delta>0 \) works, since  
+   \( |f(x)-5|=0<\varepsilon \).
+
+2. **Linear function**
+   To show:
+   \[
+   \lim_{x\to 2} (3x+1) = 7,
+   \]
+   note:
+   \[
+   |(3x+1) - 7| = 3|x-2|.
+   \]
+   Setting \( \delta = \varepsilon/3 \) satisfies the definition.
+
+3. **Quadratic function**  
+   For  
+   \[
+   \lim_{x\to 1} (x^2) = 1,
+   \]
+   rewrite:
+   \[
+   |x^2 - 1| = |x-1||x+1|.
+   \]
+
+### Non-Examples
+
+1. **Jump discontinuity**  
+   One-sided limits disagree → impossible to satisfy epsilon–delta conditions
+   with a single \( L \).
+
+2. **Infinite behavior**  
+   If  
+   \[
+   \lim_{x\to a} f(x) = +\infty,
+   \]
+   no finite \( L \) satisfies the epsilon–delta definition.
+
+3. **Oscillation**
+   For  
+   \[
+   f(x)=\sin(1/x)
+   \]
+   near 0, no neighborhood forces the function into an arbitrarily small band.
+
+## Properties & Relationships
+
+- The epsilon–delta definition is logically equivalent to all standard informal
+  and graphical notions, but adds precision.
+- It supports formal proofs of:
+  - limit laws,  
+  - continuity,  
+  - derivative definition.
+- The definition excludes the point \( x=a \) with \( 0<|x-a|<\delta \).
+- One-sided limits have modified definitions:
+  - \( x>a \) or \( x<a \) constraints replace the symmetric band.
+
+## Common Pitfalls
+
+1. Reversing quantifiers (∃ before ∀).  
+2. Forgetting the condition \( 0 < |x-a| \).  
+3. Believing epsilon–delta defines the limit value (it only *verifies* it).  
+4. Treating \( \delta \) as independent of \( \varepsilon \).  
+5. Assuming the value of the function at the limit point is relevant.
+
+## Exercises
+
+1. **Warm-up translation**  
+   Rewrite the statement  
+   \[
+   \lim_{x\to 3} (4x - 1) = 11
+   \]
+   fully in epsilon–delta form.
+
+2. **Linear delta choice**  
+   Show that for  
+   \[
+   f(x)=2x+5,
+   \]
+   choosing \( \delta = \varepsilon/2 \) satisfies the definition at any point.
+
+3. **Bounded factor technique**  
+   Show that  
+   \[
+   \lim_{x\to1} x^2 = 1
+   \]
+   by bounding \( |x+1| \) when \( |x-1|<1 \).
+
+4. **Mini-proof (Sketch)**  
+   Explain why the definition implies uniqueness: if two numbers satisfy the
+   epsilon–delta condition, they must be equal.
