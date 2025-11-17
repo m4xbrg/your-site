@@ -1,0 +1,149 @@
+---
+id: math-calculus-limits-informal-idea
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Informal Notion of Limit
+summary: >
+  The intuitive idea that f(x) can approach a value L as x approaches a point a,
+  regardless of whether the function equals L at that point or is defined there.
+
+order: 1
+tags:
+  - limits
+  - intuition
+
+role: core
+status: draft
+
+kind: definition
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-foundations-functions-basic
+
+relatedConcepts:
+  - math-calculus-limits-notation
+  - math-calculus-limits-graphical-numerical
+  - math-calculus-limits-one-sided
+
+learningGoals:
+  - Explain the intuitive meaning of "f(x) approaches L as x approaches a".
+  - Distinguish limit behavior from the value of the function at the point.
+  - Recognize that limits describe behavior near a point, not at the point.
+---
+
+## Snapshot
+
+A limit describes how a function behaves as the input gets arbitrarily close to a
+point. The value the function approaches (if any) is the limit. This behavior is
+independent of whether the function is defined at the point or whether it equals
+the limit there.
+
+## Formal Statement
+
+Informally, saying
+
+\[
+\lim_{x\to a} f(x) = L
+\]
+
+means:
+
+- When \( x \) is sufficiently close to \( a \) (but not equal to \( a \)),
+  the values of \( f(x) \) get arbitrarily close to \( L \).
+- The function’s behavior at \( x = a \) does not determine the value of the limit.
+- Only the approach toward \( a \) matters, not the value at \( a \).
+
+This statement does *not* use the full epsilon–delta definition; instead, it
+captures the behavioral idea that motivates the formal definition.
+
+## Intuition & Interpretation
+
+The limit focuses solely on the behavior of \( f(x) \) *near* the point \( a \).
+Even if the function is undefined at \( a \), or takes an unrelated value there,
+the limit can still exist.
+
+Conceptually:
+
+- The limit analyzes a **neighborhood** around \( a \), excluding the point itself.  
+- What happens exactly at \( a \) is irrelevant.  
+- The behavior of \( f(x) \) becomes “stable” as \( x \) approaches \( a \).
+
+This view separates the notion of “approaching a value” from “equal to a value.”
+
+## Examples & Non-Examples
+
+### Examples
+
+1.  
+   \[
+   f(x) = \frac{x^2-1}{x-1}
+   \]
+   simplifies to \( x+1 \) for \( x \neq 1 \). As \( x\to1 \),  
+   \( f(x) \to 2 \) even though \( f(1) \) is undefined.
+
+2.  
+   \( f(x) = |x|/x \) for \( x \neq 0 \).  
+   As \( x\to 0^+ \), \( f(x)=1 \).  
+   As \( x\to 0^- \), \( f(x)=-1 \).  
+   One-sided limits exist (different values), highlighting how limits describe
+   behavior near the point.
+
+3.  
+   \[
+   \lim_{x\to 3} (x^2 + 1) = 10
+   \]
+   is determined entirely by the values of the expression near 3; the actual
+   evaluation at 3 plays no conceptual role for the limit.
+
+### Non-Examples
+
+1. **Jump discontinuity**  
+   A function that abruptly changes values near \( a \) does not approach a single
+   number, so the limit does not exist.
+
+2. **Infinite oscillation**  
+   \( f(x) = \sin(1/x) \) near \( 0 \) never stabilizes, so no limit exists.
+
+3. **Infinite behavior**  
+   \( f(x) = 1/x \) near \( 0 \) does not approach any finite real number.
+
+These illustrate that limits require stable behavior near the point.
+
+## Properties & Relationships
+
+- Limits describe **local behavior**, not pointwise value.
+- The definition sets the stage for:
+  - one-sided limits,
+  - continuity,
+  - infinite limits,
+  - the epsilon–delta definition.
+- If the limit exists and the function is defined at the point and equals that
+  limit, then the function is continuous there.
+
+## Common Pitfalls
+
+1. Believing the function must be defined at the point for the limit to exist.  
+2. Confusing the limit value with the function value at the point.  
+3. Assuming that approaching from both sides always gives the same value.  
+4. Thinking that visual “closeness” is sufficient without stability of behavior.
+
+## Exercises
+
+1. **Conceptual**  
+   Can a function have a limit at \( a \) if it is undefined at \( a \)?
+   Explain with a clear example.
+
+2. **Conceptual**  
+   Give an example of a function where \( \lim_{x\to a} f(x) = L \) but  
+   \( f(a) \neq L \). Explain the difference.
+
+3. **Non-example analysis**  
+   Explain why \( \lim_{x\to 0} \sin(1/x) \) does not exist.
+
+4. **Mini-proof (Sketch)**  
+   Explain why modifying the value of a function at a single point does not
+   change any limit.
