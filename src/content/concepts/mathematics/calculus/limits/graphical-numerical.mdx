@@ -1,0 +1,145 @@
+---
+id: math-calculus-limits-graphical-numerical
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Graphical & Numerical Interpretation of Limits
+summary: >
+  How limits appear in graphs and tables of values, and how to reliably estimate
+  limit behavior from visual or numerical evidence.
+
+order: 2
+tags:
+  - limits
+  - graphs
+  - numerical
+
+role: supporting
+status: draft
+
+kind: object
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-calculus-limits-informal-idea
+  - math-foundations-functions-basic
+
+relatedConcepts:
+  - math-calculus-limits-one-sided
+  - math-calculus-limits-infinite-limits
+  - math-calculus-limits-discontinuities-classification
+
+learningGoals:
+  - Identify limit behavior from graphs and numerical tables.
+  - Distinguish stable approach behavior from visual or numerical noise.
+  - Recognize one-sided, infinite, and discontinuous behavior graphically.
+---
+
+## Snapshot
+
+Graphs and tables provide concrete evidence of how a function behaves near a
+point. Graphical and numerical patterns can reveal whether values of a function
+stabilize near a particular number, whether the behavior differs by side, or
+whether no stable limit exists.
+
+## Formal Statement
+
+When analyzing a limit numerically or graphically, we examine the values of
+\( f(x) \) for inputs \( x \) that are sufficiently close to \( a \), but not
+equal to \( a \). A limit \( L \) is suggested if:
+
+- values of \( f(x) \) approach and stabilize near \( L \),
+- both left-hand and right-hand behavior appears consistent,
+- graphical behavior near the point aligns with numerical evidence.
+
+These interpretations do *not* constitute a proof; they provide evidence that
+must be verified algebraically or using formal definitions when required.
+
+## Intuition & Interpretation
+
+A graph shows the local behavior of a function near a point. If the function's
+values converge toward a horizontal height \( L \) as \( x \) approaches \( a \),
+the graph visually confirms the existence of a limit.
+
+Tables approximate the same idea: they show how values behave as inputs move
+closer to the limit point. Stability of values—not isolated points—indicates the
+existence of a limit.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Stable table values**
+
+| \(x\) | \(f(x)\) |
+|------|----------|
+| 0.9  | 1.89     |
+| 0.99 | 1.9899   |
+| 1.01 | 2.0101   |
+| 1.1  | 2.11     |
+
+Values approach 2 from both sides → graphical and numerical evidence suggest  
+\[
+\lim_{x\to1} f(x) = 2.
+\]
+
+2. **Graph approaching a point despite a hole**  
+A removable discontinuity at \( x = 3 \) still shows the graph approaching a
+single height, indicating the limit exists.
+
+3. **One-sided differences**  
+If left-hand values stabilize near 5 and right-hand values near 7, the graph
+shows no two-sided limit but *does* show one-sided limits.
+
+### Non-Examples
+
+1. **Oscillation**  
+Graph of \( \sin(1/x) \) near 0 shows dense oscillations with no stability →  
+limit does not exist.
+
+2. **Jump discontinuity**  
+A sudden vertical jump between two heights on a graph indicates distinct one-sided
+limits, so two-sided limit fails.
+
+3. **Vertical asymptote behavior**  
+Values diverging to \( +\infty \) or \( -\infty \) indicate an infinite limit, not
+a finite limit.
+
+## Properties & Relationships
+
+- Graphical evidence often supports algebraic simplification steps.
+- Numerical tables are sensitive to rounding; stability is more important than
+specific numerical values.
+- Graphs help distinguish:
+  - removable discontinuities,
+  - jump discontinuities,
+  - infinite discontinuities,
+  - infinite limits,
+  - stable vs. unstable oscillations.
+
+## Common Pitfalls
+
+1. Misreading vertical scale (small differences appear large or vice versa).  
+2. Relying on graph appearance without checking algebraic consistency.  
+3. Assuming limited numerical precision proves a limit exists.  
+4. Using points too far from the limit point.  
+5. Misinterpreting plotting artifacts (e.g., missing points).
+
+## Exercises
+
+1. **Numerical**  
+   A table shows values of a function near \( x = 2 \) approaching  
+   3.0001, 3.00001, 2.99999, 3.00002. What limit does this suggest?
+
+2. **Graphical**  
+   A graph shows a hole at \( x = 4 \) but smooth behavior around it.  
+   Describe whether the limit at 4 likely exists and explain why.
+
+3. **One-sided analysis**  
+   A graph shows the left-hand approach to 5 and the right-hand approach to 8.  
+   Determine whether the limit exists, and describe the situation precisely.
+
+4. **Mini-proof (Sketch)**  
+   Explain why numerical evidence can suggest but not prove the existence of a limit.
