@@ -59,7 +59,7 @@ Let $ f $ be a function and $ a $ a point in its domain or boundary.
 Occurs when:
 
 ```tex
-- $ \lim_{x\to a} f(x) = L $ exists (finite),  
+- $ \lim_{x\to a} f(x) = L $ exists (finite),
 ```
 - but $ f(a) $ is either undefined or not equal to $ L $.
 
@@ -68,11 +68,9 @@ Occurs when:
 
 - both one-sided limits exist as finite real numbers,
 - but they are unequal:
-  $$
 ```tex
 \lim_{x\to a^-} f(x) \neq \lim_{x\to a^+} f(x).
 ```
-$$
 
 ### 3. Essential Discontinuity  
 Occurs when the limit fails for a non-removable reason, including:
@@ -97,46 +95,32 @@ This taxonomy cleanly separates structural issues in the function.
 ### Examples
 
 1. **Removable (hole)**  
-   $$
 ```tex
 f(x)=\frac{x^2-1}{x-1}
-```
-$$
-```tex
-   has a hole at $ x=1 $, since $ \lim_{x\to1}f(x)=2 $ but $ f(1) $ is
+has a hole at $ x=1 $, since $ \lim_{x\to1}f(x)=2 $ but $ f(1) $ is
 ```
    undefined.
 
 2. **Jump**  
-   $$
 ```tex
 f(x)=\begin{cases}
 ```
+2,& x<0,\\
 ```tex
-   2,& x<0,\\
+5,& x\ge0.
+\end{cases}
 ```
-```tex
-   5,& x\ge0.
-```
-```tex
-   \end{cases}
-```
-$$
    One-sided limits are 2 and 5 → jump.
 
 3. **Essential (infinite)**  
-   $$
 ```tex
 \lim_{x\to3}\frac{1}{x-3}=\pm\infty.
 ```
-$$
 
 4. **Essential (oscillation)**  
-   $$
 ```tex
 f(x)=\sin(1/x)
 ```
-$$
    at $ x=0 $.
 
 ### Non-Examples
@@ -172,35 +156,27 @@ $$
 
 1. **Classify**  
    For  
-   $$
 ```tex
 f(x)=\begin{cases}
 ```
-```tex
-   1,& x<1,\\
-```
+1,& x<1,\\
    3,& x>1,
 ```tex
-   \end{cases}
+\end{cases}
 ```
-$$
    identify the discontinuity type at $ x=1 $.
 
 2. **Removable or not?**  
    Classify the discontinuity of  
-   $$
 ```tex
 g(x)=\frac{x^2-9}{x-3}.
 ```
-$$
 
 3. **Infinite behavior**  
    Determine whether the discontinuity at $ x=0 $ of  
-   $$
 ```tex
 f(x)=\frac{1}{x^2}
 ```
-$$
    is removable, jump, or essential.
 
 4. **Mini-proof (Sketch)**  

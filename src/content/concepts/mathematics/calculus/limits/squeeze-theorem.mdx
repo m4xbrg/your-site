@@ -51,27 +51,18 @@ Let $ g, f, h $ be functions defined near $ a $ (except possibly at $ a $).
 Suppose:
 
 1. For all $ x $ sufficiently close to $ a $,
-   $$
 ```tex
 g(x) \le f(x) \le h(x),
 ```
-$$
 2. and  
-   $$
 ```tex
 \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
 ```
-$$
 
 Then the limit of the middle function exists and equals $ L $:
 
-$$
 ```tex
 \lim_{x\to a} f(x) = L.
-```
-$$
-
-```tex
 The theorem also holds for limits at $ +\infty $ or $ -\infty $ with the same
 ```
 conditions.
@@ -91,55 +82,37 @@ dominated by upper and lower bounds with clear limit behavior.
 ### Examples
 
 1. **Classic trigonometric limit**
-   $$
 ```tex
 -1 \le \frac{\sin x}{x} \le 1 \quad\text{for } x\ne0.
 ```
-$$
    Multiply by $ x $ (positive or negative handled carefully):
-   $$
 ```tex
 \cos x \le \frac{\sin x}{x} \le 1,
-```
-$$
-```tex
-   and both side limits approach 1 as $ x\to0 $.  
+and both side limits approach 1 as $ x\to0 $.
 ```
    Therefore:
-   $$
 ```tex
 \lim_{x\to0} \frac{\sin x}{x} = 1.
 ```
-$$
 
 2. **Bounding a small oscillating term**
-   $$
 ```tex
 -x^2 \le x^2\sin(1/x) \le x^2.
+Since both bounds approach 0 at $ x\to0 $,
 ```
-$$
-```tex
-   Since both bounds approach 0 at $ x\to0 $,  
-```
-   $$
 ```tex
 \lim_{x\to0} x^2\sin(1/x) = 0.
 ```
-$$
 
 3. **Rational bounding**
    If
-   $$
 ```tex
 \frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
 ```
-$$
    and both bounding functions approach 1 for large $ x $, then  
-   $$
 ```tex
 \lim_{x\to\infty} f(x) = 1.
 ```
-$$
 
 ### Non-Examples
 
@@ -155,17 +128,15 @@ $$
 ## Properties & Relationships
 
 - The theorem is fundamentally an inequality argument.  
-```tex
+
 - Often used when direct substitution yields $ 0 \cdot (\text{oscillatory}) $
-```
+
   or similar forms.  
 - Connects to limits of sequences and bounding arguments in real analysis.  
 - Squeeze is often paired with absolute-value bounds:
-  $$
 ```tex
 |f(x)| \le g(x),\ \lim g(x)=0 \Rightarrow \lim f(x)=0.
 ```
-$$
 
 ## Common Pitfalls
 
@@ -178,29 +149,21 @@ $$
 
 1. **Compute using Squeeze**
    Prove that:
-   $$
 ```tex
 \lim_{x\to0} x\sin(1/x) = 0.
 ```
-$$
 
 2. **Oscillation control**
 ```tex
-   Show that if $ |f(x)|\le x^4 $, then  
-```
-   $$
-```tex
+Show that if $ |f(x)|\le x^4 $, then
 \lim_{x\to0} f(x) = 0.
 ```
-$$
 
 3. **Large-x behavior**
    Use Squeeze to evaluate:
-   $$
 ```tex
 \lim_{x\to\infty} x\sin(1/x).
 ```
-$$
 
 4. **Mini-proof (Sketch)**
    Explain why the two bounding functions must converge to the *same* value for

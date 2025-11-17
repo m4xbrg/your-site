@@ -50,24 +50,20 @@ the missing or mismatched point.
 A function $ f $ has a **removable discontinuity at $ a $** if:
 
 1. The limit exists:
-   $$
 ```tex
 \lim_{x\to a} f(x) = L,
 ```
-$$
 2. but either:
    - $ f(a) $ is undefined, or  
 ```tex
-   - $ f(a) \neq L $.
+- $ f(a) \neq L $.
 ```
 
 In both cases, redefining the function at the point:
 
-$$
 ```tex
 f(a) \coloneqq L
 ```
-$$
 
 restores continuity.
 
@@ -85,25 +81,21 @@ behavior.
 ### Examples
 
 1. **Algebraic cancellation**
-   $$
 ```tex
 f(x)=\frac{x^2-1}{x-1} = x+1 \quad (x\ne1).
 ```
-$$
    The limit at 1 is 2, but the function is undefined at 1 → removable.
 
 2. **Defined incorrectly at the point**
    $$
 g(x)=
 ```tex
-   \begin{cases}
-```
-```tex
-   x^2,& x\ne 2,\\
+\begin{cases}
+x^2,& x\ne 2,\\
 ```
    100,& x=2.
 ```tex
-   \end{cases}
+\end{cases}
 ```
 $$
    The limit at 2 is 4, but $ g(2)=100 $.
@@ -140,26 +132,20 @@ $$
 
 1. **Classification**
    Classify the discontinuity of:
-   $$
 ```tex
 f(x)=\frac{x^2-9}{x-3}.
 ```
-$$
 
 2. **Repairing continuity**
    For the function:
-   $$
 ```tex
 h(x)=\begin{cases}
-```
-```tex
-   x+3,& x\ne -3,\\
+x+3,& x\ne -3,\\
 ```
    0,& x=-3,
 ```tex
-   \end{cases}
+\end{cases}
 ```
-$$
    determine what value should replace $ h(-3) $ to make the function continuous.
 
 3. **Conceptual**
@@ -167,6 +153,6 @@ $$
 
 4. **Mini-proof (Sketch)**
 ```tex
-   Prove that if $ \lim_{x\to a} f(x) = L $ and $ f(a) = L $, then the
+Prove that if $ \lim_{x\to a} f(x) = L $ and $ f(a) = L $, then the
 ```
    discontinuity at $ a $ is removed.

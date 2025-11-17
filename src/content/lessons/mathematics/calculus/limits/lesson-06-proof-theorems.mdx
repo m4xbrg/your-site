@@ -49,29 +49,23 @@ continuity-interval → ivt
 ## 3.1 Epsilon–delta proof structure
 
 To prove  
-$$
 ```tex
 \lim_{x\to a} f(x) = L,
 ```
-$$
 we must produce a δ for an arbitrary ε:
 
 1. Start with  
-   $$
 ```tex
 |f(x)-L| < \varepsilon.
 ```
-$$
 
 2. Express the left side in terms of $ |x-a| $.  
 3. Bound auxiliary expressions (e.g., $ |x+1| $).  
 4. Solve for δ in terms of ε.  
 5. Verify:  
-   $$
 ```tex
 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.
 ```
-$$
 
 This “backwards planning” is universal.
 
@@ -80,23 +74,17 @@ This “backwards planning” is universal.
 ## 3.2 Squeeze Theorem
 
 If  
-$$
 ```tex
 g(x) \le f(x) \le h(x)
 ```
-$$
 near $ a $, and  
-$$
 ```tex
 \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L,
 ```
-$$
 then  
-$$
 ```tex
 \lim_{x\to a} f(x) = L.
 ```
-$$
 
 Used when direct computation is impossible but bounding behavior is known.
 
@@ -106,7 +94,7 @@ Used when direct computation is impossible but bounding behavior is known.
 
 If $ f $ is continuous on $ [a,b] $ and $ N $ lies between $ f(a) $ and $ f(b) $, then  
 ```tex
-there exists $ c \in (a,b) $ with  
+there exists $ c \in (a,b) $ with
 ```
 $$
 f(c)=N.
@@ -126,19 +114,15 @@ Applications:
 ### Example 1 — ε–δ proof (linear function)
 
 Prove:
-$$
 ```tex
 \lim_{x\to 1} (5x-3)=2.
 ```
-$$
 
 Compute:
 $$
 |(5x-3) - 2| = 5|x-1|.
-$$
-
 ```tex
-Choose $ \delta = \varepsilon/5 $.  
+Choose $ \delta = \varepsilon/5 $.
 ```
 Verification is immediate.
 
@@ -151,15 +135,12 @@ $$
 ```tex
 \lim_{x\to2} x^2 = 4.
 ```
-$$
 
 Rewrite:
 $$
 |x^2-4| = |x-2||x+2|.
-$$
-
 ```tex
-If $ |x-2|<1 $, then $ x \in (1,3) $ so $ |x+2|<5 $.  
+If $ |x-2|<1 $, then $ x \in (1,3) $ so $ |x+2|<5 $.
 ```
 Thus:
 $$
@@ -171,25 +152,20 @@ $$
 ```tex
 \delta = \min\{1, \varepsilon/5\}.
 ```
-$$
 
 ---
 
 ### Example 3 — Squeeze Theorem
 
 Evaluate:
-$$
 ```tex
 \lim_{x\to0} x \sin(1/x).
 ```
-$$
 
 Bound:
-$$
 ```tex
 -|x| \le x\sin(1/x) \le |x|.
 ```
-$$
 
 Both bounds → 0.  
 Thus limit = 0.
@@ -205,11 +181,9 @@ $$
 has a solution in (1,2).
 
 Compute:
-$$
 ```tex
 f(1)=-1,\quad f(2)=5.
 ```
-$$
 
 0 lies between −1 and 5 → IVT guarantees a root.
 
@@ -239,29 +213,23 @@ $$
 ### Tier A — foundational
 
 1. Complete the ε–δ proof for  
-   $$
 ```tex
 \lim_{x\to3} (2x+1)=7.
 ```
-$$
 
 2. Use Squeeze to show  
-   $$
 ```tex
 \lim_{x\to0} |x|\cos(1/x)=0.
 ```
-$$
 
 ---
 
 ### Tier B — mixed
 
 3. Prove  
-   $$
 ```tex
 \lim_{x\to1} x^3 = 1
 ```
-$$
    by bounding $ |x^2 + x + 1| $.
 
 4. Use IVT to explain why the equation  
@@ -275,13 +243,9 @@ $$
 ### Tier C — challenge
 
 5. For  
-   $$
 ```tex
 f(x)=x^2\sin(1/x),
-```
-$$
-```tex
-   show the limit at 0 is 0 by bounding $ |\sin(1/x)| \le 1 $ and using
+show the limit at 0 is 0 by bounding $ |\sin(1/x)| \le 1 $ and using
 ```
    polynomial dominance.
 

@@ -51,23 +51,19 @@ A function $ f $ is **continuous at $ a $** if:
 
 1. $ f(a) $ is defined,  
 ```tex
-2. $ \lim_{x\to a} f(x) $ exists, and  
+2. $ \lim_{x\to a} f(x) $ exists, and
 ```
 3. these quantities are equal:
 
-$$
 ```tex
 \lim_{x\to a} f(x) = f(a).
 ```
-$$
 
 Equivalently, using one-sided limits:
 
-$$
 ```tex
 \lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
 ```
-$$
 
 Continuity at the point requires both agreement of directional behavior and
 agreement with the value at the point.
@@ -92,18 +88,14 @@ This distinguishes:
 
 1. **Polynomial continuity**  
    $ f(x)=x^2+1 $ is continuous everywhere, and  
-   $$
 ```tex
 \lim_{x\to3} f(x)=f(3)=10.
 ```
-$$
 
 2. **Removable discontinuity corrected**  
-   $$
 ```tex
 g(x)=\frac{x^2-1}{x-1}
 ```
-$$
    has a hole at $ x=1 $.  
    Redefining $ g(1)=2 $ creates continuity.
 
@@ -116,11 +108,9 @@ $$
    Left and right limits differ → not continuous.
 
 2. **Infinite discontinuity**  
-   $$
 ```tex
 \lim_{x\to1} \frac{1}{x-1}=\pm\infty
 ```
-$$
    → limit does not exist as a real number → not continuous.
 
 3. **Function undefined at the point**  
@@ -146,18 +136,14 @@ $$
 
 1. **Compute + evaluate**  
    For  
-   $$
 ```tex
 f(x)=\begin{cases}
-```
-```tex
-   \frac{x^2-4}{x-2}, & x\neq2,\\
+\frac{x^2-4}{x-2}, & x\neq2,\\
 ```
    5, & x=2,
 ```tex
-   \end{cases}
+\end{cases}
 ```
-$$
    determine whether $ f $ is continuous at $ x=2 $.
 
 2. **One-sided check**  

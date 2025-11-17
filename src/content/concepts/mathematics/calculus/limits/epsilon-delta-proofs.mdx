@@ -43,11 +43,9 @@ Basic epsilon–delta proofs demonstrate how to use the formal definition of a
 limit to verify statements for simple functions. The core technique is to derive
 a bound of the form:
 
-$$
-```tex
+
 |f(x) - L| \le C |x - a|,
-```
-$$
+
 
 ```tex
 and then choose $ \delta = \varepsilon / C $ (or any suitable expression).
@@ -58,17 +56,13 @@ This establishes the ε–δ relationship required by the definition.
 
 To prove a limit using the epsilon–delta definition, we must show:
 
-$$
 ```tex
 \forall \varepsilon > 0,\ \exists \delta > 0
+\ \text{such that}\
 ```
-```tex
-\ \text{such that}\ 
-```
-```tex
+
 0 < |x-a| < \delta \ \Longrightarrow\ |f(x) - L| < \varepsilon.
-```
-$$
+
 
 For linear functions $ f(x)=mx+b $, the proof reduces to:
 
@@ -78,11 +72,9 @@ $$
 
 Thus choosing:
 
-$$
 ```tex
 \delta = \varepsilon / |m|
 ```
-$$
 
 satisfies the definition.
 
@@ -96,7 +88,7 @@ Epsilon–delta proofs follow a consistent structure:
 
 1. **Start with the target inequality:**  
 ```tex
-   Make $ |f(x)-L| < \varepsilon $ resemble something involving $ |x-a| $.
+Make $ |f(x)-L| < \varepsilon $ resemble something involving $ |x-a| $.
 ```
 
 2. **Factor or simplify the expression:**  
@@ -104,12 +96,12 @@ Epsilon–delta proofs follow a consistent structure:
 
 3. **Select a delta bound:**  
 ```tex
-   Solve the inequality $ C|x-a| < \varepsilon $ for $ |x-a| $.
+Solve the inequality $ C|x-a| < \varepsilon $ for $ |x-a| $.
 ```
 
 4. **Verify the implication:**  
 ```tex
-   Confirm that $ |x-a|<\delta $ gives the desired bound.
+Confirm that $ |x-a|<\delta $ gives the desired bound.
 ```
 
 This provides a template usable for many elementary limits.
@@ -120,54 +112,43 @@ This provides a template usable for many elementary limits.
 
 1. **Linear function**
    Prove:
-   $$
 ```tex
 \lim_{x\to2} (3x+1) = 7.
 ```
-$$
 
    Compute:
    $$
 |(3x+1)-7| = |3||x-2|.
 $$
    Choose:
-   $$
 ```tex
 \delta = \varepsilon / 3.
 ```
-$$
 
 2. **Constant function**
    For $ f(x)=5 $:
-   $$
 ```tex
 |f(x)-5|=0<\varepsilon.
-```
-$$
-```tex
-   Any $ \delta>0 $ works.
+Any $ \delta>0 $ works.
 ```
 
 3. **Quadratic using bounding**
    To show:
-   $$
 ```tex
 \lim_{x\to1} x^2 = 1,
 ```
-$$
    rewrite:
    $$
 |x^2-1| = |x-1||x+1|.
-$$
 ```tex
-   If we restrict $ |x-1|<1 $, then $ x\in(0,2) $, so $ |x+1|<3 $.  
+If we restrict $ |x-1|<1 $, then $ x\in(0,2) $, so $ |x+1|<3 $.
 ```
    Thus:
    $$
 |x^2-1| < 3|x-1|.
 $$
 ```tex
-   Choose $ \delta = \min\{1, \varepsilon/3\} $.
+Choose $ \delta = \min\{1, \varepsilon/3\} $.
 ```
 
 ### Non-Examples
@@ -177,12 +158,12 @@ $$
 
 2. **Oscillatory functions at certain points**  
 ```tex
-   Functions like $ \sin(1/x) $ near 0 cannot be handled with a single delta.
+Functions like $ \sin(1/x) $ near 0 cannot be handled with a single delta.
 ```
 
 3. **Using circular reasoning**  
 ```tex
-   Starting from the inequality $ |x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon $
+Starting from the inequality $ |x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon $
 ```
    without deriving delta is invalid.
 
@@ -196,11 +177,11 @@ $$
 ## Common Pitfalls
 
 ```tex
-1. Choosing $ \delta $ before deriving the relationship.  
+1. Choosing $ \delta $ before deriving the relationship.
 ```
 2. Using inequalities that include the value $ x=a $ incorrectly.  
 ```tex
-3. Forgetting to include the condition $ 0<|x-a|<\delta $.  
+3. Forgetting to include the condition $ 0<|x-a|<\delta $.
 ```
 4. Failing to bound auxiliary expressions before delta selection.
 
@@ -212,25 +193,18 @@ $$
 ```tex
 \lim_{x\to -1} (4x-2) = -6.
 ```
-$$
 
 2. **Quadratic with bounding**
    Prove:
-   $$
 ```tex
 \lim_{x\to 2} (x^2) = 4.
 ```
-$$
 
 3. **Delta derivation**
    Suppose:
-   $$
 ```tex
 |f(x)-L| \le 7|x-a|.
-```
-$$
-```tex
-   What $ \delta $ works for a given $ \varepsilon $?
+What $ \delta $ works for a given $ \varepsilon $?
 ```
 
 4. **Mini-proof (Sketch)**

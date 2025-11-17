@@ -53,61 +53,43 @@ Let $ \lim_{x \to a} f(x) = L $ and $ \lim_{x \to a} g(x) = M $, and assume all
 limits below exist (and, when required, are finite). Then:
 
 1. **Sum Law**  
-   $$
 ```tex
 \lim_{x\to a} \big(f(x) + g(x)\big) = L + M.
 ```
-$$
 
 2. **Difference Law**  
-   $$
-```tex
+   
 \lim_{x\to a} \big(f(x) - g(x)\big) = L - M.
-```
-$$
+
 
 3. **Constant Multiple Law**  
    For any constant $ c $,  
-   $$
 ```tex
 \lim_{x\to a} (c\,f(x)) = cL.
 ```
-$$
 
 4. **Product Law**  
-   $$
 ```tex
 \lim_{x\to a} \big(f(x)g(x)\big) = LM.
 ```
-$$
 
 5. **Quotient Law**  
 ```tex
-   If $ M \neq 0 $,  
-```
-   $$
-```tex
+If $ M \neq 0 $,
 \lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L}{M}.
 ```
-$$
 
 6. **Power Law**  
    For any positive integer $ n $,  
-   $$
 ```tex
 \lim_{x\to a} \big(f(x)\big)^n = L^n.
 ```
-$$
 
 7. **Root Law**  
 ```tex
-   If $ n $ is even, assume $ f(x) \ge 0 $ near $ a $; then  
-```
-   $$
-```tex
+If $ n $ is even, assume $ f(x) \ge 0 $ near $ a $; then
 \lim_{x\to a} \sqrt[n]{f(x)} = \sqrt[n]{L}.
 ```
-$$
 
 These rules may require additional conditions when $ f(x) $ or $ g(x) $
 approach infinite or undefined values. The statements above concern the finite,
@@ -136,13 +118,9 @@ division by zero).
 
 3.  
 ```tex
-   If $ \lim_{x\to 0} f(x) = 2 $ and $ \lim_{x\to 0} g(x) = -3 $, then  
-```
-   $$
-```tex
+If $ \lim_{x\to 0} f(x) = 2 $ and $ \lim_{x\to 0} g(x) = -3 $, then
 \lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}.
 ```
-$$
 
 4.  
    $ \lim_{x\to 1} (x+1)^3 = (\lim_{x\to 1}(x+1))^3 = 2^3 = 8. $
@@ -151,10 +129,8 @@ $$
 
 1. **Division Law misuse:**  
 ```tex
-   If $ \lim_{x\to a} g(x) = 0 $, the quotient law *does not apply*.  
-```
-```tex
-   Example: $ \lim_{x\to 0} \frac{1}{x} $ is not finite.
+If $ \lim_{x\to a} g(x) = 0 $, the quotient law *does not apply*.
+Example: $ \lim_{x\to 0} \frac{1}{x} $ is not finite.
 ```
 
 2. **Undefined expressions:**  
@@ -191,27 +167,23 @@ $$
 ## Exercises
 
 1. **Compute**  
-```tex
+
    Evaluate $ \lim_{x\to 3} (5x^2 - 4x + 1) $.
-```
+
 
 2. **Compute**  
 ```tex
-   Given $ \lim_{x\to a} f(x) = 7 $ and $ \lim_{x\to a} g(x) = -2 $, compute  
+Given $ \lim_{x\to a} f(x) = 7 $ and $ \lim_{x\to a} g(x) = -2 $, compute
 ```
-   $$
-```tex
+   
 \lim_{x\to a} (3f(x) - 5g(x)).
-```
-$$
+
 
 3. **Investigate a failure mode**  
    Explain why the quotient law cannot be applied directly to  
-   $$
-```tex
+   
 \lim_{x\to 2} \frac{x^2 - 4}{x - 2}.
-```
-$$
+
 
 4. **Conceptual**  
    Describe a situation in which the product law does *not* apply even though
@@ -224,17 +196,11 @@ $$
 
 A proof for each algebraic law follows from the epsilon–delta definition.
 ```tex
-As a sketch, for the **sum law**, assume $ \lim f = L $ and $ \lim g = M $.  
-```
-```tex
+As a sketch, for the **sum law**, assume $ \lim f = L $ and $ \lim g = M $.
 Given $ \varepsilon > 0 $, choose
 ```
-$$
 ```tex
 \delta = \min(\delta_f, \delta_g),
-```
-$$
-```tex
 where $ \delta_f $ and $ \delta_g $ bound the deviations
 ```
 $ |f(x)-L| < \varepsilon/2 $ and $ |g(x)-M| < \varepsilon/2 $.  

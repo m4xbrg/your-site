@@ -43,7 +43,7 @@ const description = totalMatches
       <ul class="list-disc ms-5 space-y-2">
         {courses.map((course) => (
           <li>
-            <a class="underline" href={`/courses/${course.slug}/`}>
+            <a class="underline" href={`/courses/${course.data?.id ?? course.slug}/`}
               {course.data?.code ? `${course.data.code} — ` : ''}{course.data?.title ?? course.title}
             </a>
             {course.data?.description && (

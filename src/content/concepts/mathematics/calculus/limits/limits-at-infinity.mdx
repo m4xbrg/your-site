@@ -49,36 +49,28 @@ than local behavior near a finite point.
 
 We write:
 
-$$
 ```tex
 \lim_{x\to +\infty} f(x) = L
 ```
-$$
 
 to mean that as $ x $ becomes arbitrarily large, the values of $ f(x) $
 become arbitrarily close to $ L $.
 
 Similarly:
 
-$$
 ```tex
 \lim_{x\to -\infty} f(x) = L
 ```
-$$
 
 describes behavior as $ x $ becomes arbitrarily large in magnitude but
 negative.
 
 A **horizontal asymptote** is defined by:
 
-$$
 ```tex
 y = L \quad\text{if}\quad
-```
-```tex
 \lim_{x\to\pm\infty} f(x) = L.
 ```
-$$
 
 Dominant-term reasoning is commonly used for rational functions:
 
@@ -100,41 +92,31 @@ settles as $ x $ grows beyond any finite bound.
 ### Examples
 
 1. **Matching degrees**  
-$$
-```tex
+
 \lim_{x\to\infty} \frac{3x^2 - x}{6x^2 + 1} = \frac{3}{6} = \frac{1}{2}.
-```
-$$
+
 
 2. **Degree of denominator larger**  
-$$
 ```tex
 \lim_{x\to\infty} \frac{x}{x^2 + 1} = 0.
 ```
-$$
 
 3. **Degree of numerator larger**  
-$$
-```tex
+
 \lim_{x\to -\infty} \frac{x^3 + 1}{2x^2 - 5} = -\infty.
-```
-$$
+
 
 4. **Exponential dominates polynomial**  
-$$
 ```tex
 \lim_{x\to\infty} \frac{x^2}{e^x} = 0.
 ```
-$$
 
 ### Non-Examples
 
 1. **Oscillatory functions with no stabilization**  
-$$
 ```tex
 \lim_{x\to\infty} \sin(x)
 ```
-$$
 does not exist.
 
 2. **Infinite limit at finite point**  
@@ -156,35 +138,29 @@ If long-range values keep alternating without convergence, no horizontal asympto
 1. Assuming horizontal asymptotes restrict the function from crossing them.  
 2. Applying finite-point limit rules directly without checking dominance.  
 ```tex
-3. Forgetting to consider sign for $ x\to -\infty $.  
+3. Forgetting to consider sign for $ x\to -\infty $.
 ```
 4. Misidentifying rational-function degrees.
 
 ## Exercises
 
 1. **Compute**  
-   $$
-```tex
+   
 \lim_{x\to\infty} \frac{5x^3 - x}{10x^3 + 2}.
-```
-$$
+
 
 2. **Dominant-term check**  
    Determine  
-   $$
 ```tex
 \lim_{x\to-\infty} \frac{7x^2}{3x^3 -1}.
 ```
-$$
 
 3. **Conceptual**  
    Explain why a rational function with denominator degree one higher always has a horizontal asymptote at 0.
 
 4. **Mini-proof (Sketch)**  
    Prove that if  
-   $$
 ```tex
 \lim_{x\to\infty} f(x) = L,
 ```
-$$
    then $ y=L $ is a horizontal asymptote.

@@ -49,54 +49,39 @@ of discontinuity that cannot be removed by redefining the function at the point.
 
 We write
 
-$$
 ```tex
 \lim_{x\to a} f(x) = +\infty
-```
-$$
-
-```tex
 to mean that for all sufficiently close values of $ x \neq a $, the values
 ```
 $ f(x) $ become arbitrarily large and positive. Similarly,
 
-$$
 ```tex
 \lim_{x\to a} f(x) = -\infty
 ```
-$$
 
 means $ f(x) $ becomes arbitrarily large in magnitude but negative.
 
 Most infinite limits are intrinsically **one-sided**, written as:
 
-$$
 ```tex
 \lim_{x\to a^-} f(x) = +\infty,
-```
-```tex
 \qquad
 ```
 ```tex
 \lim_{x\to a^+} f(x) = -\infty.
 ```
-$$
 
 These expressions describe divergent behavior near a finite input value.
 
 A point $ x = a $ is a **vertical asymptote** of $ f(x) $ if at least one of:
 
-$$
 ```tex
 \lim_{x\to a^-} f(x) = \pm\infty
-```
-```tex
 \qquad\text{or}\qquad
 ```
 ```tex
 \lim_{x\to a^+} f(x) = \pm\infty
 ```
-$$
 
 holds.
 
@@ -117,67 +102,49 @@ These limits characterize **essential** rather than removable discontinuities.
 ### Examples
 
 1. **Simple rational blow-up**
-$$
 ```tex
-\lim_{x\to1} \frac{1}{x-1} = 
-```
-```tex
+\lim_{x\to1} \frac{1}{x-1} =
 \begin{cases}
 ```
 ```tex
 -\infty,& x\to1^-,\\[4pt]
-```
-```tex
 +\infty,& x\to1^+.
 ```
 ```tex
 \end{cases}
 ```
-$$
 
 2. **Squared denominator**
-$$
 ```tex
 \lim_{x\to0} \frac{1}{x^2} = +\infty.
 ```
-$$
 
 3. **Polynomial reciprocal**
-$$
 ```tex
 \lim_{x\to2^-} \frac{1}{(x-2)^3} = -\infty,
-```
-```tex
 \qquad
 ```
 ```tex
 \lim_{x\to2^+} \frac{1}{(x-2)^3} = +\infty.
 ```
-$$
 
 4. **Vertical asymptote from a logarithm**
-$$
 ```tex
 \lim_{x\to0^+} \ln(x) = -\infty.
 ```
-$$
 
 ### Non-Examples
 
 1. **Oscillation near the point**
-$$
 ```tex
 \lim_{x\to0} \sin(1/x)
 ```
-$$
 does not have an infinite limit; the function never stabilizes.
 
 2. **Removable discontinuity**
-$$
 ```tex
 \frac{x^2-4}{x-2}
 ```
-$$
 has a hole at $ x=2 $, but the limit is finite (3), so not an infinite limit.
 
 3. **Undefined value with no blow-up**  
@@ -204,27 +171,21 @@ A function can be undefined at a point but still have a finite limit.
 ## Exercises
 
 1. **Compute**
-   $$
 ```tex
 \lim_{x\to3^+} \frac{1}{x-3}.
 ```
-$$
 
 2. **Left vs right**
    Determine the left-hand and right-hand limits for  
-   $$
 ```tex
 f(x)=\frac{2}{(x+1)^2}.
 ```
-$$
 
 3. **Sign analysis**
    Evaluate  
-   $$
 ```tex
 \lim_{x\to -2^-} \frac{1}{(x+2)}.
 ```
-$$
 
 4. **Conceptual**
    Explain why every infinite limit corresponds to a vertical asymptote, but not

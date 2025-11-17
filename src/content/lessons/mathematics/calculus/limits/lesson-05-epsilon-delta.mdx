@@ -21,9 +21,9 @@ subsequent limit proofs, continuity arguments, and derivative definitions.
 
 Objectives:
 
-```tex
+
 - Understand the roles of $ \varepsilon $ and $ \delta $.  
-```
+
 - Translate informal limit statements into ε–δ form.  
 - Interpret the quantifier structure precisely.  
 - Recognize how the definition encodes approach behavior.  
@@ -47,33 +47,27 @@ logic-quantifiers → epsilon-delta-definition
 
 We say:
 
-$$
 ```tex
 \lim_{x\to a} f(x) = L
 ```
-$$
 
 if:
 
-$$
 ```tex
-\forall \varepsilon > 0,\ \exists \delta > 0 : 
+\forall \varepsilon > 0,\ \exists \delta > 0 :
 ```
-```tex
+
 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon.
-```
-$$
+
 
 ### Components
 
 ```tex
-- $ \varepsilon $: desired output accuracy.  
+- $ \varepsilon $: desired output accuracy.
+- $ \delta $: corresponding input restriction ensuring that accuracy.
 ```
 ```tex
-- $ \delta $: corresponding input restriction ensuring that accuracy.  
-```
-```tex
-- $ 0<|x-a|<\delta $: focus on nearby values excluding the point.  
+- $ 0<|x-a|<\delta $: focus on nearby values excluding the point.
 ```
 - Quantifier order: **∀ ε**, then **∃ δ**.
 
@@ -92,16 +86,16 @@ $$
 
 - Two-sided limit uses symmetric bands around $ a $.  
 - One-sided limits modify the domain restriction:
-```tex
-  - For $ x \to a^- $: replace condition with $ a - \delta < x < a $.  
-```
-```tex
-  - For $ x \to a^+ $: replace with $ a < x < a + \delta $.  
-```
 
-```tex
+- For $ x \to a^- $: replace condition with $ a - \delta < x < a $.  
+
+
+- For $ x \to a^+ $: replace with $ a < x < a + \delta $.  
+
+
+
 - Limits at infinity use $ x > N $ or $ x < -N $ instead of $ |x-a|<\delta $.
-```
+
 
 ---
 
@@ -110,22 +104,18 @@ $$
 ### Example 1 — Simple translation to ε–δ form
 
 Statement:
-$$
-```tex
+
 \lim_{x\to 3} (4x - 1) = 11.
-```
-$$
+
 
 Rewrite:
 - Given ε > 0, choose δ = ε/4.  
-```tex
+
 - If $ 0<|x-3|<\delta $, then:
-```
-  $$
-```tex
+
+  
 |(4x-1) - 11| = 4|x-3| < 4\delta = \varepsilon.
-```
-$$
+
 
 ---
 
@@ -133,9 +123,8 @@ $$
 
 $$
 f(x)=5.
-$$
 ```tex
-Then $ |f(x)-5| = 0 < \varepsilon $.  
+Then $ |f(x)-5| = 0 < \varepsilon $.
 ```
 Any δ > 0 works.
 
@@ -148,7 +137,6 @@ $$
 ```tex
 \lim_{x\to1} x^2 = 1.
 ```
-$$
 
 We rewrite:
 $$
@@ -162,11 +150,9 @@ $$
 $$
 
 Pick:
-$$
 ```tex
 \delta = \min\left\{ 1,\ \frac{\varepsilon}{3} \right\}.
 ```
-$$
 
 ---
 
@@ -177,18 +163,12 @@ $$
 f(x)=
 ```tex
 \begin{cases}
-```
-```tex
 x^2,&x\ne 1,\\
 ```
 1000,&x=1,
 ```tex
 \end{cases}
-```
-$$
-
-```tex
-the ε–δ definition concerns only inputs satisfying $ 0<|x-1|<\delta $.  
+the ε–δ definition concerns only inputs satisfying $ 0<|x-1|<\delta $.
 ```
 The value at the point plays no role.
 
@@ -202,7 +182,6 @@ The value at the point plays no role.
 ```tex
 |f(x)-L|<\varepsilon.
 ```
-$$
 - The definition encodes directional stability: limits are unique and cannot oscillate.  
 - The value of the function at the limit point is never included; continuity is a later condition.
 
@@ -219,11 +198,9 @@ $$
 ### Tier A — foundational
 
 1. State the ε–δ definition for  
-   $$
-```tex
+   
 \lim_{x\to 4} (7x - 2) = 26.
-```
-$$
+
 
 2. Identify ε and δ roles in the definition.
 
@@ -232,11 +209,9 @@ $$
 ### Tier B — mixed
 
 3. Rewrite the limit  
-   $$
 ```tex
 \lim_{x\to -2} (5x+3)= -7
 ```
-$$
    in ε–δ form.
 
 4. Explain why the ε–δ definition does not require evaluating f(a).
@@ -246,30 +221,22 @@ $$
 ### Tier C — challenge
 
 5. For  
-   $$
 ```tex
 \lim_{x\to1} x^2 = 1
 ```
-$$
    complete the bounding step that yields a δ of the form  
-   $$
 ```tex
 \delta = \min\{1,\varepsilon/3\}.
 ```
-$$
 
 6. Show that if  
-   $$
 ```tex
 \lim_{x\to a} f(x) = L_1
+\quad\text{and}\quad
 ```
 ```tex
-   \quad\text{and}\quad
+\lim_{x\to a} f(x) = L_2,
 ```
-```tex
-   \lim_{x\to a} f(x) = L_2,
-```
-$$
    then  
    $$
 L_1 = L_2.
