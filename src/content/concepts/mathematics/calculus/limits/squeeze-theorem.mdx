@@ -1,0 +1,168 @@
+---
+id: math-calculus-limits-squeeze-theorem
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Squeeze Theorem for Limits
+summary: >
+  A theorem stating that if a function is bounded above and below by two
+  functions that have the same limit at a point, then the middle function must
+  share that limit.
+
+order: 15
+tags:
+  - limits
+  - squeeze-theorem
+  - inequalities
+
+role: core
+status: draft
+
+kind: theorem
+difficulty: moderate
+proofLevel: formal
+
+prerequisites:
+  - math-calculus-limits-limit-laws
+  - math-calculus-limits-informal-idea
+
+relatedConcepts:
+  - math-calculus-limits-computation-strategies
+  - math-calculus-limits-epsilon-delta-definition
+
+learningGoals:
+  - State the Squeeze Theorem formally and apply it correctly.
+  - Recognize limit problems that require inequality-based reasoning.
+  - Understand how bounding functions determine limit behavior.
+---
+
+## Snapshot
+
+The Squeeze Theorem allows the evaluation of limits when a function is trapped
+between two simpler functions whose limits are known and equal. It is especially
+useful when direct algebraic manipulation fails, but the function’s behavior is
+nevertheless constrained.
+
+## Formal Statement
+
+Let \( g, f, h \) be functions defined near \( a \) (except possibly at \( a \)).
+Suppose:
+
+1. For all \( x \) sufficiently close to \( a \),
+   \[
+   g(x) \le f(x) \le h(x),
+   \]
+2. and  
+   \[
+   \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
+   \]
+
+Then the limit of the middle function exists and equals \( L \):
+
+\[
+\lim_{x\to a} f(x) = L.
+\]
+
+The theorem also holds for limits at \( +\infty \) or \( -\infty \) with the same
+conditions.
+
+## Intuition & Interpretation
+
+If a function \( f(x) \) is always sandwiched between two functions that both
+approach the same limit \( L \), then \( f(x) \) cannot escape approaching \( L \)
+itself. The bounding functions constrain its behavior, so the only possible
+limit is \( L \).
+
+The theorem applies when the function is difficult to analyze directly but is
+dominated by upper and lower bounds with clear limit behavior.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Classic trigonometric limit**
+   \[
+   -1 \le \frac{\sin x}{x} \le 1 \quad\text{for } x\ne0.
+   \]
+   Multiply by \( x \) (positive or negative handled carefully):
+   \[
+   \cos x \le \frac{\sin x}{x} \le 1,
+   \]
+   and both side limits approach 1 as \( x\to0 \).  
+   Therefore:
+   \[
+   \lim_{x\to0} \frac{\sin x}{x} = 1.
+   \]
+
+2. **Bounding a small oscillating term**
+   \[
+   -x^2 \le x^2\sin(1/x) \le x^2.
+   \]
+   Since both bounds approach 0 at \( x\to0 \),  
+   \[
+   \lim_{x\to0} x^2\sin(1/x) = 0.
+   \]
+
+3. **Rational bounding**
+   If
+   \[
+   \frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
+   \]
+   and both bounding functions approach 1 for large \( x \), then  
+   \[
+   \lim_{x\to\infty} f(x) = 1.
+   \]
+
+### Non-Examples
+
+1. **Bounds do not converge to the same limit**  
+   If the bounding functions approach different limits, Squeeze cannot be used.
+
+2. **No actual inequality constraint**  
+   If bounds do not hold for all sufficiently close points, theorem does not apply.
+
+3. **One side missing or reversed**  
+   Incorrect or non-monotonic inequalities invalidate the structure.
+
+## Properties & Relationships
+
+- The theorem is fundamentally an inequality argument.  
+- Often used when direct substitution yields \( 0 \cdot (\text{oscillatory}) \)
+  or similar forms.  
+- Connects to limits of sequences and bounding arguments in real analysis.  
+- Squeeze is often paired with absolute-value bounds:
+  \[
+  |f(x)| \le g(x),\ \lim g(x)=0 \Rightarrow \lim f(x)=0.
+  \]
+
+## Common Pitfalls
+
+1. Attempting to use the theorem without verifying both bounding conditions.  
+2. Using bounding functions that converge to different limits.  
+3. Overlooking sign changes that invalidate inequalities.  
+4. Assuming Squeeze applies to infinite limits without checking bounds.
+
+## Exercises
+
+1. **Compute using Squeeze**
+   Prove that:
+   \[
+   \lim_{x\to0} x\sin(1/x) = 0.
+   \]
+
+2. **Oscillation control**
+   Show that if \( |f(x)|\le x^4 \), then  
+   \[
+   \lim_{x\to0} f(x) = 0.
+   \]
+
+3. **Large-x behavior**
+   Use Squeeze to evaluate:
+   \[
+   \lim_{x\to\infty} x\sin(1/x).
+   \]
+
+4. **Mini-proof (Sketch)**
+   Explain why the two bounding functions must converge to the *same* value for
+   the theorem to apply.
