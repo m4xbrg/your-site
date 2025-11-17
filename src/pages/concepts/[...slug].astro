@@ -122,4 +122,31 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
       </ul>
     </section>
   )}
+import { getCollection } from 'astro:content';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+export async function getStaticPaths() {
+  const concepts = await getCollection('concepts');
+  return concepts.map((concept) => ({
+    params: { slug: concept.slug.split('/') },
+  }));
+}
+
+const { slug } = Astro.params;
+const joinedSlug = Array.isArray(slug) ? slug.join('/') : slug;
+const concepts = await getCollection('concepts');
+const concept = concepts.find((entry) => entry.slug === joinedSlug);
+
+if (!concept) {
+  throw new Error(`Concept not found: ${joinedSlug}`);
+}
+
+const { Content, data } = await concept.render();
+---
+<DocsLayout title={data.title} description={data.summary}>
+  <article class="prose prose-invert max-w-none">
+    <h1 class="text-3xl font-bold mb-2">{data.title}</h1>
+    {data.summary && <p class="text-[color:var(--muted)] mb-6">{data.summary}</p>}
+    <Content />
+  </article>
 </DocsLayout>
