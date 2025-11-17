@@ -1,0 +1,147 @@
+---
+id: math-calculus-limits-removable-discontinuities
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Removable Discontinuities
+summary: >
+  Discontinuities where the limit exists but the function value is either
+  undefined or does not match the limit, allowing the discontinuity to be fixed
+  by redefining the function at a single point.
+
+order: 12
+tags:
+  - limits
+  - continuity
+  - discontinuities
+
+role: supporting
+status: draft
+
+kind: definition
+difficulty: intro
+proofLevel: none
+
+prerequisites:
+  - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-continuity-point
+
+relatedConcepts:
+  - math-calculus-limits-computation-strategies
+  - math-calculus-limits-continuity-interval
+
+learningGoals:
+  - Recognize removable discontinuities using limits.
+  - Distinguish removable discontinuities from jump and essential types.
+  - Understand how redefining a function value repairs continuity.
+---
+
+## Snapshot
+
+A removable discontinuity occurs when the limit exists at a point but the
+function fails to take that value at the point. Such discontinuities appear as
+“holes” in a graph and can be fixed by defining the function appropriately at
+the missing or mismatched point.
+
+## Formal Statement
+
+A function \( f \) has a **removable discontinuity at \( a \)** if:
+
+1. The limit exists:
+   \[
+   \lim_{x\to a} f(x) = L,
+   \]
+2. but either:
+   - \( f(a) \) is undefined, or  
+   - \( f(a) \neq L \).
+
+In both cases, redefining the function at the point:
+
+\[
+f(a) \coloneqq L
+\]
+
+restores continuity.
+
+## Intuition & Interpretation
+
+A removable discontinuity is the “mildest” type of discontinuity. The local
+behavior of the function is stable and approaches a definite value, but the
+actual function value at the point (or lack thereof) breaks continuity.
+
+The cause is a defect in the *definition*, not in the function’s limiting
+behavior.
+
+## Examples & Non-Examples
+
+### Examples
+
+1. **Algebraic cancellation**
+   \[
+   f(x)=\frac{x^2-1}{x-1} = x+1 \quad (x\ne1).
+   \]
+   The limit at 1 is 2, but the function is undefined at 1 → removable.
+
+2. **Defined incorrectly at the point**
+   \[
+   g(x)=
+   \begin{cases}
+   x^2,& x\ne 2,\\
+   100,& x=2.
+   \end{cases}
+   \]
+   The limit at 2 is 4, but \( g(2)=100 \).
+
+3. **Piecewise hole**
+   A graph with a single open circle but otherwise smooth around the point.
+
+### Non-Examples
+
+1. **Jump discontinuity**
+   One-sided limits disagree; cannot be repaired by redefining a single value.
+
+2. **Infinite discontinuity**
+   One or both one-sided limits diverge → no finite limit to “fill.”
+
+3. **Oscillatory essential discontinuity**
+   No limit exists, so no single value can remove it.
+
+## Properties & Relationships
+
+- Removable discontinuities correspond exactly to finite limits with a mismatched or missing function value.
+- They are the only discontinuities that can be repaired by modifying the function at exactly one point.
+- Algebraic simplification often reveals removable discontinuities hidden in rational expressions.
+- Continuity on intervals may require eliminating removable discontinuities.
+
+## Common Pitfalls
+
+1. Mistaking jump discontinuities for removable ones.  
+2. Forgetting that a function must be *redefined* at the discontinuity to achieve continuity.  
+3. Assuming a finite limit always means the function is continuous there.  
+4. Overlooking domain restrictions that create holes (e.g., square roots or logarithms).
+
+## Exercises
+
+1. **Classification**
+   Classify the discontinuity of:
+   \[
+   f(x)=\frac{x^2-9}{x-3}.
+   \]
+
+2. **Repairing continuity**
+   For the function:
+   \[
+   h(x)=\begin{cases}
+   x+3,& x\ne -3,\\
+   0,& x=-3,
+   \end{cases}
+   \]
+   determine what value should replace \( h(-3) \) to make the function continuous.
+
+3. **Conceptual**
+   Explain why an infinite limit cannot produce a removable discontinuity.
+
+4. **Mini-proof (Sketch)**
+   Prove that if \( \lim_{x\to a} f(x) = L \) and \( f(a) = L \), then the
+   discontinuity at \( a \) is removed.
