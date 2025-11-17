@@ -45,17 +45,17 @@ exists iff both one‑sided limits exist and are equal.
 ## Formal Statement
 
 Right‑hand:
-```tex
+$$
 \lim_{x\to a^+} f(x) = L
-```
+$$
 Left‑hand:
-```tex
+$$
 \lim_{x\to a^-} f(x) = L
-```
+$$
 Two‑sided:
-```tex
+$$
 \lim_{x\to a} f(x) = L \iff \big(\lim_{x\to a^-} f(x) = L \ \text{and}\ \lim_{x\to a^+} f(x) = L\big).
-```
+$$
 
 ## Intuition & Interpretation
 
@@ -67,7 +67,7 @@ and domains that only exist on one side (e.g., $\sqrt{x}$ near $0$).
 ### Examples
 
 1. **Jump**
-```tex
+$$
 f(x)=
 \begin{cases}
 1,& x<0,\\
@@ -75,24 +75,24 @@ f(x)=
 \end{cases}
 \quad
 \lim_{x\to0^-} f(x)=1,\ \lim_{x\to0^+} f(x)=3.
-```
+$$
 
 2. **Continuous**
-```tex
+$$
 \lim_{x\to2^-} x^2 = \lim_{x\to2^+} x^2 = 4.
-```
+$$
 
 3. **Domain restriction**
-```tex
+$$
 \lim_{x\to0^+} \sqrt{x} = 0,
-```
+$$
 left‑hand limit does not exist (domain empty on the left).
 
 4. **Infinite one‑sided limit**
-```tex
+$$
 \lim_{x\to 1^-} \frac{1}{x-1} = -\infty,\qquad
 \lim_{x\to 1^+} \frac{1}{x-1} = +\infty.
-```
+$$
 
 ### Non-Examples
 
@@ -105,9 +105,9 @@ left‑hand limit does not exist (domain empty on the left).
 - Two‑sided limit exists iff both one‑sided limits exist & are equal.  
 - Jump discontinuities are unequal one‑sided limits.  
 - Continuity requires matching one‑sided limits and value:
-```tex
+$$
 \lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
-```
+$$
 
 ## Common Pitfalls
 
@@ -119,24 +119,24 @@ left‑hand limit does not exist (domain empty on the left).
 ## Exercises
 
 1. Compute one‑sided limits for
-```tex
+$$
 f(x)=
 \begin{cases}
 x+2,& x<1,\\
 4,& x>1.
 \end{cases}
-```
+$$
 
 2. Domain analysis — Explain why $\lim_{x\to0^-}\sqrt{x}$ does not exist.
 
 3. Jump detection — For
-```tex
+$$
 f(x) =
 \begin{cases}
 5, & x<2,\\
 -1,& x\ge 2,
 \end{cases}
-```
+$$
 describe the one‑sided limits at $x=2$.
 
 4. **Mini‑proof** — Why can’t a two‑sided limit exist unless both one‑sided limits exist and are equal?

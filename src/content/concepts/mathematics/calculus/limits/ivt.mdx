@@ -45,13 +45,13 @@ passes through every intermediate value.
 ## Formal Statement
 
 Let $f$ be continuous on $[a,b]$. Let $N$ be **between** $f(a)$ and $f(b)$:
-```tex
+$$
 f(a) < N < f(b) \quad\text{or}\quad f(b) < N < f(a).
-```
+$$
 Then there exists $c\in(a,b)$ with
-```tex
+$$
 f(c) = N.
-```
+$$
 This is an **existence** result (no formula for $c$ is guaranteed).
 
 ## Intuition & Interpretation
@@ -65,9 +65,9 @@ at both endpoints.
 ### Examples
 
 1. **Root existence**
-```tex
+$$
 f(x)=x^3-x-1,\quad f(1)=-1,\ f(2)=5 \ \Rightarrow\ \exists\,c\in(1,2)\ \text{s.t.}\ f(c)=0.
-```
+$$
 
 2. **Cross a horizontal level**  
 If $f(0)=2,\ f(4)=10$, then for any $N\in(2,10)$ there exists $c\in(0,4)$ with $f(c)=N$.
@@ -77,13 +77,13 @@ If $f(0)=2,\ f(4)=10$, then for any $N\in(2,10)$ there exists $c\in(0,4)$ with $
 ### Non-Examples
 
 1. **Discontinuous function**
-```tex
+$$
 f(x)=
 \begin{cases}
 -1,& x<0,\\
 1,& x\ge0,
 \end{cases}
-```
+$$
 skips values; IVT does not apply.
 
 2. **Open interval only** — On $(0,1)$ the endpoint may be undefined; IVT’s hypothesis fails.

@@ -50,9 +50,9 @@ A function $ f $ is **continuous at $ a $** if:
 1. $ f(a) $ is defined,  
 2. $ \lim_{x\to a} f(x) $ exists,  
 3. and they agree:
-```tex
+$$
 \lim_{x\to a} f(x) = f(a).
-```
+$$
 
 Continuity is a local condition tied directly to limit behavior.
 
@@ -92,49 +92,49 @@ Includes:
 ## 3.4 Removable discontinuities: structure
 
 A removable discontinuity arises when:
-```tex
+$$
 \lim_{x\to a} f(x) = L, \quad f(a) \ne L \text{ or } f(a) \text{ undefined.}
-```
+$$
 Fix by defining:
-```tex
+$$
 f(a) := L
-```
+$$
 
 ---
 
 # 4. Worked Examples
 
 ### Example 1 — Confirming continuity
-```tex
+$$
 f(x)=3x^2-1
-```
+$$
 Polynomials are continuous everywhere.  
 Direct substitution gives the limit at any point.
 
 ### Example 2 — Removable discontinuity
-```tex
+$$
 f(x)=\frac{x^2-9}{x-3}
-```
+$$
 Factor:
-```tex
+$$
 f(x)=x+3,\quad x\ne3
-```
+$$
 Limit at 3 is 6, but function is undefined at 3 → removable.
 
 ### Example 3 — Jump discontinuity
-```tex
+$$
 f(x)=
 \begin{cases}
 1,& x<0,\\
 5,& x\ge 0.
 \end{cases}
-```
+$$
 Left limit = 1, right limit = 5 → jump.
 
 ### Example 4 — Essential (infinite)
-```tex
+$$
 f(x)=\frac{1}{x-2}
-```
+$$
 (Left side → $ -\infty $, right side → $ +\infty $.)  
 No finite limit → essential discontinuity.
 
@@ -165,30 +165,30 @@ No finite limit → essential discontinuity.
 ### Tier A — foundational
 
 1. Determine whether  
-```tex
+$$
 f(x)=\frac{x^2-4}{x-2}
-```
+$$
    is continuous at $ x=2 $.
 
 2. Determine:
-```tex
+$$
 \lim_{x\to1} \frac{|x-1|}{x-1}
-```
+$$
 
 ### Tier B — mixed
 
 3. Classify the discontinuity of  
-```tex
+$$
 f(x)=\begin{cases}
 x+1,&x\neq2,\\
 0,&x=2.
 \end{cases}
-```
+$$
 
 4. Determine all discontinuities of  
-```tex
+$$
 f(x)=\frac{x}{x^2-1}
-```
+$$
 
 ### Tier C — challenge
 
@@ -196,9 +196,9 @@ f(x)=\frac{x}{x^2-1}
    Does it have a removable, jump, or essential discontinuity?
 
 6. A piecewise function satisfies
-```tex
+$$
 \lim_{x\to4^-}f(x)=2,\quad \lim_{x\to4^+}f(x)=2,\quad f(4)=100.
-```
+$$
    Identify the discontinuity and suggest a repair.
 
 ---

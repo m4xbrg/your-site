@@ -45,45 +45,45 @@ allowing evaluation by decomposing expressions into simpler components.
 ## Formal Statement
 
 Assume
-```tex
+$$
 \lim_{x\to a} f(x)=L,\qquad \lim_{x\to a} g(x)=M,
-```
+$$
 and required hypotheses hold (finiteness, nonzero denominators, etc.). Then:
 
 1. **Sum**
-```tex
+$$
 \lim_{x\to a} (f+g) = L+M.
-```
+$$
 
 2. **Difference**
-```tex
+$$
 \lim_{x\to a} (f-g) = L-M.
-```
+$$
 
 3. **Constant multiple** (for constant $c$)
-```tex
+$$
 \lim_{x\to a} c\,f = cL.
-```
+$$
 
 4. **Product**
-```tex
+$$
 \lim_{x\to a} (fg) = LM.
-```
+$$
 
 5. **Quotient** (if $M\ne 0$)
-```tex
+$$
 \lim_{x\to a} \frac{f}{g} = \frac{L}{M}.
-```
+$$
 
 6. **Power** (integer $n\ge 1$)
-```tex
+$$
 \lim_{x\to a} \big(f(x)\big)^n = L^n.
-```
+$$
 
 7. **Root** (even $n$ requires $f\ge 0$ near $a$)
-```tex
+$$
 \lim_{x\to a} \sqrt[n]{\,f(x)\,} = \sqrt[n]{\,L\,}.
-```
+$$
 
 ## Intuition & Interpretation
 
@@ -95,25 +95,25 @@ the corresponding algebraic ways, provided no undefined expressions arise.
 ### Examples
 
 1.
-```tex
+$$
 \lim_{x\to 2} (3x + 5) = 11.
-```
+$$
 
 2.
-```tex
+$$
 \lim_{x\to -1} (x^2 - 4x) = 5.
-```
+$$
 
 3.
-```tex
+$$
 \lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}
 \quad\text{if}\quad \lim f=2,\ \lim g=-3.
-```
+$$
 
 4.
-```tex
+$$
 \lim_{x\to 1} (x+1)^3 = 8.
-```
+$$
 
 ### Non-Examples (Misuses)
 
@@ -140,19 +140,19 @@ the corresponding algebraic ways, provided no undefined expressions arise.
 ## Exercises
 
 1. Evaluate
-```tex
+$$
 \lim_{x\to 3} (5x^2 - 4x + 1).
-```
+$$
 
 2. Given $\lim_{x\to a} f(x)=7$ and $\lim_{x\to a} g(x)=-2$, compute
-```tex
+$$
 \lim_{x\to a} \big(3f(x) - 5g(x)\big).
-```
+$$
 
 3. Explain why the quotient law cannot be applied directly to
-```tex
+$$
 \lim_{x\to 2} \frac{x^2 - 4}{x - 2}.
-```
+$$
 
 4. Describe a situation where the product law does **not** apply even though both functions are defined near $a$.
 

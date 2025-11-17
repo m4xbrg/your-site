@@ -50,18 +50,18 @@ A function $f$ is **continuous at $a$** if:
 
 1) $f(a)$ is defined,  
 2) the limit exists,
-```tex
+$$
 \lim_{x\to a} f(x) \ \text{ exists},
-```
+$$
 3) and they agree:
-```tex
+$$
 \lim_{x\to a} f(x) = f(a).
-```
+$$
 
 Equivalently, using one‑sided limits:
-```tex
+$$
 \lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
-```
+$$
 
 ## Intuition & Interpretation
 
@@ -77,9 +77,9 @@ approaching the point through arbitrarily small neighborhoods. Distinguish:
 ### Examples
 
 1. **Polynomial**
-```tex
+$$
 \lim_{x\to3} (x^2+1) = (3)^2+1 = 10 = f(3).
-```
+$$
 
 2. **Removable discontinuity corrected**  
 Let $g(x)=\dfrac{x^2-1}{x-1}$. Redefining $g(1)=2$ yields continuity at $1$.
@@ -91,9 +91,9 @@ $|x|$ is continuous at $0$ since left and right limits are $0$.
 
 1. **Jump** — Left and right limits differ.  
 2. **Infinite** — If
-```tex
+$$
 \lim_{x\to1} \frac{1}{x-1} = \pm\infty,
-```
+$$
 there is no finite limit → not continuous.  
 3. **Undefined at the point** — If $f(a)$ does not exist, continuity is impossible.
 
@@ -115,19 +115,19 @@ there is no finite limit → not continuous.
 
 1. **Compute + evaluate**  
 For
-```tex
+$$
 f(x)=
 \begin{cases}
 \dfrac{x^2-4}{x-2}, & x\neq 2,\\
 5, & x=2,
 \end{cases}
-```
+$$
 is $f$ continuous at $x=2$?
 
 2. **One-sided check**
-```tex
+$$
 \lim_{x\to 3^-} |x-3| \quad\text{and}\quad \lim_{x\to 3^+} |x-3|.
-```
+$$
 Is $|x-3|$ continuous at $3$?
 
 3. **Conceptual** — Can a function be discontinuous at $a$ even if the two‑sided limit exists?

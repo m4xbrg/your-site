@@ -46,27 +46,27 @@ one‑sided notation.
 ## Formal Statement
 
 We write
-```tex
+$$
 \lim_{x\to a} f(x) = +\infty
-```
+$$
 to mean: for $x$ sufficiently close to $a$ (with $x\ne a$), the values $f(x)$
 become arbitrarily large and positive. Similarly,
-```tex
+$$
 \lim_{x\to a} f(x) = -\infty
-```
+$$
 means $f(x)$ becomes arbitrarily large in magnitude but negative.
 
 Infinite limits are often **one‑sided**:
-```tex
+$$
 \lim_{x\to a^-} f(x) = +\infty,
 \qquad
 \lim_{x\to a^+} f(x) = -\infty.
-```
+$$
 
 A point $x=a$ is a **vertical asymptote** if at least one of
-```tex
+$$
 \lim_{x\to a^-} f(x) = \pm\infty \quad \text{or} \quad \lim_{x\to a^+} f(x) = \pm\infty
-```
+$$
 holds.
 
 ## Intuition & Interpretation
@@ -79,41 +79,41 @@ and the line $x=a$ acts as a vertical boundary.
 ### Examples
 
 1.
-```tex
+$$
 \lim_{x\to1} \frac{1}{x-1} =
 \begin{cases}
 -\infty,& x\to1^-,\\[4pt]
 +\infty,& x\to1^+.
 \end{cases}
-```
+$$
 
 2.
-```tex
+$$
 \lim_{x\to0} \frac{1}{x^2} = +\infty.
-```
+$$
 
 3.
-```tex
+$$
 \lim_{x\to2^-} \frac{1}{(x-2)^3} = -\infty,\qquad
 \lim_{x\to2^+} \frac{1}{(x-2)^3} = +\infty.
-```
+$$
 
 4.
-```tex
+$$
 \lim_{x\to0^+} \ln x = -\infty.
-```
+$$
 
 ### Non-Examples
 
 1. **Oscillation**
-```tex
+$$
 \lim_{x\to0} \sin(1/x) \ \text{does not exist (not infinite).}
-```
+$$
 
 2. **Removable hole**
-```tex
+$$
 \frac{x^2-4}{x-2}
-```
+$$
 has a finite limit (3) at $x=2$.
 
 3. **Undefined without blow‑up** — Undefined at a point may still have a finite limit.
@@ -134,19 +134,19 @@ has a finite limit (3) at $x=2$.
 ## Exercises
 
 1. Compute
-```tex
+$$
 \lim_{x\to3^+} \frac{1}{x-3}.
-```
+$$
 
 2. Left vs right — Determine one‑sided limits for
-```tex
+$$
 f(x)=\frac{2}{(x+1)^2}.
-```
+$$
 
 3. Sign analysis — Evaluate
-```tex
+$$
 \lim_{x\to -2^-} \frac{1}{x+2}.
-```
+$$
 
 4. Conceptual — Why does every infinite limit correspond to a vertical asymptote, but not vice versa?
 

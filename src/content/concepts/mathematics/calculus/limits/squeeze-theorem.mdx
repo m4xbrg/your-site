@@ -46,17 +46,17 @@ functions with the **same** limit.
 Let $g,f,h$ be defined near $a$ (except possibly at $a$). Suppose:
 
 1) For $x$ sufficiently close to $a$,
-```tex
+$$
 g(x) \le f(x) \le h(x),
-```
+$$
 2) and
-```tex
+$$
 \lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
-```
+$$
 Then
-```tex
+$$
 \lim_{x\to a} f(x) = L.
-```
+$$
 The same holds for limits at $\pm\infty$ with analogous conditions.
 
 ## Intuition & Interpretation
@@ -69,24 +69,24 @@ anything else but also approach $L$.
 ### Examples
 
 1. **Classic trig**
-```tex
+$$
 -1 \le \frac{\sin x}{x} \le 1 \quad (x\ne 0).
-```
+$$
 With careful sign handling, one shows
-```tex
+$$
 \cos x \le \frac{\sin x}{x} \le 1 \ \Rightarrow\ \lim_{x\to0}\frac{\sin x}{x}=1.
-```
+$$
 
 2. **Oscillation damped by a small factor**
-```tex
+$$
 -x^2 \le x^2\sin(1/x) \le x^2 \ \Rightarrow\ \lim_{x\to0} x^2\sin(1/x) = 0.
-```
+$$
 
 3. **Rational bounding (large $x$)**  
 If
-```tex
+$$
 \frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
-```
+$$
 both bounds $\to 1$; hence $\lim_{x\to\infty} f(x)=1$.
 
 ### Non-Examples
@@ -99,9 +99,9 @@ both bounds $\to 1$; hence $\lim_{x\to\infty} f(x)=1$.
 
 - Fundamentally an inequality argument.  
 - Pairs well with absolute‑value bounds:
-```tex
+$$
 |f(x)| \le g(x),\ \lim g(x)=0 \ \Rightarrow\ \lim f(x)=0.
-```
+$$
 
 ## Common Pitfalls
 
@@ -113,18 +113,18 @@ both bounds $\to 1$; hence $\lim_{x\to\infty} f(x)=1$.
 ## Exercises
 
 1. Prove
-```tex
+$$
 \lim_{x\to0} x\sin(1/x) = 0.
-```
+$$
 
 2. If $|f(x)|\le x^4$, show
-```tex
+$$
 \lim_{x\to0} f(x) = 0.
-```
+$$
 
 3. Evaluate
-```tex
+$$
 \lim_{x\to\infty} x\sin(1/x).
-```
+$$
 
 4. **Mini‑proof** — Why must the two bounding functions converge to the **same** value?

@@ -78,46 +78,46 @@ simpler *in a neighborhood of the point*, not necessarily at the point itself.
 ### Examples
 
 1. **Factoring to resolve $0/0$**
-```tex
+$$
 \lim_{x\to 2} \frac{x^2-4}{x-2}
 = \lim_{x\to 2} \frac{(x-2)(x+2)}{x-2}
 = \lim_{x\to 2} (x+2)
 = 4.
-```
+$$
 
 2. **Rationalizing a numerator** (multiply by the conjugate)
-```tex
+$$
 \lim_{x\to 0} \frac{\sqrt{x+1} - 1}{x}
 = \lim_{x\to 0} \frac{(\sqrt{x+1}-1)(\sqrt{x+1}+1)}{x(\sqrt{x+1}+1)}
 = \lim_{x\to 0} \frac{x}{x(\sqrt{x+1}+1)}
 = \lim_{x\to 0} \frac{1}{\sqrt{x+1}+1}
 = \frac{1}{2}.
-```
+$$
 
 3. **Dominant-term for rational functions**
-```tex
+$$
 \lim_{x\to \infty} \frac{3x^2 - 4x + 1}{6x^2 + 5}
 = \frac{3}{6} = \frac{1}{2}.
-```
+$$
 
 4. **Direct substitution** (no simplification needed)
-```tex
+$$
 \lim_{x\to 1} (3x^2 + 2) = 5.
-```
+$$
 
 ### Non-Examples (Incorrect Uses)
 
 1. **Canceling when factorization is not valid**  
-```tex
+$$
 \frac{x^2 - 1}{x - 1} = x + 1 \quad \text{only for } x\neq 1.
-```
+$$
 Direct substitution on the **unsimplified** form still fails at $x=1$.
 
 2. **Using dominant-term rules when degrees mismatch subtly**  
 For
-```tex
+$$
 \lim_{x\to\infty} \frac{x^2 + x}{x^2 - x^3},
-```
+$$
 the denominator grows faster with sign changes; equal-degree comparison does not apply.
 
 3. **Rationalizing incorrectly**  
@@ -143,24 +143,24 @@ Equivalence is required on a **punctured neighborhood**; the value at the point 
 ## Exercises
 
 1. **Compute**
-```tex
+$$
 \lim_{x\to 3} \frac{x^2 - 9}{x-3}.
-```
+$$
 
 2. **Rationalization** — Evaluate
-```tex
+$$
 \lim_{x\to 4} \frac{\sqrt{x} - 2}{x-4}.
-```
+$$
 
 3. **Dominant terms** — Compute
-```tex
+$$
 \lim_{x\to\infty} \frac{5x^3 - x}{10x^3 + 7}.
-```
+$$
 
 4. **Conceptual** — Why can’t factorization help with
-```tex
+$$
 \lim_{x\to 0} \frac{1}{x}\,?
-```
+$$
 
 5. **Mini-proof (Sketch)** — Explain why algebraic equivalence on a punctured
 neighborhood preserves the limit.
