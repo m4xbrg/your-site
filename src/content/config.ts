@@ -129,12 +129,11 @@ const lessons = defineCollection({
 const exercises = defineCollection({
   type: 'content',
   schema: z.object({
-    // New pilot identity / placement
-    id: z.string(),             // e.g. "math-calculus-limits-lesson-01-exercises"
-    subject: z.string(),        // e.g. "mathematics"
-    macroId: z.string(),        // e.g. "math-calculus"
-    courseId: z.string(),       // e.g. "math-calculus-limits"
-    lessonId: z.string(),       // e.g. "math-calculus-limits-lesson-01"
+    id: z.string(),
+    subject: z.string(),
+    macroId: z.string(),
+    courseId: z.string(),
+    lessonId: z.string(),
 
     title: z.string(),
     order: z.number().default(0),
@@ -143,11 +142,25 @@ const exercises = defineCollection({
       .enum(['draft', 'published', 'archived'])
       .default('draft'),
 
-    // Exercises target concept IDs
     concepts: z.array(z.string()).nonempty(),
     tags: z.array(z.string()).default([]),
 
-    // Legacy / optional fields for compatibility
+    // Structured problems (optional)
+    problems: z
+      .array(
+        z.object({
+          id: z.string().optional(),
+          label: z.string().optional(),        // "1", "A-1", etc.
+          title: z.string().optional(),        // short name
+          difficulty: z.string().optional(),   // "A", "B", "C", "challenge"
+          topics: z.array(z.string()).default([]),
+          prompt: z.string(),                  // markdown/LaTeX allowed
+          solution: z.string().optional(),     // markdown/LaTeX allowed
+        }),
+      )
+      .default([]),
+
+    // Legacy fields (keep for now)
     prompt: z.string().optional(),
     lesson: z.string().optional(),
     concept: z.string().optional(),
@@ -157,6 +170,7 @@ const exercises = defineCollection({
     solution: z.string().optional(),
   }),
 })
+
 
 const notes = defineCollection({
   type: 'content',

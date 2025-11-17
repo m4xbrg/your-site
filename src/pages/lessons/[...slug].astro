@@ -1,73 +1,108 @@
 ---
-import { getCollection } from 'astro:content';
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import TagChips from "../../components/TagChips.astro"
+import { getCollection } from "astro:content"
+import { collectionNames } from "../../lib/collections"
 
-// Generate all lesson pages (nested slug, but slug is a STRING)
 export async function getStaticPaths() {
-  const allLessons = await getCollection('lessons');
-
-  console.log(
-    '[lessons getStaticPaths]',
-    allLessons.map((entry) => ({
-      id: entry.id,
-      slug: entry.slug,
-      collection: entry.collection,
-    })),
-  );
+  const allLessons = await getCollection(collectionNames.lessons)
 
   return allLessons.map((entry) => ({
-    params: {
-      // entry.slug is e.g. "mathematics/calculus/limits/lesson-01-introduction"
-      // For [...slug].astro, Astro still wants a STRING here.
-      slug: entry.slug,
-    },
-    props: {
-      lesson: entry,
-    },
-  }));
+    params: { slug: entry.slug },
+    props: { lesson: entry },
+  }))
 }
 
-const { lesson } = Astro.props;
-const { title, description, durationMinutes, objectives } = lesson.data;
+const { lesson } = Astro.props
+if (!lesson) throw new Error("Lesson not found")
+
+const data = lesson.data
+const { Content } = await lesson.render()
+
+// naive matching: exercise.data.lessonId === data.id
+const allExercises = await getCollection(collectionNames.exercises)
+const exercisesForLesson = allExercises.filter(
+  (ex) => ex.data.lessonId === data.id,
+)
+
+const durationLabel =
+  typeof data.durationMinutes === "number" && data.durationMinutes > 0
+    ? `${data.durationMinutes} min`
+    : undefined
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main>
-      <h1>{title}</h1>
 
-      {description && (
-        <section>
-          <h2>Overview</h2>
-          <p>{description}</p>
-        </section>
+<DocsLayout title={data.title} description={data.description}>
+  <article class="prose">
+    <header class="mb-6">
+      <h1 class="mb-2">{data.title}</h1>
+      {data.description && (
+        <p class="text-gray-600">{data.description}</p>
       )}
+      <div class="mt-3 flex flex-wrap gap-2 items-center">
+        {durationLabel && (
+          <span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+            {durationLabel}
+          </span>
+        )}
+        {Array.isArray(data.tags) && data.tags.length > 0 && (
+          <TagChips tags={data.tags} />
+        )}
+      </div>
+    </header>
 
-      {durationMinutes !== undefined && durationMinutes > 0 && (
-        <section>
-          <h2>Duration</h2>
-          <p>{durationMinutes} minutes</p>
-        </section>
-      )}
-
-      {objectives && objectives.length > 0 && (
-        <section>
-          <h2>Objectives</h2>
-          <ul>
-            {objectives.map((obj) => (
-              <li>{obj}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <section>
-        <h2>Content</h2>
-        {lesson.body}
+    {hasMetadata && (
+      <section class="mb-6 text-sm text-gray-700 space-y-2">
+        {(data.course || data.courseId) && (
+          <p>
+            <strong>Course:</strong>{" "}
+            {data.courseId ?? data.course}
+          </p>
+        )}
+        {(data.concept || (Array.isArray(data.concepts) && data.concepts.length)) && (
+          <p>
+            <strong>Concepts:</strong>{" "}
+            {data.concept ??
+              (data.concepts ?? []).join(", ")}
+          </p>
+        )}
+        {Array.isArray(data.objectives) && data.objectives.length > 0 && (
+          <div>
+            <strong>Objectives</strong>
+            <ul class="list-disc pl-5 mt-1">
+              {data.objectives.map((obj) => <li>{obj}</li>)}
+            </ul>
+          </div>
+        )}
       </section>
-    </main>
-  </body>
-</html>
+    )}
+
+    <section class="mt-6">
+      <Content />
+          {exercisesForLesson.length > 0 && (
+      <section class="mt-10 border-t pt-6">
+        <h2 class="text-lg font-semibold mb-3">Practice for this lesson</h2>
+        <ul class="space-y-2">
+          {exercisesForLesson.map((ex) => (
+            <li>
+              <a
+                href={`/exercises/${ex.slug}`}
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 rounded-lg border px-3 py-2 bg-slate-50 hover:bg-slate-100 transition"
+              >
+                <span class="font-medium text-sm">
+                  {ex.data.title}
+                </span>
+                <span class="text-xs text-gray-500">
+                  {ex.data.status === "draft" ? "Draft" : "Exercises"} ·{" "}
+                  {ex.data.concepts?.join(", ")}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    </section>
+  </article>
+</DocsLayout>

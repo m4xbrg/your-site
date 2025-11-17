@@ -4,18 +4,34 @@ subject: "mathematics"
 macroId: "math-calculus"
 courseId: "math-calculus-limits"
 lessonId: "math-calculus-limits-lesson-01"
-title: "Exercises – Lesson 1: Informal Limits, Numerical Behavior, and Notation"
+title: "Lesson 01 – Limits: Exercises"
 order: 1
 status: "draft"
 concepts:
-  - "math-calculus-limits-informal-idea"
-  - "math-calculus-limits-graphical-numerical"
-  - "math-calculus-limits-notation"
+  - "limits/intuitive"
 tags:
-  - "exercises"
   - "limits"
-  - "notation"
+  - "calculus"
+problems:
+  - id: "table-approx-limit"
+    label: "A1"
+    difficulty: "A"
+    topics: ["limits", "numerical approximation"]
+    prompt: |
+      Use the given table of values to estimate:
+
+      ```tex
+      \lim_{x \to 2} f(x).
+      ```
+
+    solution: |
+      The values of $f(x)$ approach $4$ from both sides, so
+
+      ```tex
+      \lim_{x \to 2} f(x) = 4.
+      ```
 ---
+
 
 
 ## Tier A – Foundational

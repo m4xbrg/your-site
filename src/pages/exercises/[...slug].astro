@@ -1,72 +1,85 @@
 ---
-import { getCollection } from 'astro:content';
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import TagChips from "../../components/TagChips.astro"
+import ExerciseProblems from "../../components/ExerciseProblems.astro"
+import { getCollection } from "astro:content"
+import { collectionNames } from "../../lib/collections"
 
-// Generate all exercise pages (nested slug, but as a STRING)
 export async function getStaticPaths() {
-  const allExercises = await getCollection('exercises');
-
-  console.log(
-    '[exercises getStaticPaths]',
-    allExercises.map((entry) => ({
-      id: entry.id,
-      slug: entry.slug,
-      collection: entry.collection,
-    })),
-  );
+  const allExercises = await getCollection(collectionNames.exercises)
 
   return allExercises.map((entry) => ({
-    params: {
-      // For [...slug].astro, Astro still expects a STRING here.
-      // The string can contain slashes, e.g.
-      //   "mathematics/calculus/limits/lesson-01-exercises"
-      // and Astro will route it as:
-      //   /exercises/mathematics/calculus/limits/lesson-01-exercises
-      slug: entry.slug,
-    },
-    props: {
-      exercise: entry,
-    },
-  }));
+    params: { slug: entry.slug },
+    props: { exercise: entry },
+  }))
 }
 
-const { exercise } = Astro.props;
-const { title, prompt, difficulty, topics, solution } = exercise.data;
+const { exercise } = Astro.props
+if (!exercise) throw new Error("Exercise set not found")
+
+const data = exercise.data
+const { Content } = await exercise.render()
+
+const hasMeta =
+  data.lessonId ||
+  data.courseId ||
+  data.macroId ||
+  (Array.isArray(data.concepts) && data.concepts.length > 0) ||
+  data.status ||
+  (Array.isArray(data.tags) && data.tags.length > 0)
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main>
-      <h1>{title}</h1>
-
-      {prompt && (
-        <section>
-          <h2>Prompt</h2>
-          <p>{prompt}</p>
-        </section>
+<DocsLayout title={data.title} description={data.description}>
+  <article class="prose">
+    <header class="mb-6">
+      <h1 class="mb-2">{data.title}</h1>
+      {data.description && (
+        <p class="text-gray-600">{data.description}</p>
       )}
-
-      {(difficulty || (topics && topics.length > 0)) && (
-        <section>
-          <h2>Meta</h2>
-          {difficulty && <p><strong>Difficulty:</strong> {difficulty}</p>}
-          {topics && topics.length > 0 && (
-            <p>
-              <strong>Topics:</strong> {topics.join(', ')}
-            </p>
-          )}
-        </section>
+      {Array.isArray(data.tags) && data.tags.length > 0 && (
+        <TagChips tags={data.tags} class="mt-3" />
       )}
+    </header>
 
-      {solution && (
-        <section>
-          <h2>Solution (Draft)</h2>
-          <p>{solution}</p>
-        </section>
-      )}
-    </main>
-  </body>
-</html>
+    {hasMeta && (
+      <section class="mb-6 text-sm text-gray-700 space-y-1">
+        {data.subject && (
+          <p>
+            <strong>Subject:</strong> {data.subject}
+          </p>
+        )}
+        {data.macroId && (
+          <p>
+            <strong>Macro course:</strong> {data.macroId}
+          </p>
+        )}
+        {data.courseId && (
+          <p>
+            <strong>Course:</strong> {data.courseId}
+          </p>
+        )}
+        {data.lessonId && (
+          <p>
+            <strong>Lesson ID:</strong> {data.lessonId}
+          </p>
+        )}
+        {Array.isArray(data.concepts) && data.concepts.length > 0 && (
+          <p>
+            <strong>Concepts:</strong> {data.concepts.join(", ")}</p>
+        )}
+        {data.status && (
+          <p>
+            <strong>Status:</strong> {data.status}</p>
+        )}
+      </section>
+    )}
+
+    {data.problems && data.problems.length > 0 && (
+      <ExerciseProblems problems={data.problems} />
+    )}
+
+    <section class="mt-6">
+      <Content />
+    </section>
+  </article>
+</DocsLayout>
