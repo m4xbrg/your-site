@@ -1,0 +1,201 @@
+---
+id: math-calculus-limits-limit-laws
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+
+title: Algebraic Laws for Limits
+summary: >
+  Fundamental rules that describe how limits interact with algebraic operations
+  such as addition, multiplication, division, and exponentiation when the
+  component limits exist.
+
+order: 10
+tags:
+  - limits
+  - algebra
+  - theorems
+
+role: core
+status: draft
+
+kind: theorem
+difficulty: standard
+proofLevel: sketch
+
+prerequisites:
+  - math-calculus-limits-notation
+  - math-foundations-arithmetic-algebra
+
+relatedConcepts:
+  - math-calculus-limits-computation-strategies
+  - math-calculus-limits-squeeze-theorem
+
+learningGoals:
+  - State and apply the algebraic limit laws.
+  - Identify when a limit law is applicable based on hypotheses.
+  - Use limit laws to reduce complex expressions to simpler parts.
+---
+
+## Snapshot
+
+The algebraic limit laws describe how limits behave under basic operations such as
+addition, subtraction, multiplication, division, and exponentiation.  
+They allow the evaluation of many limits by breaking down a complicated expression
+into simpler components whose limits are easier to compute.
+
+## Formal Statement
+
+Let \( \lim_{x \to a} f(x) = L \) and \( \lim_{x \to a} g(x) = M \), and assume all
+limits below exist (and, when required, are finite). Then:
+
+1. **Sum Law**  
+   \[
+   \lim_{x\to a} \big(f(x) + g(x)\big) = L + M.
+   \]
+
+2. **Difference Law**  
+   \[
+   \lim_{x\to a} \big(f(x) - g(x)\big) = L - M.
+   \]
+
+3. **Constant Multiple Law**  
+   For any constant \( c \),  
+   \[
+   \lim_{x\to a} (c\,f(x)) = cL.
+   \]
+
+4. **Product Law**  
+   \[
+   \lim_{x\to a} \big(f(x)g(x)\big) = LM.
+   \]
+
+5. **Quotient Law**  
+   If \( M \neq 0 \),  
+   \[
+   \lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L}{M}.
+   \]
+
+6. **Power Law**  
+   For any positive integer \( n \),  
+   \[
+   \lim_{x\to a} \big(f(x)\big)^n = L^n.
+   \]
+
+7. **Root Law**  
+   If \( n \) is even, assume \( f(x) \ge 0 \) near \( a \); then  
+   \[
+   \lim_{x\to a} \sqrt[n]{f(x)} = \sqrt[n]{L}.
+   \]
+
+These rules may require additional conditions when \( f(x) \) or \( g(x) \)
+approach infinite or undefined values. The statements above concern the finite,
+well-defined case.
+
+## Intuition & Interpretation
+
+The limit operation is compatible with standard algebraic operations.  
+If two functions approach specific values near a point, then combining those
+functions algebraically produces a new function whose limit is the corresponding
+algebraic combination of the original limits.
+
+The laws formalize the idea that “limit-taking commutes with algebra” when the
+individual limits behave well and no undefined expressions arise (such as
+division by zero).
+
+## Examples & Non-Examples
+
+### Examples
+
+1.  
+   \( \lim_{x\to 2} (3x + 5) = 3\lim_{x\to 2} x + 5 = 3(2) + 5 = 11. \)
+
+2.  
+   \( \lim_{x\to -1} (x^2 - 4x) = \lim x^2 - 4\lim x = (-1)^2 - 4(-1) = 5. \)
+
+3.  
+   If \( \lim_{x\to 0} f(x) = 2 \) and \( \lim_{x\to 0} g(x) = -3 \), then  
+   \[
+   \lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}.
+   \]
+
+4.  
+   \( \lim_{x\to 1} (x+1)^3 = (\lim_{x\to 1}(x+1))^3 = 2^3 = 8. \)
+
+### Non-Examples (Important Misuses)
+
+1. **Division Law misuse:**  
+   If \( \lim_{x\to a} g(x) = 0 \), the quotient law *does not apply*.  
+   Example: \( \lim_{x\to 0} \frac{1}{x} \) is not finite.
+
+2. **Undefined expressions:**  
+   \( \lim_{x\to 2} \frac{x^2 - 4}{x - 2} \)  
+   Both numerator and denominator approach 0 → quotient law cannot be used until
+   expression is simplified.
+
+3. **Product of divergent limits:**  
+   If either \( f(x) \) or \( g(x) \) diverges, the product law does not apply.
+
+4. **Root Law misuse:**  
+   Even roots require non-negativity near the limit point; otherwise limit does not
+   follow by the root law.
+
+## Properties & Relationships
+
+- The algebraic limit laws follow from the epsilon–delta definition of limit.  
+- They are the foundation for more advanced limit techniques (e.g. L’Hôpital, series).  
+- Together they imply limit behavior is fully determined for all polynomial and rational functions except where denominators vanish.  
+- The laws permit reduction of complex limits to simpler pieces whose limits are
+  known.  
+- They interact with:
+  - **Continuity:** continuous functions satisfy all limit laws inherently.  
+  - **Squeeze theorem:** a complementary tool when limit laws alone are insufficient.
+
+## Common Pitfalls
+
+1. Applying the quotient law when the denominator limit is zero.  
+2. Forgetting to check domain constraints for root laws.  
+3. Assuming laws apply when one or more component limits diverge.  
+4. Using algebraic laws before simplifying indeterminate forms like \(0/0\).  
+5. Treating the limit of a product as the product of limits when one function has no limit.
+
+## Exercises
+
+1. **Compute**  
+   Evaluate \( \lim_{x\to 3} (5x^2 - 4x + 1) \).
+
+2. **Compute**  
+   Given \( \lim_{x\to a} f(x) = 7 \) and \( \lim_{x\to a} g(x) = -2 \), compute  
+   \[
+   \lim_{x\to a} (3f(x) - 5g(x)).
+   \]
+
+3. **Investigate a failure mode**  
+   Explain why the quotient law cannot be applied directly to  
+   \[
+   \lim_{x\to 2} \frac{x^2 - 4}{x - 2}.
+   \]
+
+4. **Conceptual**  
+   Describe a situation in which the product law does *not* apply even though
+   \( f(x) \) and \( g(x) \) are individually well-defined near the point.
+
+5. **Mini-proof (Sketch)**  
+   Prove the sum law using the epsilon–delta definition.
+
+## Proof Sketch / Proof
+
+A proof for each algebraic law follows from the epsilon–delta definition.
+As a sketch, for the **sum law**, assume \( \lim f = L \) and \( \lim g = M \).  
+Given \( \varepsilon > 0 \), choose
+\[
+\delta = \min(\delta_f, \delta_g),
+\]
+where \( \delta_f \) and \( \delta_g \) bound the deviations
+\( |f(x)-L| < \varepsilon/2 \) and \( |g(x)-M| < \varepsilon/2 \).  
+Then
+\[
+|(f(x)+g(x)) - (L+M)|  
+\le |f(x)-L| + |g(x)-M| < \varepsilon.
+\]
+Thus the sum law holds; analogous arguments handle the remaining laws.
