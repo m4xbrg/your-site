@@ -48,17 +48,17 @@ appropriately restores continuity.
 $f$ has a **removable discontinuity at $a$** if:
 
 1) The limit exists:
-```tex
+$$
 \lim_{x\to a} f(x) = L,
-```
+$$
 2) but either $f(a)$ is undefined or
-```tex
+$$
 f(a)\ne L.
-```
+$$
 Redefine
-```tex
+$$
 f(a)\coloneqq L
-```
+$$
 to remove the discontinuity.
 
 ## Intuition & Interpretation
@@ -71,19 +71,19 @@ the point is defective.
 ### Examples
 
 1. **Cancellation**
-```tex
+$$
 f(x)=\frac{x^2-1}{x-1}=x+1\quad (x\ne 1),
-```
+$$
 limit at $1$ is $2$ though $f(1)$ is undefined.
 
 2. **Mismatched value**
-```tex
+$$
 g(x)=
 \begin{cases}
 x^2,& x\ne 2,\\
 100,& x=2,
 \end{cases}
-```
+$$
 limit is $4$; redefining $g(2)=4$ removes the discontinuity.
 
 3. **Single open circle** — Graphical hole with otherwise smooth behavior.
@@ -111,18 +111,18 @@ limit is $4$; redefining $g(2)=4$ removes the discontinuity.
 ## Exercises
 
 1. Classify the discontinuity of
-```tex
+$$
 f(x)=\frac{x^2-9}{x-3}.
-```
+$$
 
 2. **Repairing continuity** — For
-```tex
+$$
 h(x)=
 \begin{cases}
 x+3,& x\ne -3,\\
 0,& x=-3,
 \end{cases}
-```
+$$
 what $h(-3)$ makes $h$ continuous?
 
 3. Conceptual — Why can’t an infinite limit be removable?

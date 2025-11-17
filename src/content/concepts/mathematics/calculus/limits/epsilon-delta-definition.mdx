@@ -47,13 +47,13 @@ tolerance) and $\delta$ (input radius).
 Let $f$ be a real-valued function, $a$ a real number, and $L$ a real number.
 
 We say that
-```tex
+$$
 \lim_{x \to a} f(x) = L
-```
+$$
 iff
-```tex
+$$
 \forall \varepsilon > 0,\ \exists \delta > 0 \text{ such that } 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon.
-```
+$$
 
 Interpretation:
 
@@ -65,9 +65,9 @@ Interpretation:
 ## Intuition & Interpretation
 
 Read the condition
-```tex
+$$
 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon
-```
+$$
 as: whenever $x$ is sufficiently close (but not equal) to $a$, then $f(x)$ is
 within $\varepsilon$ of $L$. The chosen $\delta$ may depend on $\varepsilon$
 (and on $f$), but once fixed it must work for **all** $x$ with $0<|x-a|<\delta$.
@@ -76,26 +76,26 @@ within $\varepsilon$ of $L$. The chosen $\delta$ may depend on $\varepsilon$
 
 1. **Constant function**  
 For $f(x)=c$,
-```tex
+$$
 \lim_{x\to a} f(x) = c
-```
+$$
 is immediate since $|f(x)-c|=0$.
 
 2. **Linear function**  
 For $f(x)=mx+b$,
-```tex
+$$
 \lim_{x\to a} f(x)=ma+b,\quad |f(x)-(ma+b)|=|m||x-a|,
 \quad \delta=\varepsilon/|m|\ (m\ne 0).
-```
+$$
 
 3. **Limit without function value**  
 The limit can exist even if $f(a)$ is undefined or $\ne L$.
 
 ## Quantifier Structure
-```tex
+$$
 \forall \varepsilon > 0,\ \exists \delta > 0,\ \forall x,\ 
 \big( 0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon \big).
-```
+$$
 Order matters: the universal $\varepsilon$ is **outside** the existential $\delta$.
 
 ## Relationship to Informal Limits
@@ -115,11 +115,11 @@ describes input closeness that guarantees it.
 
 1. Translate the definition to plain language.  
 2. For $f(x)=5$, verify directly that
-```tex
+$$
 \lim_{x \to 2} f(x) = 5.
-```
+$$
 3. For $f(x)=3x-1$, outline an $\varepsilon$–$\delta$ proof that
-```tex
+$$
 \lim_{x \to 2} f(x) = 5.
-```
+$$
 4. Give an example where the definition fails for any $L$ and explain which part breaks.

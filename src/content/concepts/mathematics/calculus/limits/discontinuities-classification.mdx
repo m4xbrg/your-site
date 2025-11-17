@@ -52,15 +52,15 @@ Let $f$ be a function and $a$ a point in its domain/boundary.
 
 ### 1. Removable Discontinuity  
 Occurs when the two‑sided limit exists as a finite real number, but the value at the point is missing or mismatched:
-```tex
+$$
 \lim_{x\to a} f(x) = L \quad \text{exists (finite)}, \quad \text{and} \quad f(a)\ \text{undefined or } f(a)\ne L.
-```
+$$
 
 ### 2. Jump Discontinuity  
 Both one‑sided limits exist (finite) but are unequal:
-```tex
+$$
 \lim_{x\to a^-} f(x) \ne \lim_{x\to a^+} f(x).
-```
+$$
 
 ### 3. Essential Discontinuity  
 The limit fails for a non‑removable reason, e.g.
@@ -78,34 +78,34 @@ The limit fails for a non‑removable reason, e.g.
 ### Examples
 
 1. **Removable (hole)**
-```tex
+$$
 f(x)=\frac{x^2-1}{x-1}
-```
+$$
 has a hole at $x=1$ because
-```tex
+$$
 \lim_{x\to1} f(x)=2
-```
+$$
 while $f(1)$ is undefined.
 
 2. **Jump**
-```tex
+$$
 f(x)=
 \begin{cases}
 2,& x<0,\\
 5,& x\ge 0,
 \end{cases}
-```
+$$
 so the one‑sided limits are $2$ and $5$.
 
 3. **Essential (infinite)**
-```tex
+$$
 \lim_{x\to3}\frac{1}{x-3}=\pm\infty.
-```
+$$
 
 4. **Essential (oscillation)**
-```tex
+$$
 f(x)=\sin(1/x)\quad \text{at } x=0.
-```
+$$
 
 ### Non-Examples
 
@@ -130,26 +130,26 @@ f(x)=\sin(1/x)\quad \text{at } x=0.
 ## Exercises
 
 1. **Classify**
-```tex
+$$
 f(x)=
 \begin{cases}
 1,& x<1,\\
 3,& x>1,
 \end{cases}
-```
+$$
 identify the type at $x=1$.
 
 2. **Removable or not?**  
 Classify the discontinuity of
-```tex
+$$
 g(x)=\frac{x^2-9}{x-3}.
-```
+$$
 
 3. **Infinite behavior**  
 For
-```tex
+$$
 f(x)=\frac{1}{x^2}
-```
+$$
 classify the discontinuity at $x=0$.
 
 4. **Mini-proof (Sketch)** — Explain why jump discontinuities cannot be removed by redefining $f(a)$.
