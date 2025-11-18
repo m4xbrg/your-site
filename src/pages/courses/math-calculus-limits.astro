@@ -1,0 +1,187 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { collectionNames } from "../../lib/collections";
+import { getCollection } from "astro:content";
+
+const courseId = "math-calculus-limits";
+
+const courses = await getCollection(collectionNames.courses);
+const lessons = await getCollection(collectionNames.lessons);
+const exercises = await getCollection(collectionNames.exercises);
+const concepts = await getCollection(collectionNames.concepts);
+
+const course = courses.find((c) => c.data.id === courseId || c.slug === courseId);
+
+if (!course) {
+  throw new Error(`Course not found: ${courseId}`);
+}
+
+const data = course.data;
+
+const lessonsForCourse = lessons
+  .filter((l) => {
+    const d = l.data;
+    return d.courseId === courseId || d.course === courseId;
+  })
+  .sort((a, b) => {
+    const ao = a.data.order ?? 0;
+    const bo = b.data.order ?? 0;
+    if (ao !== bo) return ao - bo;
+    return (a.data.title ?? "").localeCompare(b.data.title ?? "");
+  });
+
+const exercisesForCourse = exercises.filter((e) => {
+  const d = e.data;
+  return d.courseId === courseId || d.course === courseId;
+});
+
+const exercisesByLessonId = new Map();
+
+for (const ex of exercisesForCourse) {
+  const lid = ex.data.lessonId;
+  if (!lid) continue;
+  const arr = exercisesByLessonId.get(lid) ?? [];
+  arr.push(ex);
+  exercisesByLessonId.set(lid, arr);
+}
+
+const conceptsForCourse = concepts
+  .filter((c) => c.data.courseId === courseId || c.data.course === courseId)
+  .sort((a, b) => {
+    const ao = a.data.order ?? 0;
+    const bo = b.data.order ?? 0;
+    if (ao !== bo) return ao - bo;
+    return (a.data.title ?? "").localeCompare(b.data.title ?? "");
+  });
+---
+
+<DocsLayout title={data.title ?? "Limits"} description={data.description}>
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <p class="text-sm uppercase tracking-wide text-gray-500">
+        Course
+      </p>
+      <h1 class="text-3xl font-semibold">
+        {data.title ?? "Limits"}
+      </h1>
+      {data.description && (
+        <p class="text-base text-gray-600">
+          {data.description}
+        </p>
+      )}
+      {data.learningGoals && data.learningGoals.length > 0 && (
+        <div class="mt-4">
+          <h2 class="text-lg font-medium mb-1">Course learning goals</h2>
+          <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+            {data.learningGoals.map((goal) => (
+              <li>{goal}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </header>
+
+    <section class="space-y-3">
+      <h2 class="text-2xl font-semibold">Lessons &amp; exercises</h2>
+      <ol class="space-y-4">
+        {lessonsForCourse.map((lesson) => {
+          const ld = lesson.data;
+          const lessonUrl = `/lessons/${lesson.slug}`;
+          const lessonExercises = (exercisesByLessonId.get(ld.id) ?? []).slice().sort(
+            (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+          );
+
+          return (
+            <li class="border border-gray-200 rounded-md p-4">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-gray-400">
+                    Lesson {ld.order ?? ""}
+                  </p>
+                  <a href={lessonUrl} class="text-lg font-medium hover:underline">
+                    {ld.title}
+                  </a>
+                  {ld.description && (
+                    <p class="mt-1 text-sm text-gray-600">
+                      {ld.description}
+                    </p>
+                  )}
+                  {ld.concepts && ld.concepts.length > 0 && (
+                    <p class="mt-2 text-xs text-gray-500">
+                      Concepts:{" "}
+                      {ld.concepts.map((cid, i) => {
+                        const conceptEntry = concepts.find(
+                          (c) => c.data.id === cid || c.slug === cid
+                        );
+                        const name = conceptEntry?.data.title ?? cid;
+                        const url = conceptEntry
+                          ? `/concepts/${conceptEntry.slug}`
+                          : undefined;
+                        return (
+                          <>
+                            {i > 0 && ", "}
+                            {url ? (
+                              <a href={url} class="underline decoration-dotted">
+                                {name}
+                              </a>
+                            ) : (
+                              name
+                            )}
+                          </>
+                        );
+                      })}
+                    </p>
+                  )}
+                </div>
+                {lessonExercises.length > 0 && (
+                  <div class="text-sm text-right space-y-1">
+                    <p class="font-medium text-gray-700">Exercises</p>
+                    <ul class="space-y-1">
+                      {lessonExercises.map((ex) => (
+                        <li>
+                          <a
+                            href={`/exercises/${ex.slug}`}
+                            class="text-sm text-blue-600 hover:underline"
+                          >
+                            {ex.data.title ?? "Exercise set"}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-2xl font-semibold">Concept map (course view)</h2>
+      <p class="text-sm text-gray-600">
+        These are the core concept nodes registered to this course.
+      </p>
+      <ul class="grid gap-3 md:grid-cols-2">
+        {conceptsForCourse.map((c) => (
+          <li class="border border-gray-200 rounded-md p-3">
+            <a
+              href={`/concepts/${c.slug}`}
+              class="font-medium text-sm hover:underline"
+            >
+              {c.data.title}
+            </a>
+            {c.data.role && (
+              <span class="ml-2 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-wide text-gray-500">
+                {c.data.role}
+              </span>
+            )}
+            {c.data.summary && (
+              <p class="mt-1 text-xs text-gray-600">{c.data.summary}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </section>
+</DocsLayout>
