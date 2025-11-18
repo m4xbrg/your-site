@@ -1,0 +1,105 @@
+---
+title: "Math Authoring Guide"
+summary: "Conventions for writing concepts, lessons, and exercises in Your-Site."
+---
+
+This guide defines how to author math content for Your-Site so that:
+
+- The **content graph** (subjects → macro-courses → courses → concepts → lessons → exercises) stays coherent.
+- The **math pipeline** (MDX → remark → KaTeX) remains stable.
+- New content follows the same patterns as the `math-calculus-limits` vertical.
+
+---
+
+## 1. Content types and their roles
+
+### 1.1 Subjects
+
+**File location:** `src/content/subjects/`  
+**Purpose:** High-level domains (e.g. `mathematics`, `physics`).  
+**Frontmatter (typical):**
+
+- `id: string` (usually matches the slug)
+- `title: string`
+- Optional labels, summary, tags
+
+Subjects rarely change. Most authors never touch these.
+
+---
+
+### 1.2 Macro-courses
+
+**File location:** `src/content/macro-courses/`  
+**Purpose:** Big arcs inside a subject (e.g. `math-calculus`).  
+**Frontmatter (typical):**
+
+- `id: string` (e.g. `math-calculus`)
+- `subject: "mathematics"`
+- `title: string`
+- Optional `description`, `order`, `tags`
+
+Courses attach to these via `macroId`.
+
+---
+
+### 1.3 Courses
+
+**File location:** `src/content/courses/`  
+**Purpose:** Concrete course units (e.g. `math-calculus-limits`).  
+
+**Frontmatter (canonical):**
+
+- `id: string` — **required**, used as the anchor ID  
+  - Example: `math-calculus-limits`
+- `subject: string` — **required**  
+  - Example: `mathematics`
+- `macroId?: string` — preferred  
+  - Example: `math-calculus`
+- `title: string`
+- `description?: string`
+- `order?: number` — ordering within the macro-course
+- `tags?: string[]`
+
+All **lessons**, **concepts**, and **exercises** in a vertical should agree on `courseId`.
+
+---
+
+## 2. IDs and naming conventions
+
+Use **stable, descriptive IDs** that are:
+
+- Lowercase
+- Hyphen-separated
+- Namespaced by subject / course
+
+Patterns:
+
+- **Course IDs:**  
+  `math-calculus-limits`, `math-analysis-sequences-limits`
+- **Concept IDs:**  
+  `math-calculus-limits-informal-idea`  
+  `math-calculus-limits-continuity-interval`
+- **Lesson IDs:**  
+  `math-calculus-limits-lesson-01`  
+  `math-calculus-limits-lesson-05-epsilon-delta`
+- **Exercise set IDs:**  
+  `math-calculus-limits-lesson-01-exercises`  
+  `math-calculus-limits-lesson-05-epsilon-delta-exercises`
+
+Once an `id` ships, **do not rename** it. Instead:
+
+- Keep the `id` stable.
+- Change only `title`, `summary`, or content.
+
+---
+
+## 3. Math syntax and LaTeX rules
+
+The math pipeline is MDX → remark → KaTeX. Authoring rules:
+
+### 3.1 Allowed math syntaxes
+
+- **Inline math** — use single `$`:
+
+  ```md
+  The function $f(x) = x^2$ is continuous.

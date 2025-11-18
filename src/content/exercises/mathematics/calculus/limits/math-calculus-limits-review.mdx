@@ -1,0 +1,199 @@
+---
+id: math-calculus-limits-review
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+lessonId: math-calculus-limits-lesson-06
+title: "Limits – Mixed Review"
+order: 7
+status: stable
+concepts:
+  - math-calculus-limits-informal-idea
+  - math-calculus-limits-graphical-numerical
+  - math-calculus-limits-notation
+  - math-calculus-limits-limit-laws
+  - math-calculus-limits-computation-strategies
+  - math-calculus-limits-one-sided
+  - math-calculus-limits-infinite-limits
+  - math-calculus-limits-at-infinity
+  - math-calculus-limits-continuity-point
+  - math-calculus-limits-continuity-interval
+  - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-removable-discontinuities
+  - math-calculus-limits-epsilon-delta-definition
+  - math-calculus-limits-epsilon-delta-proofs
+  - math-calculus-limits-squeeze-theorem
+  - math-calculus-limits-ivt
+tags:
+  - limits
+  - mixed-review
+  - calculus
+problems:
+  - id: lim-review-A-01
+    label: "A1"
+    difficulty: "A"
+    topics:
+      - math-calculus-limits-graphical-numerical
+      - math-calculus-limits-informal-idea
+    prompt: >
+      The graph of $f$ is shown (assume an appropriate graph is provided). Estimate
+      $\lim_{x \to -1} f(x)$ and $f(-1)$, and explain whether they are equal.
+    solution: >
+      From the graph, as $x$ approaches $-1$ from both sides, the $y$-values approach
+      some value $L$ (read from the graph). If the point at $x = -1$ is filled at a
+      different height $f(-1) \neq L$, then $\lim_{x \to -1} f(x) = L$ exists but
+      $f(-1) \neq L$, so there is a removable discontinuity.
+
+  - id: lim-review-A-02
+    label: "A2"
+    difficulty: "A"
+    topics:
+      - math-calculus-limits-limit-laws
+    prompt: >
+      Compute $\displaystyle \lim_{x \to 2} (3x^2 - 5x + 1)$ using limit laws.
+    solution: >
+      Using limit laws and continuity of polynomials,
+      $$
+      \lim_{x \to 2} (3x^2 - 5x + 1)
+      = 3(2^2) - 5(2) + 1
+      = 3 \cdot 4 - 10 + 1
+      = 12 - 10 + 1 = 3.
+      $$
+
+  - id: lim-review-A-03
+    label: "A3"
+    difficulty: "A"
+    topics:
+      - math-calculus-limits-continuity-point
+    prompt: >
+      Let $g(x) = \begin{cases}
+      x^2 & x \neq 1, \\
+      3 & x = 1.
+      \end{cases}$
+      Determine whether $g$ is continuous at $x = 1$.
+    solution: >
+      We have $\lim_{x \to 1} g(x) = \lim_{x \to 1} x^2 = 1$, but $g(1) = 3$.
+      Since the limit exists and is $1$ but $g(1) \neq 1$, $g$ is not continuous
+      at $x=1$. This is a removable discontinuity.
+
+  - id: lim-review-B-01
+    label: "B1"
+    difficulty: "B"
+    topics:
+      - math-calculus-limits-computation-strategies
+      - math-calculus-limits-removable-discontinuities
+    prompt: >
+      Compute $\displaystyle \lim_{x \to 2} \frac{x^2 - 4}{x - 2}$.
+      Explain your method and describe the type of discontinuity (if any)
+      at $x = 2$ for the function $h(x) = \frac{x^2 - 4}{x - 2}$.
+    solution: >
+      Factor:
+      $$
+      \frac{x^2 - 4}{x - 2} = \frac{(x-2)(x+2)}{x-2} = x + 2, \quad x \neq 2.
+      $$
+      So
+      $$
+      \lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} (x+2) = 4.
+      $$
+      The function $h$ has a hole at $x=2$ (removable discontinuity) since the
+      simplified expression is defined there but the original is not.
+
+  - id: lim-review-B-02
+    label: "B2"
+    difficulty: "B"
+    topics:
+      - math-calculus-limits-infinite-limits
+      - math-calculus-limits-one-sided
+    prompt: >
+      Consider $\displaystyle f(x) = \frac{1}{(x-3)^2}$. Compute
+      $\lim_{x \to 3^-} f(x)$, $\lim_{x \to 3^+} f(x)$, and classify the
+      behavior at $x = 3$.
+    solution: >
+      As $x \to 3$, $(x-3)^2 \to 0^+$, so $\frac{1}{(x-3)^2} \to +\infty$ from
+      both sides. Thus
+      $$
+      \lim_{x \to 3^-} f(x) = \lim_{x \to 3^+} f(x) = +\infty.
+      $$
+      There is a vertical asymptote at $x=3$ and an infinite discontinuity there.
+
+  - id: lim-review-B-03
+    label: "B3"
+    difficulty: "B"
+    topics:
+      - math-calculus-limits-limits-at-infinity
+    prompt: >
+      Compute $\displaystyle \lim_{x \to \infty} \frac{2x^2 - x + 1}{x^2 + 3}$.
+    solution: >
+      Divide numerator and denominator by $x^2$:
+      $$
+      \frac{2 - \frac{1}{x} + \frac{1}{x^2}}{1 + \frac{3}{x^2}} \xrightarrow[x\to\infty]{} \frac{2}{1} = 2.
+      $$
+      So the limit is $2$ and $y=2$ is a horizontal asymptote.
+
+  - id: lim-review-C-01
+    label: "C1"
+    difficulty: "C"
+    topics:
+      - math-calculus-limits-epsilon-delta-definition
+      - math-calculus-limits-epsilon-delta-proofs
+    prompt: >
+      Using the $\varepsilon$–$\delta$ definition of limit, prove that
+      $\displaystyle \lim_{x \to 2} (3x + 1) = 7$.
+    solution: >
+      We want: for every $\varepsilon > 0$ there exists $\delta > 0$ such that
+      $0 < |x-2| < \delta$ implies $|(3x+1) - 7| < \varepsilon$.
+      Note that
+      $$
+      |(3x+1) - 7| = |3x - 6| = 3|x-2|.
+      $$
+      If we choose $\delta = \varepsilon/3$, then whenever $0 < |x-2| < \delta$
+      we have
+      $$
+      |(3x+1)-7| = 3|x-2| < 3\delta = 3\cdot \frac{\varepsilon}{3} = \varepsilon.
+      $$
+      This proves the limit.
+
+  - id: lim-review-C-02
+    label: "C2"
+    difficulty: "C"
+    topics:
+      - math-calculus-limits-squeeze-theorem
+    prompt: >
+      Show that $\displaystyle \lim_{x \to 0} x^2 \sin\left(\frac{1}{x}\right) = 0$
+      using the Squeeze Theorem.
+    solution: >
+      For all real $t$, $|\sin t| \le 1$, so
+      $$
+      -x^2 \le x^2 \sin\left(\frac{1}{x}\right) \le x^2
+      $$
+      for all $x \neq 0$. As $x \to 0$, both $-x^2$ and $x^2$ have limit $0$,
+      so by the Squeeze Theorem the middle expression also has limit $0$.
+
+  - id: lim-review-C-03
+    label: "C3"
+    difficulty: "C"
+    topics:
+      - math-calculus-limits-ivt
+      - math-calculus-limits-continuity-interval
+    prompt: >
+      Let $f(x) = x^3 - x - 1$. Show that the equation $f(x) = 0$ has a solution
+      in the interval $(1, 2)$.
+    solution: >
+      First compute $f(1) = 1 - 1 - 1 = -1$ and $f(2) = 8 - 2 - 1 = 5$.
+      Thus $f(1) < 0$ and $f(2) > 0$. The function $f$ is a polynomial, hence
+      continuous on the closed interval $[1,2]$. By the Intermediate Value Theorem
+      there exists $c \in (1,2)$ such that $f(c) = 0$. So the equation has
+      at least one root in $(1,2)$.
+---
+
+## Tier A – Core Skills
+
+See problems A1–A3 above.
+
+## Tier B – Standard Problems
+
+See problems B1–B3 above.
+
+## Tier C – Challenge / Proofs
+
+See problems C1–C3 above.
