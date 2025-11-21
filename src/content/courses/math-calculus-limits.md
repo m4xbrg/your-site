@@ -5,7 +5,9 @@ macroId: math-calculus
 title: Limits & Continuity
 description: Intuitive and formal notions of limits, continuity of functions, and the local behavior of functions near a point.
 order: 1
-tags: []
+tags:
+  - limits
+  - calculus
 status: refine
 learningGoals:
   - Interpret limits from numerical tables, graphs, and symbolic expressions.
@@ -13,18 +15,25 @@ learningGoals:
   - Construct and critique ε–δ arguments and theorem-based limit proofs.
 outline:
   - label: Lesson 01 – Informal Limits, Numerical Behavior, and Notation
+    lessonId: math-calculus-limits-lesson-01
     conceptSlug: math-calculus-limits-informal-idea
   - label: Lesson 02 – Algebraic Limit Laws and Computation Strategies
+    lessonId: math-calculus-limits-lesson-02
     conceptSlug: math-calculus-limits-limit-laws
   - label: Lesson 03 – One-Sided, Infinite, and At-Infinity Limits
+    lessonId: math-calculus-limits-lesson-03
     conceptSlug: math-calculus-limits-one-sided
   - label: Lesson 04 – Continuity and Types of Discontinuities
+    lessonId: math-calculus-limits-lesson-04
     conceptSlug: math-calculus-limits-continuity-point
   - label: Lesson 05 – The Epsilon–Delta Definition of a Limit
+    lessonId: math-calculus-limits-lesson-05
     conceptSlug: math-calculus-limits-epsilon-delta-definition
   - label: Lesson 06 – Epsilon–Delta Proofs, Squeeze, and IVT
+    lessonId: math-calculus-limits-lesson-06
     conceptSlug: math-calculus-limits-epsilon-delta-proofs
   - label: Review – Cumulative Practice and Concept Synthesis
+    exerciseId: math-calculus-limits-review
 ---
 This course introduces intuitive and formal notions of limits, continuity of functions, and how functions behave near a point or at infinity. It assumes comfort with algebraic manipulation, function notation, and basic trigonometry so learners can focus on new limit ideas rather than symbolic basics.
 

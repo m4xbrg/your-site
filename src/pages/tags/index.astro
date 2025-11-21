@@ -9,10 +9,10 @@ const formatCount = (count: number, label: string) =>
   `${count} ${label}${count === 1 ? '' : 's'}`
 ---
 
-<DocsLayout title="Browse by tag" description="Explore every tag used across courses and concepts.">
+<DocsLayout title="Browse by tag" description="Explore every tag used across courses, lessons, concepts, and exercises.">
   <h1 class="text-3xl font-bold mb-3">Browse by tag</h1>
   <p class="text-gray-600 mb-8">
-    Pick a tag to see how it shows up across courses and concepts. There are {tagGroups.length} unique tags right now.
+    Pick a tag to see how it shows up across courses, lessons, concepts, and exercises. There are {tagGroups.length} unique tags right now.
   </p>
 
   {tagGroups.length === 0 ? (
@@ -23,8 +23,14 @@ const formatCount = (count: number, label: string) =>
         const courses = group.entries.filter(
           (e) => e.collection === collectionNames.courses
         )
+        const lessons = group.entries.filter(
+          (e) => e.collection === collectionNames.lessons
+        )
         const concepts = group.entries.filter(
           (e) => e.collection === collectionNames.concepts
+        )
+        const exercises = group.entries.filter(
+          (e) => e.collection === collectionNames.exercises
         )
         const total = group.entries.length
 
@@ -34,7 +40,7 @@ const formatCount = (count: number, label: string) =>
               <h2 class="text-xl font-semibold">{group.tag}</h2>
             </a>
             <p class="text-sm text-gray-500 mt-1">
-              {formatCount(concepts.length, 'concept')} · {formatCount(courses.length, 'course')}
+              {formatCount(concepts.length, 'concept')} · {formatCount(courses.length, 'course')} · {formatCount(lessons.length, 'lesson')} · {formatCount(exercises.length, 'exercise')}
             </p>
             <p class="text-xs text-gray-400 mt-1">
               Used {formatCount(total, 'time')} overall

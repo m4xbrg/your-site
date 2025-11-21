@@ -1,6 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro"
-import { getCollection, getEntryBySlug } from 'astro:content'
+import { getCollection } from 'astro:content'
 import { collectionNames } from "../../lib/collections"
 import TagChips from "../../components/TagChips.astro"
 
@@ -27,37 +27,17 @@ if (!concept) throw new Error('Concept not found')
 const { Content } = await concept.render()
 const data = concept.data
 
+const allConcepts = await getCollection(collectionNames.concepts)
 const relatedSlugs = data.relatedConcepts ?? []
-const allConcepts = relatedSlugs.length
-  ? await getCollection(collectionNames.concepts)
-  : []
 const relatedConcepts = relatedSlugs.length
   ? relatedSlugs
-      .map((slug) => allConcepts.find((entry) => entry.slug === slug))
+      .map((slug) =>
+        allConcepts.find(
+          (entry) => entry.slug === slug || entry.data.id === slug,
+        ),
+      )
       .filter(Boolean)
   : []
-
-const resolvedPrerequisites = await Promise.all(
-  (data.prerequisites ?? []).map(async (slug) => {
-    const concept = await getEntryBySlug(collectionNames.concepts, slug)
-    if (concept) {
-      return {
-        title: concept.data.title,
-        href: `/concepts/${concept.slug}/`,
-      }
-    }
-
-    const lesson = await getEntryBySlug(collectionNames.lessons, slug)
-    if (lesson) {
-      return {
-        title: lesson.data.title,
-        href: `/lessons/${lesson.slug}/`,
-      }
-    }
-
-    return { title: slug }
-  }),
-)
 
 const difficultyLabel = data.difficulty
   ? `Difficulty: ${data.difficulty[0].toUpperCase()}${data.difficulty.slice(1)}`
@@ -72,18 +52,50 @@ const hasMetadata = Boolean(difficultyLabel || estimatedTimeLabel || tagLabels.l
 const allLessons = await getCollection(collectionNames.lessons)
 const allExercises = await getCollection(collectionNames.exercises)
 
+const resolvedPrerequisites = (data.prerequisites ?? []).map((slug) => {
+  const conceptMatch = allConcepts.find(
+    (entry) => entry.slug === slug || entry.data.id === slug,
+  )
+  if (conceptMatch) {
+    return {
+      title: conceptMatch.data.title,
+      href: `/concepts/${conceptMatch.slug}/`,
+    }
+  }
+
+  const lessonMatch = allLessons.find(
+    (entry) => entry.slug === slug || entry.data.id === slug,
+  )
+  if (lessonMatch) {
+    return {
+      title: lessonMatch.data.title,
+      href: `/lessons/${lessonMatch.slug}/`,
+    }
+  }
+
+  return { title: slug }
+})
+
 // we use the explicit concept id if present; otherwise fall back to slug
 const conceptKey = data.id ?? concept.slug
 
-const lessonsForConcept = allLessons.filter((lesson) => {
-  const list = lesson.data.concepts ?? []
-  return Array.isArray(list) && list.includes(conceptKey)
-})
+const lessonsForConcept = allLessons
+  .filter((lesson) => {
+    const list = lesson.data.concepts ?? []
+    return Array.isArray(list) && list.includes(conceptKey)
+  })
+  .sort((a, b) => {
+    const orderDiff = (a.data.order ?? 0) - (b.data.order ?? 0)
+    if (orderDiff !== 0) return orderDiff
+    return (a.data.title ?? '').localeCompare(b.data.title ?? '')
+  })
 
-const exercisesForConcept = allExercises.filter((exercise) => {
-  const list = exercise.data.concepts ?? []
-  return Array.isArray(list) && list.includes(conceptKey)
-})
+const exercisesForConcept = allExercises
+  .filter((exercise) => {
+    const list = exercise.data.concepts ?? []
+    return Array.isArray(list) && list.includes(conceptKey)
+  })
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
 ---
 
 <DocsLayout title={data.title} description={data.description}>
@@ -114,6 +126,17 @@ const exercisesForConcept = allExercises.filter((exercise) => {
       </div>
     )}
 
+    {Array.isArray(data.learningGoals) && data.learningGoals.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold mb-3">Learning goals</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          {data.learningGoals.map((goal) => (
+            <li>{goal}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     {resolvedPrerequisites.length > 0 && (
       <section class="mb-8">
         <h2 class="text-lg font-semibold mb-3">Prerequisites</h2>
@@ -137,7 +160,7 @@ const exercisesForConcept = allExercises.filter((exercise) => {
 
     {lessonsForConcept.length > 0 && (
       <section class="mt-10">
-        <h2 class="text-lg font-semibold mb-3">Lessons using this concept</h2>
+        <h2 class="text-lg font-semibold mb-3">Used in lessons</h2>
         <ul class="space-y-2 text-sm">
           {lessonsForConcept.map((lesson) => (
             <li>
@@ -147,6 +170,9 @@ const exercisesForConcept = allExercises.filter((exercise) => {
               >
                 <span class="font-medium text-gray-900">
                   {lesson.data.title}
+                </span>
+                <span class="text-xs uppercase tracking-wide text-gray-500">
+                  Lesson {lesson.data.order ?? '—'}
                 </span>
                 {lesson.data.description && (
                   <span class="text-gray-600">

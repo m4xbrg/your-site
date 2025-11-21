@@ -45,6 +45,59 @@ for (const ex of exercisesForCourse) {
   exercisesByLessonId.set(lid, arr);
 }
 
+const lessonLookupById = new Map(
+  lessonsForCourse.map((lesson) => [lesson.data.id ?? lesson.slug, lesson]),
+);
+
+const lessonLookupByConcept = new Map();
+
+for (const lesson of lessonsForCourse) {
+  const conceptIds = Array.isArray(lesson.data.concepts)
+    ? lesson.data.concepts
+    : [];
+
+  for (const cid of conceptIds) {
+    if (!lessonLookupByConcept.has(cid)) {
+      lessonLookupByConcept.set(cid, lesson);
+    }
+  }
+}
+
+const exerciseLookupById = new Map(
+  exercisesForCourse.map((exercise) => [exercise.data.id ?? exercise.slug, exercise]),
+);
+
+const conceptsByKey = new Map(
+  concepts.map((c) => [c.data.id ?? c.slug, c]),
+);
+
+const outlineItems = (data.outline ?? []).map((item, index) => {
+  const concept = item.conceptSlug ? conceptsByKey.get(item.conceptSlug) : null;
+
+  const lessonFromId = item.lessonId ? lessonLookupById.get(item.lessonId) : null;
+  const lessonFromConcept = !lessonFromId && item.conceptSlug
+    ? lessonLookupByConcept.get(item.conceptSlug)
+    : null;
+  const lesson = lessonFromId ?? lessonFromConcept ?? null;
+
+  const lessonExercises = lesson
+    ? (exercisesByLessonId.get(lesson.data.id) ?? []).slice().sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+    : [];
+
+  const reviewExercise = item.exerciseId
+    ? exerciseLookupById.get(item.exerciseId)
+    : null;
+
+  return {
+    index,
+    label: item.label,
+    concept,
+    lesson,
+    lessonExercises,
+    reviewExercise,
+  };
+});
+
 const conceptsForCourse = concepts
   .filter((c) => c.data.courseId === courseId || c.data.course === courseId)
   .sort((a, b) => {
@@ -82,62 +135,53 @@ const conceptsForCourse = concepts
     </header>
 
     <section class="space-y-3">
-      <h2 class="text-2xl font-semibold">Lessons &amp; exercises</h2>
+      <h2 class="text-2xl font-semibold">Lessons &amp; review</h2>
       <ol class="space-y-4">
-        {lessonsForCourse.map((lesson) => {
-          const ld = lesson.data;
-          const lessonUrl = `/lessons/${lesson.slug}`;
-          const lessonExercises = (exercisesByLessonId.get(ld.id) ?? []).slice().sort(
-            (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-          );
-
-          return (
-            <li class="border border-gray-200 rounded-md p-4">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="text-xs uppercase tracking-wide text-gray-400">
-                    Lesson {ld.order ?? ""}
-                  </p>
-                  <a href={lessonUrl} class="text-lg font-medium hover:underline">
-                    {ld.title}
-                  </a>
-                  {ld.description && (
-                    <p class="mt-1 text-sm text-gray-600">
-                      {ld.description}
-                    </p>
+        {outlineItems.map((item) => (
+          <li class="border border-gray-200 rounded-md p-4" key={item.label}>
+            <div class="flex items-start justify-between gap-4">
+              <div class="space-y-2">
+                <p class="text-xs uppercase tracking-wide text-gray-400">
+                  Step {item.index + 1}
+                </p>
+                <div class="flex flex-wrap items-center gap-2">
+                  {item.lesson ? (
+                    <a
+                      href={`/lessons/${item.lesson.slug}`}
+                      class="text-lg font-medium hover:underline"
+                    >
+                      {item.label}
+                    </a>
+                  ) : item.reviewExercise ? (
+                    <a
+                      href={`/exercises/${item.reviewExercise.slug}`}
+                      class="text-lg font-medium hover:underline"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <span class="text-lg font-medium">{item.label}</span>
                   )}
-                  {ld.concepts && ld.concepts.length > 0 && (
-                    <p class="mt-2 text-xs text-gray-500">
-                      Concepts:{" "}
-                      {ld.concepts.map((cid, i) => {
-                        const conceptEntry = concepts.find(
-                          (c) => c.data.id === cid || c.slug === cid
-                        );
-                        const name = conceptEntry?.data.title ?? cid;
-                        const url = conceptEntry
-                          ? `/concepts/${conceptEntry.slug}`
-                          : undefined;
-                        return (
-                          <>
-                            {i > 0 && ", "}
-                            {url ? (
-                              <a href={url} class="underline decoration-dotted">
-                                {name}
-                              </a>
-                            ) : (
-                              name
-                            )}
-                          </>
-                        );
-                      })}
-                    </p>
+
+                  {item.concept && (
+                    <a
+                      href={`/concepts/${item.concept.slug}`}
+                      class="inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] uppercase tracking-wide text-gray-500 hover:border-gray-400"
+                    >
+                      {item.concept.data.title}
+                    </a>
                   )}
                 </div>
-                {lessonExercises.length > 0 && (
-                  <div class="text-sm text-right space-y-1">
+
+                {item.lesson?.data.description && (
+                  <p class="text-sm text-gray-600">{item.lesson.data.description}</p>
+                )}
+
+                {item.lessonExercises.length > 0 && (
+                  <div class="text-sm space-y-1">
                     <p class="font-medium text-gray-700">Exercises</p>
                     <ul class="space-y-1">
-                      {lessonExercises.map((ex) => (
+                      {item.lessonExercises.map((ex) => (
                         <li>
                           <a
                             href={`/exercises/${ex.slug}`}
@@ -150,10 +194,21 @@ const conceptsForCourse = concepts
                     </ul>
                   </div>
                 )}
+
+                {item.reviewExercise && !item.lesson && (
+                  <p class="text-sm">
+                    <a
+                      class="text-blue-600 hover:underline"
+                      href={`/exercises/${item.reviewExercise.slug}`}
+                    >
+                      Jump to the cumulative review set
+                    </a>
+                  </p>
+                )}
               </div>
-            </li>
-          );
-        })}
+            </div>
+          </li>
+        ))}
       </ol>
     </section>
 
