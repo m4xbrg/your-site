@@ -3,225 +3,51 @@ id: math-calculus-limits-lesson-02
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Algebraic Limit Laws and Basic Computation Strategies
+title: Algebraic Limit Laws and Computation Strategies
 order: 2
 status: stable
+difficulty: intro
+tags:
+  - limits
+  - algebra
+  - computation
 concepts:
   - math-calculus-limits-limit-laws
   - math-calculus-limits-computation-strategies
 ---
 
-# 1. Overview
+# Lesson Objectives
+- **math-calculus-limits-limit-laws:** Apply sum, product, quotient, and composition rules to reduce complex limits.
+- **math-calculus-limits-computation-strategies:** Choose substitution, factoring, rationalization, or comparison to evaluate limits efficiently.
 
-This lesson introduces the **algebraic rules** governing limits and the
-**standard strategies** used to compute limits efficiently. It builds the
-operational toolkit for evaluating limits of algebraic expressions.
+## Setup
+- Refresh notation from Lesson 1 and keep the law list visible for reference.
+- Have scratch paper for algebraic manipulation and factoring.
+- Graphing support is helpful for checking answers but not required.
 
-Objectives:
+## Concept recap
+### math-calculus-limits-limit-laws — Algebraic rules
+Existing finite limits combine via arithmetic and composition, letting us swap “limit of expression” with “expression of limits.”
 
-- Use algebraic laws to compute limits symbolically.  
-- Apply substitution, factoring, rationalization, and limit comparisons.  
-- Recognize when algebraic manipulation is necessary.  
-- Form the computational backbone for later continuity and derivative rules.
+### math-calculus-limits-computation-strategies — Practical tools
+Direct substitution works on continuous functions; when it fails, factoring, rationalizing, or simplifying dominant terms can remove indeterminate forms.
 
----
+## Worked examples
+- **Direct substitution (limit-laws):** $\lim_{x\to3} (2x^2-5x+1) = 2(9)-15+1=4$ by polynomial continuity.
+- **Factoring a removable hole (computation-strategies):** $\lim_{x\to1} \dfrac{x^2-1}{x-1} = \lim_{x\to1} (x+1) = 2$ after canceling the common factor.
+- **Rationalizing (computation-strategies):** $\lim_{x\to0} \dfrac{\sqrt{x+1}-1}{x}$ becomes $\lim_{x\to0} \dfrac{1}{\sqrt{x+1}+1}=\dfrac{1}{2}$ after multiplying by the conjugate.
+- **Dominant-term comparison (limit-laws + strategies):** $\lim_{x\to\infty} \dfrac{5x^2-3}{2x^2+1} = \dfrac{5}{2}$ by leading coefficients.
 
-# 2. Concept Map for This Lesson
+## Mid-lesson checks
+- Decide whether direct substitution works for $\lim_{x\to2} \dfrac{x^2-4}{x-2}$; if not, pick a strategy and justify.
+- Explain why the quotient law requires a nonzero denominator limit and give a counterexample when it fails.
+- Simplify a limit of your choice using two different strategies and compare which is cleaner.
 
-### Core relationships:
-- `limit-laws` gives *rules* for combining known limits.  
-- `computation-strategies` gives *methods* for resolving indeterminate expressions.
+## Summary
+- Algebraic limit laws enable symbolic computation when individual component limits exist.
+- Computation strategies remove indeterminate forms and reveal the conditions under which the laws apply.
+- Dominant-term and substitution reasoning link the informal ideas from Lesson 1 to structured algebra.
 
-### Structural DAG:
-
-informal-idea → notation → limit-laws  
-limit-laws → computation-strategies
-
-Algebraic laws require notation; strategies depend on applying the laws.
-
----
-
-# 3. Core Exposition
-
-## 3.1 Algebraic limit laws
-
-For limits that exist, the following hold:
-
-- **Sum:**
-$$
-\lim_{x\to a} (f+g)(x) = L_f + L_g.
-$$
-
-- **Difference:**
-$$
-\lim_{x\to a} (f-g)(x) = L_f - L_g.
-$$
-
-- **Product:**
-$$
-\lim_{x\to a} f(x)g(x) = L_f L_g.
-$$
-
-- **Quotient:**
-$$
-\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{L_f}{L_g},\quad L_g\ne 0.
-$$
-
-- **Power / polynomial laws**
-$$
-\lim_{x\to a} p(x) = p(a)
-$$
-
-- **Composition law (continuous outer function):**
-$$
-\lim_{x\to a} g(f(x)) = g(L_f).
-$$
-
-These laws allow replacing limits of expressions with expressions of limits.
-
-## 3.2 Basic computation strategies
-
-### Strategy 1 — Direct substitution  
-Works when the function is continuous at the point.
-
-### Strategy 2 — Factoring  
-Used to remove removable discontinuities:
-$$
-\frac{x^2-1}{x-1} = x+1.
-$$
-
-### Strategy 3 — Rationalization  
-Used for radicals:
-$$
-\frac{\sqrt{x+1}-1}{x} \cdot \frac{\sqrt{x+1}+1}{\sqrt{x+1}+1}.
-$$
-
-### Strategy 4 — Common denominators / simplification  
-Reduces complex rational functions into simpler ones.
-
-### Strategy 5 — Dominant terms and comparisons  
-Used when forms like $ \frac{1}{x} $ or polynomials appear near finite or infinite points.
-
----
-
-# 4. Worked Examples
-
-### Example 1 — Direct substitution
-$$
-\lim_{x\to 3} (2x^2 - 5x + 1)
-$$
-$$
-= 2(9) - 15 + 1 = 4
-$$
-
-### Example 2 — Factoring to remove a hole
-$$
-\lim_{x\to 1} \frac{x^2-1}{x-1}
-$$
-$$
-= \lim_{x\to1} (x+1)
-$$
-$$
-= 2
-$$
-
-### Example 3 — Rationalization
-
-Evaluate:
-$$
-\lim_{x\to 0} \frac{\sqrt{x+1}-1}{x}
-$$
-
-Multiply by the conjugate:
-$$
-\frac{\sqrt{x+1}-1}{x}\cdot\frac{\sqrt{x+1}+1}{\sqrt{x+1}+1}
-$$
-$$
-= \frac{x}{x(\sqrt{x+1}+1)}
-$$
-$$
-= \frac{1}{\sqrt{x+1}+1}
-$$
-
-Thus the limit is:
-$$
-\frac{1}{2}
-$$
-
-### Example 4 — Quotient with discontinuity
-$$
-\lim_{x\to 2} \frac{x^2 - 4}{x-2}
-$$
-
-Factor:
-$$
-\frac{(x-2)(x+2)}{x-2} = x+2
-$$
-Limit = 4.
-
----
-
-# 5. Deepening / Structural Analysis
-
-- Algebraic manipulation changes the *expression*, not the underlying limit.  
-- Removing removable discontinuities is legitimate because limit behavior depends on nearby values.  
-- Rationalization resolves radicals by eliminating denominators that tend to zero.  
-- Composition requires continuity of the outer function.  
-- Many indeterminate expressions $ 0/0 $ are removable; $ 0/0 $ is a *signal*, not an outcome.  
-
-Fundamental invariant:
-
-> Limit laws operate on existing limits. Computation strategies produce forms where laws can be reapplied.
-
----
-
-# 6. Practice Set (Tiered)
-
-### Tier A — foundational
-1. Compute:  
-$$
-\lim_{x\to5} (3x-7)
-$$
-2. Compute:  
-$$
-\lim_{x\to2} (x^3 + 4x)
-$$
-
-### Tier B — mixed
-3. Evaluate:  
-$$
-\lim_{x\to 0} \frac{x^2-9x}{x}
-$$
-4. Evaluate:  
-$$
-\lim_{x\to1} \frac{x^3-1}{x-1}
-$$
-
-### Tier C — challenge
-5. Evaluate using rationalization:  
-$$
-\lim_{x\to4} \frac{\sqrt{x}-2}{x-4}
-$$
-6. Evaluate using polynomial dominance:  
-$$
-\lim_{x\to\infty} \frac{3x^3 - x}{x^3 + 10}
-$$
-
----
-
-# 7. Summary
-
-- Limit laws give algebraic control over sums, products, and compositions.  
-- Computation strategies resolve indeterminate expressions and simplify functions.  
-- Continuity of common functions underpins direct substitution.  
-- This lesson forms the operational heart of all later calculus techniques.
-
----
-
-# 8. Forward Links
-
-This lesson enables:
-
-- Lesson 3: one-sided limits, vertical asymptotes, horizontal asymptotes  
-- Lesson 4: continuity and classification of discontinuities  
-- Lesson 5: transition to epsilon–delta definition
+## Next steps
+- Reinforce the rules with `src/content/exercises/mathematics/calculus/limits/lesson-02-exercises.mdx`.
+- Move to asymptotic behavior in Lesson 3 to study one-sided limits and asymptotes.

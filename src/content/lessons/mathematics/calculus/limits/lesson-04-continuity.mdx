@@ -6,6 +6,11 @@ courseId: math-calculus-limits
 title: Continuity and Classification of Discontinuities
 order: 4
 status: stable
+difficulty: intermediate
+tags:
+  - continuity
+  - limits
+  - discontinuities
 concepts:
   - math-calculus-limits-continuity-point
   - math-calculus-limits-continuity-interval
@@ -13,207 +18,48 @@ concepts:
   - math-calculus-limits-removable-discontinuities
 ---
 
-# 1. Overview
+# Lesson Objectives
+- **math-calculus-limits-continuity-point:** Test continuity at a point using limits and function values.
+- **math-calculus-limits-continuity-interval:** Extend pointwise continuity to intervals and common function families.
+- **math-calculus-limits-discontinuities-classification:** Differentiate removable, jump, and essential failures.
+- **math-calculus-limits-removable-discontinuities:** Repair holes by redefining the function when a finite limit exists.
 
-This lesson formalizes **continuity** using limits and develops a precise
-taxonomy of **discontinuities**. We analyze when a function behaves smoothly,
-when it fails, and how those failures differ structurally.
+## Setup
+- Keep results from one-sided and infinite limits (Lesson 3) ready for classifying discontinuities.
+- Review algebraic simplifications that expose holes or asymptotes.
+- Sketch paper helps visualize left/right behavior at candidate points.
 
-Objectives:
+## Concept recap
+### math-calculus-limits-continuity-point — Local agreement
+Continuity at $a$ requires $f(a)$ to exist, $\lim_{x\to a} f(x)$ to exist, and equality between them.
 
-- Apply limit-based definitions of continuity.  
-- Distinguish continuity at a point vs. on an interval.  
-- Classify removable, jump, and essential discontinuities.  
-- Recognize when continuity can be “repaired.”  
+### math-calculus-limits-continuity-interval — Smoothness across regions
+A function continuous at every interior point and with appropriate endpoint behavior is continuous on the interval; polynomials and trig functions satisfy this on their domains.
 
----
+### math-calculus-limits-discontinuities-classification — Types of failure
+- **Removable:** finite limit exists but the point value is missing or mismatched.
+- **Jump:** left and right limits exist but disagree.
+- **Essential:** no finite limit (including infinite or oscillatory blow-up).
 
-# 2. Concept Map for This Lesson
+### math-calculus-limits-removable-discontinuities — Fixable holes
+When a finite limit exists, defining $f(a)$ to equal that limit restores continuity.
 
-one-sided → discontinuities-classification → removable-discontinuities  
-notation → continuity-point → continuity-interval
+## Worked examples
+- **Verifying continuity (continuity-point):** Polynomials like $f(x)=3x^2-1$ are continuous everywhere; substitution gives the limit at any point.
+- **Removing a hole (removable-discontinuities):** $f(x)=\dfrac{x^2-9}{x-3}=x+3$ for $x\ne3$ has $\lim_{x\to3} f(x)=6$; defining $f(3)=6$ patches continuity.
+- **Jump discontinuity (discontinuities-classification):** $f(x)=\begin{cases}1,&x<0\\5,&x\ge0\end{cases}$ has unequal one-sided limits at $0$, so no two-sided limit exists.
+- **Essential infinite break (discontinuities-classification):** $f(x)=\dfrac{1}{x-2}$ diverges to opposite infinities near $2$, creating an essential discontinuity and vertical asymptote.
 
-- Continuity relies on limit existence and agreement with value.  
-- Discontinuity classification depends on one-sided limits.  
-- Removable discontinuities arise when the limit exists but the function value is defective.
+## Mid-lesson checks
+- Determine whether $\dfrac{x^2-4}{x-2}$ is continuous at $x=2$ and, if not, how to repair it.
+- Classify the discontinuity of $f(x)=\dfrac{|x-1|}{x-1}$ at $x=1$ using one-sided limits.
+- Identify all discontinuities of $f(x)=\dfrac{x}{x^2-1}$ and categorize each.
 
----
+## Summary
+- Continuity means the limit matches the function value; failures fall into removable, jump, or essential types.
+- One-sided and infinite limits reveal the nature of each discontinuity.
+- Removable discontinuities can often be patched, while jumps and essential breaks cannot be fixed by a single-point change.
 
-# 3. Core Exposition
-
-## 3.1 Continuity at a point
-
-A function $ f $ is **continuous at $ a $** if:
-
-1. $ f(a) $ is defined,  
-2. $ \lim_{x\to a} f(x) $ exists,  
-3. and they agree:
-$$
-\lim_{x\to a} f(x) = f(a).
-$$
-
-Continuity is a local condition tied directly to limit behavior.
-
----
-
-## 3.2 Continuity on an interval
-
-A function is **continuous on an interval** if it is continuous at:
-
-- every interior point,  
-- the right endpoint (for closed interval left side),  
-- the left endpoint (for closed interval right side).
-
-Polynomials, rational functions (nonzero denominators), exponential and
-trigonometric functions are all continuous on their domains.
-
----
-
-## 3.3 Classification of discontinuities
-
-Three fundamental types:
-
-### • Removable  
-Finite limit exists, but value is missing or mismatched.
-
-### • Jump  
-Left and right limits exist but are unequal.
-
-### • Essential  
-Includes:
-- infinite discontinuities (blow-up),  
-- oscillatory discontinuities,  
-- anything where no finite limit exists.
-
----
-
-## 3.4 Removable discontinuities: structure
-
-A removable discontinuity arises when:
-$$
-\lim_{x\to a} f(x) = L, \quad f(a) \ne L \text{ or } f(a) \text{ undefined.}
-$$
-Fix by defining:
-$$
-f(a) := L
-$$
-
----
-
-# 4. Worked Examples
-
-### Example 1 — Confirming continuity
-$$
-f(x)=3x^2-1
-$$
-Polynomials are continuous everywhere.  
-Direct substitution gives the limit at any point.
-
-### Example 2 — Removable discontinuity
-$$
-f(x)=\frac{x^2-9}{x-3}
-$$
-Factor:
-$$
-f(x)=x+3,\quad x\ne3
-$$
-Limit at 3 is 6, but function is undefined at 3 → removable.
-
-### Example 3 — Jump discontinuity
-$$
-f(x)=
-\begin{cases}
-1,& x<0,\\
-5,& x\ge 0.
-\end{cases}
-$$
-Left limit = 1, right limit = 5 → jump.
-
-### Example 4 — Essential (infinite)
-$$
-f(x)=\frac{1}{x-2}
-$$
-(Left side → $ -\infty $, right side → $ +\infty $.)  
-No finite limit → essential discontinuity.
-
----
-
-# 5. Deepening / Structural Analysis
-
-- Continuity represents “agreement” between the function’s definition and its
-  limiting behavior.  
-- Discontinuities reflect structural failures of this agreement.  
-- Jump discontinuities cannot be repaired by modifying the function at a single
-  point — the mismatch is directional.  
-- Infinite discontinuities describe unbounded behavior, not missing values.  
-- Continuous functions on closed intervals satisfy properties such as IVT and
-  always attain maxima/minima (later).
-
-**Invariants:**
-
-- Continuity at a point ⇔ limit exists and equals the function value.  
-- Removable ⇔ finite limit exists but point value is wrong.  
-- Jump ⇔ one-sided limits exist but differ.  
-- Essential ⇔ cannot confine function within any small band near the point.
-
----
-
-# 6. Practice Set (Tiered)
-
-### Tier A — foundational
-
-1. Determine whether  
-$$
-f(x)=\frac{x^2-4}{x-2}
-$$
-   is continuous at $ x=2 $.
-
-2. Determine:
-$$
-\lim_{x\to1} \frac{|x-1|}{x-1}
-$$
-
-### Tier B — mixed
-
-3. Classify the discontinuity of  
-$$
-f(x)=\begin{cases}
-x+1,&x\neq2,\\
-0,&x=2.
-\end{cases}
-$$
-
-4. Determine all discontinuities of  
-$$
-f(x)=\frac{x}{x^2-1}
-$$
-
-### Tier C — challenge
-
-5. A function oscillates increasingly near $ x=0 $, staying between −5 and 5.
-   Does it have a removable, jump, or essential discontinuity?
-
-6. A piecewise function satisfies
-$$
-\lim_{x\to4^-}f(x)=2,\quad \lim_{x\to4^+}f(x)=2,\quad f(4)=100.
-$$
-   Identify the discontinuity and suggest a repair.
-
----
-
-# 7. Summary
-
-- Continuity formalizes the idea of unbroken function behavior.  
-- Discontinuities appear when limit behavior and point values diverge.  
-- Three distinct failures: removable, jump, essential.  
-- Continuity and discontinuity classification are structural tools used heavily
-  in derivative definitions, IVT applications, and deeper analysis.
-
----
-
-# 8. Forward Links
-
-This lesson prepares for:
-
-- Lesson 5: epsilon–delta definition of continuity and limits  
-- Lesson 6: epsilon–delta proofs, Squeeze, IVT (formal theorems)
+## Next steps
+- Apply these ideas in `src/content/exercises/mathematics/calculus/limits/lesson-04-exercises.mdx`.
+- Prepare for Lesson 5, where continuity and limit ideas become fully formal through the epsilon–delta definition.

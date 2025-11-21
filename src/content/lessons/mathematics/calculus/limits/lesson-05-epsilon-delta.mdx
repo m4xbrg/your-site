@@ -6,210 +6,42 @@ courseId: math-calculus-limits
 title: The Epsilon–Delta Definition of Limit
 order: 5
 status: stable
+difficulty: intermediate
+tags:
+  - limits
+  - rigor
+  - epsilon-delta
 concepts:
   - math-calculus-limits-epsilon-delta-definition
 ---
 
-# 1. Overview
+# Lesson Objectives
+- **math-calculus-limits-epsilon-delta-definition:** Translate informal limit statements into formal $\varepsilon$–$\delta$ language and interpret the quantifiers.
 
-This lesson introduces the **formal** definition of a limit using quantifiers,
-tolerances, and neighborhoods. It provides a rigorous foundation for all
-subsequent limit proofs, continuity arguments, and derivative definitions.
+## Setup
+- Keep continuity examples from Lesson 4 nearby to see how limits govern point behavior.
+- Review quantifier reading from logic (\(\forall\), \(\exists\)).
+- Have scratch space for inequality manipulations when solving for $\delta$.
 
-Objectives:
+## Concept recap
+### math-calculus-limits-epsilon-delta-definition — Formal limit statement
+$\lim_{x\to a} f(x)=L$ means: for **every** tolerance $\varepsilon>0$, there is a distance $\delta>0$ so that $0<|x-a|<\delta$ forces $|f(x)-L|<\varepsilon$. Order matters: choose $\delta$ after seeing the requested $\varepsilon$.
 
-- Understand the roles of $ \varepsilon $ and $ \delta $.  
-- Translate informal limit statements into ε–δ form.  
-- Interpret the quantifier structure precisely.  
-- Recognize how the definition encodes approach behavior.  
+## Worked examples
+- **Reading the statement:** Rewrite “$f(x)$ approaches $3$ as $x\to2$” as: for any $\varepsilon>0$ pick $\delta=\min\{1,\varepsilon/5\}$ to guarantee $|f(x)-3|<\varepsilon$ when $|x-2|<\delta$.
+- **Linear function (epsilon-delta-definition):** For $f(x)=4x-1$ at $x\to2$, choose $\delta=\varepsilon/4$ so $|f(x)-7|=4|x-2|<\varepsilon$.
+- **One-sided variation:** For $x\to a^+$, replace $0<|x-a|<\delta$ with $a<x<a+\delta$; the rest of the structure is unchanged.
 
----
+## Mid-lesson checks
+- Given $f(x)=x^2$, propose a $\delta$ in terms of $\varepsilon$ near $x=1$ and justify briefly.
+- Explain why the definition ignores the value of $f$ at $x=a$ itself.
+- Describe how the $\varepsilon$–$\delta$ statement changes when discussing limits at infinity.
 
-# 2. Concept Map for This Lesson
+## Summary
+- The $\varepsilon$–$\delta$ definition encodes “arbitrarily close outputs require sufficiently close inputs.”
+- Quantifier order (for every $\varepsilon$ there exists $\delta$) is essential for capturing robustness.
+- Variants for one-sided limits and limits at infinity only modify the domain restriction.
 
-informal-idea → notation → epsilon-delta-definition → epsilon-delta-proofs  
-logic-quantifiers → epsilon-delta-definition
-
-- Informal idea gives intuitive meaning.  
-- Quantifiers give formal structure.  
-- Epsilon–delta definition bridges intuition and formal analysis.
-
----
-
-# 3. Core Exposition
-
-## 3.1 Formal definition
-
-We say:
-$$
-\lim_{x\to a} f(x) = L
-$$
-if:
-$$
-\forall \varepsilon > 0,\ \exists \delta > 0 :
-$$
-$$
-0 < |x - a| < \delta \ \Rightarrow\ |f(x) - L| < \varepsilon
-$$
-
-### Components
-
-- $ \varepsilon $: desired output accuracy.  
-- $ \delta $: corresponding input restriction ensuring that accuracy.  
-- $ 0<|x-a|<\delta $: focus on nearby values excluding the point.  
-- Quantifier order: **∀ ε**, then **∃ δ**.
-
----
-
-## 3.2 Structural interpretation
-
-- The definition constrains function behavior without referencing the value at the point.  
-- “For every ε” encodes arbitrary precision in the output.  
-- “There exists δ” encodes control over the input region.  
-- The definition formalizes stability: approaching a limit cannot be broken by local irregularities.
-
----
-
-## 3.3 Equivalent forms
-
-- Two-sided limit uses symmetric bands around $ a $.  
-- One-sided limits modify the domain restriction:  
-  For $ x \to a^- $: replace condition with $ a - \delta < x < a $.  
-  For $ x \to a^+ $: replace with $ a < x < a + \delta $.  
-- Limits at infinity use $ x > N $ or $ x < -N $ instead of $ |x-a|<\delta $.
-
----
-
-# 4. Worked Examples
-
-### Example 1 — Simple translation to ε–δ form
-
-Statement:
-$$
-\lim_{x\to 3} (4x - 1) = 11
-$$
-Rewrite:
-- Given $ \varepsilon > 0 $, choose $ \delta = \varepsilon/4 $.  
-- If $ 0<|x-3|<\delta $, then:
-$$
-|(4x-1) - 11| = 4|x-3| < 4\delta = \varepsilon
-$$
-
-### Example 2 — Constant function
-$$
-f(x)=5
-$$
-Then $ |f(x)-5| = 0 < \varepsilon $.  
-Any $ \delta > 0 $ works.
-
-### Example 3 — Quadratic example (pre-bounding)
-
-Goal:
-$$
-\lim_{x\to1} x^2 = 1
-$$
-We rewrite:
-$$
-|x^2 - 1| = |x-1||x+1|
-$$
-To control $ |x+1| $, assume $ |x-1|<1 $, then $ x\in(0,2) $ so $ |x+1|<3 $.  
-Thus:
-$$
-|x^2 - 1| < 3|x-1|
-$$
-Pick:
-$$
-\delta = \min\left\{ 1,\ \frac{\varepsilon}{3} \right\}
-$$
-
-### Example 4 — Why the value at the point is irrelevant
-
-For
-$$
-f(x)=
-\begin{cases}
-x^2,& x\ne 1,\\
-1000,& x=1,
-\end{cases}
-$$
-the ε–δ definition concerns only inputs satisfying $ 0<|x-1|<\delta $.  
-The value at the point plays no role.
-
----
-
-# 5. Deepening / Structural Analysis
-
-- The key difficulty in ε–δ proofs is bounding auxiliary terms (e.g. $ x+1 $).  
-- δ is almost always derived by solving the inequality backward from $ |f(x)-L|<\varepsilon $.  
-- The definition encodes directional stability: limits are unique and cannot oscillate.  
-- The value of the function at the limit point is never included; continuity is a later condition.
-
-**Invariants**
-
-- Limit definition is independent of pointwise value.  
-- ε controls output precision; δ controls input proximity.  
-- Quantifier order must not be reversed.
-
----
-
-# 6. Practice Set (Tiered)
-
-### Tier A — foundational
-
-1. State the ε–δ definition for
-$$
-\lim_{x\to 4} (7x - 2) = 26
-$$
-
-2. Identify ε and δ roles in the definition.
-
-### Tier B — mixed
-
-3. Rewrite the limit
-$$
-\lim_{x\to -2} (5x+3)= -7
-$$
-in ε–δ form.
-
-4. Explain why the ε–δ definition does not require evaluating $ f(a) $.
-
-### Tier C — challenge
-
-5. For
-$$
-\lim_{x\to1} x^2 = 1
-$$
-complete the bounding step that yields a δ of the form
-$$
-\delta = \min\{1,\varepsilon/3\}
-$$
-
-6. Show that if
-$$
-\lim_{x\to a} f(x) = L_1
-\quad\text{and}\quad
-\lim_{x\to a} f(x) = L_2,
-$$
-then
-$$
-L_1 = L_2
-$$
-(Use the ε–δ definition.)
-
----
-
-# 7. Summary
-
-- The ε–δ definition formalizes what it means for a function to approach a value.  
-- It is built on quantifiers, neighborhoods, and rigorous inequalities.  
-- This structure underlies continuity, limit laws, and derivative definitions.  
-- Epsilon–delta reasoning is the foundation of analysis.
-
----
-
-# 8. Forward Links
-
-This lesson prepares directly for:
-
-- **Lesson 6:** epsilon–delta proofs, Squeeze Theorem, and IVT  
-  (last lesson in this course)
+## Next steps
+- Practice formal translation and $\delta$ choices in `src/content/exercises/mathematics/calculus/limits/lesson-05-exercises.mdx`.
+- Proceed to Lesson 6 to build full $\varepsilon$–$\delta$ proofs and apply the Squeeze and Intermediate Value Theorems.
