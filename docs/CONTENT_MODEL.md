@@ -120,6 +120,25 @@ Optional:
 - Exercises must reference valid lessons, courses, macros, subjects, and concept IDs.
 - Concept prerequisite graphs should be acyclic.
 
+### Example: Limits concept frontmatter (calculus pilot)
+```
+id: math-calculus-limits-infinite-limits
+subject: mathematics
+macroId: math-calculus
+courseId: math-calculus-limits
+title: Infinite Limits
+status: stable
+role: supporting
+prerequisites:
+  - math-calculus-limits-notation
+  - math-calculus-limits-one-sided
+relatedConcepts:
+  - math-calculus-limits-at-infinity
+  - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-graphical-numerical
+```
+Use the fully qualified concept IDs in `prerequisites` and `relatedConcepts` to avoid mismatches during graph checks.
+
 ## Graph tooling
 - `npm run graph:check` runs `scripts/check-content-graph.mjs` to validate IDs, statuses, and all cross-collection references, and to detect prerequisite cycles.
 - `npm run query:core-concepts-without-exercises` reports calculus core concepts that are not yet linked from any exercise.

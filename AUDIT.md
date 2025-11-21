@@ -9,15 +9,15 @@
 | --- | --- | --- | --- |
 | `npm run dev` | Local dev server via Astro | Not run | Assumed standard Astro dev flow. |
 | `npm run build` | Production build | ✅ | Failed initially due to schema enum mismatch; passes after content fixes. |
-| `npm run preview` | Preview built site | Not run | Requires prior build. |
+| `npm run preview` | Preview built site | ✅ | Served build at :4321 for manual spot checks. |
 | `npm run format` | Prettier formatting | Not run | Available for manual use. |
 | `npm run lint` | ESLint across repo | ✅ | Added minimal ESLint flat config with TS parser so command succeeds. |
 | `npm run content:new` | Page generator via `tools/generate-page.ts` | Not run | Aligns with content schemas. |
 | `npm run search:index` | Builds search index JSON from content | ✅ | Generates `public/search-index.json`. |
 
 ## Build & type-check
-- Build initially failed because lesson/exercise frontmatter used `status: stable`, which violates the lessons/exercises enum schema (`draft | published | archived`). Normalized affected files to `published`; build now completes cleanly.【F:src/content/lessons/mathematics/calculus/limits/lesson-01-introduction.mdx†L2-L13】【F:src/content/exercises/mathematics/calculus/limits/lesson-01-exercises.mdx†L2-L16】
-- Refreshed dependencies (npm install) after rollup optional dependency errors; reran build successfully.
+- Build continues to pass after re-running `npm run build` to validate the latest content graph.
+- `npm run graph:check` now passes after correcting a relatedConcept ID mismatch so dependent concepts point at the existing "limits at infinity" entry.【F:src/content/concepts/mathematics/calculus/limits/infinite-limits.mdx†L19-L25】【F:src/content/concepts/mathematics/calculus/limits/squeeze-theorem.mdx†L19-L24】【F:src/content/concepts/mathematics/calculus/limits/limits-at-infinity.mdx†L1-L26】
 
 ## Routing & pages
 - Dynamic routes (`concepts/[...slug]`, `lessons/[...slug]`, `exercises/[...slug]`, `subjects/[slug]`, `macro-courses/[slug]`, `courses/[id]`) are generated from collection entries and aligned with the content IDs/slugs. No routing adjustments required after content fixes.
@@ -31,7 +31,7 @@
 - Regenerated `public/search-index.json` via `npm run search:index` to reflect corrected publication statuses and current content set.
 
 ## Navigation & UX
-- Home and listing pages now surface the corrected lessons/exercises thanks to valid publication statuses; no additional UX changes were necessary.
+- Manually spot-checked the calculus limits course → lesson → concept → exercise chain via the preview server (200 responses, populated content rather than stubs); no routing gaps found.
 
 ## Code hygiene & minor cleanups
 - Minimal changes: schema-aligned status fields and lint configuration to keep tooling working without suppressing types or weakening schemas.
@@ -41,7 +41,9 @@
   - `npm run build` (pass)
   - `npm run lint` (pass after config addition)
   - `npm run search:index` (pass)
-- Remaining TODOs: broader relationship validation across all content collections (e.g., verifying every course/concept reference) could be automated in future passes; preview/dev server not exercised in this audit.
+  - `npm run graph:check` (pass after ID fix)
+  - `npm run preview -- --host --port 4321` (pass; used for manual page traversal)
+- Remaining TODOs: extend graph validation coverage beyond the calculus pilot (e.g., prerequisites across other subjects) and add automated smoke navigation for other course stacks.
 
 ## Content model status (current)
 - Standardized lifecycle status to `draft | refine | stable` across subjects, courses, lessons, concepts, and exercises.
