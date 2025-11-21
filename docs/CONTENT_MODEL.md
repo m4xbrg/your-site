@@ -1,160 +1,128 @@
 # Content Model
 
-This document defines the entities in the learning graph and how they relate.
+This document defines the learning-graph entities, lifecycle semantics, and the tooling that keeps relationships consistent.
 
----
+## Current state snapshot
+- Content lives in Astro content collections under `src/content/**` with explicit IDs in frontmatter.
+- The calculus pilot (limits course) follows the canonical ID pattern (`math-calculus-*`) with linked lessons, concepts, and exercises.
+- Lifecycle status is standardized to `draft | refine | stable`; legacy `published`/`archived` have been removed from schemas and content.
+- Concepts record `prerequisites` and `relatedConcepts`, and lessons/exercises reference concepts directly for graph queries.
+
+## Lifecycle semantics
+- `draft`: early or incomplete work; may be missing links or polish.
+- `refine`: content exists and links are credible, but quality/coverage still being improved.
+- `stable`: publishable quality; ready for indexing, search, and downstream use.
 
 ## Entities
 
 ### Subject
-
-**Examples**: `mathematics`, `physics`
-
-- Top-level domain of knowledge.
-- Used to group macro-courses, courses, concepts, lessons, exercises.
-
-**Core fields (conceptual)**:
-- `id` (string, stable, lowercase)
+Required:
+- `id` (lowercase, hyphenated)
 - `title`
-- `description`
+- `status` (`draft | refine | stable`)
 
----
+Optional:
+- `description`
+- `order`
 
 ### Macro-course
-
-A **large territory** within a subject.
-
-**Examples**: `math-calculus`, `math-algebra`
-
-**Purpose**:
-
-- Group one or more courses that logically belong together.
-- Provide a medium-scale entry point (e.g. “Calculus”).
-
-**Core fields (conceptual)**:
-- `id` (string, stable)
+Required:
+- `id` (e.g., `math-calculus`)
 - `subject` (subject id)
 - `title`
-- `description`
+- `status` (`draft | refine | stable`)
 
----
+Optional:
+- `description`
+- `order`
 
 ### Course
-
-A **coherent learning arc** inside a macro-course.
-
-**Examples**: `math-calculus-limits`
-
-**Purpose**:
-
-- Organize a set of lessons and concepts into a structured progression.
-- Expose metadata (goals, tags, outline) for navigation and search.
-
-**Core fields (conceptual)**:
-- `id`
+Required:
+- `id` (e.g., `math-calculus-limits`)
 - `subject`
 - `macroId`
 - `title`
-- `description`
-- `learningGoals` (array of strings)
-- `tags` (array of strings)
-- `status` (`draft` | `stable` | `refine`)
+- `status` (`draft | refine | stable`)
 
----
+Optional:
+- `description`
+- `order`
+- `tags` (string array)
+- `learningGoals` (string array)
+- `outline` (array of `{ label, conceptSlug? }`)
 
 ### Lesson
-
-A **concrete, teachable unit** (page) that explains one or more concepts.
-
-**Purpose**:
-
-- Provide narrative, examples, exercises.
-- Connect concepts in a sequence within a course.
-
-**Core fields (conceptual)**:
-- `title`
-- `description`
-- `courseId`
-- `concepts` (array of concept ids)
-- `order` (number, for within-course ordering)
-- `status`
-- `tags`
-- `objectives` / `summary` (text)
-
----
-
-### Concept
-
-A **single idea** in the knowledge graph (e.g. “right-hand limit at a point”).
-
-**Purpose**:
-
-- Smallest meaningful semantic unit.
-- Can be referenced from multiple lessons and exercises.
-- Forms a graph via prerequisites and relations.
-
-**Core fields (conceptual)**:
-- `id`
-- `title`
-- `description`
+Required:
+- `id` (e.g., `math-calculus-limits-lesson-01`)
 - `subject`
 - `macroId`
-- `courseId` (optional if cross-course?)
-- `prerequisites` (concept id array)
-- `relatedConcepts` (concept id array)
-- `role` (`core` | `supporting` | `extension`)
-- `status`
-- `difficulty` (enum or numeric)
+- `courseId`
+- `title`
+- `status` (`draft | refine | stable`)
+- `order`
+
+Optional:
+- `description`
+- `concepts` (array of concept ids)
+
+### Concept
+Required:
+- `id` (e.g., `math-calculus-limits-notation`)
+- `subject`
+- `title`
+- `status` (`draft | refine | stable`)
+- `role` (`core | supporting | extension`)
+
+Optional:
+- `macroId`
+- `courseId`
+- `summary`
+- `description`
+- `order`
 - `tags`
 - `learningGoals`
-
----
+- `prerequisites` (concept id array)
+- `relatedConcepts` (concept id array)
+- `difficulty`
+- `kind`
+- `proofLevel`
 
 ### Exercise
-
-A **practice item** tied to a concept and/or lesson.
-
-**Purpose**:
-
-- Assess understanding.
-- Provide spaced and mixed practice.
-
-**Core fields (conceptual)**:
+Required:
+- `id`
+- `subject`
+- `macroId`
+- `courseId`
+- `lessonId`
 - `title`
-- `courseId` (optional but recommended)
-- `conceptId` or `concepts` (concepts this exercise targets)
-- `difficulty`
-- `status`
+- `status` (`draft | refine | stable`)
+- `order`
+- `concepts` (non-empty array of concept ids)
+
+Optional:
 - `tags`
-- `problem` (markdown/MDX)
-- `solution` (optional MDX)
+- `difficulty`
+- `topics`
+- `problems` (structured problems array)
 
----
+### Notes / Misc
+Required:
+- `title`
 
-### Notes / Misc content
+Optional:
+- `summary`
 
-Used for:
+## Relationship rules
+- Every macro-course, course, lesson, concept, and exercise must point to an existing subject.
+- Every course must belong to a macro-course.
+- Every lesson belongs to exactly one course (and by extension its macro-course/subject).
+- Every concept should name its home course/macro when applicable and must use valid concept IDs for `prerequisites` and `relatedConcepts`.
+- Exercises must reference valid lessons, courses, macros, subjects, and concept IDs.
+- Concept prerequisite graphs should be acyclic.
 
-- Meta commentary
-- Design notes
-- Non-student-facing content
+## Graph tooling
+- `npm run graph:check` runs `scripts/check-content-graph.mjs` to validate IDs, statuses, and all cross-collection references, and to detect prerequisite cycles.
+- `npm run query:core-concepts-without-exercises` reports calculus core concepts that are not yet linked from any exercise.
+- `npm run query:lessons-covering-concept -- <concept-id>` (or run the default script entry) prints lessons that directly or indirectly cover a target concept via prerequisites/related concepts.
 
----
-
-## Relationship Rules
-
-- Every **course** belongs to exactly one **subject**, and usually one **macro-course**.
-- Every **lesson** belongs to exactly one **course**.
-- Every **concept** belongs to one **subject**, usually one macro-course and one main course.
-- **Prerequisite** and **relatedConcepts** must point to valid concept IDs.
-- **Exercises** must be linked to at least one concept or course.
-
----
-
-## Invariants
-
-- No broken references:
-  - All `subject`, `macroId`, `courseId`, `concepts`, `prerequisites`, `relatedConcepts` refer to real entries.
-- No orphan concepts:
-  - Every concept is reachable from at least one course or lesson.
-- Lessons in a given course have strictly increasing `order` values with no duplicates.
+Keep this document aligned with `src/content/config.ts` and the frontmatter used across collections.

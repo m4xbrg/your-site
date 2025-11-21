@@ -264,6 +264,27 @@ declare module 'astro:content' {
   collection: "concepts";
   data: InferEntrySchema<"concepts">
 } & { render(): Render[".mdx"] };
+"mathematics/foundations/arithmetic-algebra.mdx": {
+	id: "mathematics/foundations/arithmetic-algebra.mdx";
+  slug: "mathematics/foundations/arithmetic-algebra";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/foundations/functions-basic.mdx": {
+	id: "mathematics/foundations/functions-basic.mdx";
+  slug: "mathematics/foundations/functions-basic";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
+"mathematics/foundations/logic-quantifiers.mdx": {
+	id: "mathematics/foundations/logic-quantifiers.mdx";
+  slug: "mathematics/foundations/logic-quantifiers";
+  body: string;
+  collection: "concepts";
+  data: InferEntrySchema<"concepts">
+} & { render(): Render[".mdx"] };
 };
 "courses": {
 "math-algebra-exponentials-logs.md": {
@@ -1079,5 +1100,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../../src/content/config.js");
+	export type ContentConfig = typeof import("../../src/content/config.js");
 }

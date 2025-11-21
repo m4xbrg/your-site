@@ -1064,9 +1064,11 @@
     "subject": null,
     "course": null,
     "data": {
+      "id": "mathematics",
       "title": "Mathematics",
       "order": 1,
-      "description": "Structures, quantities, and transformations underpinning the formal sciences."
+      "description": "Structures, quantities, and transformations underpinning the formal sciences.",
+      "status": "stable"
     },
     "content": ""
   },
@@ -1109,7 +1111,7 @@
       "relatedConcepts": [
         "math-calculus-limits-limit-laws",
         "math-calculus-limits-infinite-limits",
-        "math-calculus-limits-limits-at-infinity"
+        "math-calculus-limits-at-infinity"
       ],
       "learningGoals": [
         "Use algebraic manipulations such as factoring and rationalization to simplify limit expressions.",
@@ -1455,7 +1457,7 @@
         "math-calculus-limits-limit-laws"
       ],
       "relatedConcepts": [
-        "math-calculus-limits-limits-at-infinity",
+        "math-calculus-limits-at-infinity",
         "math-calculus-limits-discontinuities-classification"
       ],
       "learningGoals": [
@@ -1584,7 +1586,7 @@
       "lessonId": "math-calculus-limits-lesson-01",
       "title": "Lesson 01 – Limits: Exercises",
       "order": 1,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-informal-idea",
         "math-calculus-limits-graphical-numerical",
@@ -1614,7 +1616,7 @@
       "courseId": "math-calculus-limits",
       "title": "Introduction to Limits: Informal Idea, Numerical Behavior, and Notation",
       "order": 1,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-informal-idea",
         "math-calculus-limits-graphical-numerical",
@@ -1645,7 +1647,7 @@
       "lessonId": "math-calculus-limits-lesson-02",
       "title": "Exercises – Lesson 2: Algebraic Limit Laws and Basic Computation Strategies",
       "order": 2,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-limit-laws",
         "math-calculus-limits-computation-strategies"
@@ -1675,7 +1677,7 @@
       "courseId": "math-calculus-limits",
       "title": "Algebraic Limit Laws and Basic Computation Strategies",
       "order": 2,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-limit-laws",
         "math-calculus-limits-computation-strategies"
@@ -1700,7 +1702,7 @@
       "courseId": "math-calculus-limits",
       "title": "One-Sided Limits, Infinite Limits, and Limits at Infinity",
       "order": 3,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-one-sided",
         "math-calculus-limits-infinite-limits",
@@ -1731,7 +1733,7 @@
       "lessonId": "math-calculus-limits-lesson-03",
       "title": "Exercises – Lesson 3: One-Sided Limits and Asymptotic Behavior",
       "order": 3,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-one-sided",
         "math-calculus-limits-infinite-limits",
@@ -1762,7 +1764,7 @@
       "courseId": "math-calculus-limits",
       "title": "Continuity and Classification of Discontinuities",
       "order": 4,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-continuity-point",
         "math-calculus-limits-continuity-interval",
@@ -1794,7 +1796,7 @@
       "lessonId": "math-calculus-limits-lesson-04",
       "title": "Exercises – Lesson 4: Continuity and Discontinuities",
       "order": 4,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-continuity-point",
         "math-calculus-limits-continuity-interval",
@@ -1826,7 +1828,7 @@
       "courseId": "math-calculus-limits",
       "title": "The Epsilon–Delta Definition of Limit",
       "order": 5,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-epsilon-delta-definition"
       ]
@@ -1855,7 +1857,7 @@
       "lessonId": "math-calculus-limits-lesson-05",
       "title": "Exercises – Lesson 5: The Epsilon–Delta Definition of Limit",
       "order": 5,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-epsilon-delta-definition"
       ],
@@ -1890,7 +1892,7 @@
       "lessonId": "math-calculus-limits-lesson-06",
       "title": "Exercises – Lesson 6: ε–δ Proofs, Squeeze Theorem, and IVT",
       "order": 6,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-epsilon-delta-proofs",
         "math-calculus-limits-squeeze-theorem",
@@ -1922,7 +1924,7 @@
       "courseId": "math-calculus-limits",
       "title": "Epsilon–Delta Proofs, Squeeze Theorem, and the Intermediate Value Theorem",
       "order": 6,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-epsilon-delta-proofs",
         "math-calculus-limits-squeeze-theorem",
@@ -2050,7 +2052,7 @@
       "lessonId": "math-calculus-limits-lesson-06",
       "title": "Limits – Mixed Review",
       "order": 7,
-      "status": "published",
+      "status": "stable",
       "concepts": [
         "math-calculus-limits-informal-idea",
         "math-calculus-limits-graphical-numerical",
@@ -2370,24 +2372,6 @@
       ]
     },
     "content": "## Snapshot\n\nThe Squeeze Theorem evaluates limits when $f$ is trapped between two simpler\nfunctions with the **same** limit.\n\n## Formal Statement\n\nLet $g,f,h$ be defined near $a$ (except possibly at $a$). Suppose:\n\n1) For $x$ sufficiently close to $a$,\n$$\ng(x) \\le f(x) \\le h(x),\n$$\n2) and\n$$\n\\lim_{x\\to a} g(x) = \\lim_{x\\to a} h(x) = L.\n$$\nThen\n$$\n\\lim_{x\\to a} f(x) = L.\n$$\nThe same holds for limits at $\\pm\\infty$ with analogous conditions.\n\n## Intuition & Interpretation\n\nIf $f$ is squeezed between functions that both approach $L$, then $f$ cannot do\nanything else but also approach $L$.\n\n## Examples & Non-Examples\n\n### Examples\n\n1. **Classic trig**\n$$\n-1 \\le \\frac{\\sin x}{x} \\le 1 \\quad (x\\ne 0).\n$$\nWith careful sign handling, one shows\n$$\n\\cos x \\le \\frac{\\sin x}{x} \\le 1 \\ \\Rightarrow\\ \\lim_{x\\to0}\\frac{\\sin x}{x}=1.\n$$\n\n2. **Oscillation damped by a small factor**\n$$\n-x^2 \\le x^2\\sin(1/x) \\le x^2 \\ \\Rightarrow\\ \\lim_{x\\to0} x^2\\sin(1/x) = 0.\n$$\n\n3. **Rational bounding (large $x$)**  \nIf\n$$\n\\frac{x}{x+1} \\le f(x) \\le \\frac{x}{x+2},\n$$\nboth bounds $\\to 1$; hence $\\lim_{x\\to\\infty} f(x)=1$.\n\n### Non-Examples\n\n1. Bounds converge to **different** limits.  \n2. Bounds don’t hold on a full punctured neighborhood.  \n3. One side missing or reversed inequality.\n\n## Properties & Relationships\n\n- Fundamentally an inequality argument.  \n- Pairs well with absolute‑value bounds:\n$$\n|f(x)| \\le g(x),\\ \\lim g(x)=0 \\ \\Rightarrow\\ \\lim f(x)=0.\n$$\n\n## Common Pitfalls\n\n1. Using Squeeze without verifying **both** bounds.  \n2. Bounds with different limits.  \n3. Missing sign considerations that break inequalities.  \n4. Assuming Squeeze proves infinite limits without appropriate bounds.\n\n## Exercises\n\n1. Prove\n$$\n\\lim_{x\\to0} x\\sin(1/x) = 0.\n$$\n\n2. If $|f(x)|\\le x^4$, show\n$$\n\\lim_{x\\to0} f(x) = 0.\n$$\n\n3. Evaluate\n$$\n\\lim_{x\\to\\infty} x\\sin(1/x).\n$$\n\n4. **Mini‑proof** — Why must the two bounding functions converge to the **same** value?"
-  },
-  {
-    "id": "subjects:physics",
-    "collection": "subjects",
-    "slug": "physics",
-    "title": "Physics",
-    "description": "The study of physical quantities, interactions, and laws governing systems across scales.",
-    "url": "/subjects/physics/",
-    "tags": [],
-    "difficulty": null,
-    "subject": null,
-    "course": null,
-    "data": {
-      "title": "Physics",
-      "order": 2,
-      "description": "The study of physical quantities, interactions, and laws governing systems across scales."
-    },
-    "content": ""
   },
   {
     "id": "macro-courses:physics-electricity-magnetism",

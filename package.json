@@ -10,9 +10,13 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "content:new": "tsx tools/generate-page.ts",
-    "search:index": "tsx scripts/generate-index.ts"
+    "search:index": "tsx scripts/generate-index.ts",
+    "graph:check": "node ./scripts/check-content-graph.mjs",
+    "query:core-concepts-without-exercises": "node ./scripts/query-core-concepts-without-exercises.mjs",
+    "query:lessons-covering-concept": "node ./scripts/query-lessons-covering-concept.mjs math-calculus-limits-squeeze-theorem"
   },
   "dependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.53.3",
     "astro": "^4.16.6",
     "gray-matter": "^4.0.3",
     "typescript": "^5",
