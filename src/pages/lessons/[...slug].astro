@@ -21,9 +21,9 @@ const { Content } = await lesson.render()
 
 // naive matching: exercise.data.lessonId === data.id
 const allExercises = await getCollection(collectionNames.exercises)
-const exercisesForLesson = allExercises.filter(
-  (ex) => ex.data.lessonId === data.id,
-)
+const exercisesForLesson = allExercises
+  .filter((ex) => ex.data.lessonId === data.id)
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
 
 // prev / next within the same course (if you have courseId / course + order)
 const allLessons = await getCollection(collectionNames.lessons)

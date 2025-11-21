@@ -3,7 +3,9 @@ import { collectionNames } from './collections';
 
 export type TaggableCollectionName =
   | typeof collectionNames.courses
-  | typeof collectionNames.concepts;
+  | typeof collectionNames.concepts
+  | typeof collectionNames.lessons
+  | typeof collectionNames.exercises;
 
 type TaggableEntry = CollectionEntry<TaggableCollectionName>;
 
@@ -48,15 +50,19 @@ const appendEntriesForCollection = (
 };
 
 export const getAllTags = async (): Promise<TagGroup[]> => {
-  const [courses, concepts] = await Promise.all([
+  const [courses, concepts, lessons, exercises] = await Promise.all([
     getCollection(collectionNames.courses),
     getCollection(collectionNames.concepts),
+    getCollection(collectionNames.lessons),
+    getCollection(collectionNames.exercises),
   ]);
 
   const tagMap = new Map<string, TaggedEntrySummary[]>();
 
   appendEntriesForCollection(tagMap, collectionNames.courses, courses as TaggableEntry[]);
   appendEntriesForCollection(tagMap, collectionNames.concepts, concepts as TaggableEntry[]);
+  appendEntriesForCollection(tagMap, collectionNames.lessons, lessons as TaggableEntry[]);
+  appendEntriesForCollection(tagMap, collectionNames.exercises, exercises as TaggableEntry[]);
 
   return Array.from(tagMap.entries())
     .sort(([tagA], [tagB]) => tagA.localeCompare(tagB))
