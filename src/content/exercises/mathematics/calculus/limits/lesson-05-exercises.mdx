@@ -4,58 +4,56 @@ subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
 lessonId: math-calculus-limits-lesson-05
-title: "Exercises – Lesson 5: The Epsilon–Delta Definition of Limit"
+lesson: "/lessons/mathematics/calculus/limits/lesson-05-epsilon-delta"
+title: "Exercises – Lesson 5: Epsilon–Delta Definitions"
 order: 5
 status: stable
+difficulty: mixed
 concepts:
   - math-calculus-limits-epsilon-delta-definition
+  - math-calculus-limits-epsilon-delta-proofs
 tags:
-  - exercises
   - epsilon-delta
-  - analysis
+  - limits
+  - lesson-exercises
 ---
 
-## Tier A – Foundational
+## Basic practice
 
-1. Write out the ε–δ definition of:
+1. **Identify $\delta$ for a linear function** _(Difficulty: Basic)._ Show that $\lim_{x\to 2}(3x+1)=7$ by finding a $\delta$ in terms of $\varepsilon$.
 
-$$
-\lim_{x\to 2} (3x+1) = 7.
-$$
+   **Solution.** $| (3x+1)-7|=3|x-2|$. Choose $\delta=\varepsilon/3$ so that $|x-2|<\delta$ implies $|3x+1-7|<\varepsilon$.
 
-2. Explain in your own words the meaning of:
+2. **Translate notation** _(Difficulty: Basic)._ Rewrite the statement “$\lim_{x\to a} f(x)=L$” using $\varepsilon$ and $\delta$ language.
 
-$$
-\forall \varepsilon > 0,\ \exists \delta > 0:\ 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.
-$$
+   **Solution.** For every $\varepsilon>0$ there exists $\delta>0$ such that if $0<|x-a|<\delta$, then $|f(x)-L|<\varepsilon$.
 
----
+## Intermediate drills
 
-## Tier B – Mixed
+3. **Quadratic example** _(Difficulty: Intermediate)._ Prove $\lim_{x\to1}(x^2)=1$ by selecting $\delta$ as a function of $\varepsilon$.
 
-3. For $ f(x) = 4x-5 $ and $ a = 1 $, compute $ L $ and propose a $\delta(\varepsilon)$ such that:
+   **Solution.** $|x^2-1|=|x-1||x+1|$. If we restrict $|x-1|<1$, then $|x+1|<3$. Choose $\delta=\min\{1,\varepsilon/3\}$ so $|x^2-1|<3|x-1|<\varepsilon$.
 
-$$
-0<|x-1|<\delta \Rightarrow |f(x)-L|<\varepsilon.
-$$
+4. **Absolute value function** _(Difficulty: Intermediate)._ Verify the limit $\lim_{x\to0} |x| =0$ with an explicit $\delta$.
 
-4. Show that the constant function $ f(x)=2 $ satisfies the ε–δ definition for any point $ a $.  
-   a. What choice of δ works for a given ε?  
-   b. Why does this argument not depend on $ a $?
+   **Solution.** $||x|-0|=|x|$. Setting $\delta=\varepsilon$ ensures $|x|<\delta$ implies $||x|-0|<\varepsilon$.
 
----
+## Conceptual insights
 
-## Tier C – Challenge
+5. **Choosing a neighborhood** _(Difficulty: Conceptual)._ Why is it useful to bound $|x-a|$ by $1$ (or another convenient number) before picking $\delta$ in epsilon–delta proofs?
 
-5. Consider $ f(x) = x^2,\ a=2 $.
+   **Solution.** Bounding $|x-a|$ controls other factors involving $x$ (like $|x+1|$) by replacing them with numerical caps, simplifying the relationship between $\varepsilon$ and $\delta$.
 
-   a. Start from $ |x^2-4| $ and factor it into $ |x-2||x+2| $.  
-   b. Show how to bound $ |x+2| $ by assuming a restriction on $ |x-2| $.  
-   c. Derive an explicit $\delta(\varepsilon)$ that works.
+6. **Graphical meaning** _(Difficulty: Conceptual)._ Describe the geometric picture of the $\varepsilon$–$\delta$ definition around a point $(a,L)$.
 
-6. Suppose both limits (in the ε–δ sense) hold:
-$$
-\lim_{x\to a} f(x)=L_1 \quad \text{and} \quad \lim_{x\to a} f(x)=L_2.
-$$
-   Use the definition to prove that $ L_1 = L_2 $.  
-   *Hint:* Fix $\varepsilon$ and use both limits to constrain $ |L_1 - L_2| $.
+   **Solution.** An $\varepsilon$-band forms a horizontal strip around $L$. A suitable $\delta$ selects a vertical window around $a$ so that the graph of $f$ inside this window stays within the strip, capturing closeness in both $x$ and $y$.
+
+## Curveball challenge
+
+7. **Composite function** _(Difficulty: Curveball)._ Using epsilon–delta reasoning, show that if $\lim_{x\to a} f(x)=L$ and $g$ is continuous at $L$, then $\lim_{x\to a} g(f(x))=g(L)$.
+
+   **Solution.** Given $\varepsilon>0$, continuity of $g$ at $L$ gives $\eta>0$ with $|y-L|<\eta \Rightarrow |g(y)-g(L)|<\varepsilon$. Since $\lim_{x\to a}f(x)=L$, choose $\delta$ so $|x-a|<\delta$ implies $|f(x)-L|<\eta$. Then $|g(f(x))-g(L)|<\varepsilon$, proving the limit.
+
+8. **Bounding a rational function** _(Difficulty: Curveball)._ Prove $\lim_{x\to2} \dfrac{x^2-4}{x-2}=4$ using an explicit $\delta$ that handles the denominator.
+
+   **Solution.** Simplify for $x\neq2$: $\dfrac{x^2-4}{x-2}=x+2$. Choose $|x-2|<1$ so $1<x<3$ and $|x+2|<5$. To make $|x+2-4|=|x-2|<\varepsilon$, set $\delta=\min\{1,\varepsilon\}$. Then $|x-2|<\delta$ ensures the difference is below $\varepsilon$.

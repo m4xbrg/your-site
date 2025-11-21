@@ -4,69 +4,57 @@ subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
 lessonId: math-calculus-limits-lesson-06
-title: "Exercises – Lesson 6: ε–δ Proofs, Squeeze Theorem, and IVT"
+lesson: "/lessons/mathematics/calculus/limits/lesson-06-proof-theorems"
+title: "Exercises – Lesson 6: Limit Proofs and Theorems"
 order: 6
 status: stable
+difficulty: mixed
 concepts:
-  - math-calculus-limits-epsilon-delta-proofs
   - math-calculus-limits-squeeze-theorem
   - math-calculus-limits-ivt
+  - math-calculus-limits-epsilon-delta-proofs
 tags:
-  - exercises
-  - epsilon-delta
-  - squeeze-theorem
-  - ivt
+  - proofs
+  - limits
+  - lesson-exercises
 ---
 
-## Tier A – Foundational
+## Basic practice
 
-1. Prove using ε–δ that:
+1. **Squeeze Theorem warm-up** _(Difficulty: Basic)._ Given $-x^2 \le \sin x \le x^2$ for $x$ near $0$, use the Squeeze Theorem to show $\lim_{x\to0} x^2\sin x = 0$.
 
-$$
-\lim_{x\to 1} (2x+3) = 5.
-$$
+   **Solution.** Multiply the inequality by $x^2$ (nonnegative): $-x^4 \le x^2\sin x \le x^4$. Since $\lim_{x\to0} (-x^4)=\lim_{x\to0} x^4=0$, Squeeze Theorem yields $\lim_{x\to0} x^2\sin x=0$.
 
-2. Use the Squeeze Theorem to show:
+2. **Intermediate Value Theorem application** _(Difficulty: Basic)._ Show that $f(x)=x^3-2$ has a root between $1$ and $2$.
 
-$$
-\lim_{x\to 0} x\sin(1/x) = 0.
-$$
+   **Solution.** $f(1)=-1$ and $f(2)=6$ have opposite signs. $f$ is continuous (polynomial), so by IVT there exists $c\in(1,2)$ with $f(c)=0$.
 
----
+## Intermediate drills
 
-## Tier B – Mixed
+3. **Limit via algebra then proof** _(Difficulty: Intermediate)._ Prove $\lim_{x\to3} (2x-5)=1$ with an epsilon–delta argument.
 
-3. For $ f(x)=x^3 $, outline an ε–δ proof that:
+   **Solution.** $|(2x-5)-1|=2|x-3|$. Choose $\delta=\varepsilon/2$; then $|x-3|<\delta$ implies $|(2x-5)-1|<\varepsilon$, establishing the limit.
 
-$$
-\lim_{x\to 2} x^3 = 8.
-$$
+4. **Uniqueness of limits** _(Difficulty: Intermediate)._ Explain why a function cannot have two different finite limits at the same point.
 
-   a. Factor $ x^3 - 8 $.  
-   b. Show how to bound the factor that does not contain $ |x-2| $.  
-   c. Choose an appropriate $\delta(\varepsilon)$.
+   **Solution.** Suppose $L_1\neq L_2$ are both limits at $a$. Choose $\varepsilon=|L_1-L_2|/3>0$. By the definition, there are $\delta_1,\delta_2$ such that values within both $\delta$-windows stay within $\varepsilon$ of each limit, forcing overlap where $f(x)$ is within $\varepsilon$ of both $L_1$ and $L_2$. This implies $|L_1-L_2|<2\varepsilon$, contradicting the choice of $\varepsilon$, so the limit must be unique.
 
-4. Use IVT to show that
-$$
-x^3 - x - 1 = 0
-$$
-   has a solution in $ (1,2) $.
+## Conceptual insights
 
-5. Let $ g(x)=x^2\sin(1/x) $ for $ x\ne 0 $, and $ g(0)=0 $.
+5. **Building a squeeze bound** _(Difficulty: Conceptual)._ Describe a strategy for inventing upper and lower bounding functions when applying the Squeeze Theorem.
 
-   a. Use Squeeze to show $ \lim_{x\to 0} g(x)=0 $.  
-   b. Conclude that $ g $ is continuous at 0.
+   **Solution.** Look for known inequalities (e.g., $-1\le \sin x\le1$) or absolute values to bound oscillatory parts, then multiply by nonnegative factors. Ensure both bounds share the same simple limit so the middle inherits it.
 
----
+6. **Using continuity inside proofs** _(Difficulty: Conceptual)._ How does continuity simplify epsilon–delta proofs for composite functions?
 
-## Tier C – Challenge
+   **Solution.** If inner and outer functions are continuous, one can replace the inner expression with its limit directly and rely on continuity to justify the outer limit, avoiding custom $\delta$ selections for each composition.
 
-6. Let $ f $ be continuous on $ [0,1] $ and suppose $ f(0)=-2 $, $ f(1)=5 $.
+## Curveball challenge
 
-   a. Use IVT to prove there is a point $ c\in(0,1) $ where $ f(c)=0 $.  
-   b. Use IVT again to show there is a point $ d\in(0,1) $ where $ f(d)=1 $.
+7. **Two-stage squeeze** _(Difficulty: Curveball)._ Prove $\lim_{x\to0} x\sin(1/x)=0$ using a squeeze argument.
 
-7. Suppose $ |f(x)| \le x^2 $ for all $ x $ near $ 0 $.
+   **Solution.** Since $-1\le \sin(1/x)\le1$, multiplying by $x$ gives $-|x| \le x\sin(1/x) \le |x|$. Both bounds approach $0$ as $x\to0$, so by Squeeze Theorem the limit is $0$.
 
-   a. Use Squeeze to show $ \lim_{x\to 0} f(x)=0 $.  
-   b. Explain how this type of estimate is useful in derivative proofs later.
+8. **IVT with parameters** _(Difficulty: Curveball)._ Let $g(x)=x^3-3x+k$ with $k\in\mathbb{R}$. Use IVT to find a condition on $k$ that guarantees at least one root in $(0,2)$.
+
+   **Solution.** Evaluate $g(0)=k$ and $g(2)=8-6+k=2+k$. For a sign change, require $k$ and $2+k$ to have opposite signs: this occurs when $k<0<2+k$, i.e., $-2<k<0$. Continuity of the cubic then ensures a root in $(0,2)$.
