@@ -6,243 +6,52 @@ courseId: math-calculus-limits
 title: Epsilon–Delta Proofs, Squeeze Theorem, and the Intermediate Value Theorem
 order: 6
 status: stable
+difficulty: advanced
+tags:
+  - limits
+  - proofs
+  - theorems
 concepts:
   - math-calculus-limits-epsilon-delta-proofs
   - math-calculus-limits-squeeze-theorem
   - math-calculus-limits-ivt
 ---
 
-# 1. Overview
+# Lesson Objectives
+- **math-calculus-limits-epsilon-delta-proofs:** Construct $\varepsilon$–$\delta$ proofs for basic limits using backward planning.
+- **math-calculus-limits-squeeze-theorem:** Use bounding functions with matching limits to evaluate constrained expressions.
+- **math-calculus-limits-ivt:** Apply continuity on closed intervals to guarantee the existence of roots or intermediate values.
 
-This final lesson unifies rigorous limit techniques with two fundamental
-existence theorems. It extends the formal ε–δ definition into actual proofs and
-shows how bounding arguments and continuity yield structural conclusions.
+## Setup
+- Keep the formal definition from Lesson 5 visible; proofs will cite it directly.
+- Review continuity criteria from Lesson 4 for IVT applications.
+- Prepare scratch work for algebraic bounding and inequality manipulation.
 
-Objectives:
+## Concept recap
+### math-calculus-limits-epsilon-delta-proofs — Proof pattern
+Start from $|f(x)-L|<\varepsilon$, express it in terms of $|x-a|$, choose $\delta$ to enforce the bound, and verify the implication.
 
-- Construct epsilon–delta proofs for simple limits.  
-- Apply the Squeeze Theorem to evaluate constrained limits.  
-- Use the Intermediate Value Theorem (IVT) to guarantee the existence of
-  solutions.  
-- Understand how these tools form the rigorous foundation for later calculus
-  concepts such as derivatives and root-finding.
+### math-calculus-limits-squeeze-theorem — Bounding strategy
+If $g(x)\le f(x)\le h(x)$ near $a$ and both comparison limits equal $L$, then $\lim_{x\to a} f(x)=L$.
 
----
+### math-calculus-limits-ivt — Existence guarantee
+For a function continuous on $[a,b]$, any value between $f(a)$ and $f(b)$ is attained somewhere in the interval.
 
-# 2. Concept Map for This Lesson
+## Worked examples
+- **Linear $\varepsilon$–$\delta$ proof (epsilon-delta-proofs):** For $\lim_{x\to2} (5x+1)=11$, pick $\delta=\varepsilon/5$ so $|5x+1-11|=5|x-2|<\varepsilon$ whenever $|x-2|<\delta$.
+- **Squeeze with sine (squeeze-theorem):** Because $-1\le\sin\tfrac{1}{x}\le1$, multiplying by $x$ yields $-\tfrac{1}{|x|}\le x\sin\tfrac{1}{x}\le \tfrac{1}{|x|}$; both bounds approach $0$ as $x\to\infty$, so the squeezed limit is $0$.
+- **IVT application (ivt):** If $f$ is continuous on $[1,4]$ with $f(1)=-2$ and $f(4)=5$, IVT ensures some $c\in(1,4)$ satisfies $f(c)=0$; the guarantee relies on interval continuity.
 
-epsilon-delta-definition → epsilon-delta-proofs  
-limit-laws → squeeze-theorem  
-continuity-interval → ivt
+## Mid-lesson checks
+- Outline the $\delta$ choice for proving $\lim_{x\to0} (3x^2)=0$ using the formal definition.
+- Identify appropriate bounding functions to squeeze $\lim_{x\to0} x^2\cos\tfrac{1}{x}$.
+- State the hypotheses of IVT and note what fails if continuity on $[a,b]$ is missing.
 
-- Epsilon–delta proofs apply the formal definition.  
-- Squeeze uses bounding functions with matching limits.  
-- IVT requires continuity on closed intervals.
+## Summary
+- $\varepsilon$–$\delta$ proofs operationalize the formal limit definition through explicit $\delta(\varepsilon)$ choices.
+- The Squeeze Theorem converts bounding information into exact limits when direct evaluation is difficult.
+- The Intermediate Value Theorem leverages continuity to guarantee existence results critical for root-finding and graph analysis.
 
----
-
-# 3. Core Exposition
-
-## 3.1 Epsilon–delta proof structure
-
-To prove
-$$
-\lim_{x\to a} f(x) = L,
-$$
-we must produce a δ for an arbitrary ε:
-
-1. Start with $ |f(x)-L| < \varepsilon $.  
-2. Express the left side in terms of $ |x-a| $.  
-3. Bound auxiliary expressions (e.g., $ |x+1| $).  
-4. Solve for δ in terms of ε.  
-5. Verify:
-$$
-0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon
-$$
-
-This “backwards planning” is universal.
-
----
-
-## 3.2 Squeeze Theorem
-
-If
-$$
-g(x) \le f(x) \le h(x)
-$$
-near $ a $, and
-$$
-\lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L,
-$$
-then
-$$
-\lim_{x\to a} f(x) = L
-$$
-Used when direct computation is impossible but bounding behavior is known.
-
----
-
-## 3.3 Intermediate Value Theorem (IVT)
-
-If $ f $ is continuous on $ [a,b] $ and $ N $ lies between $ f(a) $ and $ f(b) $, then there exists $ c \in (a,b) $ with
-$$
-f(c)=N
-$$
-
-This is an **existence theorem**, not a computational tool.
-
-Applications:
-- roots of equations  
-- sign changes  
-- argument principles about crossings
-
----
-
-# 4. Worked Examples
-
-### Example 1 — ε–δ proof (linear function)
-
-Prove:
-$$
-\lim_{x\to 1} (5x-3)=2
-$$
-Compute:
-$$
-|(5x-3) - 2| = 5|x-1|
-$$
-Choose $ \delta = \varepsilon/5 $. Verification is immediate.
-
----
-
-### Example 2 — ε–δ proof (quadratic with bounding)
-
-Goal:
-$$
-\lim_{x\to2} x^2 = 4
-$$
-Rewrite:
-$$
-|x^2-4| = |x-2||x+2|
-$$
-If $ |x-2|<1 $, then $ x \in (1,3) $ so $ |x+2|<5 $. Thus:
-$$
-|x^2-4| < 5|x-2|
-$$
-Pick:
-$$
-\delta = \min\{1, \varepsilon/5\}
-$$
-
----
-
-### Example 3 — Squeeze Theorem
-
-Evaluate:
-$$
-\lim_{x\to0} x \sin(1/x)
-$$
-Bound:
-$$
--|x| \le x\sin(1/x) \le |x|
-$$
-Both bounds → 0. Therefore the limit is 0.
-
----
-
-### Example 4 — IVT: root existence
-
-Show that
-$$
-x^3 - x - 1 = 0
-$$
-has a solution in (1,2).
-
-Compute:
-$$
-f(1)=-1,\quad f(2)=5
-$$
-0 lies between −1 and 5 → IVT guarantees a root.
-
----
-
-# 5. Deepening / Structural Analysis
-
-- Epsilon–delta proofs embody full rigor. Every proof reduces to manipulating
-  inequalities and bounding factors.  
-- Squeeze captures asymptotic confinement: if upper and lower bounds stabilize,
-  the middle function must stabilize.  
-- IVT is topological: continuity prevents skipping values and enforces existence
-  of crossing points.
-
-**Invariants**
-
-- Limits proven via ε–δ are exact and do not rely on graphs or numeric
-  evidence.  
-- Squeeze is the default method for oscillatory or product-form limits.  
-- IVT guarantees existence only — never location — of solutions.  
-- All three tools integrate into the derivative definition in the next course.
-
----
-
-# 6. Practice Set (Tiered)
-
-### Tier A — foundational
-
-1. Complete the ε–δ proof for
-$$
-\lim_{x\to3} (2x+1)=7
-$$
-2. Use Squeeze to show
-$$
-\lim_{x\to0} |x|\cos(1/x)=0
-$$
-
-### Tier B — mixed
-
-3. Prove
-$$
-\lim_{x\to1} x^3 = 1
-$$
-by bounding $ |x^2 + x + 1| $.
-
-4. Use IVT to explain why the equation
-$$
-e^x = 4
-$$
-has a solution.
-
-### Tier C — challenge
-
-5. For
-$$
-f(x)=x^2\sin(1/x),
-$$
-show the limit at 0 is 0 by bounding $ |\sin(1/x)| \le 1 $ and using
-polynomial dominance.
-
-6. Let
-$$
-f(x)=x^5-7x+1
-$$
-Show that it has at least one root and at most three real roots (use IVT +
-monotonicity reasoning).
-
----
-
-# 7. Summary
-
-- Epsilon–delta proofs formalize limits through controlled tolerances.  
-- Squeeze Theorem resolves bounded functions when direct computation fails.  
-- IVT guarantees existence of intermediate values for continuous functions.  
-- Together they complete the rigorous foundation for calculus, connecting limits
-  to continuity and the derivative.
-
----
-
-# 8. Forward Links
-
-This lesson completes the *limits* course and leads directly into:
-
-- **`math-calculus-derivatives`** (next course)  
-- rigorous derivative definition via the limit  
-- continuity and differentiability relationships
+## Next steps
+- Complete `src/content/exercises/mathematics/calculus/limits/lesson-06-exercises.mdx` and the broader review set in `src/content/exercises/mathematics/calculus/limits/math-calculus-limits-review.mdx`.
+- Use these tools as the foundation for derivative definitions and later calculus proofs.

@@ -6,180 +6,53 @@ courseId: math-calculus-limits
 title: One-Sided Limits, Infinite Limits, and Limits at Infinity
 order: 3
 status: stable
+difficulty: intermediate
+tags:
+  - limits
+  - asymptotes
+  - one-sided
 concepts:
   - math-calculus-limits-one-sided
   - math-calculus-limits-infinite-limits
   - math-calculus-limits-at-infinity
 ---
 
-# 1. Overview
+# Lesson Objectives
+- **math-calculus-limits-one-sided:** Distinguish left-hand, right-hand, and two-sided limits.
+- **math-calculus-limits-infinite-limits:** Interpret vertical asymptotes as divergence to $\pm\infty$.
+- **math-calculus-limits-at-infinity:** Determine long-run behavior and horizontal asymptotes using dominant terms.
 
-This lesson introduces three central forms of **asymptotic behavior** in calculus:
+## Setup
+- Keep the limit laws from Lesson 2 available for simplifying expressions.
+- Sketch axes or use graphing software to visualize directional behavior.
+- Recall that one-sided limits control whether a two-sided limit exists.
 
-- **One-sided limits:** approach from left or right only.  
-- **Infinite limits:** function grows without bound near a point (vertical asymptotes).  
-- **Limits at infinity:** behavior of a function as input grows unbounded  
-  (horizontal asymptotes or unbounded growth).
+## Concept recap
+### math-calculus-limits-one-sided — Directional approach
+Two-sided limits exist only when left and right limits agree; mismatches signal jumps or other discontinuities.
 
-Objectives:
+### math-calculus-limits-infinite-limits — Vertical asymptotes
+When $f(x)$ grows without bound near $a$, the notation $\lim_{x\to a} f(x)=\pm\infty$ records both divergence and direction.
 
-- Distinguish left, right, and two-sided limits.  
-- Interpret divergence to $ \pm\infty $.  
-- Compute horizontal asymptotes via limits at infinity.  
-- Connect asymptotic behavior to function graphs and continuity structure.
+### math-calculus-limits-at-infinity — End behavior
+For large $|x|$, dominant terms govern the value of rational and polynomial functions, revealing horizontal asymptotes or unbounded growth.
 
----
+## Worked examples
+- **One-sided mismatch (one-sided):** $\lim_{x\to0^-} \dfrac{|x|}{x}=-1$ and $\lim_{x\to0^+} \dfrac{|x|}{x}=1$, so the two-sided limit fails to exist.
+- **Vertical asymptote (infinite-limits):** $\lim_{x\to3} \dfrac{1}{x-3}$ diverges to $-\infty$ from the left and $+\infty$ from the right, marking $x=3$ as a vertical asymptote.
+- **Horizontal asymptote (at-infinity):** $\lim_{x\to\infty} \dfrac{3x^2-x}{2x^2+10}=\dfrac{3}{2}$ by leading coefficients; the graph approaches $y=\tfrac{3}{2}$.
+- **Degree comparison (at-infinity):** For $\dfrac{x}{x^2-9}$, the denominator wins, so $\lim_{x\to\pm\infty} = 0$ even though a vertical asymptote occurs at $x=\pm3$.
 
-# 2. Concept Map for This Lesson
+## Mid-lesson checks
+- Evaluate whether $\lim_{x\to4} \dfrac{|x-4|}{x-4}$ exists by comparing one-sided limits.
+- Decide if any asymptote occurs for $f(x)=\dfrac{2x^2+1}{x^2+10}$ as $x\to -\infty$ and justify with dominant-term reasoning.
+- Explain how infinite limits influence continuity classification at the affected point.
 
-notation → one-sided → infinite-limits  
-limit-laws → limits-at-infinity
+## Summary
+- One-sided limits govern the existence of two-sided limits and detect jumps.
+- Infinite limits describe divergence near vertical asymptotes, not finite values.
+- Limits at infinity summarize global shape through dominant-term analysis, revealing horizontal asymptotes or divergence.
 
-- One-sided limits refine limit direction.  
-- Infinite limits describe unbounded vertical behavior.  
-- Limits at infinity describe long-term horizontal behavior.
-
----
-
-# 3. Core Exposition
-
-## 3.1 One-sided limits
-
-Definitions:
-
-- Left-hand limit:
-$$
-\lim_{x\to a^-} f(x) = L
-$$
-
-- Right-hand limit:
-$$
-\lim_{x\to a^+} f(x) = L
-$$
-
-The two-sided limit exists exactly when both one-sided limits exist and are equal.
-
-## 3.2 Infinite limits (vertical asymptotes)
-
-If
-$$
-\lim_{x\to a} f(x) = +\infty
-$$
-or
-$$
-\lim_{x\to a} f(x) = -\infty,
-$$
-then $ f(x) $ grows without bound as $ x $ approaches $ a $.  
-This signals a **vertical asymptote** at $ x=a $.
-
-## 3.3 Limits at infinity (horizontal asymptotes)
-
-A finite limit
-$$
-\lim_{x\to \pm\infty} f(x) = L
-$$
-means the graph approaches a horizontal line $ y=L $ as $ x $ grows unbounded.
-
-Dominant-term reasoning for rational functions:
-- If numerator degree < denominator degree → limit = 0  
-- If degrees equal → ratio of leading coefficients  
-- If numerator degree > denominator degree → limit diverges ($ \pm \infty $)
-
----
-
-# 4. Worked Examples
-
-### Example 1 — One-sided mismatch
-$$
-\lim_{x\to0^-} \frac{|x|}{x} = -1,\qquad
-\lim_{x\to0^+} \frac{|x|}{x} = +1
-$$
-Thus the two-sided limit does **not** exist.
-
-### Example 2 — Infinite limit
-$$
-\lim_{x\to 3} \frac{1}{x-3} = \pm\infty
-$$
-(Left side → $ -\infty $; right side → $ +\infty $.)  
-Vertical asymptote at $ x=3 $.
-
-### Example 3 — Limit at $ \infty $
-$$
-\lim_{x\to\infty} \frac{3x^2 - x}{2x^2 + 10} = \frac{3}{2}
-$$
-
-### Example 4 — Horizontal asymptote
-$$
-\lim_{x\to -\infty} \frac{5x - 1}{x + 7} = 5
-$$
-
----
-
-# 5. Deepening / Structural Analysis
-
-- Infinite limits represent **divergence**, not existence. They encode direction of blow-up.  
-- One-sided limits are necessary when the function changes structure at a point (piecewise, absolute value, rational functions).  
-- Limits at infinity describe **global** behavior, but are computed using **local dominance patterns** (leading terms).  
-- Vertical asymptotes reflect denominator zeros where the numerator doesn’t vanish simultaneously.  
-- Horizontal asymptotes reflect stabilization of the ratio of dominant terms.
-
-**Invariants:**
-
-- A two-sided limit is determined entirely by its one-sided limits.  
-- Infinite limits are always “essential” discontinuities.  
-- Degree comparisons for rational functions are universally reliable for $ x\to\infty $.
-
----
-
-# 6. Practice Set (Tiered)
-
-### Tier A — foundational
-1. Compute:
-$$
-\lim_{x\to0^+} \frac{1}{x}
-$$
-2. Compute:
-$$
-\lim_{x\to -\infty} \frac{2x^2 + 1}{x^2 + 10}
-$$
-
-### Tier B — mixed
-3. Determine whether the limit exists:
-$$
-\lim_{x\to4} \frac{|x-4|}{x-4}
-$$
-4. Identify any asymptotes of:
-$$
-f(x)=\frac{x}{x^2 - 9}
-$$
-
-### Tier C — challenge
-5. Evaluate:
-$$
-\lim_{x\to\infty} \left( x\sin\frac{1}{x} \right)
-$$
-6. Determine:
-$$
-\lim_{x\to 2^-} \frac{1}{(x-2)^3}
-$$
-
----
-
-# 7. Summary
-
-- One-sided limits refine directional behavior and determine two-sided limit existence.  
-- Infinite limits capture blow-up near vertical asymptotes.  
-- Limits at infinity describe global shape and horizontal asymptotes.  
-- Dominant-term analysis simplifies rational expressions for large $ x $.  
-
-Together, these are the asymptotic tools needed for continuity, derivative definitions, and curve analysis.
-
----
-
-# 8. Forward Links
-
-This lesson prepares for:
-
-- Lesson 4: continuity and discontinuity classification  
-- Lesson 5: rigorous epsilon–delta definition  
-- Lesson 6: epsilon–delta proofs, Squeeze, and IVT
+## Next steps
+- Solidify these ideas with `src/content/exercises/mathematics/calculus/limits/lesson-03-exercises.mdx`.
+- Continue to continuity in Lesson 4 to classify how these behaviors affect smoothness.
