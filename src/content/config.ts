@@ -1,11 +1,15 @@
 import { defineCollection, z } from 'astro:content'
 
+const lifecycleStatus = z.enum(['draft', 'refine', 'stable'])
+
 const subjects = defineCollection({
   type: 'content',
   schema: z.object({
+    id: z.string(),
     title: z.string(),
     order: z.number().default(0),
     description: z.string().optional(),
+    status: lifecycleStatus.default('draft'),
   }),
 })
 
@@ -18,6 +22,7 @@ const macroCourses = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     order: z.number().default(0),
+    status: lifecycleStatus.default('draft'),
   }),
 })
 
@@ -32,6 +37,7 @@ const courses = defineCollection({
     description: z.string().optional(),
     order: z.number().default(0),
     tags: z.array(z.string()).default([]),
+    status: lifecycleStatus.default('draft'),
 
     // Optional extras; can be empty for now
     code: z.string().optional(),
@@ -57,9 +63,6 @@ const concepts = defineCollection({
     macroId: z.string().optional(),  // e.g. "math-calculus"
     courseId: z.string().optional(), // e.g. "math-calculus-limits"
 
-    // Legacy / compatibility field (current code still uses this)
-    course: z.string().optional(),   // existing slug/id like "math-101", "cs-101"
-
     // Descriptive content
     title: z.string(),
     description: z.string().optional(),
@@ -75,10 +78,9 @@ const concepts = defineCollection({
 
     // Meta / lifecycle
     role: z.enum(['core', 'supporting', 'extension']).default('core'),
-    status: z.enum(['draft', 'stable', 'refine']).default('draft'),
+    status: lifecycleStatus.default('draft'),
 
     // Extra metadata we already had
-    lessons: z.array(z.string()).default([]),
     estimatedTime: z.string().optional(),
     difficulty: z.string().optional(),
 
@@ -92,34 +94,17 @@ const concepts = defineCollection({
 const lessons = defineCollection({
   type: 'content',
   schema: z.object({
-    // New pilot fields (used by math-calculus-limits lessons)
-    id: z.string().optional(),        // e.g. "math-calculus-limits-lesson-01"
-    subject: z.string().optional(),   // e.g. "mathematics"
-    macroId: z.string().optional(),   // e.g. "math-calculus"
-    courseId: z.string().optional(),  // e.g. "math-calculus-limits"
+    id: z.string(),        // e.g. "math-calculus-limits-lesson-01"
+    subject: z.string(),   // e.g. "mathematics"
+    macroId: z.string(),   // e.g. "math-calculus"
+    courseId: z.string(),  // e.g. "math-calculus-limits"
 
     title: z.string(),
     description: z.string().optional(),
 
-    // Legacy course linkage
-    course: z.string().optional(),
-
-    // Legacy concept linkage
-    concept: z.string().optional(),
-
     order: z.number().default(0),
 
-    // Legacy fields
-    durationMinutes: z.number().default(0),
-    objectives: z.array(z.string()).default([]),
-    exercises: z.array(z.string()).default([]),
-    notes: z.array(z.string()).default([]),
-
-    // NEW: status + concept list for pilot lessons
-    status: z
-      .enum(['draft', 'published', 'archived'])
-      .default('draft')
-      .optional(),
+    status: lifecycleStatus.default('draft'),
     concepts: z.array(z.string()).default([]),
   }),
 })
@@ -138,9 +123,7 @@ const exercises = defineCollection({
     title: z.string(),
     order: z.number().default(0),
 
-    status: z
-      .enum(['draft', 'published', 'archived'])
-      .default('draft'),
+    status: lifecycleStatus.default('draft'),
 
     concepts: z.array(z.string()).nonempty(),
     tags: z.array(z.string()).default([]),
@@ -160,14 +143,8 @@ const exercises = defineCollection({
       )
       .default([]),
 
-    // Legacy fields (keep for now)
-    prompt: z.string().optional(),
-    lesson: z.string().optional(),
-    concept: z.string().optional(),
-    course: z.string().optional(),
     difficulty: z.string().optional(),
     topics: z.array(z.string()).default([]),
-    solution: z.string().optional(),
   }),
 })
 

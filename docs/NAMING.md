@@ -61,16 +61,15 @@ Courses should be uniquely identifiable by their id and used directly in URLs:
 
 Format:
 
-- `[course-prefix]-<specific-concept>`
+- `[course-id]-<specific-concept>`
 
-Where `course-prefix` is the course id or a shortened version.
+Where `course-id` is the full course id (e.g., `math-calculus-limits`).
 
 **Examples**:
 
-- `limits-introduction`
-- `limits-right-hand-limit`
-- `limits-two-sided-limit`
-- `limits-epsilon-delta-definition`
+- `math-calculus-limits-informal-idea`
+- `math-calculus-limits-notation`
+- `math-calculus-limits-squeeze-theorem`
 
 Guidelines:
 
@@ -81,21 +80,19 @@ Guidelines:
 
 ## Lessons
 
-Lessons typically use the file path as a slug.
+Lessons use explicit IDs and slugs that carry course context.
 
-Two possible styles are possible:
+Format:
 
-1. **Flat with course prefix**:
+- `<course-id>-lesson-<##>-<short-slug>`
 
-   - `limits-introduction`
-   - `limits-numerical-exploration`
+**Examples**:
 
-2. **Nested folders** (if supported):
+- `math-calculus-limits-lesson-01-introduction`
+- `math-calculus-limits-lesson-02-limit-laws`
+- `math-calculus-limits-lesson-05-epsilon-delta`
 
-   - `limits/introduction`
-   - `limits/numerical-exploration`
-
-Choose one style and stick to it across the repo.
+File paths should mirror the hierarchy (e.g., `src/content/lessons/mathematics/calculus/limits/lesson-01-introduction.mdx`).
 
 ---
 
@@ -105,10 +102,9 @@ Tie exercises to their parent concept or lesson in the slug.
 
 **Examples**:
 
-- `limits-introduction-q1`
-- `limits-introduction-q2`
-- `limits-right-hand-limit-practice-1`
-- `limits-mixed-review-1`
+- `math-calculus-limits-lesson-01-exercises`
+- `math-calculus-limits-lesson-03-exercises`
+- `math-calculus-limits-review`
 
 ---
 

@@ -42,3 +42,9 @@
   - `npm run lint` (pass after config addition)
   - `npm run search:index` (pass)
 - Remaining TODOs: broader relationship validation across all content collections (e.g., verifying every course/concept reference) could be automated in future passes; preview/dev server not exercised in this audit.
+
+## Content model status (current)
+- Standardized lifecycle status to `draft | refine | stable` across subjects, courses, lessons, concepts, and exercises.
+- Added explicit subject IDs and codified naming conventions so IDs align with file paths.
+- Introduced graph validation/query scripts to check references (subjects, macros, courses, concepts, lessons, exercises) and to surface gaps like core concepts without exercises.
+- Known follow-ups: expand relationship coverage beyond the calculus pilot, backfill missing concepts that are referenced but not yet authored (e.g., foundational math prerequisites), and keep graph checks running in CI.
