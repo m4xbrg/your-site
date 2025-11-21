@@ -3,10 +3,10 @@ id: math-calculus-limits-informal-idea
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Informal Notion of Limit
+title: Informal Notion of a Limit
 summary: >
-  The intuitive idea that f(x) can approach a value L as x approaches a point a,
-  regardless of whether the function equals L at that point or is defined there.
+  The idea that f(x) can stabilize near a value L as x approaches a point a,
+  regardless of the function's value or even definition at that point.
 order: 1
 tags:
   - limits
@@ -23,78 +23,36 @@ relatedConcepts:
   - math-calculus-limits-notation
   - math-calculus-limits-one-sided
 learningGoals:
-  - Explain the intuitive meaning of "f(x) approaches L as x approaches a".
-  - Distinguish limit behavior from the value of the function at the point.
-  - Recognize that limits describe behavior near a point, not at the point.
+  - Describe informally what it means for f(x) to approach L as x approaches a.
+  - Distinguish limit behavior from the function's value at the point.
+  - Give examples where a limit exists even if the function is undefined at the point.
 ---
 
-## Snapshot
+## Definition
+A limit expresses that the outputs of a function get as close as desired to a number $L$ whenever the inputs are taken sufficiently close to a point $a$ (with $x \neq a$). The statement $\lim_{x\to a} f(x) = L$ records that nearby behavior, not the exact value at $a$.
 
-A limit describes how a function behaves as the input gets arbitrarily close to a
-point. The value approached (if any) is the **limit**, independent of whether the
-function is defined or equal to that value at the point.
+## Intuition
+Think of walking toward $x=a$ without stepping exactly on it. If the function values you encounter settle near $L$, that number is the limit. The approach can happen even when $f(a)$ is undefined or different, because the limit cares only about the trend as you close in.
 
-## Formal Statement
+## Variants
+- **Two-sided limits:** Approach $a$ from both left and right and demand the same target value.
+- **One-sided limits:** Approach only from $x>a$ or $x<a$ when the function's behavior is directional.
+- **No finite limit:** Oscillation or unbounded growth near $a$ prevents stabilization at a real number.
 
-Informally, saying
-$$
-\lim_{x\to a} f(x) = L
-$$
-means:
+## Connections
+- Serves as the foundation for formal $\varepsilon$–$\delta$ definitions, limit laws, and continuity tests.
+- If $\lim_{x\to a} f(x) = L$ and $f(a) = L$, then $f$ is continuous at $a$; changing $f(a)$ alone does not alter the limit.
+- One-sided limits combine to produce two-sided limits when they agree.
 
-- For $x$ sufficiently close to $a$ (but $x\ne a$), $f(x)$ is arbitrarily close to $L$.  
-- The function’s behavior at $x=a$ does not determine the limit.  
-- Only the approach toward $a$ matters.
+## Errors
+- Confusing the limit with $f(a)$; the limit may exist even when $f(a)$ is undefined or different.
+- Looking only at the value exactly at $a$ instead of the nearby trend.
+- Assuming any smooth-looking graph has a limit; oscillation such as $\sin(1/x)$ near $0$ is a counterexample.
 
-## Intuition & Interpretation
-
-The limit focuses on behavior *near* $a$. Even if $f$ is undefined at $a$ or
-takes a different value there, the limit can still exist.
-
-## Examples & Non-Examples
-
-### Examples
-
-1.
-$$
-f(x) = \frac{x^2-1}{x-1}
-$$
-simplifies to $x+1$ for $x\ne 1$. As $x\to1$, $f(x)\to2$ even though $f(1)$ is undefined.
-
-2. $f(x)=|x|/x$ for $x\ne 0$. As $x\to 0^+$, $f(x)=1$; as $x\to 0^-$, $f(x)=-1$.  
-One‑sided limits highlight directional behavior.
-
-3.
-$$
-\lim_{x\to3}(x^2+1)=10.
-$$
-
-### Non-Examples
-
-1. **Jump discontinuity** — Abrupt change near $a$ prevents a single limit.  
-2. **Infinite oscillation**
-$$
-\lim_{x\to 0} \sin(1/x) \ \text{does not exist.}
-$$
-3. **Infinite behavior** — $1/x$ near $0$ has no finite limit.
-
-## Properties & Relationships
-
-- Local behavior, not pointwise value.  
-- Leads to: one‑sided limits, continuity, infinite limits, and the formal ($\varepsilon$–$\delta$) definition.  
-- If $\lim_{x\to a} f(x)=L$ and $f(a)=L$, then $f$ is continuous at $a$.
-
-## Exercises
-
-1. **Conceptual** — Can a function have a limit at $a$ if it is undefined at $a$? Give an example.  
-2. **Conceptual** — Give an example with $\lim_{x\to a} f(x)=L$ but $f(a)\ne L$.  
-3. **Non‑example** — Why does $\lim_{x\to 0} \sin(1/x)$ fail to exist?  
-4. **Mini‑proof** — Explain why changing $f(a)$ does not change any two‑sided limit at $a$.
-
-## Math test
-
-Inline: $x^2 + 1$.
-
-$$
-\lim_{x\to 0} \frac{\sin x}{x} = 1
-$$
+## Micro-checks
+1. **Question:** Can $\lim_{x\to 2} f(x)$ exist if $f(2)$ is undefined?  
+   **Answer:** Yes; the limit depends on values near $2$, not at $2$.
+2. **Question:** What must be true of the left- and right-hand behaviors for a two-sided limit to exist?  
+   **Answer:** They must both approach the same finite number $L$ as $x$ approaches the point.
+3. **Question:** Does changing the single value $f(a)$ affect $\lim_{x\to a} f(x)$?  
+   **Answer:** No; altering $f(a)$ alone leaves the nearby trend—and thus the limit—unchanged.

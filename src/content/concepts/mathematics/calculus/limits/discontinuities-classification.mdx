@@ -3,11 +3,10 @@ id: math-calculus-limits-discontinuities-classification
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Types of Discontinuities
+title: Classifying Discontinuities
 summary: >
-  Classification of discontinuities using limit behavior: removable, jump, and
-  essential (infinite or oscillatory). Each type is characterized by distinct
-  relationships among one-sided limits and function values.
+  Distinguishing removable, jump, and essential discontinuities by comparing
+  limits from each side with the function value.
 order: 11
 tags:
   - limits
@@ -15,135 +14,50 @@ tags:
   - discontinuities
 role: supporting
 status: stable
-kind: definition
-difficulty: bridge
+kind: concept
+difficulty: intro
 proofLevel: none
 prerequisites:
-  - math-calculus-limits-one-sided
   - math-calculus-limits-continuity-point
+  - math-calculus-limits-one-sided
 relatedConcepts:
   - math-calculus-limits-removable-discontinuities
-  - math-calculus-limits-continuity-point
   - math-calculus-limits-infinite-limits
+  - math-calculus-limits-graphical-numerical
 learningGoals:
-  - Classify discontinuities as removable, jump, or infinite.
-  - Connect each type of discontinuity to corresponding limit behavior.
-  - Decide when redefining a function can remove a discontinuity.
+  - Differentiate removable, jump, and essential discontinuities using one-sided limits.
+  - Decide whether redefining a point can repair continuity.
+  - Recognize graphical signatures of each discontinuity type.
 ---
 
-## Snapshot
+## Definition
+Discontinuities are classified by how one-sided limits and function values compare at a point $a$:
+- **Removable:** $\lim_{x\to a} f(x)$ exists but differs from $f(a)$ (or $f(a)$ is undefined).
+- **Jump:** $\lim_{x\to a^-} f(x)$ and $\lim_{x\to a^+} f(x)$ exist but are unequal.
+- **Essential:** At least one one-sided limit fails to exist or is infinite, preventing any finite limit.
 
-Discontinuities arise when a function fails to be continuous at a point. Limits
-provide a precise way to classify the failure:
+## Intuition
+A removable discontinuity is a hole—values approach the same height from both sides. A jump shows a sudden step between two plateau values. An essential discontinuity behaves wildly (oscillation or vertical blow-up) so there is no single nearby target.
 
-1. **Removable**  
-2. **Jump**  
-3. **Essential** (infinite or oscillatory)
+## Variants
+- **Infinite discontinuity:** Values blow up to $\pm\infty$ near the point.
+- **Oscillatory essential discontinuity:** Values oscillate without narrowing, as with $\sin(1/x)$ at $0$.
+- **Piecewise jumps:** Common in step functions where adjacent formulas disagree at the boundary.
 
-## Formal Statement
+## Connections
+- Guides whether redefining $f(a)$ can restore continuity (only possible for removable discontinuities).
+- Relates directly to one-sided limits and to the existence of two-sided limits.
+- Influences applicability of the Intermediate Value Theorem, which requires continuity.
 
-Let $f$ be a function and $a$ a point in its domain/boundary.
+## Errors
+- Calling a jump removable; differing one-sided limits cannot be fixed by redefining $f(a)$.
+- Overlooking infinite behavior as a separate essential type.
+- Failing to examine both sides independently when classifying.
 
-### 1. Removable Discontinuity  
-Occurs when the two‑sided limit exists as a finite real number, but the value at the point is missing or mismatched:
-$$
-\lim_{x\to a} f(x) = L \quad \text{exists (finite)}, \quad \text{and} \quad f(a)\ \text{undefined or } f(a)\ne L.
-$$
-
-### 2. Jump Discontinuity  
-Both one‑sided limits exist (finite) but are unequal:
-$$
-\lim_{x\to a^-} f(x) \ne \lim_{x\to a^+} f(x).
-$$
-
-### 3. Essential Discontinuity  
-The limit fails for a non‑removable reason, e.g.
-- one or both one‑sided limits are infinite, or  
-- the function oscillates without approaching a value.
-
-## Intuition & Interpretation
-
-- **Removable:** local behavior is stable; the definition at the point is defective.  
-- **Jump:** directional behaviors disagree; no single approach value exists.  
-- **Essential:** instability (asymptotic or oscillatory) prevents convergence.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Removable (hole)**
-$$
-f(x)=\frac{x^2-1}{x-1}
-$$
-has a hole at $x=1$ because
-$$
-\lim_{x\to1} f(x)=2
-$$
-while $f(1)$ is undefined.
-
-2. **Jump**
-$$
-f(x)=
-\begin{cases}
-2,& x<0,\\
-5,& x\ge 0,
-\end{cases}
-$$
-so the one‑sided limits are $2$ and $5$.
-
-3. **Essential (infinite)**
-$$
-\lim_{x\to3}\frac{1}{x-3}=\pm\infty.
-$$
-
-4. **Essential (oscillation)**
-$$
-f(x)=\sin(1/x)\quad \text{at } x=0.
-$$
-
-### Non-Examples
-
-1. **Continuous** — Polynomials have no discontinuities.  
-2. **Domain boundary but continuous** — $\sqrt{x}$ at $x=0$ has a right‑hand limit matching the value.  
-3. **Undefined point outside closure of domain** — Classification doesn’t apply.
-
-## Properties & Relationships
-
-- Removable discontinuities can be repaired by redefining $f(a)$ appropriately.  
-- Jump discontinuities cannot be removed.  
-- Essential discontinuities include infinite and oscillatory behaviors.  
-- Classification relies on **one‑sided limits**.
-
-## Common Pitfalls
-
-1. Calling a removable discontinuity a jump.  
-2. Treating all “DNE” as the same—distinguish infinite vs oscillatory.  
-3. Confusing domain endpoints with discontinuities.  
-4. Checking only one side.
-
-## Exercises
-
-1. **Classify**
-$$
-f(x)=
-\begin{cases}
-1,& x<1,\\
-3,& x>1,
-\end{cases}
-$$
-identify the type at $x=1$.
-
-2. **Removable or not?**  
-Classify the discontinuity of
-$$
-g(x)=\frac{x^2-9}{x-3}.
-$$
-
-3. **Infinite behavior**  
-For
-$$
-f(x)=\frac{1}{x^2}
-$$
-classify the discontinuity at $x=0$.
-
-4. **Mini-proof (Sketch)** — Explain why jump discontinuities cannot be removed by redefining $f(a)$.
+## Micro-checks
+1. **Question:** When is a discontinuity removable?  
+   **Answer:** When both one-sided limits exist and agree, giving a finite limit that differs from $f(a)$ or where $f(a)$ is missing.
+2. **Question:** What indicates a jump discontinuity in terms of limits?  
+   **Answer:** The left- and right-hand limits exist but are unequal.
+3. **Question:** How do you recognize an essential discontinuity caused by oscillation?  
+   **Answer:** The function values keep switching without settling near any single number as $x$ approaches the point.

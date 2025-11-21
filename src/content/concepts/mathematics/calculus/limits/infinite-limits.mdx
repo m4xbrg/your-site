@@ -3,144 +3,58 @@ id: math-calculus-limits-infinite-limits
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Infinite Limits & Vertical Asymptotes
+title: Infinite Limits
 summary: >
-  Describes limit behavior in which f(x) grows without bound as x approaches a
-  finite point, leading to the concepts of vertical asymptotes and
-  infinite  one-sided limits.
-order: 7
+  Limits where function values grow without bound as the input approaches a
+  finite point, signaling vertical asymptotes or unbounded spikes.
+order: 13
 tags:
   - limits
-  - infinite-limits
+  - infinite
   - asymptotes
-role: core
+role: supporting
 status: stable
 kind: definition
 difficulty: intro
 proofLevel: none
 prerequisites:
+  - math-calculus-limits-notation
   - math-calculus-limits-one-sided
-  - math-calculus-limits-limit-laws
 relatedConcepts:
-  - math-calculus-limits-at-infinity
+  - math-calculus-limits-limits-at-infinity
   - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-graphical-numerical
 learningGoals:
-  - Interpret infinite limits using one-sided limit notation.
-  - Recognize vertical asymptotes as infinite-limit behavior.
-  - Distinguish infinite limits from oscillatory 'does not exist' cases.
+  - State the definition of $\lim_{x\to a} f(x)=\pm\infty$.
+  - Identify vertical asymptotes using one-sided infinite limits.
+  - Distinguish unbounded behavior from finite but large values.
 ---
 
-## Snapshot
+## Definition
+We write $\lim_{x\to a} f(x) = \infty$ when for every bound $M>0$ there exists a $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)>M$. The notation $= -\infty$ is analogous with $f(x)<-M$. Infinite one-sided limits describe blow-up from a single direction.
 
-When $f(x)$ grows without bound as $x$ approaches a finite point, the limit is
-**infinite**. This captures vertical asymptotic behavior and is expressed using
-one‑sided notation.
+## Intuition
+Near $x=a$, the function climbs (or falls) without stabilizing at any finite height. Graphs show vertical spikes, often indicating a vertical asymptote at $x=a$.
 
-## Formal Statement
+## Variants
+- **One-sided infinite limits:** Only the left or right side diverges, common with rational functions having odd powers in the denominator.
+- **Symmetric blow-up:** Both sides head to the same infinity, producing a clear vertical asymptote.
+- **Opposite-side behavior:** Left and right may diverge with opposite signs, forming different asymptotic branches.
 
-We write
-$$
-\lim_{x\to a} f(x) = +\infty
-$$
-to mean: for $x$ sufficiently close to $a$ (with $x\ne a$), the values $f(x)$
-become arbitrarily large and positive. Similarly,
-$$
-\lim_{x\to a} f(x) = -\infty
-$$
-means $f(x)$ becomes arbitrarily large in magnitude but negative.
+## Connections
+- Classifies essential discontinuities where function values become unbounded.
+- Informs graphing: a vertical line $x=a$ is an asymptote when at least one infinite one-sided limit occurs.
+- Distinguishes from limits at infinity, which examine behavior as $x$ grows large rather than approaching a finite point.
 
-Infinite limits are often **one‑sided**:
-$$
-\lim_{x\to a^-} f(x) = +\infty,
-\qquad
-\lim_{x\to a^+} f(x) = -\infty.
-$$
+## Errors
+- Treating a very large finite value as evidence of an infinite limit without checking unbounded growth.
+- Ignoring directional differences; one side may diverge while the other remains finite.
+- Forgetting that infinite limits do not count as finite limit existence, so continuity fails at that point.
 
-A point $x=a$ is a **vertical asymptote** if at least one of
-$$
-\lim_{x\to a^-} f(x) = \pm\infty \quad \text{or} \quad \lim_{x\to a^+} f(x) = \pm\infty
-$$
-holds.
-
-## Intuition & Interpretation
-
-Infinite limits indicate that the function cannot be stabilized near the point,
-and the line $x=a$ acts as a vertical boundary.
-
-## Examples & Non-Examples
-
-### Examples
-
-1.
-$$
-\lim_{x\to1} \frac{1}{x-1} =
-\begin{cases}
--\infty,& x\to1^-,\\[4pt]
-+\infty,& x\to1^+.
-\end{cases}
-$$
-
-2.
-$$
-\lim_{x\to0} \frac{1}{x^2} = +\infty.
-$$
-
-3.
-$$
-\lim_{x\to2^-} \frac{1}{(x-2)^3} = -\infty,\qquad
-\lim_{x\to2^+} \frac{1}{(x-2)^3} = +\infty.
-$$
-
-4.
-$$
-\lim_{x\to0^+} \ln x = -\infty.
-$$
-
-### Non-Examples
-
-1. **Oscillation**
-$$
-\lim_{x\to0} \sin(1/x) \ \text{does not exist (not infinite).}
-$$
-
-2. **Removable hole**
-$$
-\frac{x^2-4}{x-2}
-$$
-has a finite limit (3) at $x=2$.
-
-3. **Undefined without blow‑up** — Undefined at a point may still have a finite limit.
-
-## Properties & Relationships
-
-- Infinite limits imply **essential** discontinuities.  
-- One‑sided limits must be checked separately.  
-- Sign analysis near the point determines $+\infty$ vs $-\infty$.
-
-## Common Pitfalls
-
-1. Assuming both one‑sided infinite limits match.  
-2. Confusing undefined with infinite behavior.  
-3. Sign mistakes in denominator analysis.  
-4. Forgetting infinite limits are a specific kind of “DNE” with structure.
-
-## Exercises
-
-1. Compute
-$$
-\lim_{x\to3^+} \frac{1}{x-3}.
-$$
-
-2. Left vs right — Determine one‑sided limits for
-$$
-f(x)=\frac{2}{(x+1)^2}.
-$$
-
-3. Sign analysis — Evaluate
-$$
-\lim_{x\to -2^-} \frac{1}{x+2}.
-$$
-
-4. Conceptual — Why does every infinite limit correspond to a vertical asymptote, but not vice versa?
-
-5. Mini‑proof — If $f(x) > 0$ near $a$ and $\lim_{x\to a} f(x) = +\infty$, show $\dfrac{1}{f(x)} \to 0$.
+## Micro-checks
+1. **Question:** What does $\lim_{x\to a} f(x)=\infty$ assert?  
+   **Answer:** That $f(x)$ exceeds any chosen bound for inputs sufficiently close to $a$, indicating unbounded growth.
+2. **Question:** How can you show $x=a$ is a vertical asymptote using limits?  
+   **Answer:** Demonstrate that at least one of $\lim_{x\to a^+} f(x)$ or $\lim_{x\to a^-} f(x)$ is $\pm\infty$.
+3. **Question:** Does $\lim_{x\to a} f(x)=\infty$ mean $f(a)$ exists?  
+   **Answer:** No; the function may be undefined at $a$, and even if defined it cannot make the limit finite.
