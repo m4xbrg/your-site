@@ -4,85 +4,60 @@ subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
 lessonId: math-calculus-limits-lesson-02
-title: "Exercises – Lesson 2: Algebraic Limit Laws and Basic Computation Strategies"
+lesson: "/lessons/mathematics/calculus/limits/lesson-02-limit-laws"
+title: "Exercises – Lesson 2: Algebraic Limit Laws"
 order: 2
 status: stable
+difficulty: mixed
 concepts:
   - math-calculus-limits-limit-laws
   - math-calculus-limits-computation-strategies
 tags:
-  - exercises
   - limits
   - algebra
+  - lesson-exercises
 ---
 
-## Tier A – Foundational
+## Basic practice
 
-1. Compute:
+1. **Direct substitution** _(Difficulty: Basic)._ Compute $\displaystyle \lim_{x\to 2} (3x^2 - x + 4)$ using limit laws.
 
-$$
-\lim_{x\to 2} (3x^2 - x + 4).
-$$
+   **Solution.** Substitute $x=2$: $3(2)^2 - 2 + 4 = 12 - 2 + 4 = 14$.
 
-2. Compute:
+2. **Linear limit** _(Difficulty: Basic)._ Evaluate $\displaystyle \lim_{x\to -1} (5x - 7)$.
 
-$$
-\lim_{x\to -1} (5x - 7).
-$$
+   **Solution.** Substitute directly: $5(-1) - 7 = -5 - 7 = -12$.
 
-3. Using limit laws and direct substitution, evaluate:
+## Intermediate drills
 
-$$
-\lim_{x\to 0} (2x^3 + 7x).
-$$
+3. **Polynomial trend** _(Difficulty: Intermediate)._ Using limit laws, compute $\displaystyle \lim_{x\to 0} (2x^3 + 7x)$ and state why substitution is valid.
 
----
+   **Solution.** Substitute $x=0$: $2(0)^3 + 7(0)=0$. Polynomials are continuous everywhere, so direct substitution matches the limit.
 
-## Tier B – Mixed
+4. **Factor to remove a hole** _(Difficulty: Intermediate)._ Evaluate $\displaystyle \lim_{x\to 3} \dfrac{x^2 - 9}{x - 3}$.
 
-4. Evaluate:
+   **Solution.** Factor numerator: $x^2-9=(x-3)(x+2)$. Cancel $x-3$ (for $x\neq3$) to get $\lim_{x\to3}(x+2)=5$. The original function has a removable discontinuity at $x=3$.
 
-$$
-\lim_{x\to 3} \frac{x^2 - 9}{x - 3}.
-$$
+5. **Rationalizing radicals** _(Difficulty: Intermediate)._ Compute $\displaystyle \lim_{x\to 4} \dfrac{\sqrt{x} - 2}{x - 4}$.
 
-   a. Show the algebraic step used to remove the discontinuity.  
-   b. Explain why the limit is unaffected by canceling the factor.
+   **Solution.** Multiply by the conjugate: $\dfrac{\sqrt{x} - 2}{x - 4}\cdot\dfrac{\sqrt{x}+2}{\sqrt{x}+2}=\dfrac{x-4}{(x-4)(\sqrt{x}+2)}=\dfrac{1}{\sqrt{x}+2}$. Now substitute $x=4$ to get $\dfrac{1}{2+2}=\dfrac14$.
 
-5. Evaluate:
+## Conceptual insights
 
-$$
-\lim_{x\to 4} \frac{\sqrt{x} - 2}{x - 4}.
-$$
+6. **Domain and continuity** _(Difficulty: Conceptual)._ For $f(x)=\dfrac{2x^2 + 3x - 2}{x^2 - 1}$, list points where $f$ is undefined, classify the discontinuities, and state the limit at those points if it exists.
 
-   Use rationalization and show each step.
+   **Solution.** Denominator zero at $x=\pm1$. Factor: $f(x)=\dfrac{(2x-1)(x+2)}{(x-1)(x+1)}$. At $x=1$, common factor? none, so vertical asymptote, limits are infinite (do not exist finitely). At $x=-1$, factor cancels? yes $(x+1)$ cancels leaving $\dfrac{(2x-1)(x+2)}{x-1}$ for $x\neq -1$, so $\lim_{x\to -1} f(x)=\dfrac{(2(-1)-1)((-1)+2)}{-1-1}=\dfrac{-3\cdot1}{-2}=\dfrac32$, removable discontinuity.
 
-6. Evaluate:
+7. **Limit laws justification** _(Difficulty: Conceptual)._ Explain why the limit of a product equals the product of limits when both exist, and give a quick example using $\lim_{x\to2}(x^2-4)(x-1)$.
 
-$$
-\lim_{x\to 1} \frac{x^2 - 1}{x^2 - x}.
-$$
+   **Solution.** Limit laws arise from epsilon–delta definitions: if each factor stays close to its limit, their product stays close to the product. Example: $\lim_{x\to2}(x^2-4)=0$ and $\lim_{x\to2}(x-1)=1$, so the product limit is $0\cdot1=0$; substitution confirms it.
 
-   Carefully factor and simplify before taking the limit. State any domain restrictions.
+## Curveball challenge
 
----
+8. **Composite simplification** _(Difficulty: Curveball)._ Evaluate $\displaystyle \lim_{x\to 1} \dfrac{x^2 - 1}{x^2 - x}$ and explain each algebraic step.
 
-## Tier C – Challenge
+   **Solution.** Factor: numerator $(x-1)(x+1)$, denominator $x(x-1)$. Cancel $(x-1)$ (for $x\neq1$) to get $\lim_{x\to1}\dfrac{x+1}{x}$. Substitute $x=1$ to obtain $\dfrac{2}{1}=2$. The cancellation removes a hole at $x=1$, so the simplified expression captures the limit.
 
-7. Compute:
+9. **Piecewise trap** _(Difficulty: Curveball)._ Define $g(x)=\begin{cases}\dfrac{x^2-4}{x-2}, & x\neq2, \\ 10, & x=2.\end{cases}$ Find $\lim_{x\to2} g(x)$ and state whether $g$ is continuous at $2$.
 
-$$
-\lim_{x\to 0} \frac{x^2 - 5x}{x}.
-$$
-
-   Explain why direct substitution fails initially and how simplification resolves it.
-
-8. Let:
-
-$$
-f(x) = \frac{2x^2 + 3x - 2}{x^2 - 1}.
-$$
-
-   a. Find all points where $ f $ is not defined.  
-   b. For each such point, determine whether the limit exists.  
-   c. Identify any removable discontinuities and show the simplified expression used for limits.
+   **Solution.** For $x\neq2$, $g(x)=x+2$. Thus $\lim_{x\to2} g(x)=4$. But $g(2)=10$, so the function jumps at $2$ and is not continuous; the hole-filled value should be $4$ to restore continuity.

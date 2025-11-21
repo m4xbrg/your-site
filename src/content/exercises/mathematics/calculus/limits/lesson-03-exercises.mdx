@@ -4,87 +4,57 @@ subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
 lessonId: math-calculus-limits-lesson-03
+lesson: "/lessons/mathematics/calculus/limits/lesson-03-asymptotic-behavior"
 title: "Exercises – Lesson 3: One-Sided Limits and Asymptotic Behavior"
 order: 3
 status: stable
+difficulty: mixed
 concepts:
   - math-calculus-limits-one-sided
   - math-calculus-limits-infinite-limits
   - math-calculus-limits-at-infinity
 tags:
-  - exercises
-  - one-sided-limits
+  - limits
   - asymptotes
+  - lesson-exercises
 ---
 
-## Tier A – Foundational
+## Basic practice
 
-1. Compute:
+1. **Right-hand approach** _(Difficulty: Basic)._ Evaluate $\displaystyle \lim_{x\to 0^+} \dfrac{1}{x}$.
 
-$$
-\lim_{x\to 0^+} \frac{1}{x}.
-$$
+   **Solution.** As $x$ approaches $0$ from the right, $1/x$ grows without bound, so the one-sided limit is $+\infty$.
 
-2. Compute:
+2. **Left-hand approach** _(Difficulty: Basic)._ Determine $\displaystyle \lim_{x\to 0^-} \dfrac{1}{x}$ and state the sign of the divergence.
 
-$$
-\lim_{x\to 0^-} \frac{1}{x}.
-$$
+   **Solution.** Approaching $0$ from the left makes $x$ negative and tiny, so $1/x$ heads to $-\infty$.
 
-3. Compute:
+## Intermediate drills
 
-$$
-\lim_{x\to\infty} \frac{3x^2 + 1}{6x^2 - 5}.
-$$
+3. **Vertical asymptote classification** _(Difficulty: Intermediate)._ For $f(x)=\dfrac{2}{(x-1)^2}$, compute $\lim_{x\to1^-} f(x)$ and $\lim_{x\to1^+} f(x)$. What kind of discontinuity occurs at $x=1$?
 
----
+   **Solution.** The squared denominator stays positive while shrinking to $0$, so both one-sided limits are $+\infty$. The function has an infinite (essential) discontinuity with a vertical asymptote at $x=1$.
 
-## Tier B – Mixed
+4. **End behavior** _(Difficulty: Intermediate)._ Find $\displaystyle \lim_{x\to \infty} \dfrac{3x^2-5x+1}{x^2+2}$.
 
-4. Determine:
+   **Solution.** Divide numerator and denominator by $x^2$: $\lim_{x\to\infty}\dfrac{3-5/x+1/x^2}{1+2/x^2}=3$. The horizontal asymptote is $y=3$.
 
-$$
-\lim_{x\to 2^-} \frac{|x-2|}{x-2}, \quad
-\lim_{x\to 2^+} \frac{|x-2|}{x-2}.
-$$
+## Conceptual insights
 
-   a. Do the one-sided limits agree?  
-   b. Does the two-sided limit exist?
+5. **Detecting limit failure** _(Difficulty: Conceptual)._ Explain why $\lim_{x\to0} \dfrac{1}{x}$ does not exist, even though both one-sided limits exist.
 
-5. Find all vertical asymptotes of:
+   **Solution.** The left-hand limit is $-\infty$ and the right-hand limit is $+\infty$; because they disagree (and are unbounded), the two-sided limit fails to exist.
 
-$$
-f(x) = \frac{x+1}{x^2 - 4}.
-$$
+6. **Oscillatory behavior at infinity** _(Difficulty: Conceptual)._ Consider $g(x)=\sin x$. Does $\lim_{x\to\infty} g(x)$ exist? Why or why not?
 
-   For each asymptote $ x=a $, determine the one-sided infinite limits.
+   **Solution.** No. $\sin x$ oscillates between $-1$ and $1$ without settling toward a single value, so the limit at infinity does not exist.
 
-6. Compute:
+## Curveball challenge
 
-$$
-\lim_{x\to -\infty} \frac{2x^3 - x}{-x^3 + 5}.
-$$
+7. **Piecewise one-sided check** _(Difficulty: Curveball)._ Let $h(x)=\begin{cases}\dfrac{x^2-4}{x-2}, & x<2, \\ x+5, & x\ge 2.\end{cases}$ Compute $\lim_{x\to2^-} h(x)$, $\lim_{x\to2^+} h(x)$, and decide whether $\lim_{x\to2} h(x)$ exists.
 
-   Explain how degree and leading coefficients determine the limit.
+   **Solution.** For $x<2$, simplify $(x^2-4)/(x-2)=x+2$ so $\lim_{x\to2^-} h(x)=4$. For $x\ge2$, use $h(x)=x+5$, giving $\lim_{x\to2^+} h(x)=7$. The one-sided limits differ, so the two-sided limit does not exist (jump discontinuity).
 
----
+8. **Asymptote from degree difference** _(Difficulty: Curveball)._ Evaluate $\displaystyle \lim_{x\to -\infty} \dfrac{5x^3+1}{2x^2-7}$ and describe the end-behavior asymptote.
 
-## Tier C – Challenge
-
-7. Evaluate:
-
-$$
-\lim_{x\to 0} x\ln|x|.
-$$
-
-   *Hint:* analyze the behavior as $ x\to 0^- $ and $ x\to 0^+ $; consider $ |x| $ and compare growth rates.
-
-8. Let:
-
-$$
-f(x)=\frac{1}{(x-1)^2}.
-$$
-
-   a. Compute $ \lim_{x\to1^-} f(x) $ and $ \lim_{x\to1^+} f(x) $.  
-   b. Classify the discontinuity at $ x=1 $ using the language of infinite limits.  
-   c. Explain why this discontinuity is not removable.
+   **Solution.** Highest power dominates; divide by $x^2$ to get $\lim_{x\to-\infty}\dfrac{5x+1/x^2}{2-7/x^2}$. As $x\to-\infty$, the expression behaves like $\dfrac{5x}{2}$, so the function grows without bound to $-\infty$ with an oblique asymptote $y=\tfrac52 x$.
