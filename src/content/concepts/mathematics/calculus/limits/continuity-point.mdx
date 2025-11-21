@@ -5,125 +5,55 @@ macroId: math-calculus
 courseId: math-calculus-limits
 title: Continuity at a Point
 summary: >
-  A function is continuous at a point when the limit equals the function value
-  there, capturing the idea that no jump, hole, or asymptotic behavior occurs at
-  that location.
+  A function is continuous at a point when its limit equals its value there,
+  ensuring no jump, hole, or oscillation at that location.
 order: 9
 tags:
   - limits
   - continuity
-  - pointwise
 role: core
 status: stable
 kind: definition
-difficulty: bridge
-proofLevel: idea
+difficulty: intro
+proofLevel: none
 prerequisites:
+  - math-calculus-limits-one-sided
   - math-calculus-limits-notation
-  - math-calculus-limits-limit-laws
 relatedConcepts:
   - math-calculus-limits-continuity-interval
   - math-calculus-limits-discontinuities-classification
-  - math-calculus-limits-epsilon-delta-definition
+  - math-calculus-limits-removable-discontinuities
 learningGoals:
-  - State the definition of continuity at a point in terms of limits and
-    function values.
-  - Diagnose whether a function is continuous at a point using limit behavior.
-  - Relate continuity at a point to local graph behavior.
+  - State the limit-based definition of continuity at a point.
+  - Check continuity by comparing one-sided limits and the function value.
+  - Recognize how changing a point value can repair a removable discontinuity.
 ---
 
-## Snapshot
+## Definition
+A function $f$ is continuous at $a$ if $\lim_{x\to a} f(x)$ exists and equals $f(a)$. Equivalently, both one-sided limits exist, agree, and match the function value, so approaching $a$ causes no jump or hole.
 
-A function is continuous at a point if the function value matches the limit at
-that point. Continuity captures the idea of “no breaks” in behavior at a specific
-location.
+## Intuition
+Continuity means no surprises when you reach $a$: the graph has no break, and numerical values flow smoothly into $f(a)$. If the limit exists but differs from $f(a)$ or $f(a)$ is undefined, the point is discontinuous.
 
-## Formal Statement
+## Variants
+- **Endpoint continuity:** At domain endpoints, continuity uses the appropriate one-sided limit.
+- **Removable discontinuity:** The limit exists but differs from $f(a)$; redefining $f(a)$ to the limit repairs continuity.
+- **Essential discontinuity:** One-sided limits disagree or fail to exist; no single value of $f(a)$ can fix it.
 
-A function $f$ is **continuous at $a$** if:
+## Connections
+- Continuity on an interval requires continuity at every point of the interval.
+- Differentiability implies continuity; continuity allows application of the Intermediate Value Theorem.
+- Classifying discontinuities relies on comparing limits to the function value.
 
-1) $f(a)$ is defined,  
-2) the limit exists,
-$$
-\lim_{x\to a} f(x) \ \text{ exists},
-$$
-3) and they agree:
-$$
-\lim_{x\to a} f(x) = f(a).
-$$
+## Errors
+- Checking only $f(a)$ without verifying the limit from nearby points.
+- Assuming piecewise-defined functions are continuous at the boundary without matching one-sided limits.
+- Forgetting to adjust the definition at endpoints to use one-sided limits.
 
-Equivalently, using one‑sided limits:
-$$
-\lim_{x\to a^-} f(x) = \lim_{x\to a^+} f(x) = f(a).
-$$
-
-## Intuition & Interpretation
-
-Continuity means evaluating the function at the point gives the same result as
-approaching the point through arbitrarily small neighborhoods. Distinguish:
-
-- **limit behavior** (approach),  
-- **point value** (evaluation),  
-- **agreement** (continuity).
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Polynomial**
-$$
-\lim_{x\to3} (x^2+1) = (3)^2+1 = 10 = f(3).
-$$
-
-2. **Removable discontinuity corrected**  
-Let $g(x)=\dfrac{x^2-1}{x-1}$. Redefining $g(1)=2$ yields continuity at $1$.
-
-3. **Absolute value**  
-$|x|$ is continuous at $0$ since left and right limits are $0$.
-
-### Non-Examples
-
-1. **Jump** — Left and right limits differ.  
-2. **Infinite** — If
-$$
-\lim_{x\to1} \frac{1}{x-1} = \pm\infty,
-$$
-there is no finite limit → not continuous.  
-3. **Undefined at the point** — If $f(a)$ does not exist, continuity is impossible.
-
-## Properties & Relationships
-
-- Continuity requires, but is not guaranteed by, existence of the limit.  
-- Polynomials, exponentials, and rational functions (on their domains) are continuous.  
-- Continuity is **local**; only behavior near the point matters.  
-- Builds to continuity on intervals.
-
-## Common Pitfalls
-
-1. Assuming limit existence implies continuity.  
-2. Forgetting $f(a)$ must exist.  
-3. Overlooking $f(a)\ne \lim f$ mismatches.  
-4. Confusing removable with essential discontinuities.
-
-## Exercises
-
-1. **Compute + evaluate**  
-For
-$$
-f(x)=
-\begin{cases}
-\dfrac{x^2-4}{x-2}, & x\neq 2,\\
-5, & x=2,
-\end{cases}
-$$
-is $f$ continuous at $x=2$?
-
-2. **One-sided check**
-$$
-\lim_{x\to 3^-} |x-3| \quad\text{and}\quad \lim_{x\to 3^+} |x-3|.
-$$
-Is $|x-3|$ continuous at $3$?
-
-3. **Conceptual** — Can a function be discontinuous at $a$ even if the two‑sided limit exists?
-
-4. **Mini-proof (Sketch)** — If both one‑sided limits equal $L$ and $f(a)=L$, then $\lim_{x\to a} f(x)=f(a)$.
+## Micro-checks
+1. **Question:** What three conditions must hold for continuity at $a$?  
+   **Answer:** $f(a)$ is defined, $\lim_{x\to a} f(x)$ exists, and the limit equals $f(a)$.
+2. **Question:** How can a removable discontinuity at $a$ be fixed?  
+   **Answer:** Redefine $f(a)$ to equal $\lim_{x\to a} f(x)$.
+3. **Question:** What does it mean if $\lim_{x\to a^+} f(x) \ne \lim_{x\to a^-} f(x)$?  
+   **Answer:** The two-sided limit and continuity at $a$ both fail because the directional behaviors differ.

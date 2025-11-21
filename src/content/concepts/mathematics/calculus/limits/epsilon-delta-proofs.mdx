@@ -3,122 +3,58 @@ id: math-calculus-limits-epsilon-delta-proofs
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Basic Epsilon–Delta Proofs
+title: Building Epsilon–Delta Proofs
 summary: >
-  Techniques for proving simple limit statements directly from the epsilon–delta
-  definition, focusing on linear and constant functions and the structure of
-  delta selection.
-order: 14
+  Techniques for choosing $\delta$ in response to $\varepsilon$ to prove limit
+  statements directly from the definition.
+order: 8
 tags:
   - limits
   - epsilon-delta
-  - proofs
-  - analysis
-role: core
+  - proof-strategy
+role: supporting
 status: stable
 kind: method
-difficulty: challenging
-proofLevel: formal
+difficulty: intermediate
+proofLevel: moderate
 prerequisites:
   - math-calculus-limits-epsilon-delta-definition
-relatedConcepts:
-  - math-calculus-limits-epsilon-delta-definition
   - math-calculus-limits-limit-laws
+relatedConcepts:
+  - math-calculus-limits-squeeze-theorem
+  - math-calculus-limits-continuity-point
+  - math-calculus-limits-computation-strategies
 learningGoals:
-  - Construct epsilon–delta proofs for basic limits.
-  - Identify the key algebraic steps needed to relate |f(x) − L| to |x − a|.
-  - Understand how delta choices depend on epsilon.
+  - Construct $\varepsilon$–$\delta$ proofs for basic algebraic limits.
+  - Bound expressions to find workable $\delta$ in terms of $\varepsilon$.
+  - Recognize when existing limit laws can shorten an $\varepsilon$–$\delta$ argument.
 ---
 
-## Snapshot
+## Definition
+An $\varepsilon$–$\delta$ proof shows $\lim_{x\to a} f(x) = L$ by starting with an arbitrary $\varepsilon>0$, proposing a specific $\delta>0$, and verifying that $0<|x-a|<\delta$ forces $|f(x)-L|<\varepsilon$. The heart of the proof is bounding $|f(x)-L|$ by expressions involving $|x-a|$.
 
-Basic epsilon–delta proofs verify a target limit by deriving a bound that ties
-output error to input proximity.
+## Intuition
+Work backward: express $|f(x)-L|$ in terms of $|x-a|$ and constants, then choose $\delta$ small enough to make the bound fall below $\varepsilon$. Splitting the bound into manageable pieces (triangular inequality, factoring) reveals how $\delta$ should depend on $\varepsilon$.
 
-Target shape:
-$$
-|f(x) - L| \le C\,|x - a|\quad \Rightarrow\quad \delta = \varepsilon/C.
-$$
+## Variants
+- **Linear and polynomial functions:** Bounds come directly from factoring and known coefficients.
+- **Quotients:** Ensure the denominator stays away from zero by simultaneously enforcing $|x-a|<1$ or similar constraints.
+- **Composition with continuous functions:** Combine known $\delta$ choices via limit laws to avoid starting from scratch.
 
-## Formal Statement
+## Connections
+- Complements computational shortcuts: even when limit laws predict the answer, an $\varepsilon$–$\delta$ proof justifies it rigorously.
+- Relies on inequality tools such as triangle inequality and bounding denominators away from zero.
+- Often paired with the Squeeze Theorem when direct bounding is difficult.
 
-To prove
-$$
-\lim_{x\to a} f(x) = L,
-$$
-show that
-$$
-\forall \varepsilon>0,\ \exists \delta>0:\ 0<|x-a|<\delta \ \Rightarrow\ |f(x)-L|<\varepsilon.
-$$
+## Errors
+- Choosing $\delta$ that depends on $x$ after the start of the proof instead of a fixed value.
+- Forgetting to state auxiliary bounds (like $|x-a|<1$) that control denominators or higher powers.
+- Presenting $\delta$ implicitly rather than giving an explicit formula or minimum of candidate bounds.
 
-For linear $f(x)=mx+b$:
-$$
-|f(x) - (ma+b)| = |m|\,|x-a| \quad \Rightarrow\quad \delta = \varepsilon/|m| \ (m\neq 0).
-$$
-For constant functions, any $\delta>0$ works.
-
-## Intuition & Interpretation
-
-Template:
-
-1. **Rewrite $|f(x)-L|$** to expose a factor of $|x-a|$.  
-2. **Bound auxiliary factors** (e.g., $|x+1|$ near $x=1$).  
-3. **Solve for $\delta$** in $C|x-a|<\varepsilon$.  
-4. **Verify** that $0<|x-a|<\delta$ implies $|f(x)-L|<\varepsilon$.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Linear**
-$$
-\lim_{x\to2} (3x+1) = 7,\quad |(3x+1)-7|=3|x-2|,\quad \delta=\varepsilon/3.
-$$
-
-2. **Constant**
-$$
-|5-5|=0<\varepsilon \quad\Rightarrow\quad \delta\ \text{arbitrary}.
-$$
-
-3. **Quadratic via bounding**
-$$
-|x^2-1| = |x-1||x+1|.
-$$
-If $|x-1|<1$, then $x\in(0,2)$ so $|x+1|<3$; hence
-$$
-|x^2-1| < 3|x-1|,\quad \delta=\min\{1,\varepsilon/3\}.
-$$
-
-### Non-Examples
-
-1. Non‑finite limits (definition proves only finite limits).  
-2. Oscillatory examples like $\sin(1/x)$ near $0$ (no single $\delta$ works).  
-3. Circular reasoning (asserting the implication before deriving $\delta$).
-
-## Properties & Relationships
-
-- Linear: direct factoring.  
-- Polynomial: bound auxiliary factors.  
-- Builds rigorous foundations for limit laws and continuity.
-
-## Common Pitfalls
-
-1. Choosing $\delta$ before deriving the relationship.  
-2. Including $x=a$ in the inequality.  
-3. Failing to bound auxiliary expressions.
-
-## Exercises
-
-1. **Linear proof** — Prove
-$$
-\lim_{x\to -1} (4x-2) = -6.
-$$
-
-2. **Quadratic with bounding** — Prove
-$$
-\lim_{x\to 2} x^2 = 4.
-$$
-
-3. **Delta derivation** — If $|f(x)-L|\le 7|x-a|$, what $\delta$ works for a given $\varepsilon$?
-
-4. **Mini-proof (Sketch)** — Explain why any constant function satisfies the definition at every point.
+## Micro-checks
+1. **Question:** What is the usual first step after fixing $\varepsilon>0$?  
+   **Answer:** Manipulate $|f(x)-L|$ algebraically to express it in terms of $|x-a|$ and constants, guiding the choice of $\delta$.
+2. **Question:** Why might a proof set $\delta = \min\{1, \varepsilon/5\}$?  
+   **Answer:** The bound $1$ controls the size of $|x-a|$ for auxiliary estimates, while $\varepsilon/5$ ensures the final inequality $|f(x)-L|<\varepsilon$.
+3. **Question:** How can limit laws simplify an $\varepsilon$–$\delta$ proof?  
+   **Answer:** By allowing you to reuse proven limits for simpler components, reducing the proof to bounding each part separately.

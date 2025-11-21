@@ -6,7 +6,7 @@ courseId: math-calculus-limits
 title: Continuity on an Interval
 summary: >
   A function is continuous on an interval when it is continuous at every point
-  within that interval, including boundary behavior when the interval is closed.
+  of that interval, using one-sided limits at endpoints when necessary.
 order: 10
 tags:
   - limits
@@ -15,108 +15,45 @@ tags:
 role: core
 status: stable
 kind: definition
-difficulty: bridge
-proofLevel: idea
+difficulty: intro
+proofLevel: none
 prerequisites:
   - math-calculus-limits-continuity-point
-  - math-calculus-limits-limit-laws
 relatedConcepts:
-  - math-calculus-limits-continuity-point
   - math-calculus-limits-ivt
+  - math-calculus-limits-discontinuities-classification
+  - math-calculus-limits-removable-discontinuities
 learningGoals:
-  - Define continuity on an interval and distinguish it from continuity at a
-    point.
-  - Recognize when a function fails to be continuous on an interval due to
-    isolated points.
-  - Connect interval continuity to global theorems like the Intermediate Value
-    Theorem.
+  - Define continuity on closed, open, and half-open intervals.
+  - Apply endpoint one-sided limits in continuity checks.
+  - Explain how interval continuity enables the Intermediate Value Theorem.
 ---
 
-## Snapshot
+## Definition
+A function $f$ is continuous on an interval $I$ if it is continuous at every interior point of $I$ and continuous from the right at a left endpoint or from the left at a right endpoint. For open intervals, only interior continuity is required.
 
-Continuity on an interval requires continuity at every point within the interval.
-For open intervals, only two-sided limits matter. For closed intervals, continuity
-at endpoints requires checking one-sided limits. This concept provides the
-foundation for the Intermediate Value Theorem.
+## Intuition
+Continuity on an interval means the graph can be drawn over that entire stretch without lifting the pencil. Endpoints are handled by one-sided limits because only one direction of approach is available there.
 
-## Formal Statement
+## Variants
+- **Closed interval $[a,b]$:** Continuous on $(a,b)$, continuous from the right at $a$, and from the left at $b$.
+- **Half-open intervals:** Require continuity from the available side at the included endpoint.
+- **Piecewise intervals:** Check continuity on each piece and at boundary points between pieces.
 
-- **Open interval $(a,b)$:** $f$ is continuous on $(a,b)$ if it is continuous at every $c\in(a,b)$.
+## Connections
+- Guarantees the Intermediate Value Theorem and Extreme Value Theorem for closed bounded intervals when $f$ is continuous on them.
+- Builds on pointwise continuity and one-sided limits at endpoints.
+- Interval continuity is a prerequisite for discussing differentiability and integrability on that domain.
 
-- **Closed interval $[a,b]$:** $f$ is continuous on $[a,b]$ if  
-  1) $f$ is continuous at every interior point $c\in(a,b)$, and  
-  2) the right-hand endpoint condition holds:
-$$
-  \lim_{x\to a^+} f(x) = f(a),
-$$
-  3) the left-hand endpoint condition holds:
-$$
-  \lim_{x\to b^-} f(x) = f(b).
-$$
+## Errors
+- Ignoring endpoint behavior when declaring continuity on closed or half-open intervals.
+- Assuming continuity on an interval from continuity at isolated points without checking the entire domain.
+- Forgetting to verify continuity at internal junctions of piecewise definitions.
 
-- **Half-open intervals** require checking the appropriate one-sided endpoint.
-
-## Intuition & Interpretation
-
-Continuity on an interval means the function has no breaks, holes, jumps, or
-asymptotes throughout that region. Endpoints on closed/half‑open intervals are
-handled with one‑sided limits due to domain restrictions.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Polynomial continuity** — Polynomials are continuous on any interval.
-
-2. **Piecewise, but continuous at joins** — If pieces match at boundaries, the whole interval is continuous.
-
-3. **Closed interval endpoint check**  
-For $f(x)=\sqrt{x}$ on $[0,4]$:
-$$
-\lim_{x\to0^+} \sqrt{x} = 0 = f(0).
-$$
-
-### Non-Examples
-
-1. **Jump inside interval** — A jump at some $c\in(a,b)$ breaks continuity.
-
-2. **Infinite discontinuity at an interior point** — Vertical asymptotes break continuity.
-
-3. **Endpoint mismatch** — If
-$$
-\lim_{x\to a^+} f(x) \ne f(a),
-$$
-then $f$ is not continuous on $[a,b]$.
-
-## Properties & Relationships
-
-- Continuity on an interval is stronger than continuity at a single point.
-- The Intermediate Value Theorem requires continuity on a **closed** interval.
-- Algebraic combinations and compositions of continuous functions remain continuous on shared intervals.
-- For piecewise definitions, check both the pieces and the join points.
-
-## Common Pitfalls
-
-1. Forgetting one‑sided checks at endpoints of closed intervals.  
-2. Confusing continuity with differentiability (stronger).  
-3. Assuming piecewise functions are continuous without checking joins.  
-4. Ignoring domains at endpoints.
-
-## Exercises
-
-1. **Endpoint check**  
-Let $f(x)=\dfrac{1}{1+x^2}$ on $[-2,2]$. Verify continuity at both endpoints.
-
-2. **Piecewise analysis** — Determine whether
-$$
-f(x)=
-\begin{cases}
-x+1,& x<1,\\
-x^2,& x\ge 1
-\end{cases}
-$$
-is continuous on $[0,3]$.
-
-3. **Conceptual** — Explain why one-sided limits are necessary at closed-interval endpoints.
-
-4. **Mini-proof (Sketch)** — If $f$ is continuous on $[a,b]$ and $g$ is continuous on the range of $f$ over $[a,b]$, show $g\circ f$ is continuous on $[a,b]$.
+## Micro-checks
+1. **Question:** What additional condition is needed at the left endpoint of $[a,b]$ for continuity on the interval?  
+   **Answer:** $\lim_{x\to a^+} f(x)$ must exist and equal $f(a)$.
+2. **Question:** Is continuity on $(a,b)$ alone enough to claim continuity on $[a,b]$?  
+   **Answer:** No; you must also check one-sided continuity at $a$ and $b$.
+3. **Question:** How does interval continuity relate to the Intermediate Value Theorem?  
+   **Answer:** The theorem requires continuity on the interval to ensure the function takes every intermediate value between two outputs.

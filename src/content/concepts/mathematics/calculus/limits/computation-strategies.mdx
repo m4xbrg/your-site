@@ -3,160 +3,60 @@ id: math-calculus-limits-computation-strategies
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Basic Strategies for Computing Limits
+title: Strategies for Computing Limits
 summary: >
-  Core algebraic techniques for evaluating limits, including direct
-  substitution, factorization, cancellation, conjugates, and structural
-  simplifications that reveal limit behavior hidden by indeterminate forms.
-order: 11
+  Practical methods—direct substitution, algebraic rewriting, limit laws, and
+  comparisons—to evaluate limits efficiently and decide when more advanced
+  tools are needed.
+order: 7
 tags:
   - limits
-  - techniques
-  - algebra
+  - computation
+  - strategy
 role: supporting
 status: stable
-kind: technique
+kind: method
 difficulty: intro
 proofLevel: none
 prerequisites:
   - math-calculus-limits-limit-laws
+  - math-calculus-limits-notation
 relatedConcepts:
-  - math-calculus-limits-limit-laws
-  - math-calculus-limits-infinite-limits
-  - math-calculus-limits-at-infinity
+  - math-calculus-limits-squeeze-theorem
+  - math-calculus-limits-computation-strategies
+  - math-calculus-limits-removable-discontinuities
 learningGoals:
-  - Use algebraic manipulations such as factoring and rationalization to
-    simplify limit expressions.
-  - Identify common algebraic strategies for resolving indeterminate forms.
-  - Choose between graphical, numerical, and algebraic strategies when
-    evaluating a limit.
+  - Select an appropriate technique for evaluating a given limit.
+  - Rewrite indeterminate forms to expose cancellation or standard limits.
+  - Recognize when to switch from algebraic rules to comparison or squeeze arguments.
 ---
 
-## Snapshot
+## Definition
+Computing a limit involves choosing transformations that preserve the limit while simplifying the expression. Standard steps include direct substitution when the function is continuous at the point, algebraic manipulation to remove removable discontinuities, application of limit laws, and comparison to known benchmark limits.
 
-Limit computation often reduces to transforming an expression into one where the
-algebraic limit laws apply directly. Typical techniques include substitution,
-factoring and canceling terms, rationalization using conjugates, and isolating
-dominant terms. These methods resolve indeterminate forms and reveal the true
-behavior of the function near the limit point.
+## Intuition
+The goal is to reveal stable nearby behavior. If substitution works, the function was continuous there. If substitution yields $0/0$ or another indeterminate form, algebraic rewrites can expose cancellation or dominant terms. When algebra stalls, comparison or squeezing pinpoints the limiting value.
 
-## Formal Statement
+## Variants
+- **Direct substitution:** Works for polynomials, rational functions with nonzero denominators, and continuous combinations.
+- **Algebraic cleanup:** Factorization, rationalization, and common denominators remove holes or expose cancellations.
+- **Standard limits:** Use benchmarks like $\lim_{x\to0} \dfrac{\sin x}{x}=1$ or $\lim_{x\to\infty}(1+1/x)^x = e$ as building blocks.
+- **Squeeze or comparison:** Trap an unknown limit between simpler expressions to force convergence.
 
-There is no single theorem; instead, this concept groups a set of algebraic
-procedures that are valid when:
+## Connections
+- Relies on limit laws to justify algebraic steps.
+- Partners with the Squeeze Theorem for oscillatory or bounded expressions.
+- Highlights removable discontinuities: successful cancellation shows a hidden continuous extension.
 
-1. The rewritten expression is **algebraically equivalent** to the original for
-   all $x$ in a punctured neighborhood of the limit point.
-2. The rewritten form yields a limit that exists and is finite (or infinite,
-   when analyzing asymptotic behavior).
+## Errors
+- Applying substitution when the denominator tends to $0$ without checking for cancellation.
+- Using algebraic manipulations that change the domain near the limit point (e.g., multiplying by non-equivalent expressions).
+- Ignoring dominant terms for limits at infinity, leading to incorrect growth estimates.
 
-The main strategies are:
-
-1. **Direct substitution** when the expression is well-defined.  
-2. **Factoring and canceling common factors** to resolve $0/0$ forms.  
-3. **Rationalizing numerator or denominator** using conjugates.  
-4. **Common denominators** for sums of rational expressions.  
-5. **Dominant-term comparison** for polynomial and rational functions.  
-6. **Algebraic isolation** (adding/subtracting the same term, multiplying by 1).  
-
-## Intuition & Interpretation
-
-Limit computation is fundamentally about revealing the structure of a function
-near a point. Indeterminate forms obscure that structure by hiding critical
-cancellations or symmetries. Algebraic simplifications make the underlying
-behavior explicit so that limit laws can be applied reliably.
-
-The key idea is to replace the original expression by an equivalent one that is
-simpler *in a neighborhood of the point*, not necessarily at the point itself.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Factoring to resolve $0/0$**
-$$
-\lim_{x\to 2} \frac{x^2-4}{x-2}
-= \lim_{x\to 2} \frac{(x-2)(x+2)}{x-2}
-= \lim_{x\to 2} (x+2)
-= 4.
-$$
-
-2. **Rationalizing a numerator** (multiply by the conjugate)
-$$
-\lim_{x\to 0} \frac{\sqrt{x+1} - 1}{x}
-= \lim_{x\to 0} \frac{(\sqrt{x+1}-1)(\sqrt{x+1}+1)}{x(\sqrt{x+1}+1)}
-= \lim_{x\to 0} \frac{x}{x(\sqrt{x+1}+1)}
-= \lim_{x\to 0} \frac{1}{\sqrt{x+1}+1}
-= \frac{1}{2}.
-$$
-
-3. **Dominant-term for rational functions**
-$$
-\lim_{x\to \infty} \frac{3x^2 - 4x + 1}{6x^2 + 5}
-= \frac{3}{6} = \frac{1}{2}.
-$$
-
-4. **Direct substitution** (no simplification needed)
-$$
-\lim_{x\to 1} (3x^2 + 2) = 5.
-$$
-
-### Non-Examples (Incorrect Uses)
-
-1. **Canceling when factorization is not valid**  
-$$
-\frac{x^2 - 1}{x - 1} = x + 1 \quad \text{only for } x\neq 1.
-$$
-Direct substitution on the **unsimplified** form still fails at $x=1$.
-
-2. **Using dominant-term rules when degrees mismatch subtly**  
-For
-$$
-\lim_{x\to\infty} \frac{x^2 + x}{x^2 - x^3},
-$$
-the denominator grows faster with sign changes; equal-degree comparison does not apply.
-
-3. **Rationalizing incorrectly**  
-Multiplying numerator and denominator by *different* conjugates introduces a non‑equivalent expression.
-
-4. **Assuming simplification must match value at the point**  
-Equivalence is required on a **punctured neighborhood**; the value at the point may differ.
-
-## Properties & Relationships
-
-- Simplification often converts an indeterminate form to one where limit laws apply.
-- Reveals **removable discontinuities**, connecting to continuity.
-- Dominant-term methods relate to **limits at infinity**.
-- Algebraic simplification is often a precursor to using the **squeeze theorem**.
-
-## Common Pitfalls
-
-1. Demanding equivalence at the point (unnecessary).  
-2. Hiding domain restrictions after canceling.  
-3. Misidentifying $0/0$ vs divergence.  
-4. Applying dominant-term rules when lower-degree terms control behavior locally.
-
-## Exercises
-
-1. **Compute**
-$$
-\lim_{x\to 3} \frac{x^2 - 9}{x-3}.
-$$
-
-2. **Rationalization** — Evaluate
-$$
-\lim_{x\to 4} \frac{\sqrt{x} - 2}{x-4}.
-$$
-
-3. **Dominant terms** — Compute
-$$
-\lim_{x\to\infty} \frac{5x^3 - x}{10x^3 + 7}.
-$$
-
-4. **Conceptual** — Why can’t factorization help with
-$$
-\lim_{x\to 0} \frac{1}{x}\,?
-$$
-
-5. **Mini-proof (Sketch)** — Explain why algebraic equivalence on a punctured
-neighborhood preserves the limit.
+## Micro-checks
+1. **Question:** What is the first check when evaluating $\lim_{x\to a} f(x)$?  
+   **Answer:** Try direct substitution; if it gives a finite value, the limit equals $f(a)$.
+2. **Question:** Which technique resolves a $0/0$ form in $\lim_{x\to 1} \dfrac{x^2-1}{x-1}$?  
+   **Answer:** Factorization and cancellation yield $\lim_{x\to1} (x+1)=2$.
+3. **Question:** When is the Squeeze Theorem preferred over algebraic manipulation?  
+   **Answer:** When the expression is bounded between two functions with known limits but resists direct simplification, such as $x\sin(1/x)$ near $0$.

@@ -3,10 +3,10 @@ id: math-calculus-limits-notation
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Limit Notation & Basic Vocabulary
+title: Limit Notation & Vocabulary
 summary: >
-  Standard limit notation \lim_{x→a} f(x) = L and the associated vocabulary used
-  to describe approach behavior and neighborhood-based reasoning.
+  Standard limit symbols such as lim_{x→a} f(x) = L, one-sided notation, and the
+  language used to describe approaching behavior.
 order: 3
 tags:
   - limits
@@ -20,116 +20,45 @@ proofLevel: none
 prerequisites:
   - math-calculus-limits-informal-idea
 relatedConcepts:
-  - math-calculus-limits-informal-idea
   - math-calculus-limits-one-sided
   - math-calculus-limits-epsilon-delta-definition
+  - math-calculus-limits-graphical-numerical
 learningGoals:
-  - Read and write standard limit notation, including one-sided limits.
-  - Translate between verbal descriptions of limiting behavior and symbolic
-    notation.
-  - Interpret lim_{x→a} f(x) = L in terms of function behavior near a point.
+  - Read and write standard two-sided and one-sided limit notation.
+  - Translate between verbal descriptions of limiting behavior and symbolic expressions.
+  - State the meaning of lim_{x→a} f(x) = L using nearby behavior of f.
 ---
 
-## Snapshot
-
-Limit notation expresses the idea that values of a function stabilize near a
-number as inputs approach a point. The expression
+## Definition
+The expression
 $$
 \lim_{x\to a} f(x) = L
 $$
-encodes approach, stability, and independence from $f(a)$.
+means that the values of $f(x)$ become arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$ (with $x\ne a$). One-sided limits use arrows with $a^+$ or $a^-$, such as $\lim_{x\to a^+} f(x)$ and $\lim_{x\to a^-} f(x)$, to restrict the direction of approach.
 
-## Formal Statement
+## Intuition
+Limit notation packages the idea of stability near a point. The arrow emphasizes movement toward $a$, while the value on the right of the equality marks the target that $f(x)$ settles near. One-sided symbols isolate the behavior from a single direction when left and right behaviors differ.
 
-Read
-$$
-\lim_{x\to a} f(x) = L
-$$
-as: “The limit of $f(x)$ as $x$ approaches $a$ is $L$.”
+## Variants
+- **Two-sided limit:** $\lim_{x\to a} f(x)$ requires agreement from both sides.
+- **Right-hand limit:** $\lim_{x\to a^+} f(x)$ follows inputs greater than $a$.
+- **Left-hand limit:** $\lim_{x\to a^-} f(x)$ follows inputs less than $a$.
+- **Infinite limit notation:** $\lim_{x\to a} f(x) = \infty$ records unbounded growth near $a$.
 
-Components:
+## Connections
+- Two-sided limits exist precisely when left- and right-hand limits agree and are finite.
+- The $\varepsilon$–$\delta$ definition formalizes the meaning of $\lim_{x\to a} f(x) = L$.
+- Precise notation underlies limit laws, continuity criteria, and statements about asymptotic behavior.
 
-- **Variable** $x$ (input) approaching  
-- **Point** $a$  
-- **Function** $f(x)$  
-- **Limit value** $L$
+## Errors
+- Writing $f(a)$ instead of $\lim_{x\to a} f(x)$ when describing nearby trends.
+- Omitting the direction indicator $a^\pm$ when left and right behaviors differ.
+- Using equal signs between expressions that have different limiting processes, such as replacing $x\to a^+$ with $x\to a$ without justification.
 
-Vocabulary:
-
-- “$x$ approaches $a$” → $x$ can be made arbitrarily close to $a$ (not equal).  
-- A **neighborhood** of $a$ → values near $a$.  
-- “$f(x)$ tends to $L$” → $f(x)$ becomes arbitrarily close to $L$.
-
-No claim is made about $f(a)$.
-
-## Intuition & Interpretation
-
-Emphasis:
-
-- **near** the point (not at the point),  
-- **closeness** (not equality),  
-- **consistent approach** (not fluctuation).
-
-## Examples & Non-Examples
-
-### Examples
-
-1.
-$$
-\lim_{x\to 2} (x^2 + 1) = 5.
-$$
-
-2. Even if
-$$
-f(x)=\frac{x^2-1}{x-1}
-$$
-is undefined at $x=1$,
-$$
-\lim_{x\to 1} f(x) = 2.
-$$
-
-3. If both sides approach 7, then
-$$
-\lim_{x\to a} f(x) = 7.
-$$
-
-### Non-Examples
-
-1. $f(a)=L$ is **not** the same as
-$$
-\lim_{x\to a} f(x) = L.
-$$
-
-2. If one‑sided behaviors disagree, the two‑sided limit does not exist.
-
-3. Informal arrows like $f(x)\to L$ for $x\approx a$ are not standard.
-
-## Properties & Relationships
-
-- Used in continuity, laws, and definitions.  
-- **One‑sided notation:**
-$$
-\lim_{x\to a^-} f(x), \qquad \lim_{x\to a^+} f(x).
-$$
-- Infinite limits replace $L$ with $\pm\infty$.  
-- Derivatives use a limit.
-
-## Common Pitfalls
-
-1. Treating $\lim f = f(a)$ by default.  
-2. Ignoring two‑sided agreement.  
-3. Misreading one‑sided subscripts.  
-4. Equating “approaches” with “equals.”
-
-## Exercises
-
-1. Interpret
-$$
-\lim_{x\to 3} f(x) = 10.
-$$
-
-2. Convert “As $x$ approaches 0, $f(x)$ approaches 4” into notation.
-
-3. Express “the right‑hand limit at 5 equals 2.”
-
-4. Mini‑proof — Why is $f(a)$ irrelevant to interpreting $\lim_{x\to a} f(x)=L$?
+## Micro-checks
+1. **Question:** What does $\lim_{x\to a} f(x) = L$ assert about $f(a)$?  
+   **Answer:** Nothing; it only describes values near $a$, so $f(a)$ may differ or be undefined.
+2. **Question:** When do we write $\lim_{x\to a^-} f(x)$ instead of $\lim_{x\to a} f(x)$?  
+   **Answer:** When we care only about the behavior as $x$ approaches $a$ from the left.
+3. **Question:** How is unbounded growth near $a$ written in limit notation?  
+   **Answer:** With $\lim_{x\to a} f(x) = \infty$ (or $-\infty$) to show divergence rather than a finite target.

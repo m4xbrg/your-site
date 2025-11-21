@@ -3,122 +3,58 @@ id: math-calculus-limits-squeeze-theorem
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Squeeze Theorem for Limits
+title: Squeeze Theorem
 summary: >
-  If a function is bounded above and below by two functions with the same limit
-  at a point, then the middle function shares that limit.
+  If a function is trapped between two others that share the same limit at a
+  point, it must share that limit as well.
 order: 15
 tags:
   - limits
-  - squeeze-theorem
-  - inequalities
-role: core
+  - squeeze
+  - comparison
+role: supporting
 status: stable
 kind: theorem
-difficulty: challenging
-proofLevel: idea
+difficulty: intro
+proofLevel: low
 prerequisites:
   - math-calculus-limits-limit-laws
-  - math-calculus-limits-informal-idea
+  - math-calculus-limits-notation
 relatedConcepts:
   - math-calculus-limits-computation-strategies
-  - math-calculus-limits-epsilon-delta-definition
+  - math-calculus-limits-epsilon-delta-proofs
+  - math-calculus-limits-limits-at-infinity
 learningGoals:
-  - State the Squeeze Theorem precisely and identify the bounding functions.
-  - Use squeezing arguments to compute limits with oscillatory or complicated
-    behavior.
-  - Recognize when bounding is a more natural strategy than direct algebra.
+  - State the Squeeze Theorem formally.
+  - Apply the theorem to oscillatory or absolute-value expressions.
+  - Recognize when bounding functions share an easily computed limit.
 ---
 
-## Snapshot
+## Definition
+If $g(x) \le f(x) \le h(x)$ for all $x$ near $a$ (excluding possibly $a$), and $\lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L$, then $\lim_{x\to a} f(x) = L$. The statement holds for one-sided limits and for limits at infinity with the same bounding idea.
 
-The Squeeze Theorem evaluates limits when $f$ is trapped between two simpler
-functions with the **same** limit.
+## Intuition
+When $f$ is sandwiched tightly between two functions converging to the same target, $f$ has nowhere else to go—it must converge to that target too. This is especially useful for functions whose direct analysis is messy but whose magnitude can be bounded.
 
-## Formal Statement
+## Variants
+- **Absolute value bounds:** Using $|f(x)| \le g(x)$ with $g(x)\to 0$ forces $f(x)\to 0$.
+- **Limits at infinity:** Bounds that hold for large $|x|$ can show end behavior, such as $x\sin(1/x)$ near $0$ or $\dfrac{\sin x}{x}$ as $x\to\infty$.
+- **Piecewise bounding:** Different bounds may be needed on different sides of $a$ before applying the theorem.
 
-Let $g,f,h$ be defined near $a$ (except possibly at $a$). Suppose:
+## Connections
+- Complements limit laws by handling cases where algebra alone cannot resolve an indeterminate form.
+- Commonly paired with trigonometric inequalities (e.g., $-1 \le \sin t \le 1$) to evaluate tricky limits.
+- Provides $\varepsilon$–$\delta$ proofs: once bounds are established, the shared limit yields the needed $\delta$ choices.
 
-1) For $x$ sufficiently close to $a$,
-$$
-g(x) \le f(x) \le h(x),
-$$
-2) and
-$$
-\lim_{x\to a} g(x) = \lim_{x\to a} h(x) = L.
-$$
-Then
-$$
-\lim_{x\to a} f(x) = L.
-$$
-The same holds for limits at $\pm\infty$ with analogous conditions.
+## Errors
+- Forgetting to verify the inequality near the point of interest, not just globally.
+- Bounding with functions that do not share a common limit, leaving the conclusion unjustified.
+- Applying the theorem when the bounding interval excludes necessary approach directions.
 
-## Intuition & Interpretation
-
-If $f$ is squeezed between functions that both approach $L$, then $f$ cannot do
-anything else but also approach $L$.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Classic trig**
-$$
--1 \le \frac{\sin x}{x} \le 1 \quad (x\ne 0).
-$$
-With careful sign handling, one shows
-$$
-\cos x \le \frac{\sin x}{x} \le 1 \ \Rightarrow\ \lim_{x\to0}\frac{\sin x}{x}=1.
-$$
-
-2. **Oscillation damped by a small factor**
-$$
--x^2 \le x^2\sin(1/x) \le x^2 \ \Rightarrow\ \lim_{x\to0} x^2\sin(1/x) = 0.
-$$
-
-3. **Rational bounding (large $x$)**  
-If
-$$
-\frac{x}{x+1} \le f(x) \le \frac{x}{x+2},
-$$
-both bounds $\to 1$; hence $\lim_{x\to\infty} f(x)=1$.
-
-### Non-Examples
-
-1. Bounds converge to **different** limits.  
-2. Bounds don’t hold on a full punctured neighborhood.  
-3. One side missing or reversed inequality.
-
-## Properties & Relationships
-
-- Fundamentally an inequality argument.  
-- Pairs well with absolute‑value bounds:
-$$
-|f(x)| \le g(x),\ \lim g(x)=0 \ \Rightarrow\ \lim f(x)=0.
-$$
-
-## Common Pitfalls
-
-1. Using Squeeze without verifying **both** bounds.  
-2. Bounds with different limits.  
-3. Missing sign considerations that break inequalities.  
-4. Assuming Squeeze proves infinite limits without appropriate bounds.
-
-## Exercises
-
-1. Prove
-$$
-\lim_{x\to0} x\sin(1/x) = 0.
-$$
-
-2. If $|f(x)|\le x^4$, show
-$$
-\lim_{x\to0} f(x) = 0.
-$$
-
-3. Evaluate
-$$
-\lim_{x\to\infty} x\sin(1/x).
-$$
-
-4. **Mini‑proof** — Why must the two bounding functions converge to the **same** value?
+## Micro-checks
+1. **Question:** What two ingredients are required to use the Squeeze Theorem?  
+   **Answer:** A pair of bounding functions with a common limit and an interval where the inequalities hold near the point.
+2. **Question:** How does the inequality $-1 \le \sin t \le 1$ help evaluate $\lim_{x\to 0} x\sin(1/x)$?  
+   **Answer:** Multiplying by $|x|$ shows $-|x| \le x\sin(1/x) \le |x|$, and both bounds go to $0$, so the squeezed limit is $0$.
+3. **Question:** Can the Squeeze Theorem handle limits at infinity?  
+   **Answer:** Yes; if the bounding functions converge to the same value for large $|x|$, the middle function shares that end behavior.

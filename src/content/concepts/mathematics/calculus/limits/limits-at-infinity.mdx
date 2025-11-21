@@ -3,118 +3,58 @@ id: math-calculus-limits-at-infinity
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Limits at Infinity & Horizontal Asymptotes
+title: Limits at Infinity
 summary: >
-  Describes the behavior of functions as the input variable grows without bound,
-  leading to horizontal asymptotes and dominant-term analysis.
-order: 8
+  Behavior of functions as inputs grow without bound, including horizontal
+  asymptotes and dominant-term analysis.
+order: 14
 tags:
   - limits
   - infinity
   - asymptotes
-role: core
+role: supporting
 status: stable
 kind: definition
 difficulty: intro
 proofLevel: none
 prerequisites:
+  - math-calculus-limits-notation
   - math-calculus-limits-limit-laws
 relatedConcepts:
   - math-calculus-limits-infinite-limits
   - math-calculus-limits-computation-strategies
+  - math-calculus-limits-squeeze-theorem
 learningGoals:
-  - Interpret limits where x approaches +∞ or −∞.
-  - Identify horizontal asymptotes using limit notation.
-  - Apply dominant-term reasoning to rational and polynomial functions.
+  - State what it means for $\lim_{x\to\infty} f(x)$ to equal a finite value.
+  - Use dominant terms to evaluate limits at infinity for rational functions.
+  - Identify horizontal asymptotes from limiting behavior.
 ---
 
-## Snapshot
+## Definition
+The limit $\lim_{x\to\infty} f(x) = L$ means that for every $\varepsilon>0$ there is an $M$ such that $x > M$ implies $|f(x)-L| < \varepsilon$. A similar definition applies to $x\to -\infty$. Finite limits at infinity indicate horizontal asymptotes at height $L$.
 
-Limits at infinity describe **end behavior**. If $f(x)$ approaches a finite $L$
-as $x\to\pm\infty$, then $y=L$ is a horizontal asymptote. Dominant terms govern
-polynomials/rationals as $|x|\to\infty$.
+## Intuition
+As $x$ grows large in magnitude, only dominant terms of $f(x)$ matter. If those terms balance to a constant, the function flattens toward that value; if they dominate without bound, the limit is infinite or does not exist.
 
-## Formal Statement
+## Variants
+- **Rational functions:** Compare degrees of numerator and denominator to predict the limit.
+- **Exponential growth/decay:** Exponentials dominate polynomials, leading to infinite limits or zero limits depending on sign.
+- **Oscillatory functions:** Functions like $\sin x$ lack limits at infinity because outputs keep swinging.
 
-We write
-$$
-\lim_{x\to +\infty} f(x) = L \quad\text{or}\quad \lim_{x\to -\infty} f(x) = L
-$$
-to capture stabilization of $f(x)$ for large $|x|$.
+## Connections
+- Complements infinite limits, which look at unbounded function values near finite points.
+- Dominant-term reasoning parallels series and asymptotic analysis in later courses.
+- Horizontal asymptotes from limits at infinity aid graphing and understanding end behavior.
 
-A **horizontal asymptote** is
-$$
-y=L \quad \text{if} \quad \lim_{x\to\pm\infty} f(x)=L.
-$$
+## Errors
+- Assuming any function with a horizontal asymptote must cross it; limits describe approach, not intersection.
+- Ignoring sign when comparing dominant terms, leading to wrong $\pm\infty$ conclusions.
+- Claiming a limit exists at infinity without verifying stabilization across large magnitudes.
 
-Dominant-term rules (rationals):
-
-- Degrees equal → limit = ratio of leading coefficients.  
-- Numerator degree < denominator → limit $=0$.  
-- Numerator degree > denominator → $|f(x)|\to\infty$ (no horizontal asymptote).
-
-## Intuition & Interpretation
-
-Local irregularities vanish at large $|x|$; only leading structure matters.
-
-## Examples & Non-Examples
-
-### Examples
-
-1.
-$$
-\lim_{x\to\infty} \frac{3x^2 - x}{6x^2 + 1} = \frac{3}{6} = \frac{1}{2}.
-$$
-
-2.
-$$
-\lim_{x\to\infty} \frac{x}{x^2 + 1} = 0.
-$$
-
-3.
-$$
-\lim_{x\to -\infty} \frac{x^3 + 1}{2x^2 - 5} = -\infty.
-$$
-
-4.
-$$
-\lim_{x\to\infty} \frac{x^2}{e^x} = 0.
-$$
-
-### Non-Examples
-
-1. **Oscillation**
-$$
-\lim_{x\to\infty} \sin x \ \text{does not exist.}
-$$
-2. **Finite‑point infinite limit** — That’s not a limit at infinity.  
-3. **Piecewise with non‑stabilizing behavior** — No horizontal asymptote.
-
-## Properties & Relationships
-
-- Dominant terms drive polynomials/rationals.  
-- Exponential/logarithmic/polynomial families have predictable dominance.  
-- Closely related to growth rates.
-
-## Common Pitfalls
-
-1. Assuming a function cannot cross its horizontal asymptote.  
-2. Applying finite‑point rules without dominance checks.  
-3. Forgetting sign when $x\to -\infty$.  
-4. Misidentifying degrees.
-
-## Exercises
-
-1. Compute
-$$
-\lim_{x\to\infty} \frac{5x^3 - x}{10x^3 + 2}.
-$$
-
-2. Dominant‑term check
-$$
-\lim_{x\to-\infty} \frac{7x^2}{3x^3 -1}.
-$$
-
-3. Conceptual — Why does denominator degree one higher imply asymptote $y=0$?
-
-4. Mini‑proof — If $\lim_{x\to\infty} f(x)=L$, explain why $y=L$ is a horizontal asymptote.
+## Micro-checks
+1. **Question:** What does $\lim_{x\to\infty} f(x) = L$ say about $f(x)$ for large $x$?  
+   **Answer:** That $f(x)$ stays within any desired tolerance of $L$ once $x$ exceeds some bound.
+2. **Question:** How do you find $\lim_{x\to\infty} \dfrac{3x^2+1}{x^2-4}$?  
+   **Answer:** Compare leading terms; the ratio of coefficients gives the limit $3$.
+3. **Question:** Why does $\lim_{x\to\infty} \sin x$ not exist?  
+   **Answer:** The values keep oscillating between $-1$ and $1$ without settling toward a single number.

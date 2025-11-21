@@ -5,8 +5,8 @@ macroId: math-calculus
 courseId: math-calculus-limits
 title: Graphical & Numerical Interpretation of Limits
 summary: >
-  How limits appear in graphs and tables of values, and how to reliably estimate
-  limit behavior from visual or numerical evidence.
+  How to spot limiting behavior using graphs and tables, and how to distinguish
+  genuine stabilization from misleading visual or numerical artifacts.
 order: 2
 tags:
   - limits
@@ -25,84 +25,36 @@ relatedConcepts:
   - math-calculus-limits-infinite-limits
   - math-calculus-limits-discontinuities-classification
 learningGoals:
-  - Identify limit behavior from graphs and numerical tables.
-  - Distinguish stable approach behavior from visual or numerical noise.
-  - Recognize one-sided, infinite, and discontinuous behavior graphically.
+  - Identify limit behavior from plotted graphs and numerical tables.
+  - Distinguish stable approach behavior from visual noise or rounding effects.
+  - Recognize one-sided, infinite, and discontinuous behavior from graphical cues.
 ---
 
-## Snapshot
+## Definition
+A graphical or numerical estimate of $\lim_{x\to a} f(x)$ uses evidence from the graph near $x=a$ or from values of $f(x)$ at inputs close to $a$ (excluding $a$ itself). A consistent trend toward a single value across both sides signals the limit.
 
-Graphs and tables provide concrete evidence of how a function behaves near a
-point. They reveal whether values stabilize near a number, whether sides differ,
-or whether no stable limit exists.
+## Intuition
+Zooming in on a graph near $a$ or sampling $f(x)$ values near $a$ should make the outputs cluster near the limit. If the two sides head to different numbers, the graph shows a jump; if values blow up, the graph shoots vertically; if values oscillate without narrowing, no limit appears.
 
-## Formal Statement
+## Variants
+- **Table-based estimation:** Choose inputs approaching $a$ from above and below; compare the outputs.
+- **Graphical zoom:** Successive zoom levels reveal whether the plotted curve straightens toward a specific height.
+- **One-sided views:** When the domain is restricted, examine only the accessible side of $a$.
 
-Numerical/graphical analysis examines $f(x)$ for $x$ close to $a$ (but $x\ne a$).
-Evidence suggests a limit $L$ if:
+## Connections
+- Supports the informal notion of limits by providing concrete evidence before formal proofs.
+- Reveals candidate values for $L$ that can be justified using $\varepsilon$–$\delta$ or algebraic limit laws.
+- Highlights discontinuities: agreement of both sides suggests continuity, disagreement suggests jumps or removable issues.
 
-- values approach and stabilize near $L$,  
-- left and right behavior is consistent,  
-- the graph near $a$ matches the numerical pattern.
+## Errors
+- Reading the value at $x=a$ instead of nearby behavior, especially when a hole is present.
+- Trusting a single zoom level; coarse plots can hide oscillation or vertical growth.
+- Using symmetric step sizes only; asymmetric sampling may miss one-sided behavior on restricted domains.
 
-This is **evidence**, not a proof.
-
-## Intuition & Interpretation
-
-Graphs show local behavior near a point; tables approximate the same idea.
-Stability near a height $L$ implies a likely limit.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Stable table values**
-
-| $x$   | $f(x)$  |
-|------:|--------:|
-| 0.9   | 1.89    |
-| 0.99  | 1.9899  |
-| 1.01  | 2.0101  |
-| 1.1   | 2.11    |
-
-Values approach 2 from both sides → suggests
-$$
-\lim_{x\to1} f(x) = 2.
-$$
-
-2. **Hole but finite limit** — A removable discontinuity still has a finite limit.
-
-3. **One‑sided differences** — If left tends to 5 and right to 7, two‑sided limit fails though one‑sided limits exist.
-
-### Non-Examples
-
-1. **Oscillation**
-$$
-\sin(1/x)\ \text{near } 0 \ \text{has no limit.}
-$$
-
-2. **Jump discontinuity** — Distinct left/right heights → no two‑sided limit.
-
-3. **Vertical asymptote** — Divergence to $\pm\infty$ is not a finite limit.
-
-## Properties & Relationships
-
-- Supports algebraic analysis; distinguish removable/jump/infinite behaviors.  
-- Numerical stability matters more than isolated values.
-
-## Common Pitfalls
-
-1. Misreading vertical scale.  
-2. Treating visual appearance as proof.  
-3. Using points too far from the target.  
-4. Plotting artifacts (missing points).
-
-## Exercises
-
-1. **Numerical** — A table near $x=2$ shows 3.0001, 3.00001, 2.99999, 3.00002. What limit is suggested?
-
-2. **Graphical** — A graph shows a hole at $x=4$ with smooth behavior; does the limit at $4$ likely exist?
-
-3. **One‑sided analysis** — Left tends to 5, right to 8. State the situation precisely.
-
-4. **Mini-proof (Sketch)** — Why can numerical evidence suggest but not prove a limit?
+## Micro-checks
+1. **Question:** What graphical sign indicates $\lim_{x\to a} f(x)$ exists and equals $L$?  
+   **Answer:** Both sides of the graph approach the horizontal height $L$ as they near $x=a$, even if a hole appears at $a$.
+2. **Question:** How can a table signal a jump discontinuity at $a$?  
+   **Answer:** The left-hand values approach one number while right-hand values approach a different number.
+3. **Question:** What table pattern suggests an infinite limit?  
+   **Answer:** Values grow without bound in magnitude as the inputs close in on $a$.

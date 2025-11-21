@@ -5,121 +5,57 @@ macroId: math-calculus
 courseId: math-calculus-limits
 title: Removable Discontinuities
 summary: >
-  Discontinuities where the limit exists but the function value is either
-  undefined or does not match the limit, allowing the discontinuity to be fixed
-  by redefining the function at a single point.
+  Discontinuities where the two-sided limit exists but the function value is
+  missing or mismatched, allowing continuity to be restored by redefining a
+  single point.
 order: 12
 tags:
   - limits
   - continuity
-  - discontinuities
+  - removable
 role: supporting
 status: stable
-kind: definition
-difficulty: bridge
+kind: concept
+difficulty: intro
 proofLevel: none
 prerequisites:
-  - math-calculus-limits-discontinuities-classification
   - math-calculus-limits-continuity-point
+  - math-calculus-limits-limit-laws
 relatedConcepts:
   - math-calculus-limits-discontinuities-classification
-  - math-calculus-limits-continuity-point
   - math-calculus-limits-computation-strategies
+  - math-calculus-limits-continuity-interval
 learningGoals:
-  - Define removable discontinuity in terms of limits and function values.
-  - Use algebraic simplification to detect removable discontinuities.
-  - Redefine a function to extend it continuously across a removable
-    discontinuity.
+  - Identify removable discontinuities via existing finite limits.
+  - Repair a removable discontinuity by redefining the function at the point.
+  - Use algebraic simplification to expose hidden removable discontinuities.
 ---
 
-## Snapshot
+## Definition
+A removable discontinuity occurs at $a$ when $\lim_{x\to a} f(x)$ exists and is finite, but $f(a)$ is either undefined or not equal to that limit. Setting $f(a)$ to the limit value yields a continuous extension.
 
-A removable discontinuity occurs when the two‑sided limit exists at a point but
-$f$ fails to take that value there (“hole” in the graph). Redefining $f(a)$
-appropriately restores continuity.
+## Intuition
+Graphically, a removable discontinuity appears as a hole: the curve approaches the same height from both sides but does not include the point. Algebraically, it often arises from a canceled factor or simplifiable expression that leaves an excluded input.
 
-## Formal Statement
+## Variants
+- **Algebraic holes:** Factor cancellations in rational functions create missing points despite stable nearby behavior.
+- **Piecewise definitions:** A piece may omit the boundary value even though both sides approach the same number.
+- **Continuous extensions:** Defining $g(a)=\lim_{x\to a} f(x)$ produces a function $g$ continuous at $a$.
 
-$f$ has a **removable discontinuity at $a$** if:
+## Connections
+- Detected using one-sided limits and limit laws; both sides must agree.
+- Key step in many computation strategies: simplify expressions to remove the hole before evaluating the limit.
+- Distinguishes repairable discontinuities from jumps or essential breaks that cannot be fixed locally.
 
-1) The limit exists:
-$$
-\lim_{x\to a} f(x) = L,
-$$
-2) but either $f(a)$ is undefined or
-$$
-f(a)\ne L.
-$$
-Redefine
-$$
-f(a)\coloneqq L
-$$
-to remove the discontinuity.
+## Errors
+- Assuming any $0/0$ limit signals a removable discontinuity without verifying that the limit actually exists and is finite.
+- Forgetting to check both sides separately; agreement is necessary for removability.
+- Leaving the function value unchanged after simplification, so the discontinuity persists.
 
-## Intuition & Interpretation
-
-This is the mildest discontinuity: behavior is stable; only the definition at
-the point is defective.
-
-## Examples & Non-Examples
-
-### Examples
-
-1. **Cancellation**
-$$
-f(x)=\frac{x^2-1}{x-1}=x+1\quad (x\ne 1),
-$$
-limit at $1$ is $2$ though $f(1)$ is undefined.
-
-2. **Mismatched value**
-$$
-g(x)=
-\begin{cases}
-x^2,& x\ne 2,\\
-100,& x=2,
-\end{cases}
-$$
-limit is $4$; redefining $g(2)=4$ removes the discontinuity.
-
-3. **Single open circle** — Graphical hole with otherwise smooth behavior.
-
-### Non-Examples
-
-1. **Jump** — One‑sided limits disagree.  
-2. **Infinite** — One or both sides diverge.  
-3. **Oscillatory** — No single limit exists.
-
-## Properties & Relationships
-
-- Exactly the case “finite limit + mismatch/missing value”.  
-- Only discontinuity type repaired by a single‑point change.  
-- Often revealed by algebraic simplification.  
-- Needed for interval continuity in piecewise definitions.
-
-## Common Pitfalls
-
-1. Mislabeling jump as removable.  
-2. Forgetting to actually redefine $f(a)$.  
-3. Assuming finite limit implies continuity.  
-4. Overlooking domain restrictions that cause holes.
-
-## Exercises
-
-1. Classify the discontinuity of
-$$
-f(x)=\frac{x^2-9}{x-3}.
-$$
-
-2. **Repairing continuity** — For
-$$
-h(x)=
-\begin{cases}
-x+3,& x\ne -3,\\
-0,& x=-3,
-\end{cases}
-$$
-what $h(-3)$ makes $h$ continuous?
-
-3. Conceptual — Why can’t an infinite limit be removable?
-
-4. Mini‑proof — If $\lim_{x\to a} f(x)=L$ and $f(a)=L$, the discontinuity at $a$ is removed.
+## Micro-checks
+1. **Question:** What condition makes a discontinuity removable?  
+   **Answer:** A finite two-sided limit exists at the point but does not match the current function value.
+2. **Question:** How do you fix $f(x)=\dfrac{x^2-1}{x-1}$ at $x=1$?  
+   **Answer:** Define $f(1)=2$, matching the limit of the simplified form $x+1$.
+3. **Question:** Why must both one-sided limits agree to call a discontinuity removable?  
+   **Answer:** Without agreement there is no single value to assign that would make the function continuous at that point.

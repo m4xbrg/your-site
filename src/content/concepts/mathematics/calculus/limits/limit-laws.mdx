@@ -3,150 +3,64 @@ id: math-calculus-limits-limit-laws
 subject: mathematics
 macroId: math-calculus
 courseId: math-calculus-limits
-title: Algebraic Laws for Limits
+title: Limit Laws
 summary: >
-  Fundamental rules that describe how limits interact with algebraic operations
-  such as addition, multiplication, division, and exponentiation when the
-  component limits exist.
-order: 10
+  Algebraic rules that allow limits of sums, products, quotients, powers, and
+  compositions to be computed from simpler limits.
+order: 6
 tags:
   - limits
-  - algebra
-  - theorems
+  - algebraic-rules
+  - computation
 role: core
 status: stable
 kind: theorem
 difficulty: intro
-proofLevel: sketch
+proofLevel: low
 prerequisites:
   - math-calculus-limits-notation
-  - math-foundations-arithmetic-algebra
+  - math-calculus-limits-informal-idea
 relatedConcepts:
   - math-calculus-limits-computation-strategies
-  - math-calculus-limits-squeeze-theorem
+  - math-calculus-limits-continuity-point
+  - math-calculus-limits-epsilon-delta-proofs
 learningGoals:
-  - State and apply the algebraic limit laws.
-  - Identify when a limit law is applicable based on hypotheses.
-  - Use limit laws to reduce complex expressions to simpler parts.
+  - State the basic limit laws for sums, products, quotients, and powers.
+  - Use limit laws to reduce complex limits to simpler component limits.
+  - Recognize when hypotheses (existing finite limits and nonzero denominators) are required.
 ---
 
-## Snapshot
+## Definition
+Limit laws assert that if $\lim_{x\to a} f(x)$ and $\lim_{x\to a} g(x)$ exist and are finite, then
+- $\lim_{x\to a} (f+g)(x) = \lim f + \lim g$,
+- $\lim_{x\to a} (f-g)(x) = \lim f - \lim g$,
+- $\lim_{x\to a} (cf)(x) = c\,\lim f$ for any constant $c$,
+- $\lim_{x\to a} (fg)(x) = (\lim f)(\lim g)$,
+- $\lim_{x\to a} \dfrac{f}{g}(x) = \dfrac{\lim f}{\lim g}$ when $\lim g \ne 0$,
+- $\lim_{x\to a} [f(x)]^n = (\lim f)^n$ for integer $n$, and more generally $\lim_{x\to a} F(f(x)) = F(\lim f)$ when $F$ is continuous at the limit value.
 
-The algebraic limit laws describe how limits behave under standard operations,
-allowing evaluation by decomposing expressions into simpler components.
+## Intuition
+These rules mirror familiar algebra because limits capture nearby behavior: if both functions stabilize near numbers, combining them algebraically yields outputs stabilizing near the algebraic combination of those numbers.
 
-## Formal Statement
+## Variants
+- **Composition law:** Substitute limits into continuous outer functions (e.g., polynomials, exponentials, trigonometric functions).
+- **Root law:** $\lim_{x\to a} \sqrt[n]{f(x)} = \sqrt[n]{\lim f}$ when the root is defined near the limit.
+- **Indeterminate forms:** Laws do not directly resolve $0/0$ or $\infty/\infty$, which require algebraic rewriting or additional theorems.
 
-Assume
-$$
-\lim_{x\to a} f(x)=L,\qquad \lim_{x\to a} g(x)=M,
-$$
-and required hypotheses hold (finiteness, nonzero denominators, etc.). Then:
+## Connections
+- Provide the primary toolkit for evaluating limits before invoking the Squeeze Theorem or $\varepsilon$–$\delta$ proofs.
+- Underlie proofs of continuity for algebraic and elementary functions because continuity at $a$ means the limit equals the function value.
+- Support computation strategies such as factoring, rationalizing, or using trig identities to expose standard limits.
 
-1. **Sum**
-$$
-\lim_{x\to a} (f+g) = L+M.
-$$
+## Errors
+- Applying quotient laws when the denominator limit is $0$ without further analysis.
+- Substituting into a discontinuous outer function (e.g., absolute value at a kink) without checking one-sided behavior.
+- Assuming limit laws handle oscillatory or divergent components; existing finite limits are required hypotheses.
 
-2. **Difference**
-$$
-\lim_{x\to a} (f-g) = L-M.
-$$
-
-3. **Constant multiple** (for constant $c$)
-$$
-\lim_{x\to a} c\,f = cL.
-$$
-
-4. **Product**
-$$
-\lim_{x\to a} (fg) = LM.
-$$
-
-5. **Quotient** (if $M\ne 0$)
-$$
-\lim_{x\to a} \frac{f}{g} = \frac{L}{M}.
-$$
-
-6. **Power** (integer $n\ge 1$)
-$$
-\lim_{x\to a} \big(f(x)\big)^n = L^n.
-$$
-
-7. **Root** (even $n$ requires $f\ge 0$ near $a$)
-$$
-\lim_{x\to a} \sqrt[n]{\,f(x)\,} = \sqrt[n]{\,L\,}.
-$$
-
-## Intuition & Interpretation
-
-When $f$ and $g$ stabilize near $a$, their algebraic combinations stabilize in
-the corresponding algebraic ways, provided no undefined expressions arise.
-
-## Examples & Non-Examples
-
-### Examples
-
-1.
-$$
-\lim_{x\to 2} (3x + 5) = 11.
-$$
-
-2.
-$$
-\lim_{x\to -1} (x^2 - 4x) = 5.
-$$
-
-3.
-$$
-\lim_{x\to 0} \frac{f(x)}{g(x)} = \frac{2}{-3}
-\quad\text{if}\quad \lim f=2,\ \lim g=-3.
-$$
-
-4.
-$$
-\lim_{x\to 1} (x+1)^3 = 8.
-$$
-
-### Non-Examples (Misuses)
-
-1. **Quotient when $\lim g=0$** — Not applicable (e.g., $\lim_{x\to 0}1/x$).  
-2. **$0/0$ forms** — Must simplify first (e.g., $\frac{x^2-4}{x-2}$).  
-3. **Product with divergence** — If either factor has no limit, product law fails.  
-4. **Root without sign check** — Even roots require nonnegativity near $a$.
-
-## Properties & Relationships
-
-- Consequences of the $\varepsilon$–$\delta$ definition.  
-- Foundation for many techniques (e.g., L’Hôpital, series).  
-- Determine behavior for polynomials/rationals except at denominator zeros.  
-- Interacts with continuity and the squeeze theorem.
-
-## Common Pitfalls
-
-1. Applying quotient law with $M=0$.  
-2. Ignoring domain/branch constraints for roots.  
-3. Treating product of limits as a limit of products when one factor diverges.  
-4. Using laws before addressing $0/0$ indeterminacy.  
-5. Assuming a law applies without verifying hypotheses.
-
-## Exercises
-
-1. Evaluate
-$$
-\lim_{x\to 3} (5x^2 - 4x + 1).
-$$
-
-2. Given $\lim_{x\to a} f(x)=7$ and $\lim_{x\to a} g(x)=-2$, compute
-$$
-\lim_{x\to a} \big(3f(x) - 5g(x)\big).
-$$
-
-3. Explain why the quotient law cannot be applied directly to
-$$
-\lim_{x\to 2} \frac{x^2 - 4}{x - 2}.
-$$
-
-4. Describe a situation where the product law does **not** apply even though both functions are defined near $a$.
-
-5. **Sketch** — Prove the sum law with $\varepsilon$–$\delta$ bounds.
+## Micro-checks
+1. **Question:** When can you replace $\lim_{x\to a} F(f(x))$ with $F(\lim_{x\to a} f(x))$?  
+   **Answer:** When $\lim_{x\to a} f(x)$ exists and $F$ is continuous at that limit value.
+2. **Question:** Why is $\lim_{x\to a} \dfrac{f(x)}{g(x)}$ not determined by the quotient law if $\lim_{x\to a} g(x)=0$?  
+   **Answer:** The law requires a nonzero denominator limit; when it is zero the behavior may be finite, infinite, or undefined and needs separate analysis.
+3. **Question:** Which law justifies $\lim_{x\to a} [f(x)]^3 = (\lim_{x\to a} f(x))^3$?  
+   **Answer:** The power law, a special case of composition with the continuous function $F(t)=t^3$.
