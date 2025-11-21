@@ -828,6 +828,13 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".mdx"] };
+"mathematics/calculus/limits/math-calculus-limits-review.mdx": {
+	id: "mathematics/calculus/limits/math-calculus-limits-review.mdx";
+  slug: "mathematics/calculus/limits/math-calculus-limits-review";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".mdx"] };
 };
 "lessons": {
 "mathematics/calculus/limits/lesson-01-introduction.mdx": {
@@ -1008,14 +1015,15 @@ declare module 'astro:content' {
   data: InferEntrySchema<"macro-courses">
 } & { render(): Render[".md"] };
 };
-"notes": Record<string, {
-  id: string;
-  slug: string;
+"notes": {
+"math-authoring-guide.mdx": {
+	id: "math-authoring-guide.mdx";
+  slug: "math-authoring-guide";
   body: string;
   collection: "notes";
-  data: InferEntrySchema<"notes">;
-  render(): Render[".md"];
-}>;
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".mdx"] };
+};
 "subjects": {
 "mathematics.md": {
 	id: "mathematics.md";
