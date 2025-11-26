@@ -19,39 +19,59 @@ concepts:
 
 # Lesson Objectives
 - **math-calculus-limits-informal-idea:** Describe a limit as approach behavior rather than point evaluation.
-- **math-calculus-limits-graphical-numerical:** Interpret tables and plots as evidence for a limit value.
+- **math-calculus-limits-graphical-numerical:** Use tables and plots as evidence for a limit value.
 - **math-calculus-limits-notation:** Read and write standard two-sided and one-sided limit notation.
 
-## Setup
-- Recall how to evaluate and graph basic functions (polynomials, rationals) near a point.
-- Have access to a calculator or plotting tool to generate nearby values.
-- Keep the concept cards above handy; they anchor each activity.
+## How to use this lesson
+- Skim the concept cards above; each section below calls out the matching concept ID.
+- Keep a calculator or graphing tool handy so you can generate nearby values and zoom into graphs.
+- Focus on approach behavior first—algebraic shortcuts and proofs arrive in later lessons.
 
-## Concept recap
-### math-calculus-limits-informal-idea — Approach behavior
-Limits track how outputs behave **near** a target input, independent of the value at that input.
+## Informal idea: approaching a value (math-calculus-limits-informal-idea)
+A limit captures how $f(x)$ behaves **as $x$ gets close to** a target input $a$, even if $f(a)$ is different or undefined. The nearby trend matters more than the exact point.
 
-### math-calculus-limits-graphical-numerical — Evidence from data and graphs
-Tables that close in on an input and graphs zoomed near the point both reveal whether values settle toward a single height.
+- If outputs settle near a single number $L$ whenever $x$ is near $a$, we write $\lim_{x\to a} f(x)=L$.
+- Changing $f(a)$, filling a hole, or leaving $a$ undefined does not change the limit as long as the surrounding behavior stays the same.
 
-### math-calculus-limits-notation — Symbolic language
-Expressions like $\lim_{x\to a} f(x) = L$ or $x\to a^\pm$ encode the same approach idea compactly.
+### Guided example: hole but stable behavior
+Let $f(x)=\dfrac{x^2-1}{x-1}$ for $x\neq1$. Near $x=1$, the outputs simplify to values near $2$ even though $f(1)$ is undefined. The approach behavior still gives $\lim_{x\to1} f(x)=2$ because nearby points crowd around height $2$.
 
-## Worked examples
-- **Numerical concentration (graphical-numerical):** For $f(x) = \dfrac{x^2-1}{x-1}$, values at $0.9,0.99,1.01,1.1$ cluster near $2$, so $\lim_{x\to1} f(x)=2$ even though $f(1)$ is undefined.
-- **Graph with a hole (informal-idea + notation):** A curve missing the point $(3,5)$ but approaching height $5$ from both sides still satisfies $\lim_{x\to3} f(x)=5$.
-- **Irrelevant point value (notation):** If $g(1)=1000$ but nearby values follow the same pattern as $f$ above, the limit remains $2$ because approach behavior dominates.
+### Quick checks
+- Explain in your own words why the value of $f(a)$ is irrelevant when discussing $\lim_{x\to a} f(x)$.
+- Sketch a function with a missing point at $x=3$ but with $\lim_{x\to3} f(x)=5$.
 
-## Mid-lesson checks
-- Using a quick table, estimate $\lim_{x\to2} (x^2-3x+5)$ and explain which concept card you relied on.
-- On a sketch with $x\to4^-$ trending to $7$ and $x\to4^+$ trending to $5$, decide whether $\lim_{x\to4} h(x)$ exists.
-- Translate “the function nears $8$ as $x$ approaches $-1$ from the right” into limit notation.
+## Graphical and numerical evidence (math-calculus-limits-graphical-numerical)
+Graphs and tables let us see approach behavior without heavy algebra.
+
+- **Tables:** Build values of $f(x)$ from both sides of $a$. If the outputs close in on the same number, that number is the likely limit.
+- **Graphs:** Zoom near $x=a$ and watch whether the curve squeezes toward one height. If left and right sides head to different heights, the two-sided limit does not exist.
+
+### Example: settling toward a height
+For $f(x) = \dfrac{x^2-1}{x-1}$, a table at $0.9,0.99,1.01,1.1$ shows outputs clustering near $2$. On a graph, the curve approaches the hole at $(1,2)$ from both sides. Both pieces of evidence support $\lim_{x\to1} f(x)=2$.
+
+### Quick checks
+- Given a sketch where the left side approaches $7$ and the right side approaches $5$ as $x\to4$, decide whether $\lim_{x\to4} h(x)$ exists and justify.
+- Build a tiny table around $x=0$ for $g(x)=\sin x / x$ and note whether the values appear to stabilize.
+
+## Speaking in limit notation (math-calculus-limits-notation)
+Limit notation compresses the informal idea into symbols.
+
+- $\lim_{x\to a} f(x)=L$ reads as “as $x$ approaches $a$, $f(x)$ approaches $L$.”
+- One-sided notation, such as $\lim_{x\to a^-}$ and $\lim_{x\to a^+}$, highlights approaching from the left or right when the two sides might differ.
+- Writing the statement does **not** assert anything about $f(a)$; it only records the nearby trend.
+
+### Example: translating words to symbols
+“The function nears $8$ as $x$ approaches $-1$ from the right” becomes $\displaystyle \lim_{x\to -1^+} f(x)=8$. The arrow specifies the input approach, and the superscript $+$ marks the right-hand direction.
+
+### Quick checks
+- Rewrite the sentence “$f$ gets close to $3$ whenever $x$ is near $2$, even though $f(2)$ is undefined” using limit notation.
+- Interpret the symbols $\lim_{x\to5} g(x)=1$ in a single, clear sentence about approach behavior.
 
 ## Summary
-- Limits capture approach behavior; the point’s actual value can differ or be undefined.
-- Numerical tables and graphs provide informal but persuasive evidence for a limit.
-- Standard notation communicates the same idea precisely and supports later algebraic rules.
+- A limit measures approach behavior near a point, independent of the function’s actual value there.
+- Tables and graphs provide numerical and visual evidence for whether a limit settles to a single value.
+- Standard limit notation records the trend (two-sided or one-sided) without claiming anything about $f(a)$.
 
 ## Next steps
 - Practice with the aligned set in `src/content/exercises/mathematics/calculus/limits/lesson-01-exercises.mdx`.
-- Preview limit laws and computation tools in Lesson 2, which extend these foundations.
+- Move on to Lesson 2 for algebraic rules and computation strategies once these foundations feel solid.
