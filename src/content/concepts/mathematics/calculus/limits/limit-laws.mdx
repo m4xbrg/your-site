@@ -32,35 +32,41 @@ learningGoals:
 
 ## Definition
 Limit laws assert that if $\lim_{x\to a} f(x)$ and $\lim_{x\to a} g(x)$ exist and are finite, then
-- $\lim_{x\to a} (f+g)(x) = \lim f + \lim g$,
-- $\lim_{x\to a} (f-g)(x) = \lim f - \lim g$,
+- $\lim_{x\to a} (f\pm g)(x) = (\lim f) \pm (\lim g)$,
 - $\lim_{x\to a} (cf)(x) = c\,\lim f$ for any constant $c$,
 - $\lim_{x\to a} (fg)(x) = (\lim f)(\lim g)$,
 - $\lim_{x\to a} \dfrac{f}{g}(x) = \dfrac{\lim f}{\lim g}$ when $\lim g \ne 0$,
 - $\lim_{x\to a} [f(x)]^n = (\lim f)^n$ for integer $n$, and more generally $\lim_{x\to a} F(f(x)) = F(\lim f)$ when $F$ is continuous at the limit value.
 
 ## Intuition
-These rules mirror familiar algebra because limits capture nearby behavior: if both functions stabilize near numbers, combining them algebraically yields outputs stabilizing near the algebraic combination of those numbers.
+These rules mirror familiar algebra because limits capture nearby behavior: if both functions stabilize near numbers, combining them algebraically yields outputs stabilizing near the algebraic combination of those numbers. The hypotheses matter: a missing limit or zero denominator can break the rules.
 
-## Variants
-- **Composition law:** Substitute limits into continuous outer functions (e.g., polynomials, exponentials, trigonometric functions).
-- **Root law:** $\lim_{x\to a} \sqrt[n]{f(x)} = \sqrt[n]{\lim f}$ when the root is defined near the limit.
-- **Indeterminate forms:** Laws do not directly resolve $0/0$ or $\infty/\infty$, which require algebraic rewriting or additional theorems.
+## Examples
+- **Sum and product:** If $\lim_{x\to2} f(x)=3$ and $\lim_{x\to2} g(x)=-1$, then $\lim_{x\to2} [2f(x)+g(x)] = 2\cdot3+(-1)=5$.
+- **Quotient with nonzero denominator:** $\lim_{x\to1} \dfrac{x^2-1}{x-1}$ can use the quotient law after simplification because $\lim_{x\to1} (x-1)=0$ would violate the direct hypothesis, motivating algebraic cancellation before applying the law.
+- **Composition through continuity:** Since polynomials are continuous, $\lim_{x\to0} \sin(x^2) = \sin(\lim_{x\to0} x^2)=0$ follows from the composition law with a continuous outer function.
+
+## Non-examples
+- Applying the quotient law directly to $\lim_{x\to0} \dfrac{\sin x}{x}$ fails because the denominator limit is zero; the expression still has a limit but needs a different argument.
+- Substituting a limit into a discontinuous outer function (e.g., $F(t)=|t|/t$ at $t=0$) can give the wrong answer because continuity is required for the composition law.
+- Combining functions when one of the component limits does not exist (such as oscillation) leaves the algebraic laws inapplicable.
 
 ## Connections
 - Provide the primary toolkit for evaluating limits before invoking the Squeeze Theorem or $\varepsilon$–$\delta$ proofs.
 - Underlie proofs of continuity for algebraic and elementary functions because continuity at $a$ means the limit equals the function value.
 - Support computation strategies such as factoring, rationalizing, or using trig identities to expose standard limits.
 
-## Errors
+## Common errors
 - Applying quotient laws when the denominator limit is $0$ without further analysis.
 - Substituting into a discontinuous outer function (e.g., absolute value at a kink) without checking one-sided behavior.
 - Assuming limit laws handle oscillatory or divergent components; existing finite limits are required hypotheses.
 
 ## Micro-checks
-1. **Question:** When can you replace $\lim_{x\to a} F(f(x))$ with $F(\lim_{x\to a} f(x))$?  
+1. **Question:** When can you replace $\lim_{x\to a} F(f(x))$ with $F(\lim_{x\to a} f(x))$?
    **Answer:** When $\lim_{x\to a} f(x)$ exists and $F$ is continuous at that limit value.
-2. **Question:** Why is $\lim_{x\to a} \dfrac{f(x)}{g(x)}$ not determined by the quotient law if $\lim_{x\to a} g(x)=0$?  
+2. **Question:** Why is $\lim_{x\to a} \dfrac{f(x)}{g(x)}$ not determined by the quotient law if $\lim_{x\to a} g(x)=0$?
    **Answer:** The law requires a nonzero denominator limit; when it is zero the behavior may be finite, infinite, or undefined and needs separate analysis.
-3. **Question:** Which law justifies $\lim_{x\to a} [f(x)]^3 = (\lim_{x\to a} f(x))^3$?  
+3. **Question:** Which law justifies $\lim_{x\to a} [f(x)]^3 = (\lim_{x\to a} f(x))^3$?
    **Answer:** The power law, a special case of composition with the continuous function $F(t)=t^3$.
+4. **Question:** How do limit laws relate to continuity at $a$?
+   **Answer:** They show that algebraic combinations of continuous functions remain continuous because the limit equals the function value for each piece.

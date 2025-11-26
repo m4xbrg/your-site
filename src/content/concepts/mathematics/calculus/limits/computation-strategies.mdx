@@ -23,7 +23,6 @@ prerequisites:
   - math-calculus-limits-notation
 relatedConcepts:
   - math-calculus-limits-squeeze-theorem
-  - math-calculus-limits-computation-strategies
   - math-calculus-limits-removable-discontinuities
 learningGoals:
   - Select an appropriate technique for evaluating a given limit.
@@ -35,28 +34,34 @@ learningGoals:
 Computing a limit involves choosing transformations that preserve the limit while simplifying the expression. Standard steps include direct substitution when the function is continuous at the point, algebraic manipulation to remove removable discontinuities, application of limit laws, and comparison to known benchmark limits.
 
 ## Intuition
-The goal is to reveal stable nearby behavior. If substitution works, the function was continuous there. If substitution yields $0/0$ or another indeterminate form, algebraic rewrites can expose cancellation or dominant terms. When algebra stalls, comparison or squeezing pinpoints the limiting value.
+The goal is to reveal stable nearby behavior. If substitution works, the function was continuous there. If substitution yields $0/0$ or another indeterminate form, algebraic rewrites can expose cancellation or dominant terms. When algebra stalls, comparison or squeezing pinpoints the limiting value while keeping the focus on nearby trends rather than the single value at the point.
 
-## Variants
-- **Direct substitution:** Works for polynomials, rational functions with nonzero denominators, and continuous combinations.
-- **Algebraic cleanup:** Factorization, rationalization, and common denominators remove holes or expose cancellations.
-- **Standard limits:** Use benchmarks like $\lim_{x\to0} \dfrac{\sin x}{x}=1$ or $\lim_{x\to\infty}(1+1/x)^x = e$ as building blocks.
-- **Squeeze or comparison:** Trap an unknown limit between simpler expressions to force convergence.
+## Examples
+- **Direct substitution succeeds:** $\lim_{x\to2} (3x^2-1)$ is found by plugging in $2$, giving $11$ because polynomials are continuous.
+- **Algebraic cleanup:** For $\lim_{x\to1} \dfrac{x^2-1}{x-1}$, factor and cancel to get $\lim_{x\to1} (x+1)=2$, showing the limit exists even though the original function is undefined at $1$.
+- **Switching strategies:** To evaluate $\lim_{x\to0} x\sin(1/x)$, algebra alone is messy; bounding $-1\le \sin(1/x)\le1$ leads, via squeezing, to the limit $0$.
+
+## Non-examples
+- Persisting with direct substitution when it yields $0/0$ without trying algebraic cancellation gives no information.
+- Multiplying by an expression that changes sign or is undefined near the point (e.g., $|x|/x$ near $0$) can alter the limit and break justification.
+- Ignoring dominant terms for limits at infinity (e.g., treating $x^2+5x$ and $5x$ as comparable) can produce incorrect growth estimates.
 
 ## Connections
-- Relies on limit laws to justify algebraic steps.
+- Relies on limit laws to justify algebraic steps and to combine simplified pieces.
 - Partners with the Squeeze Theorem for oscillatory or bounded expressions.
 - Highlights removable discontinuities: successful cancellation shows a hidden continuous extension.
 
-## Errors
+## Common errors
 - Applying substitution when the denominator tends to $0$ without checking for cancellation.
 - Using algebraic manipulations that change the domain near the limit point (e.g., multiplying by non-equivalent expressions).
 - Ignoring dominant terms for limits at infinity, leading to incorrect growth estimates.
 
 ## Micro-checks
-1. **Question:** What is the first check when evaluating $\lim_{x\to a} f(x)$?  
+1. **Question:** What is the first check when evaluating $\lim_{x\to a} f(x)$?
    **Answer:** Try direct substitution; if it gives a finite value, the limit equals $f(a)$.
-2. **Question:** Which technique resolves a $0/0$ form in $\lim_{x\to 1} \dfrac{x^2-1}{x-1}$?  
+2. **Question:** Which technique resolves a $0/0$ form in $\lim_{x\to 1} \dfrac{x^2-1}{x-1}$?
    **Answer:** Factorization and cancellation yield $\lim_{x\to1} (x+1)=2$.
-3. **Question:** When is the Squeeze Theorem preferred over algebraic manipulation?  
+3. **Question:** When is the Squeeze Theorem preferred over algebraic manipulation?
    **Answer:** When the expression is bounded between two functions with known limits but resists direct simplification, such as $x\sin(1/x)$ near $0$.
+4. **Question:** Why can the limit of a simplified expression equal the limit of the original even if the simplified function has a different value at $a$?
+   **Answer:** Limits ignore the exact value at $a$; as long as the simplification matches the original on a punctured neighborhood, their limits coincide.
