@@ -19,9 +19,23 @@ tags:
   - lesson-exercises
 ---
 
-## Basic practice
+## Informal idea: approach behavior
 
-1. **Table-based estimation** _(Difficulty: Basic)._ Use the table to estimate $ \lim_{x\to 2} f(x) $. Explain why your answer is reasonable.
+1. **When the point value does not matter** _(Difficulty: Basic; Concepts: math-calculus-limits-informal-idea)._ Suppose $\lim_{x\to 5} f(x)=3$ but $f(5)=20$. Which number captures the local trend near $x=5$, and why can it differ from $f(5)$?
+
+   **Solution.** The limit is $3$ because nearby values approach $3$ regardless of what happens exactly at $x=5$. Limits summarize approach behavior, so $f(5)$ can be any value (or undefined) without changing $\lim_{x\to5} f(x)$.
+
+2. **Filling a hole** _(Difficulty: Intermediate; Concepts: math-calculus-limits-informal-idea)._ For $f(x)=\dfrac{x^2-9}{x-3}$ with $f(3)$ undefined, use the surrounding behavior to decide $\lim_{x\to3} f(x)$. Briefly justify using the idea of approaching rather than plugging in.
+
+   **Solution.** For $x\neq3$, $f(x)=x+3$, so nearby points crowd around $6$. Because the limit depends on the trend as $x$ approaches $3$, $\lim_{x\to3} f(x)=6$ even though the original formula leaves a hole at $x=3$.
+
+3. **Mismatched approach directions** _(Difficulty: Conceptual; Concepts: math-calculus-limits-informal-idea)._ A sketch shows $h(x)$ approaching $1$ from the left of $x=0$ but approaching $-2$ from the right. Does $\lim_{x\to0} h(x)$ exist? Explain in terms of approach behavior.
+
+   **Solution.** The two sides approach different heights, so there is no single value the function settles toward near $x=0$. Because a two-sided limit requires both directions to agree, $\lim_{x\to0} h(x)$ does not exist.
+
+## Graphical and numerical evidence
+
+4. **Table-based estimation** _(Difficulty: Basic; Concepts: math-calculus-limits-graphical-numerical)._ Use the table to estimate $\lim_{x\to 2} f(x)$ and describe why the table supports your conclusion.
 
    | $x$   | $f(x)$ |
    |-------|--------|
@@ -31,44 +45,13 @@ tags:
    | 2.01  | 4.01   |
    | 2.1   | 4.3    |
 
-   **Solution.** The $f(x)$ values hover near $4$ as $x$ approaches $2$ from both sides, so $\lim_{x\to 2} f(x) = 4$. Because the nearby outputs stabilize around $4$ without jumping, the table supports the guess.
+   **Solution.** The values from both sides cluster near $4$. Because the outputs stabilize around $4$ without jumping, the table indicates $\lim_{x\to2} f(x)=4$.
 
-2. **Reading limit notation** _(Difficulty: Basic)._ Give a plain-language interpretation of $\displaystyle \lim_{x\to -1} f(x)=4$.
+5. **Reading a hole on a graph** _(Difficulty: Intermediate; Concepts: math-calculus-limits-graphical-numerical)._ A graph shows an open circle at $(3,6)$ and a filled point at $(3,2)$. What are $\lim_{x\to 3} f(x)$ and $f(3)$? Is $f$ continuous at $3$?
 
-   **Solution.** As $x$ gets closer to $-1$ (from either side) but is not exactly $-1$, the outputs $f(x)$ get arbitrarily close to $4$; the limit describes the trend near $-1$, not necessarily the value at $x=-1$.
+   **Solution.** The curve approaches height $6$ from both sides, so $\lim_{x\to3} f(x)=6$. The filled point gives $f(3)=2$. Because the limit and value differ, $f$ is not continuous at $3$; the hole could be filled with $6$ to fix it.
 
-## Intermediate drills
-
-3. **Comparing limit and function value** _(Difficulty: Intermediate)._ Suppose $\lim_{x\to 5} f(x)=2$ and $f(5)=100$. Which number is the limit and why can it differ from $f(5)$?
-
-   **Solution.** The limit is $2$ because nearby values approach $2$ regardless of the jump at $x=5$. Limits depend on behavior around the point, so $f(5)$ can be anything without changing $\lim_{x\to 5} f(x)$.
-
-4. **One-sided table read** _(Difficulty: Intermediate)._ A table shows the right-hand behavior of $g$ near $x=0$:
-
-   | $x$   | $g(x)$ |
-   |-------|--------|
-   | 0.5   | 2.1    |
-   | 0.2   | 2.02   |
-   | 0.1   | 2.005  |
-   | 0.01  | 2.0005 |
-
-   Estimate $\lim_{x\to 0^+} g(x)$ and explain why this is different from $g(0)$.
-
-   **Solution.** The outputs approach $2$, so $\lim_{x\to 0^+} g(x)=2$. The limit ignores the actual value at $0$; $g(0)$ could be undefined or different while the trend from the right still targets $2$.
-
-## Conceptual insights
-
-5. **Graph interpretation** _(Difficulty: Conceptual)._ A graph shows an open circle at $(3,6)$ and a filled point at $(3,2)$. What are $\lim_{x\to 3} f(x)$ and $f(3)$? Is $f$ continuous at $3$?
-
-   **Solution.** The limit is $6$ because the curve approaches height $6$ from both sides. The function value is $f(3)=2$ (the filled point). Since the limit exists but differs from $f(3)$, $f$ is not continuous at $3$; the gap is removable.
-
-6. **Neighborhood language** _(Difficulty: Conceptual)._ Describe what it means to say “for all $x$ in a small neighborhood of $a$, but $x\neq a$, the values $f(x)$ are close to $L$.”
-
-   **Solution.** It means that if we pick $x$ values sufficiently near $a$ (excluding $a$ itself), the outputs cluster near $L$. This captures the intuitive idea of a limit without requiring that $f(a)$ equals $L$ or is even defined.
-
-## Curveball challenge
-
-7. **Ambiguous numeric evidence** _(Difficulty: Curveball)._ You observe
+6. **Ambiguous numeric evidence** _(Difficulty: Conceptual; Concepts: math-calculus-limits-graphical-numerical)._ You observe the table
 
    | $x$     | $f(x)$ |
    |---------|--------|
@@ -77,10 +60,20 @@ tags:
    | 0.001   | 0.88   |
    | 0.0001  | 0.93   |
 
-   Discuss the difficulty in deciding whether $\lim_{x\to 0} f(x)$ exists and what additional information would help.
+   Discuss whether the data alone confirms a limit at $x=0$ and what additional evidence would help.
 
-   **Solution.** The outputs wobble rather than settling, so the table alone cannot confirm convergence. More precision (smaller $|x|$), one-sided checks, or a graph/algebraic form could reveal whether values stabilize to a single number or oscillate.
+   **Solution.** The outputs wobble instead of settling to a single number, so the table by itself cannot confirm a limit. More precise values, one-sided checks, or a graph could reveal whether the outputs eventually stabilize or keep oscillating, clarifying whether a limit exists.
 
-8. **Design a function with a hole** _(Difficulty: Curveball)._ Construct an explicit $f$ such that $\lim_{x\to 1} f(x)=3$ while $f(1)$ is undefined and the graph has a single hole at $x=1$.
+## Limit notation and communication
 
-   **Solution.** Let $f(x)=\dfrac{3(x-1)}{x-1}=3$ for $x\neq 1$ and leave $f(1)$ undefined. For all $x\neq1$, $f(x)=3$, so the limit is $3$; the missing point at $x=1$ creates the hole.
+7. **Interpreting a statement** _(Difficulty: Basic; Concepts: math-calculus-limits-notation)._ Give a plain-language description of $\displaystyle \lim_{x\to -1} f(x)=4$.
+
+   **Solution.** As $x$ gets close to $-1$ from either side (but is not exactly $-1$), the outputs $f(x)$ get arbitrarily close to $4$. The equation records the nearby trend, not necessarily the value at $x=-1$.
+
+8. **Writing the right symbols** _(Difficulty: Intermediate; Concepts: math-calculus-limits-notation)._ Translate “the function nears $8$ as $x$ approaches $-1$ from the right” into limit notation and explain what the arrow and superscript communicate.
+
+   **Solution.** Write $\displaystyle \lim_{x\to -1^+} f(x)=8$. The arrow signals that inputs move toward $-1$, and the $+$ superscript marks that the approach is from the right-hand side.
+
+9. **Detecting a notation mistake** _(Difficulty: Conceptual; Concepts: math-calculus-limits-notation)._ A student writes $\lim_{x\to3} g(x)=g(3)$ because the function is “heading toward the point on the graph.” Why is this incorrect in general, and what should the limit statement actually claim?
+
+   **Solution.** A limit only describes nearby behavior; $g(3)$ could differ or be undefined. The correct claim is $\lim_{x\to3} g(x)=L$ for the value $L$ that surrounding points approach. Equality with $g(3)$ holds only if the function happens to be continuous at $3$.
