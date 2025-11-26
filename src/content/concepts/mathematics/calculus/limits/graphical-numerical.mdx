@@ -21,6 +21,7 @@ prerequisites:
   - math-calculus-limits-informal-idea
   - math-foundations-functions-basic
 relatedConcepts:
+  - math-calculus-limits-notation
   - math-calculus-limits-one-sided
   - math-calculus-limits-infinite-limits
   - math-calculus-limits-discontinuities-classification
@@ -31,30 +32,37 @@ learningGoals:
 ---
 
 ## Definition
-A graphical or numerical estimate of $\lim_{x\to a} f(x)$ uses evidence from the graph near $x=a$ or from values of $f(x)$ at inputs close to $a$ (excluding $a$ itself). A consistent trend toward a single value across both sides signals the limit.
+A graphical or numerical estimate of $\lim_{x\to a} f(x)$ uses evidence from the graph near $x=a$ or from values of $f(x)$ at inputs close to $a$ (excluding $a$ itself). A consistent trend toward a single value across both sides signals the limit; disagreement signals that the two-sided limit does not exist.
 
 ## Intuition
-Zooming in on a graph near $a$ or sampling $f(x)$ values near $a$ should make the outputs cluster near the limit. If the two sides head to different numbers, the graph shows a jump; if values blow up, the graph shoots vertically; if values oscillate without narrowing, no limit appears.
+Zooming in on a graph near $a$ or sampling $f(x)$ values near $a$ should make the outputs cluster near the limit. If the two sides head to different numbers, the graph shows a jump; if values blow up, the graph shoots vertically; if values oscillate without narrowing, no finite limit appears.
 
-## Variants
-- **Table-based estimation:** Choose inputs approaching $a$ from above and below; compare the outputs.
-- **Graphical zoom:** Successive zoom levels reveal whether the plotted curve straightens toward a specific height.
-- **One-sided views:** When the domain is restricted, examine only the accessible side of $a$.
+## Examples
+- **Hole but stable height:** A graph with an open circle at $(1,2)$ but a curve approaching height $2$ from both sides indicates $\lim_{x\to1} f(x)=2$ even if $f(1)$ is missing.
+- **Table convergence:** If values in a table for $x=1.9,1.99,2.01,2.1$ cluster around $5$, the evidence suggests $\lim_{x\to2} f(x)=5$ regardless of $f(2)$.
+- **One-sided domain:** For $f(x)=\sqrt{x}$ near $0$, only right-hand inputs exist; the table or graph from the right supports the one-sided limit $\lim_{x\to0^+} \sqrt{x}=0$.
+
+## Non-examples
+- **Jump in table or graph:** Left-hand values near $a$ trending to $1$ and right-hand values trending to $4$ show no two-sided limit at $a$.
+- **Hidden oscillation:** A coarse plot of $\sin(1/x)$ near $0$ may look tame, but finer zoom reveals oscillation preventing a limit.
+- **Vertical blow-up:** Rapid growth in magnitude in a table (e.g., $1/(x-3)^2$ near $3$) signals an infinite limit, not a finite stabilizing value.
 
 ## Connections
-- Supports the informal notion of limits by providing concrete evidence before formal proofs.
-- Reveals candidate values for $L$ that can be justified using $\varepsilon$–$\delta$ or algebraic limit laws.
-- Highlights discontinuities: agreement of both sides suggests continuity, disagreement suggests jumps or removable issues.
+- Gives visual evidence for the meaning of $\lim_{x\to a} f(x)=L$ (see `math-calculus-limits-notation`).
+- Helps decide whether to check one-sided limits or classify discontinuities.
+- Supplies candidate values to verify algebraically using limit laws.
 
-## Errors
+## Common errors
 - Reading the value at $x=a$ instead of nearby behavior, especially when a hole is present.
 - Trusting a single zoom level; coarse plots can hide oscillation or vertical growth.
 - Using symmetric step sizes only; asymmetric sampling may miss one-sided behavior on restricted domains.
 
 ## Micro-checks
-1. **Question:** What graphical sign indicates $\lim_{x\to a} f(x)$ exists and equals $L$?  
+1. **Question:** What graphical sign indicates $\lim_{x\to a} f(x)$ exists and equals $L$?
    **Answer:** Both sides of the graph approach the horizontal height $L$ as they near $x=a$, even if a hole appears at $a$.
-2. **Question:** How can a table signal a jump discontinuity at $a$?  
+2. **Question:** How can a table signal a jump discontinuity at $a$?
    **Answer:** The left-hand values approach one number while right-hand values approach a different number.
-3. **Question:** What table pattern suggests an infinite limit?  
+3. **Question:** What table pattern suggests an infinite limit?
    **Answer:** Values grow without bound in magnitude as the inputs close in on $a$.
+4. **Question:** Why should $f(a)$ be ignored when interpreting a graph or table for a limit at $a$?
+   **Answer:** The limit describes nearby behavior only; the actual function value at $a$ can differ or be undefined.

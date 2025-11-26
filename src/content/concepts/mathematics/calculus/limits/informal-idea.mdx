@@ -29,30 +29,34 @@ learningGoals:
 ---
 
 ## Definition
-A limit expresses that the outputs of a function get as close as desired to a number $L$ whenever the inputs are taken sufficiently close to a point $a$ (with $x \neq a$). The statement $\lim_{x\to a} f(x) = L$ records that nearby behavior, not the exact value at $a$.
+A limit expresses that the outputs of a function get as close as desired to a number $L$ whenever the inputs are taken sufficiently close to a point $a$ (with $x \neq a$). The statement $\lim_{x\to a} f(x) = L$ records that nearby behavior; it does **not** assert anything about the value $f(a)$ itself.
 
 ## Intuition
-Think of walking toward $x=a$ without stepping exactly on it. If the function values you encounter settle near $L$, that number is the limit. The approach can happen even when $f(a)$ is undefined or different, because the limit cares only about the trend as you close in.
+Think of walking toward $x=a$ without stepping exactly on it. If the function values you encounter settle near $L$, that number is the limit. The approach can happen even when $f(a)$ is undefined or different, because the limit cares only about the trend as you close in, not the exact landing spot.
 
-## Variants
-- **Two-sided limits:** Approach $a$ from both left and right and demand the same target value.
-- **One-sided limits:** Approach only from $x>a$ or $x<a$ when the function's behavior is directional.
-- **No finite limit:** Oscillation or unbounded growth near $a$ prevents stabilization at a real number.
+## Examples
+- **Hole with stable approach:** $f(x) = \dfrac{x^2-1}{x-1}$ has $\lim_{x\to1} f(x)=2$ even though $f(1)$ is undefined. Nearby values simplify to $x+1$, which hovers near $2$.
+- **Defined but different value:** A function defined by $f(0)=10$ and $f(x)=x^2$ for $x\neq0$ still satisfies $\lim_{x\to0} f(x)=0$ because the surrounding values behave like $x^2$.
+- **Two-sided agreement:** For $f(x)=|x|/x$, the left- and right-hand limits at $0$ differ ($-1$ vs $1$), so there is **no** two-sided limit—illustrating that matching directions are required.
+
+## Non-examples
+- **Oscillation without settling:** $f(x)=\sin(1/x)$ near $0$ never narrows around one number, so $\lim_{x\to0} f(x)$ does not exist.
+- **Unbounded growth:** $f(x)=\dfrac{1}{x^2}$ shoots upward near $0$; the limit is $+\infty$, not a finite real.
 
 ## Connections
-- Serves as the foundation for formal $\varepsilon$–$\delta$ definitions, limit laws, and continuity tests.
-- If $\lim_{x\to a} f(x) = L$ and $f(a) = L$, then $f$ is continuous at $a$; changing $f(a)$ alone does not alter the limit.
-- One-sided limits combine to produce two-sided limits when they agree.
+- Provides the meaning behind the notation $\lim_{x\to a} f(x)=L$ (see `math-calculus-limits-notation`).
+- Supports graphical and numerical investigation of nearby behavior (see `math-calculus-limits-graphical-numerical`).
+- When $f(a)$ equals the limit, the function is continuous at $a$, paving the way to continuity concepts.
 
-## Errors
+## Common errors
 - Confusing the limit with $f(a)$; the limit may exist even when $f(a)$ is undefined or different.
-- Looking only at the value exactly at $a$ instead of the nearby trend.
-- Assuming any smooth-looking graph has a limit; oscillation such as $\sin(1/x)$ near $0$ is a counterexample.
+- Inspecting only the single value at $a$ instead of the approach from both sides.
+- Assuming a limit exists just because the graph looks smooth at a coarse scale.
 
 ## Micro-checks
-1. **Question:** Can $\lim_{x\to 2} f(x)$ exist if $f(2)$ is undefined?  
+1. **Question:** Can $\lim_{x\to 2} f(x)$ exist if $f(2)$ is undefined?
    **Answer:** Yes; the limit depends on values near $2$, not at $2$.
-2. **Question:** What must be true of the left- and right-hand behaviors for a two-sided limit to exist?  
+2. **Question:** What must be true of the left- and right-hand behaviors for a two-sided limit to exist?
    **Answer:** They must both approach the same finite number $L$ as $x$ approaches the point.
-3. **Question:** Does changing the single value $f(a)$ affect $\lim_{x\to a} f(x)$?  
-   **Answer:** No; altering $f(a)$ alone leaves the nearby trend—and thus the limit—unchanged.
+3. **Question:** How can a function have a limit at $a$ but fail to be continuous there?
+   **Answer:** If $\lim_{x\to a} f(x)$ exists but $f(a)$ is different or undefined, the limit is intact but continuity fails.

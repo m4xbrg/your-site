@@ -23,6 +23,7 @@ relatedConcepts:
   - math-calculus-limits-one-sided
   - math-calculus-limits-epsilon-delta-definition
   - math-calculus-limits-graphical-numerical
+  - math-calculus-limits-limit-laws
 learningGoals:
   - Read and write standard two-sided and one-sided limit notation.
   - Translate between verbal descriptions of limiting behavior and symbolic expressions.
@@ -34,31 +35,37 @@ The expression
 $$
 \lim_{x\to a} f(x) = L
 $$
-means that the values of $f(x)$ become arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$ (with $x\ne a$). One-sided limits use arrows with $a^+$ or $a^-$, such as $\lim_{x\to a^+} f(x)$ and $\lim_{x\to a^-} f(x)$, to restrict the direction of approach.
+means that the values of $f(x)$ become arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$ (with $x\ne a$). One-sided limits use arrows with $a^+$ or $a^-$, such as $\lim_{x\to a^+} f(x)$ and $\lim_{x\to a^-} f(x)$, to restrict the direction of approach. Writing $\lim_{x\to a} f(x)=L$ does **not** claim that $f(a)$ equals $L$.
 
 ## Intuition
 Limit notation packages the idea of stability near a point. The arrow emphasizes movement toward $a$, while the value on the right of the equality marks the target that $f(x)$ settles near. One-sided symbols isolate the behavior from a single direction when left and right behaviors differ.
 
-## Variants
-- **Two-sided limit:** $\lim_{x\to a} f(x)$ requires agreement from both sides.
-- **Right-hand limit:** $\lim_{x\to a^+} f(x)$ follows inputs greater than $a$.
-- **Left-hand limit:** $\lim_{x\to a^-} f(x)$ follows inputs less than $a$.
-- **Infinite limit notation:** $\lim_{x\to a} f(x) = \infty$ records unbounded growth near $a$.
+## Examples
+- **Two-sided agreement:** $\lim_{x\to3} (2x-1)=5$ because values near $3$ follow the line toward height $5$; here $f(3)=5$, but the limit statement would remain true even if $f(3)$ were changed.
+- **One-sided necessity:** $\lim_{x\to0^+} \sqrt{x}=0$ uses $0^+$ to reflect that only $x>0$ belong to the domain.
+- **Infinite limit language:** $\lim_{x\to1} \dfrac{1}{(x-1)^2}=\infty$ communicates unbounded growth rather than a finite target.
+
+## Non-examples
+- Writing $f(a)$ in place of $\lim_{x\to a} f(x)$ confuses value with nearby behavior.
+- Dropping the one-sided indicator when left and right behaviors differ obscures which trend is being described.
+- Equating two different limiting processes, such as $\lim_{x\to a^+} f(x)=\lim_{x\to a} f(x)$, without checking that the left- and right-hand limits match.
 
 ## Connections
-- Two-sided limits exist precisely when left- and right-hand limits agree and are finite.
-- The $\varepsilon$–$\delta$ definition formalizes the meaning of $\lim_{x\to a} f(x) = L$.
-- Precise notation underlies limit laws, continuity criteria, and statements about asymptotic behavior.
+- The $\varepsilon$–$\delta$ definition (see `math-calculus-limits-epsilon-delta-definition`) formalizes the meaning of the notation.
+- Two-sided limits exist precisely when left- and right-hand limits agree and are finite, linking to one-sided limit ideas.
+- Clear notation enables the statement and proof of limit laws and continuity criteria.
 
-## Errors
+## Common errors
 - Writing $f(a)$ instead of $\lim_{x\to a} f(x)$ when describing nearby trends.
 - Omitting the direction indicator $a^\pm$ when left and right behaviors differ.
 - Using equal signs between expressions that have different limiting processes, such as replacing $x\to a^+$ with $x\to a$ without justification.
 
 ## Micro-checks
-1. **Question:** What does $\lim_{x\to a} f(x) = L$ assert about $f(a)$?  
+1. **Question:** What does $\lim_{x\to a} f(x) = L$ assert about $f(a)$?
    **Answer:** Nothing; it only describes values near $a$, so $f(a)$ may differ or be undefined.
-2. **Question:** When do we write $\lim_{x\to a^-} f(x)$ instead of $\lim_{x\to a} f(x)$?  
+2. **Question:** When do we write $\lim_{x\to a^-} f(x)$ instead of $\lim_{x\to a} f(x)$?
    **Answer:** When we care only about the behavior as $x$ approaches $a$ from the left.
-3. **Question:** How is unbounded growth near $a$ written in limit notation?  
+3. **Question:** How is unbounded growth near $a$ written in limit notation?
    **Answer:** With $\lim_{x\to a} f(x) = \infty$ (or $-\infty$) to show divergence rather than a finite target.
+4. **Question:** Why can $\lim_{x\to a} f(x)=L$ hold even if $f(a)\ne L$?
+   **Answer:** The limit tracks nearby behavior; changing the single value at $a$ does not affect how $f(x)$ behaves as $x$ approaches $a$.
